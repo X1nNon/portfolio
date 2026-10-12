@@ -1,22 +1,24 @@
 // Общее для страницы: контакты, шапка, картинки крупно, появление блоков.
 
 (() => {
-  // Контакты: впишите ссылки — кнопки «Написать» и «Позвонить» сразу заработают.
-  // Пока ссылки нет, кнопка просто ведёт к блоку «Контакты».
+  // Контакты для кнопок «Написать». Кнопка без ссылки прячется, чтобы на сайте не было нерабочих кнопок.
   const CONTACTS = {
-    telegram: '', // например: https://t.me/ваш_ник
-    max: '', // ссылка на ваш профиль в MAX
-    phone: '', // например: +79001234567
+    telegram: 'https://t.me/X1nN0n',
+    max: 'https://max.ru/u/f9LHodD0cOJ6XFs0k5o8QsKO2rrF3OVAb4TDwJ0YbtX43iOG3LH2091j7XY',
+    email: 'eugenerussia21@gmail.com',
   };
 
   document.querySelectorAll('[data-contact]').forEach((link) => {
-    const value = CONTACTS[link.dataset.contact];
-    if (!value) return;
-    link.href = link.dataset.contact === 'phone' ? `tel:${value.replace(/[^\d+]/g, '')}` : value;
-    if (link.dataset.contact !== 'phone') {
-      link.target = '_blank';
-      link.rel = 'noopener';
+    const kind = link.dataset.contact;
+    const value = CONTACTS[kind];
+    if (!value) { link.hidden = true; return; }
+    if (kind === 'email') {
+      link.href = `mailto:${value}`;
+      return;
     }
+    link.href = value;
+    link.target = '_blank';
+    link.rel = 'noopener';
   });
 
   // Шапка получает границу, когда страницу прокрутили.

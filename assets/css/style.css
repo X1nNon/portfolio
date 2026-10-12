@@ -237,6 +237,8 @@ p { margin: 0 0 14px; }
 .contact__box h2 { position: relative; z-index: 1; max-width: 640px; }
 .contact__box p { position: relative; z-index: 1; max-width: 520px; margin: 18px 0 32px; color: #bdbdbd; font-size: 18px; }
 .contact__buttons { position: relative; z-index: 1; display: flex; flex-wrap: wrap; gap: 12px; }
+.contact__box p.contact__mail { margin: 22px 0 0; font-size: 16px; }
+.contact__mail a { color: #fff; }
 .footer { padding: 32px 0 40px; font-size: 14px; color: var(--ink-3); }
 .footer .wrap { display: flex; justify-content: space-between; flex-wrap: wrap; gap: 12px; }
 
