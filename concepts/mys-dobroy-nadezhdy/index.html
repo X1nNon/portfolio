@@ -107,7 +107,8 @@
   .tab:focus-visible { outline: 2px solid var(--accent); outline-offset: 3px; }
   .tab[aria-selected="true"] { background: var(--accent); border-color: var(--accent); color: var(--on-accent); }
   .tab[aria-selected="true"]::after { content: ""; position: absolute; left: 50%; bottom: -9px; width: 16px; height: 16px; background: var(--accent); transform: translateX(-50%) rotate(45deg); border-radius: 2px; }
-  .tab .price { display: block; font-size: 28px; font-weight: 800; line-height: 1.1; }
+  .tab .name { display: block; font-family: "Arsenal", serif; font-style: italic; font-weight: 700; font-size: 24px; line-height: 1.15; }
+  .tab .price { display: block; font-size: 22px; font-weight: 800; line-height: 1.1; margin-top: 4px; }
   .tab .per { font-size: 14px; opacity: .75; }
 
   .panel { margin-top: 24px; background: #fdf6f2; border-radius: 6px; padding: 56px 64px 44px;
@@ -116,6 +117,7 @@
   .mhead { text-align: center; margin-bottom: 40px; }
   .mtitle { font-family: "Arsenal", serif; font-style: italic; font-weight: 700; font-size: clamp(30px, 3.4vw, 40px); color: var(--accent); letter-spacing: 0; }
   .mprice { margin: 6px 0 0; color: var(--muted); font-size: 16px; }
+  .mprice b { color: var(--text); font-size: 20px; }
   .mdrinks { margin: 10px 0 0; font-size: 15px; color: var(--text); }
   .orn { display: flex; align-items: center; justify-content: center; gap: 14px; margin-top: 18px; color: var(--accent); }
   .orn::before, .orn::after { content: ""; width: 72px; height: 1px; background: var(--line); }
@@ -187,7 +189,8 @@
     .hall { min-height: 240px; }
     .tabs { gap: 8px; }
     .tab { padding: 14px 6px 12px; }
-    .tab .price { font-size: 20px; }
+    .tab .name { font-size: 18px; }
+    .tab .price { font-size: 17px; }
     .tab .per { font-size: 12px; }
     .panel { padding: 36px 22px 30px; }
     .mhead { margin-bottom: 28px; }
@@ -277,13 +280,13 @@
 
       <div class="menu-box reveal">
         <div class="tabs" role="tablist" aria-label="Банкетные пакеты">
-          <button class="tab" role="tab" id="t1" aria-controls="p1" aria-selected="true"><span class="price">4 500 ₽</span><span class="per">на гостя</span></button>
-          <button class="tab" role="tab" id="t2" aria-controls="p2" aria-selected="false" tabindex="-1"><span class="price">6 000 ₽</span><span class="per">на гостя</span></button>
-          <button class="tab" role="tab" id="t3" aria-controls="p3" aria-selected="false" tabindex="-1"><span class="price">7 500 ₽</span><span class="per">на гостя</span></button>
+          <button class="tab" role="tab" id="t1" aria-controls="p1" aria-selected="true"><span class="name">Шхуна</span><span class="price">4 500 ₽</span><span class="per">на гостя</span></button>
+          <button class="tab" role="tab" id="t2" aria-controls="p2" aria-selected="false" tabindex="-1"><span class="name">Бриг</span><span class="price">6 000 ₽</span><span class="per">на гостя</span></button>
+          <button class="tab" role="tab" id="t3" aria-controls="p3" aria-selected="false" tabindex="-1"><span class="name">Фрегат</span><span class="price">7 500 ₽</span><span class="per">на гостя</span></button>
         </div>
 
         <div class="panel" role="tabpanel" id="p1" aria-labelledby="t1">
-          <div class="mhead"><h3 class="mtitle">4 500 ₽</h3><p class="mprice">на гостя</p><p class="mdrinks">Напитки без алкоголя: морс и вода</p><div class="orn" aria-hidden="true"><i class="ph ph-fork-knife"></i></div></div>
+          <div class="mhead"><h3 class="mtitle">Шхуна</h3><p class="mprice"><b>4 500 ₽</b> на гостя</p><p class="mdrinks">Напитки без алкоголя: морс и вода</p><div class="orn" aria-hidden="true"><i class="ph ph-fork-knife"></i></div></div>
           <div class="groups">
             <div class="group"><h4>Закуски</h4><ul>
               <li>Мясное ассорти <small>буженина, язык говяжий, куриный рулет</small></li>
@@ -307,11 +310,11 @@
               <li>Морс ягодный, вода с газом и без</li>
             </ul></div>
           </div>
-          <div class="panel-foot"><p>Цена за гостя. Напитки, кроме указанных, по барной карте.</p><a class="btn btn-primary" href="#order" data-pack="4 500 ₽">Выбрать этот пакет</a></div>
+          <div class="panel-foot"><p>Цена за гостя. Напитки, кроме указанных, по барной карте.</p><a class="btn btn-primary" href="#order" data-pack="Шхуна, 4 500 ₽">Выбрать этот пакет</a></div>
         </div>
 
         <div class="panel" role="tabpanel" id="p2" aria-labelledby="t2" hidden>
-          <div class="mhead"><h3 class="mtitle">6 000 ₽</h3><p class="mprice">на гостя</p><p class="mdrinks">Включены 2 бокала вина и 100 мл крепкого</p><div class="orn" aria-hidden="true"><i class="ph ph-fork-knife"></i></div></div>
+          <div class="mhead"><h3 class="mtitle">Бриг</h3><p class="mprice"><b>6 000 ₽</b> на гостя</p><p class="mdrinks">Включены 2 бокала вина и 100 мл крепкого</p><div class="orn" aria-hidden="true"><i class="ph ph-fork-knife"></i></div></div>
           <div class="groups">
             <div class="group"><h4>Закуски</h4><ul>
               <li>Сырное плато <small>гауда, чеддер, дор блю</small></li>
@@ -337,11 +340,11 @@
               <li>Морс, сок, вода с газом и без, хлебная корзина</li>
             </ul></div>
           </div>
-          <div class="panel-foot"><p>Цена за гостя. Алкоголь сверх пакета по барной карте.</p><a class="btn btn-primary" href="#order" data-pack="6 000 ₽">Выбрать этот пакет</a></div>
+          <div class="panel-foot"><p>Цена за гостя. Алкоголь сверх пакета по барной карте.</p><a class="btn btn-primary" href="#order" data-pack="Бриг, 6 000 ₽">Выбрать этот пакет</a></div>
         </div>
 
         <div class="panel" role="tabpanel" id="p3" aria-labelledby="t3" hidden>
-          <div class="mhead"><h3 class="mtitle">7 500 ₽</h3><p class="mprice">на гостя</p><p class="mdrinks">Включены 2 бокала вина и 100 мл крепкого</p><div class="orn" aria-hidden="true"><i class="ph ph-fork-knife"></i></div></div>
+          <div class="mhead"><h3 class="mtitle">Фрегат</h3><p class="mprice"><b>7 500 ₽</b> на гостя</p><p class="mdrinks">Включены 2 бокала вина и 100 мл крепкого</p><div class="orn" aria-hidden="true"><i class="ph ph-fork-knife"></i></div></div>
           <div class="groups">
             <div class="group"><h4>Закуски</h4><ul>
               <li>Мясное плато <small>язык говяжий, буженина, куриный рулет, парма</small></li>
@@ -367,7 +370,7 @@
               <li>Морс, сок, вода с газом и без, хлебная корзина</li>
             </ul></div>
           </div>
-          <div class="panel-foot"><p>Цена за гостя. Алкоголь сверх пакета по барной карте.</p><a class="btn btn-primary" href="#order" data-pack="7 500 ₽">Выбрать этот пакет</a></div>
+          <div class="panel-foot"><p>Цена за гостя. Алкоголь сверх пакета по барной карте.</p><a class="btn btn-primary" href="#order" data-pack="Фрегат, 7 500 ₽">Выбрать этот пакет</a></div>
         </div>
       </div>
     </div>
@@ -410,7 +413,7 @@
           <div class="field"><label for="kind">Повод</label>
             <select id="kind" name="kind"><option>Корпоратив</option><option>День рождения</option><option>Свадьба</option><option>Семейный праздник</option><option>Другое</option></select></div>
           <div class="field"><label for="pack">Пакет</label>
-            <select id="pack" name="pack"><option>Пока не выбрали</option><option>4 500 ₽</option><option>6 000 ₽</option><option>7 500 ₽</option></select></div>
+            <select id="pack" name="pack"><option>Пока не выбрали</option><option>Шхуна, 4 500 ₽</option><option>Бриг, 6 000 ₽</option><option>Фрегат, 7 500 ₽</option></select></div>
           <div class="field"><label for="name">Имя</label><input id="name" name="name" autocomplete="name" placeholder="Как к вам обращаться" required><div class="err" aria-live="polite"></div></div>
           <div class="field wide"><label for="phone">Телефон</label><input id="phone" name="phone" type="tel" autocomplete="tel" placeholder="+7 ___ ___-__-__" required><div class="err" aria-live="polite"></div></div>
           <div class="field wide"><label for="note">Пожелания</label><textarea id="note" name="note" placeholder="Ведущий, музыка, детское меню, оформление"></textarea></div>
