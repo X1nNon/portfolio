@@ -1,0 +1,491 @@
+<!doctype html>
+<html lang="ru">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Праздники и корпоративы - концепт для ресторана "Мыс Доброй Надежды"</title>
+<meta name="description" content="Концепт страницы праздников и корпоративов для ресторана Мыс Доброй Надежды в Кронштадте. Подготовил Евгений Афонин.">
+<meta name="robots" content="noindex">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&family=Arsenal:ital,wght@1,400;1,700&display=swap" rel="stylesheet">
+<script src="https://unpkg.com/@phosphor-icons/web@2.1.1"></script>
+<!--
+  Концепт страницы "Праздники и корпоративы" для capeofhope.ru.
+  Бренд сохранён: бордовый #64040C и розово-кремовый фон сайта, фото и банкетное меню - с их сайта.
+  Шрифты: Manrope (близко к их Stolzl) + Arsenal italic (есть на их сайте).
+-->
+<style>
+  :root {
+    --bg: #f5e1d7;
+    --surface: #fbefe8;
+    --surface-2: #f0d4c7;
+    --line: #e2c1b2;
+    --text: #2b1416;
+    --muted: #6e4c4a;
+    --accent: #64040c;
+    --accent-hover: #7d0a15;
+    --on-accent: #fff6f1;
+    --shadow: 0 18px 50px rgba(100, 4, 12, .14);
+    --r: 14px;
+    color-scheme: light;
+  }
+  /* Бренд ресторана светлый: тема зафиксирована, чтобы концепт выглядел как их сайт. */
+  * { box-sizing: border-box; }
+  html { scroll-behavior: smooth; }
+  @media (prefers-reduced-motion: reduce) { html { scroll-behavior: auto; } }
+  body { margin: 0; background: var(--bg); color: var(--text); font: 16px/1.6 "Manrope", system-ui, sans-serif; -webkit-font-smoothing: antialiased; }
+  img { display: block; max-width: 100%; }
+  a { color: inherit; }
+  .wrap { max-width: 1240px; margin: 0 auto; padding: 0 24px; }
+  h1, h2, h3 { margin: 0; line-height: 1.12; letter-spacing: -.02em; }
+  h2 { font-size: clamp(30px, 4vw, 44px); font-weight: 800; }
+  .lead { color: var(--muted); max-width: 58ch; margin: 14px 0 0; }
+
+  /* полоса концепта */
+  .concept { background: var(--accent); color: var(--on-accent); font-size: 14px; }
+  .concept .wrap { display: flex; gap: 12px; align-items: center; justify-content: space-between; padding-top: 9px; padding-bottom: 9px; flex-wrap: wrap; }
+  .concept b { font-weight: 700; }
+
+  /* шапка */
+  header.top { position: sticky; top: 0; z-index: 20; background: color-mix(in srgb, var(--bg) 88%, transparent); backdrop-filter: blur(10px); border-bottom: 1px solid var(--line); }
+  header.top .wrap { display: flex; align-items: center; gap: 24px; height: 72px; }
+  .logo { height: 50px; width: auto; }
+  nav { display: flex; gap: 22px; margin-left: 12px; font-weight: 600; font-size: 15px; }
+  nav a { text-decoration: none; color: var(--muted); }
+  nav a:hover { color: var(--accent); }
+  .top-phone { margin-left: auto; font-weight: 700; text-decoration: none; white-space: nowrap; }
+
+  /* кнопки */
+  .btn { display: inline-flex; align-items: center; gap: 10px; border: 0; cursor: pointer; font: 700 16px/1 "Manrope", sans-serif; padding: 16px 26px; border-radius: 999px; text-decoration: none; white-space: nowrap; transition: transform .2s cubic-bezier(.16,1,.3,1), background .2s; }
+  .btn:active { transform: scale(.98); }
+  .btn-primary { background: var(--accent); color: var(--on-accent); }
+  .btn-primary:hover { background: var(--accent-hover); }
+  .btn-ghost { background: transparent; color: var(--accent); box-shadow: inset 0 0 0 2px var(--accent); }
+  .btn-ghost:hover { background: color-mix(in srgb, var(--accent) 8%, transparent); }
+  .top .btn { padding: 12px 20px; font-size: 15px; }
+
+  /* первый экран */
+  .hero { padding: 56px 0 72px; }
+  .hero .wrap { display: grid; grid-template-columns: 1.05fr 1fr; gap: 56px; align-items: center; }
+  .hero h1 { font-size: clamp(38px, 5vw, 60px); font-weight: 800; }
+  .hero h1 em { white-space: nowrap; font-family: "Arsenal", serif; font-style: italic; font-weight: 700; color: var(--accent); }
+  .hero .sub { font-size: 19px; color: var(--muted); margin: 22px 0 32px; max-width: 30ch; }
+  .hero .cta { display: flex; gap: 12px; flex-wrap: wrap; }
+  .hero-photo { position: relative; border-radius: 22px; overflow: hidden; box-shadow: var(--shadow); aspect-ratio: 4 / 3.4; }
+  .hero-photo img { width: 100%; height: 100%; object-fit: cover; }
+
+  /* цифры */
+  .facts { border-top: 1px solid var(--line); border-bottom: 1px solid var(--line); }
+  .facts .wrap { display: grid; grid-template-columns: repeat(3, 1fr); }
+  .fact { padding: 26px 0; }
+  .fact + .fact { padding-left: 28px; border-left: 1px solid var(--line); }
+  .fact b { display: block; font-size: 30px; font-weight: 800; color: var(--accent); line-height: 1.1; }
+  .fact span { color: var(--muted); font-size: 15px; }
+
+  section { padding: 96px 0; scroll-margin-top: 88px; }
+
+  /* залы: один большой и два поменьше */
+  .halls { display: grid; grid-template-columns: 1.4fr 1fr; grid-template-rows: auto auto; gap: 20px; margin-top: 40px; }
+  .hall { position: relative; border-radius: var(--r); overflow: hidden; min-height: 270px; background: var(--surface-2); }
+  .hall.big { grid-row: span 2; min-height: 560px; }
+  .hall img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; transition: transform .7s cubic-bezier(.16,1,.3,1); }
+  .hall:hover img { transform: scale(1.04); }
+  .hall .cap { position: absolute; left: 0; right: 0; bottom: 0; padding: 22px 24px; color: #fff; background: linear-gradient(transparent, rgba(30, 6, 9, .82)); }
+  .hall h3 { font-size: 24px; font-weight: 800; }
+  .hall p { margin: 4px 0 0; opacity: .92; }
+  .hall .seats { font-family: "Arsenal", serif; font-style: italic; font-size: 20px; }
+
+  /* банкетное меню */
+  /* банкетное меню: выбор пакета + меню-карта в рамке, как печатное меню ресторана */
+  .menu-box { margin-top: 40px; }
+  .tabs { display: grid; grid-template-columns: repeat(3, 1fr); gap: 14px; }
+  .tab { appearance: none; position: relative; cursor: pointer; text-align: center; padding: 20px 18px 18px; border-radius: var(--r); border: 1px solid var(--line); background: var(--surface); color: var(--text); font: inherit; transition: background .25s, border-color .25s, transform .2s cubic-bezier(.16,1,.3,1); }
+  .tab:hover { border-color: var(--accent); }
+  .tab:active { transform: scale(.98); }
+  .tab:focus { outline: none; }
+  .tab:focus-visible { outline: 2px solid var(--accent); outline-offset: 3px; }
+  .tab[aria-selected="true"] { background: var(--accent); border-color: var(--accent); color: var(--on-accent); }
+  .tab[aria-selected="true"]::after { content: ""; position: absolute; left: 50%; bottom: -9px; width: 16px; height: 16px; background: var(--accent); transform: translateX(-50%) rotate(45deg); border-radius: 2px; }
+  .tab .price { display: block; font-size: 28px; font-weight: 800; line-height: 1.1; }
+  .tab .per { font-size: 14px; opacity: .75; }
+
+  .panel { margin-top: 24px; background: #fdf6f2; border-radius: 6px; padding: 56px 64px 44px;
+    box-shadow: inset 0 0 0 1px var(--line), inset 0 0 0 9px #fdf6f2, inset 0 0 0 10px var(--line), 0 24px 60px rgba(100, 4, 12, .10); }
+  .panel[hidden] { display: none; }
+  .mhead { text-align: center; margin-bottom: 40px; }
+  .mtitle { font-family: "Arsenal", serif; font-style: italic; font-weight: 700; font-size: clamp(30px, 3.4vw, 40px); color: var(--accent); letter-spacing: 0; }
+  .mprice { margin: 6px 0 0; color: var(--muted); font-size: 16px; }
+  .mdrinks { margin: 10px 0 0; font-size: 15px; color: var(--text); }
+  .orn { display: flex; align-items: center; justify-content: center; gap: 14px; margin-top: 18px; color: var(--accent); }
+  .orn::before, .orn::after { content: ""; width: 72px; height: 1px; background: var(--line); }
+  .orn i { font-size: 20px; }
+  .groups { display: grid; grid-template-columns: repeat(2, 1fr); gap: 36px 64px; }
+  .group h4 { display: flex; align-items: center; gap: 14px; margin: 0 0 14px; font-family: "Arsenal", serif; font-style: italic; font-weight: 700; font-size: 23px; color: var(--accent); }
+  .group h4::after { content: ""; flex: 1; height: 1px; background: var(--line); }
+  .group ul { list-style: none; margin: 0; padding: 0; display: grid; gap: 12px; }
+  .group li { font-weight: 600; line-height: 1.35; }
+  .group li small { display: block; margin-top: 3px; font-weight: 400; font-size: 14px; color: var(--muted); }
+  .panel-foot { display: flex; flex-direction: column; align-items: center; gap: 16px; margin-top: 44px; padding-top: 28px; border-top: 1px solid var(--line); text-align: center; }
+  .panel-foot p { margin: 0; color: var(--muted); font-size: 15px; }
+
+  /* услуги */
+  .services { display: grid; grid-template-columns: 1fr 1.3fr; gap: 56px; align-items: start; }
+  .svc-list { display: grid; grid-template-columns: 1fr 1fr; gap: 26px 32px; }
+  .svc { display: flex; gap: 14px; }
+  .svc i { font-size: 28px; color: var(--accent); flex: none; margin-top: 2px; }
+  .svc b { display: block; font-weight: 700; }
+  .svc span { color: var(--muted); font-size: 15px; }
+
+  /* заявка */
+  .order { background: var(--accent); color: var(--on-accent); border-radius: 26px; padding: 56px; display: grid; grid-template-columns: 1fr 1.25fr; gap: 48px; }
+  .order h2 { color: var(--on-accent); }
+  .order .lead { color: color-mix(in srgb, var(--on-accent) 82%, transparent); }
+  .order-contacts { margin-top: 28px; display: grid; gap: 8px; font-weight: 600; }
+  .order-contacts a { text-decoration: none; }
+  form { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; background: var(--surface); color: var(--text); padding: 28px; border-radius: 18px; }
+  .field { display: grid; gap: 6px; }
+  .field.wide { grid-column: 1 / -1; }
+  label { font-size: 14px; font-weight: 700; }
+  input, select, textarea { width: 100%; font: inherit; color: var(--text); background: var(--bg); border: 1.5px solid var(--line); border-radius: 10px; padding: 12px 14px; }
+  input::placeholder, textarea::placeholder { color: color-mix(in srgb, var(--muted) 85%, transparent); }
+  input:focus, select:focus, textarea:focus { outline: 2px solid var(--accent); outline-offset: 1px; border-color: transparent; }
+  textarea { min-height: 84px; resize: vertical; }
+  .err { color: #b3261e; font-size: 13px; min-height: 0; }
+  .field.bad input, .field.bad select { border-color: #b3261e; }
+  form .btn { justify-self: start; }
+  .done { grid-column: 1 / -1; display: none; padding: 16px 18px; border-radius: 12px; background: var(--surface-2); }
+  .done.show { display: block; }
+
+  footer { padding: 48px 0 110px; color: var(--muted); font-size: 15px; }
+  footer .wrap { display: flex; gap: 32px; justify-content: space-between; flex-wrap: wrap; }
+  footer b { color: var(--text); }
+
+  .mobile-cta { display: none; transition: opacity .25s, transform .25s; }
+  .mobile-cta.away { opacity: 0; transform: translateY(16px); pointer-events: none; }
+
+  /* появление при прокрутке (только если пользователь не просил меньше анимаций) */
+  @media (prefers-reduced-motion: no-preference) {
+    .reveal { opacity: 0; transform: translateY(22px); transition: opacity .7s cubic-bezier(.16,1,.3,1), transform .7s cubic-bezier(.16,1,.3,1); }
+    .reveal.in { opacity: 1; transform: none; }
+  }
+
+  /* телефон */
+  @media (max-width: 900px) {
+    nav { display: none; }
+    .top .btn { display: none; }
+    .hero { padding: 28px 0 48px; }
+    .hero .wrap { grid-template-columns: 1fr; gap: 28px; }
+    .hero .sub { font-size: 17px; margin: 16px 0 24px; }
+    .facts .wrap { grid-template-columns: 1fr; }
+    .fact { padding: 16px 0; display: flex; align-items: baseline; gap: 12px; flex-wrap: wrap; }
+    .fact b { font-size: 24px; }
+    .fact + .fact { padding-left: 0; border-left: 0; border-top: 1px solid var(--line); }
+    section { padding: 64px 0; }
+    .halls { grid-template-columns: 1fr; }
+    .hall.big { grid-row: auto; min-height: 320px; }
+    .hall { min-height: 240px; }
+    .tabs { gap: 8px; }
+    .tab { padding: 14px 6px 12px; }
+    .tab .price { font-size: 20px; }
+    .tab .per { font-size: 12px; }
+    .panel { padding: 36px 22px 30px; }
+    .mhead { margin-bottom: 28px; }
+    .orn::before, .orn::after { width: 44px; }
+    .groups { grid-template-columns: 1fr; gap: 28px; }
+    .services { grid-template-columns: 1fr; gap: 28px; }
+    .svc-list { grid-template-columns: 1fr; }
+    .order { padding: 28px 20px; grid-template-columns: 1fr; gap: 24px; border-radius: 20px; }
+    form { grid-template-columns: 1fr; padding: 20px; }
+    .wrap { padding: 0 16px; }
+    .mobile-cta { display: flex; position: fixed; left: 12px; right: 12px; bottom: 12px; z-index: 30; justify-content: center; box-shadow: var(--shadow); }
+  }
+</style>
+</head>
+<body>
+
+<div class="concept">
+  <div class="wrap">
+    <span><b>Концепт</b> страницы для ресторана "Мыс Доброй Надежды". Фото и банкетное меню взяты с вашего сайта, тексты черновые.</span>
+    <span>Подготовил Евгений Афонин</span>
+  </div>
+</div>
+
+<header class="top">
+  <div class="wrap">
+    <img class="logo" src="https://capeofhope.ru/wp-content/uploads/2025/09/cropped-лого_розовые-300x213.png" alt="Мыс Доброй Надежды">
+    <nav>
+      <a href="#halls">Залы</a>
+      <a href="#menu">Банкетное меню</a>
+      <a href="#services">Услуги</a>
+    </nav>
+    <a class="top-phone" href="tel:+79118193672">+7 (911) 819-36-72</a>
+    <a class="btn btn-primary" href="#order">Выбрать дату</a>
+  </div>
+</header>
+
+<main>
+  <div class="hero">
+    <div class="wrap">
+      <div class="reveal">
+        <h1>Праздники и корпоративы <em>в Кронштадте</em></h1>
+        <p class="sub">Три зала до 64 гостей, банкетное меню от 4 500 ₽ на гостя, ведущий и живая музыка.</p>
+        <div class="cta">
+          <a class="btn btn-primary" href="#order"><i class="ph ph-calendar-check"></i>Выбрать дату</a>
+          <a class="btn btn-ghost" href="#menu">Банкетное меню</a>
+        </div>
+      </div>
+      <div class="hero-photo reveal">
+        <img src="https://capeofhope.ru/wp-content/uploads/2025/10/DSC00016-1024x683.jpg" alt="Зал ресторана с гирляндами и живыми растениями" fetchpriority="high">
+      </div>
+    </div>
+  </div>
+
+  <div class="facts">
+    <div class="wrap">
+      <div class="fact"><b>3 зала</b><span>малый, большой и веранда</span></div>
+      <div class="fact"><b>до 64 гостей</b><span>в одном зале</span></div>
+      <div class="fact"><b>5,0 на Яндексе</b><span>639 оценок гостей</span></div>
+    </div>
+  </div>
+
+  <section id="halls">
+    <div class="wrap">
+      <h2 class="reveal">Залы под ваш праздник</h2>
+      <p class="lead reveal">Под закрытое мероприятие можно забронировать любой зал целиком.</p>
+      <div class="halls">
+        <article class="hall big reveal">
+          <img src="https://capeofhope.ru/wp-content/uploads/2025/10/DSC00008-1024x683.jpg" alt="Большой зал" loading="lazy">
+          <div class="cap"><h3>Большой зал</h3><p><span class="seats">до 64 гостей.</span> Музыка, экран и ведущий, если зал закрыт под ваше мероприятие.</p></div>
+        </article>
+        <article class="hall reveal">
+          <img src="https://capeofhope.ru/wp-content/uploads/2025/10/DSC00024-768x512.jpg" alt="Малый зал" loading="lazy">
+          <div class="cap"><h3>Малый зал</h3><p><span class="seats">до 54 гостей</span></p></div>
+        </article>
+        <article class="hall reveal">
+          <img src="https://capeofhope.ru/wp-content/uploads/2025/10/IMG_0849-1024x576.jpg" alt="Веранда" loading="lazy">
+          <div class="cap"><h3>Веранда</h3><p><span class="seats">до 54 гостей</span></p></div>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <section id="menu" style="padding-top:0">
+    <div class="wrap">
+      <h2 class="reveal">Банкетное меню</h2>
+      <p class="lead reveal">Три готовых пакета. Состав можно поменять под ваш праздник.</p>
+
+      <div class="menu-box reveal">
+        <div class="tabs" role="tablist" aria-label="Банкетные пакеты">
+          <button class="tab" role="tab" id="t1" aria-controls="p1" aria-selected="true"><span class="price">4 500 ₽</span><span class="per">на гостя</span></button>
+          <button class="tab" role="tab" id="t2" aria-controls="p2" aria-selected="false" tabindex="-1"><span class="price">6 000 ₽</span><span class="per">на гостя</span></button>
+          <button class="tab" role="tab" id="t3" aria-controls="p3" aria-selected="false" tabindex="-1"><span class="price">7 500 ₽</span><span class="per">на гостя</span></button>
+        </div>
+
+        <div class="panel" role="tabpanel" id="p1" aria-labelledby="t1">
+          <div class="mhead"><h3 class="mtitle">4 500 ₽</h3><p class="mprice">на гостя</p><p class="mdrinks">Напитки без алкоголя: морс и вода</p><div class="orn" aria-hidden="true"><i class="ph ph-fork-knife"></i></div></div>
+          <div class="groups">
+            <div class="group"><h4>Закуски</h4><ul>
+              <li>Мясное ассорти <small>буженина, язык говяжий, куриный рулет</small></li>
+              <li>Сырная тарелка <small>гауда, российский, чеддер</small></li>
+              <li>Сельдь по-русски с молодым картофелем и красным луком</li>
+              <li>Мини-брускетты: с запечённым перцем и творожным кремом, с куриным паштетом, с пармской ветчиной и вялеными томатами</li>
+              <li>Запечённые баклажаны с сыром моцарелла</li>
+              <li>Пирожки с капустой, с картофелем, с куриной печенью и яйцом</li>
+            </ul></div>
+            <div class="group"><h4>Салаты</h4><ul>
+              <li>С кальмаром и печёным картофелем</li>
+              <li>С говяжьим языком и маринованными огурцами</li>
+              <li>Овощной</li>
+            </ul></div>
+            <div class="group"><h4>Горячее</h4><ul>
+              <li>Куриная грудка на гриле со сливочным соусом и запечённым картофелем</li>
+              <li>Судак по-балкански с овощами</li>
+            </ul></div>
+            <div class="group"><h4>К столу</h4><ul>
+              <li>Хлебная корзина</li>
+              <li>Морс ягодный, вода с газом и без</li>
+            </ul></div>
+          </div>
+          <div class="panel-foot"><p>Цена за гостя. Напитки, кроме указанных, по барной карте.</p><a class="btn btn-primary" href="#order" data-pack="4 500 ₽">Выбрать этот пакет</a></div>
+        </div>
+
+        <div class="panel" role="tabpanel" id="p2" aria-labelledby="t2" hidden>
+          <div class="mhead"><h3 class="mtitle">6 000 ₽</h3><p class="mprice">на гостя</p><p class="mdrinks">Включены 2 бокала вина и 100 мл крепкого</p><div class="orn" aria-hidden="true"><i class="ph ph-fork-knife"></i></div></div>
+          <div class="groups">
+            <div class="group"><h4>Закуски</h4><ul>
+              <li>Сырное плато <small>гауда, чеддер, дор блю</small></li>
+              <li>Мясное плато <small>язык говяжий, буженина, куриный рулет с черносливом</small></li>
+              <li>Итальянские деликатесы <small>парма, копа, брезаола</small> с гриссини</li>
+              <li>Мини-брускетта с красной икрой</li>
+              <li>Форель слабосолёная</li>
+              <li>Рулетики из баклажанов с грецким орехом и сырным кремом, рулетики из перца с творожным кремом</li>
+              <li>Жульен с курицей и грибами</li>
+            </ul></div>
+            <div class="group"><h4>Салаты</h4><ul>
+              <li>Тёплый салат с куриной печенью</li>
+              <li>Цезарь с креветками</li>
+              <li>Греческий, "Мангал"</li>
+            </ul></div>
+            <div class="group"><h4>Горячее</h4><ul>
+              <li>Цыплёнок табака с запечённым картофелем</li>
+              <li>Форель радужная с рисом и овощами <small>гриль, на пару или жареная</small></li>
+            </ul></div>
+            <div class="group"><h4>Напитки</h4><ul>
+              <li>Вино на выбор, 2 бокала (250 мл)</li>
+              <li>Крепкий алкоголь на выбор, 100 мл</li>
+              <li>Морс, сок, вода с газом и без, хлебная корзина</li>
+            </ul></div>
+          </div>
+          <div class="panel-foot"><p>Цена за гостя. Алкоголь сверх пакета по барной карте.</p><a class="btn btn-primary" href="#order" data-pack="6 000 ₽">Выбрать этот пакет</a></div>
+        </div>
+
+        <div class="panel" role="tabpanel" id="p3" aria-labelledby="t3" hidden>
+          <div class="mhead"><h3 class="mtitle">7 500 ₽</h3><p class="mprice">на гостя</p><p class="mdrinks">Включены 2 бокала вина и 100 мл крепкого</p><div class="orn" aria-hidden="true"><i class="ph ph-fork-knife"></i></div></div>
+          <div class="groups">
+            <div class="group"><h4>Закуски</h4><ul>
+              <li>Мясное плато <small>язык говяжий, буженина, куриный рулет, парма</small></li>
+              <li>Рыбное плато <small>форель слабосолёная, палтус холодного копчения, масляная рыба</small></li>
+              <li>Сырное плато <small>камамбер, дор блю, пекорино неро</small></li>
+              <li>Брускетта с красной икрой, вителло тонато</li>
+              <li>Калитка с ладожской форелью</li>
+              <li>Эклеры с куриным паштетом и ягодной глазурью, битые огурцы</li>
+            </ul></div>
+            <div class="group"><h4>Салаты</h4><ul>
+              <li>С утиной грудкой</li>
+              <li>Тёплый салат с осьминогом</li>
+              <li>"Шёлковый путь", "Мангал"</li>
+            </ul></div>
+            <div class="group"><h4>Горячее</h4><ul>
+              <li>Фаршированная щука с полентой <small>шоу-подача</small></li>
+              <li>Медальоны из говяжьей вырезки с перечным соусом и рагу из лесных грибов</li>
+              <li>Жареные морепродукты на сковороде</li>
+            </ul></div>
+            <div class="group"><h4>Напитки</h4><ul>
+              <li>Вино на выбор, 2 бокала (250 мл)</li>
+              <li>Крепкий алкоголь на выбор, 100 мл</li>
+              <li>Морс, сок, вода с газом и без, хлебная корзина</li>
+            </ul></div>
+          </div>
+          <div class="panel-foot"><p>Цена за гостя. Алкоголь сверх пакета по барной карте.</p><a class="btn btn-primary" href="#order" data-pack="7 500 ₽">Выбрать этот пакет</a></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="services" style="padding-top:0">
+    <div class="wrap services">
+      <div class="reveal">
+        <h2>Возьмём на себя всё, кроме гостей</h2>
+        <p class="lead">Музыка, ведущий и оформление по договорённости. Обсудим всё при подтверждении брони.</p>
+      </div>
+      <div class="svc-list">
+        <div class="svc reveal"><i class="ph ph-speaker-hifi"></i><div><b>Музыкальная аппаратура</b><span>Звук для поздравлений и танцев</span></div></div>
+        <div class="svc reveal"><i class="ph ph-television-simple"></i><div><b>Большой экран</b><span>Для презентаций, видео и фото</span></div></div>
+        <div class="svc reveal"><i class="ph ph-microphone-stage"></i><div><b>Живая музыка и ведущий</b><span>При бронировании большого зала под закрытое мероприятие</span></div></div>
+        <div class="svc reveal"><i class="ph ph-flower-lotus"></i><div><b>Оформление и сервировка</b><span>Под тему и цвета вашего праздника</span></div></div>
+        <div class="svc reveal"><i class="ph ph-truck"></i><div><b>Кейтеринг</b><span>Банкетное меню на вашей площадке</span></div></div>
+        <div class="svc reveal"><i class="ph ph-cake"></i><div><b>Любой повод</b><span>Корпоративы, свадьбы, дни рождения, семейные праздники</span></div></div>
+      </div>
+    </div>
+  </section>
+
+  <section id="order" style="padding-top:0">
+    <div class="wrap">
+      <div class="order reveal">
+        <div>
+          <h2>Выберите дату</h2>
+          <p class="lead">Оставьте заявку, и администратор перезвонит, чтобы подтвердить зал и меню.</p>
+          <div class="order-contacts">
+            <a href="tel:+79118193672"><i class="ph ph-phone"></i> +7 (911) 819-36-72</a>
+            <span><i class="ph ph-map-pin"></i> Кронштадт, Коммунистическая ул., 14Б</span>
+            <span><i class="ph ph-clock"></i> Пн-чт и вс 12:00-22:00, пт-сб 12:00-23:00</span>
+          </div>
+        </div>
+        <form id="f" novalidate>
+          <div class="field"><label for="date">Дата</label><input id="date" name="date" type="date" required><div class="err" aria-live="polite"></div></div>
+          <div class="field"><label for="guests">Гостей</label><input id="guests" name="guests" type="number" min="2" max="64" placeholder="Например, 25" required><div class="err" aria-live="polite"></div></div>
+          <div class="field"><label for="hall">Зал</label>
+            <select id="hall" name="hall"><option>Подберите сами</option><option>Малый зал, до 54</option><option>Большой зал, до 64</option><option>Веранда, до 54</option></select></div>
+          <div class="field"><label for="kind">Повод</label>
+            <select id="kind" name="kind"><option>Корпоратив</option><option>День рождения</option><option>Свадьба</option><option>Семейный праздник</option><option>Другое</option></select></div>
+          <div class="field"><label for="pack">Пакет</label>
+            <select id="pack" name="pack"><option>Пока не выбрали</option><option>4 500 ₽</option><option>6 000 ₽</option><option>7 500 ₽</option></select></div>
+          <div class="field"><label for="name">Имя</label><input id="name" name="name" autocomplete="name" placeholder="Как к вам обращаться" required><div class="err" aria-live="polite"></div></div>
+          <div class="field wide"><label for="phone">Телефон</label><input id="phone" name="phone" type="tel" autocomplete="tel" placeholder="+7 ___ ___-__-__" required><div class="err" aria-live="polite"></div></div>
+          <div class="field wide"><label for="note">Пожелания</label><textarea id="note" name="note" placeholder="Ведущий, музыка, детское меню, оформление"></textarea></div>
+          <button class="btn btn-primary" type="submit">Отправить заявку</button>
+          <div class="done" role="status">Это концепт: заявка никуда не ушла. На настоящем сайте она сразу придёт вам на почту, а гостю - подтверждение.</div>
+        </form>
+      </div>
+    </div>
+  </section>
+</main>
+
+<footer>
+  <div class="wrap">
+    <div><b>Мыс Доброй Надежды</b><br>Кронштадт, Коммунистическая ул., 14Б</div>
+    <div>Концепт подготовил <b>Евгений Афонин</b><br><a href="tel:+79119070350">+7 911 907-03-50</a>, Telegram @X1nN0n</div>
+  </div>
+</footer>
+
+<a class="btn btn-primary mobile-cta" href="#order">Выбрать дату</a>
+
+<script>
+  // Вкладки банкетного меню (стрелки на клавиатуре тоже работают)
+  const tabs = [...document.querySelectorAll('.tab')];
+  const select = (t) => {
+    tabs.forEach((x) => {
+      const on = x === t;
+      x.setAttribute('aria-selected', on);
+      x.tabIndex = on ? 0 : -1;
+      document.getElementById(x.getAttribute('aria-controls')).hidden = !on;
+    });
+  };
+  tabs.forEach((t, i) => {
+    t.addEventListener('click', () => select(t));
+    t.addEventListener('keydown', (e) => {
+      if (e.key !== 'ArrowRight' && e.key !== 'ArrowLeft' && e.key !== 'ArrowDown' && e.key !== 'ArrowUp') return;
+      e.preventDefault();
+      const n = tabs[(i + (e.key === 'ArrowRight' || e.key === 'ArrowDown' ? 1 : tabs.length - 1)) % tabs.length];
+      select(n); n.focus();
+    });
+  });
+
+  // "Выбрать этот пакет" подставляет пакет в заявку
+  document.querySelectorAll('[data-pack]').forEach((a) => a.addEventListener('click', () => { document.getElementById('pack').value = a.dataset.pack; }));
+
+  // Заявка: проверка полей и честный ответ, что это концепт
+  const form = document.getElementById('f');
+  const today = new Date(); today.setHours(0, 0, 0, 0);
+  form.date.min = today.toISOString().slice(0, 10);
+  const setErr = (el, msg) => { const f = el.closest('.field'); f.classList.toggle('bad', !!msg); f.querySelector('.err').textContent = msg || ''; };
+  form.addEventListener('submit', (e) => {
+    e.preventDefault();
+    let ok = true;
+    const d = form.date.value ? new Date(form.date.value) : null;
+    if (!d) { setErr(form.date, 'Выберите дату'); ok = false; } else if (d < today) { setErr(form.date, 'Эта дата уже прошла'); ok = false; } else setErr(form.date);
+    const g = Number(form.guests.value);
+    if (!g) { setErr(form.guests, 'Сколько будет гостей?'); ok = false; } else if (g > 64) { setErr(form.guests, 'В одном зале до 64 гостей, позвоните нам'); ok = false; } else setErr(form.guests);
+    if (!form.name.value.trim()) { setErr(form.name, 'Как к вам обращаться?'); ok = false; } else setErr(form.name);
+    const digits = form.phone.value.replace(/\D/g, '');
+    if (digits.length < 10) { setErr(form.phone, 'Проверьте номер телефона'); ok = false; } else setErr(form.phone);
+    form.querySelector('.done').classList.toggle('show', ok);
+  });
+
+  // Кнопка "Выбрать дату" внизу экрана телефона прячется, когда заявка уже на экране
+  const mcta = document.querySelector('.mobile-cta');
+  if ('IntersectionObserver' in window) {
+    new IntersectionObserver(([en]) => mcta.classList.toggle('away', en.isIntersecting), { threshold: .05 }).observe(document.getElementById('order'));
+  }
+
+  // Плавное появление блоков при прокрутке
+  if (matchMedia('(prefers-reduced-motion: no-preference)').matches && 'IntersectionObserver' in window) {
+    const io = new IntersectionObserver((es) => es.forEach((en) => { if (en.isIntersecting) { en.target.classList.add('in'); io.unobserve(en.target); } }), { threshold: .15 });
+    document.querySelectorAll('.reveal').forEach((el) => io.observe(el));
+  } else {
+    document.querySelectorAll('.reveal').forEach((el) => el.classList.add('in'));
+  }
+</script>
+</body>
+</html>
