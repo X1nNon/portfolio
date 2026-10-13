@@ -1,0 +1,3 @@
+User-agent: *
+Allow: /
+Sitemap: https://x1nnon.github.io/portfolio/amplituda/sitemap.xml
