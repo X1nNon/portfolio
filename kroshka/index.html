@@ -1,0 +1,318 @@
+<!doctype html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="color-scheme" content="light dark">
+  <meta name="theme-color" content="#253e31">
+  <title>Крошка | Кофе, завтраки и выпечка</title>
+  <meta name="description" content="Кафе «Крошка» в Санкт-Петербурге. Утренние завтраки, свежая выпечка и кофе. Каждый день с 8:00 до 21:00.">
+  <meta property="og:title" content="Крошка. Заходите на завтрак.">
+  <meta property="og:description" content="Утренние завтраки, кофе и свежая выпечка. Заходите в гости или выбирайте блюда с собой.">
+  <meta property="og:type" content="website">
+  <meta property="og:image" content="https://x1nnon.github.io/portfolio/kroshka/assets/eggs.webp">
+  <link rel="icon" href="assets/favicon.svg" type="image/svg+xml">
+  <link rel="preload" href="assets/golos-cyrillic.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="preload" href="assets/golos-latin.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="preload" href="assets/eggs-720.webp" imagesrcset="assets/eggs-720.webp 720w, assets/eggs.webp 1200w" imagesizes="(max-width: 767px) calc(100vw - 40px), 640px" as="image" fetchpriority="high">
+  <link rel="stylesheet" href="styles.css">
+  <script src="menu-data.js" defer></script>
+  <script src="app.js" defer></script>
+  <noscript><style>.dish[hidden]{display:block!important}</style></noscript>
+</head>
+<body>
+  <a class="skip-link" href="#menu">Перейти к меню</a>
+  <header class="header">
+    <a class="wordmark" href="#" aria-label="Крошка, на главную">крошка<span class="brand-mark" aria-hidden="true">✳</span></a>
+    <button class="nav-toggle" aria-expanded="false" aria-controls="navigation">Навигация <span aria-hidden="true">+</span></button>
+    <nav id="navigation" aria-label="Основная навигация">
+      <a href="#menu">Меню</a>
+      <a href="#about">Наше кафе</a>
+      <a href="#contacts">Контакты</a>
+    </nav>
+    <div class="header-actions"><button class="profile-toggle" data-open-profile aria-haspopup="dialog">Профиль</button><button class="cart-toggle" data-open-cart aria-haspopup="dialog" aria-label="Открыть заказ, 0 позиций">Заказ <span data-cart-count>0</span></button></div>
+  </header>
+
+  <main>
+    <section class="hero container" aria-labelledby="hero-title">
+      <div class="hero-copy">
+        <p class="eyebrow">Кофе, завтраки и выпечка</p>
+        <h1 id="hero-title">Заходите<br>на завтрак.</h1>
+        <p class="hero-description">По утрам готовим завтраки и печём круассаны.<br>Заходите в гости или берите кофе с собой.</p>
+        <a class="button primary" href="#menu">Заказать с собой <span aria-hidden="true">↗</span></a>
+      </div>
+      <div class="hero-visual">
+        <img src="assets/eggs-720.webp" srcset="assets/eggs-720.webp 720w, assets/eggs.webp 1200w" sizes="(max-width: 767px) calc(100vw - 40px), 640px" alt="Скрэмбл на тостах с авокадо и томатами на зелёном столе" width="1536" height="1024" fetchpriority="high">
+      </div>
+    </section>
+
+    <section class="menu-section container" id="menu" aria-labelledby="menu-title">
+      <div class="section-heading">
+        <h2 id="menu-title">Что вам приготовить?</h2>
+        <p>Завтраки, выпечка и напитки. Выбирайте то, что любите.</p>
+      </div>
+      <div class="menu-toolbar">
+        <div class="filters" role="group" aria-label="Разделы меню">
+          <button data-filter="all" aria-pressed="true">Всё меню <span>20</span></button>
+          <button data-filter="breakfast" aria-pressed="false">Завтраки</button>
+          <button data-filter="bakery" aria-pressed="false">Выпечка</button>
+          <button data-filter="coffee" aria-pressed="false">Кофе</button>
+          <button data-filter="drinks" aria-pressed="false">Напитки</button>
+        </div>
+        <span class="menu-hint">Готовим с 8:00 до 21:00</span>
+      </div>
+      <p class="sr-only" id="menu-status" role="status" aria-live="polite">В меню 20 позиций</p>
+      <div class="menu-grid">
+        <article class="dish" data-category="breakfast">
+          <button class="dish-open" data-dish="eggs" aria-label="Скрэмбл на тосте, 490 ₽. Посмотреть состав">
+            <div class="dish-image"><img src="assets/eggs-720.webp" srcset="assets/eggs-720.webp 720w, assets/eggs.webp 1200w" sizes="(max-width: 767px) calc(100vw - 40px), (max-width: 1100px) calc((100vw - 114px)/3), 420px" alt="Тосты со скрэмблом, авокадо и томатами" width="1536" height="1024" loading="lazy" fetchpriority="low"></div>
+            <div class="dish-title"><h3>Скрэмбл на тосте</h3><span>490 ₽</span></div>
+            <p>Авокадо, томаты, хлеб на закваске</p>
+            <span class="dish-meta">Завтраки <span aria-hidden="true">/</span> 280 г</span>
+          </button>
+          <button class="dish-add" data-add="eggs" aria-label="Добавить в заказ: Скрэмбл на тосте">В заказ <span aria-hidden="true">+</span></button>
+        </article>
+        <article class="dish" data-category="breakfast">
+          <button class="dish-open" data-dish="syrniki" aria-label="Сырники с вишней, 420 ₽. Посмотреть состав">
+            <div class="dish-image"><img src="assets/syrniki-720.webp" srcset="assets/syrniki-720.webp 720w, assets/syrniki.webp 1200w" sizes="(max-width: 767px) calc(100vw - 40px), (max-width: 1100px) calc((100vw - 114px)/3), 420px" alt="Румяные сырники со сметаной и вишнёвым вареньем" width="1536" height="1024" loading="lazy" fetchpriority="low"></div>
+            <div class="dish-title"><h3>Сырники с вишней</h3><span>420 ₽</span></div>
+            <p>Три сырника, сметана и вишнёвое варенье</p>
+            <span class="dish-meta">Завтраки <span aria-hidden="true">/</span> 240 г</span>
+          </button>
+          <button class="dish-add" data-add="syrniki" aria-label="Добавить в заказ: Сырники с вишней">В заказ <span aria-hidden="true">+</span></button>
+        </article>
+        <article class="dish" data-category="bakery">
+          <button class="dish-open" data-dish="croissant" aria-label="Сливочный круассан, 220 ₽. Посмотреть состав">
+            <div class="dish-image"><img src="assets/croissant-720.webp" srcset="assets/croissant-720.webp 720w, assets/croissant.webp 1200w" sizes="(max-width: 767px) calc(100vw - 40px), (max-width: 1100px) calc((100vw - 114px)/3), 420px" alt="Золотистый слоёный круассан на керамической тарелке" width="1536" height="1024" loading="lazy" fetchpriority="low"></div>
+            <div class="dish-title"><h3>Сливочный круассан</h3><span>220 ₽</span></div>
+            <p>На сливочном масле, с хрустящей корочкой</p>
+            <span class="dish-meta">Выпечка <span aria-hidden="true">/</span> 80 г</span>
+          </button>
+          <button class="dish-add" data-add="croissant" aria-label="Добавить в заказ: Сливочный круассан">В заказ <span aria-hidden="true">+</span></button>
+        </article>
+        <article class="dish" data-category="bakery">
+          <button class="dish-open" data-dish="bun" aria-label="Булочка с корицей, 260 ₽. Посмотреть состав">
+            <div class="dish-image"><img src="assets/bun-720.webp" srcset="assets/bun-720.webp 720w, assets/bun.webp 1200w" sizes="(max-width: 767px) calc(100vw - 40px), (max-width: 1100px) calc((100vw - 114px)/3), 420px" alt="Булочка с корицей и сливочной глазурью" width="1536" height="1024" loading="lazy" fetchpriority="low"></div>
+            <div class="dish-title"><h3>Булочка с корицей</h3><span>260 ₽</span></div>
+            <p>Мягкое тесто и глазурь из сливочного сыра</p>
+            <span class="dish-meta">Выпечка <span aria-hidden="true">/</span> 130 г</span>
+          </button>
+          <button class="dish-add" data-add="bun" aria-label="Добавить в заказ: Булочка с корицей">В заказ <span aria-hidden="true">+</span></button>
+        </article>
+        <article class="dish" data-category="coffee">
+          <button class="dish-open" data-dish="cappuccino" aria-label="Капучино, 250 ₽. Посмотреть состав">
+            <div class="dish-image"><img src="assets/cappuccino-720.webp" srcset="assets/cappuccino-720.webp 720w, assets/cappuccino.webp 1200w" sizes="(max-width: 767px) calc(100vw - 40px), (max-width: 1100px) calc((100vw - 114px)/3), 420px" alt="Капучино с рисунком на пене в зелёной чашке" width="1536" height="1024" loading="lazy" fetchpriority="low"></div>
+            <div class="dish-title"><h3>Капучино</h3><span>250 ₽</span></div>
+            <p>Двойной эспрессо под молочной пеной</p>
+            <span class="dish-meta">Кофе <span aria-hidden="true">/</span> 200 мл</span>
+          </button>
+          <button class="dish-add" data-add="cappuccino" aria-label="Добавить в заказ: Капучино">В заказ <span aria-hidden="true">+</span></button>
+        </article>
+        <article class="dish" data-category="coffee">
+          <button class="dish-open" data-dish="filter" aria-label="Фильтр-кофе, 190 ₽. Посмотреть состав">
+            <div class="dish-image"><img src="assets/filter-720.webp" srcset="assets/filter-720.webp 720w, assets/filter.webp 1200w" sizes="(max-width: 767px) calc(100vw - 40px), (max-width: 1100px) calc((100vw - 114px)/3), 420px" alt="Фильтр-кофе в стеклянной чашке и небольшой кофейник" width="1536" height="1024" loading="lazy" fetchpriority="low"></div>
+            <div class="dish-title"><h3>Фильтр-кофе</h3><span>190 ₽</span></div>
+            <p>Чёрный кофе, зерно меняем по сезону</p>
+            <span class="dish-meta">Кофе <span aria-hidden="true">/</span> 250 мл</span>
+          </button>
+          <button class="dish-add" data-add="filter" aria-label="Добавить в заказ: Фильтр-кофе">В заказ <span aria-hidden="true">+</span></button>
+        </article>
+        <article class="dish" data-category="breakfast" hidden>
+          <button class="dish-open" data-dish="shakshuka" aria-label="Шакшука, 460 ₽. Посмотреть состав">
+            <div class="dish-image"><img src="assets/shakshuka-720.webp" srcset="assets/shakshuka-720.webp 720w, assets/shakshuka.webp 1200w" sizes="(max-width: 767px) calc(100vw - 40px), (max-width: 1100px) calc((100vw - 114px)/3), 420px" alt="Шакшука из двух яиц в томатном соусе на небольшой сковородке" width="1536" height="1024" loading="lazy" fetchpriority="low"></div>
+            <div class="dish-title"><h3>Шакшука</h3><span>460 ₽</span></div>
+            <p>Два яйца, пряные томаты и сладкий перец</p>
+            <span class="dish-meta">Завтраки <span aria-hidden="true">/</span> 320 г</span>
+          </button>
+          <button class="dish-add" data-add="shakshuka" aria-label="Добавить в заказ: Шакшука">В заказ <span aria-hidden="true">+</span></button>
+        </article>
+        <article class="dish" data-category="breakfast" hidden>
+          <button class="dish-open" data-dish="porridge" aria-label="Овсянка с грушей, 320 ₽. Посмотреть состав">
+            <div class="dish-image"><img src="assets/porridge-720.webp" srcset="assets/porridge-720.webp 720w, assets/porridge.webp 1200w" sizes="(max-width: 767px) calc(100vw - 40px), (max-width: 1100px) calc((100vw - 114px)/3), 420px" alt="Овсяная каша с дольками груши и грецкими орехами" width="1536" height="1024" loading="lazy" fetchpriority="low"></div>
+            <div class="dish-title"><h3>Овсянка с грушей</h3><span>320 ₽</span></div>
+            <p>Молочная каша, мёд и грецкий орех</p>
+            <span class="dish-meta">Завтраки <span aria-hidden="true">/</span> 300 г</span>
+          </button>
+          <button class="dish-add" data-add="porridge" aria-label="Добавить в заказ: Овсянка с грушей">В заказ <span aria-hidden="true">+</span></button>
+        </article>
+        <article class="dish" data-category="breakfast" hidden>
+          <button class="dish-open" data-dish="avocado" aria-label="Авокадо-тост, 440 ₽. Посмотреть состав">
+            <div class="dish-image"><img src="assets/avocado-720.webp" srcset="assets/avocado-720.webp 720w, assets/avocado.webp 1200w" sizes="(max-width: 767px) calc(100vw - 40px), (max-width: 1100px) calc((100vw - 114px)/3), 420px" alt="Тост с авокадо, сливочным сыром и ломтиками редиса" width="1536" height="1024" loading="lazy" fetchpriority="low"></div>
+            <div class="dish-title"><h3>Авокадо-тост</h3><span>440 ₽</span></div>
+            <p>Сливочный сыр, редис и свежая зелень</p>
+            <span class="dish-meta">Завтраки <span aria-hidden="true">/</span> 220 г</span>
+          </button>
+          <button class="dish-add" data-add="avocado" aria-label="Добавить в заказ: Авокадо-тост">В заказ <span aria-hidden="true">+</span></button>
+        </article>
+        <article class="dish" data-category="breakfast" hidden>
+          <button class="dish-open" data-dish="pancakes" aria-label="Панкейки с ягодами, 390 ₽. Посмотреть состав">
+            <div class="dish-image"><img src="assets/pancakes-720.webp" srcset="assets/pancakes-720.webp 720w, assets/pancakes.webp 1200w" sizes="(max-width: 767px) calc(100vw - 40px), (max-width: 1100px) calc((100vw - 114px)/3), 420px" alt="Стопка панкейков с черникой, бананом и кленовым сиропом" width="1536" height="1024" loading="lazy" fetchpriority="low"></div>
+            <div class="dish-title"><h3>Панкейки с ягодами</h3><span>390 ₽</span></div>
+            <p>Черника, банан и кленовый сироп</p>
+            <span class="dish-meta">Завтраки <span aria-hidden="true">/</span> 260 г</span>
+          </button>
+          <button class="dish-add" data-add="pancakes" aria-label="Добавить в заказ: Панкейки с ягодами">В заказ <span aria-hidden="true">+</span></button>
+        </article>
+        <article class="dish" data-category="bakery" hidden>
+          <button class="dish-open" data-dish="almond" aria-label="Миндальный круассан, 310 ₽. Посмотреть состав">
+            <div class="dish-image"><img src="assets/almond-720.webp" srcset="assets/almond-720.webp 720w, assets/almond.webp 1200w" sizes="(max-width: 767px) calc(100vw - 40px), (max-width: 1100px) calc((100vw - 114px)/3), 420px" alt="Круассан с миндальными лепестками и сахарной пудрой" width="1536" height="1024" loading="lazy" fetchpriority="low"></div>
+            <div class="dish-title"><h3>Миндальный круассан</h3><span>310 ₽</span></div>
+            <p>Миндальный крем и лепестки миндаля</p>
+            <span class="dish-meta">Выпечка <span aria-hidden="true">/</span> 110 г</span>
+          </button>
+          <button class="dish-add" data-add="almond" aria-label="Добавить в заказ: Миндальный круассан">В заказ <span aria-hidden="true">+</span></button>
+        </article>
+        <article class="dish" data-category="bakery" hidden>
+          <button class="dish-open" data-dish="tart" aria-label="Вишнёвый тарт, 340 ₽. Посмотреть состав">
+            <div class="dish-image"><img src="assets/tart-720.webp" srcset="assets/tart-720.webp 720w, assets/tart.webp 1200w" sizes="(max-width: 767px) calc(100vw - 40px), (max-width: 1100px) calc((100vw - 114px)/3), 420px" alt="Кусок вишнёвого тарта на светлой тарелке" width="1536" height="1024" loading="lazy" fetchpriority="low"></div>
+            <div class="dish-title"><h3>Вишнёвый тарт</h3><span>340 ₽</span></div>
+            <p>Песочное тесто и вишня с кислинкой</p>
+            <span class="dish-meta">Выпечка <span aria-hidden="true">/</span> 150 г</span>
+          </button>
+          <button class="dish-add" data-add="tart" aria-label="Добавить в заказ: Вишнёвый тарт">В заказ <span aria-hidden="true">+</span></button>
+        </article>
+        <article class="dish" data-category="bakery" hidden>
+          <button class="dish-open" data-dish="lemon" aria-label="Лимонный кекс, 240 ₽. Посмотреть состав">
+            <div class="dish-image"><img src="assets/lemon-720.webp" srcset="assets/lemon-720.webp 720w, assets/lemon.webp 1200w" sizes="(max-width: 767px) calc(100vw - 40px), (max-width: 1100px) calc((100vw - 114px)/3), 420px" alt="Ломтик лимонного кекса с белой глазурью" width="1536" height="1024" loading="lazy" fetchpriority="low"></div>
+            <div class="dish-title"><h3>Лимонный кекс</h3><span>240 ₽</span></div>
+            <p>Цедра лимона и тонкая сахарная глазурь</p>
+            <span class="dish-meta">Выпечка <span aria-hidden="true">/</span> 100 г</span>
+          </button>
+          <button class="dish-add" data-add="lemon" aria-label="Добавить в заказ: Лимонный кекс">В заказ <span aria-hidden="true">+</span></button>
+        </article>
+        <article class="dish" data-category="bakery" hidden>
+          <button class="dish-open" data-dish="cookie" aria-label="Шоколадное печенье, 170 ₽. Посмотреть состав">
+            <div class="dish-image"><img src="assets/cookie-720.webp" srcset="assets/cookie-720.webp 720w, assets/cookie.webp 1200w" sizes="(max-width: 767px) calc(100vw - 40px), (max-width: 1100px) calc((100vw - 114px)/3), 420px" alt="Большое печенье с кусочками тёмного шоколада" width="1536" height="1024" loading="lazy" fetchpriority="low"></div>
+            <div class="dish-title"><h3>Шоколадное печенье</h3><span>170 ₽</span></div>
+            <p>Хрустящий край, мягкая середина</p>
+            <span class="dish-meta">Выпечка <span aria-hidden="true">/</span> 75 г</span>
+          </button>
+          <button class="dish-add" data-add="cookie" aria-label="Добавить в заказ: Шоколадное печенье">В заказ <span aria-hidden="true">+</span></button>
+        </article>
+        <article class="dish" data-category="coffee" hidden>
+          <button class="dish-open" data-dish="espresso" aria-label="Эспрессо, 170 ₽. Посмотреть состав">
+            <div class="dish-image"><img src="assets/espresso-720.webp" srcset="assets/espresso-720.webp 720w, assets/espresso.webp 1200w" sizes="(max-width: 767px) calc(100vw - 40px), (max-width: 1100px) calc((100vw - 114px)/3), 420px" alt="Эспрессо с золотистой крема в маленькой зелёной чашке" width="1536" height="1024" loading="lazy" fetchpriority="low"></div>
+            <div class="dish-title"><h3>Эспрессо</h3><span>170 ₽</span></div>
+            <p>Двойной, плотный, в маленькой чашке</p>
+            <span class="dish-meta">Кофе <span aria-hidden="true">/</span> 40 мл</span>
+          </button>
+          <button class="dish-add" data-add="espresso" aria-label="Добавить в заказ: Эспрессо">В заказ <span aria-hidden="true">+</span></button>
+        </article>
+        <article class="dish" data-category="coffee" hidden>
+          <button class="dish-open" data-dish="americano" aria-label="Американо, 200 ₽. Посмотреть состав">
+            <div class="dish-image"><img src="assets/americano-720.webp" srcset="assets/americano-720.webp 720w, assets/americano.webp 1200w" sizes="(max-width: 767px) calc(100vw - 40px), (max-width: 1100px) calc((100vw - 114px)/3), 420px" alt="Чёрный американо в зелёной керамической чашке" width="1536" height="1024" loading="lazy" fetchpriority="low"></div>
+            <div class="dish-title"><h3>Американо</h3><span>200 ₽</span></div>
+            <p>Эспрессо и горячая вода</p>
+            <span class="dish-meta">Кофе <span aria-hidden="true">/</span> 200 мл</span>
+          </button>
+          <button class="dish-add" data-add="americano" aria-label="Добавить в заказ: Американо">В заказ <span aria-hidden="true">+</span></button>
+        </article>
+        <article class="dish" data-category="drinks" hidden>
+          <button class="dish-open" data-dish="matcha" aria-label="Матча-латте, 310 ₽. Посмотреть состав">
+            <div class="dish-image"><img src="assets/matcha-720.webp" srcset="assets/matcha-720.webp 720w, assets/matcha.webp 1200w" sizes="(max-width: 767px) calc(100vw - 40px), (max-width: 1100px) calc((100vw - 114px)/3), 420px" alt="Светло-зелёный матча-латте в стеклянной чашке" width="1536" height="1024" loading="lazy" fetchpriority="low"></div>
+            <div class="dish-title"><h3>Матча-латте</h3><span>310 ₽</span></div>
+            <p>Зелёный чай матча и тёплое молоко</p>
+            <span class="dish-meta">Напитки <span aria-hidden="true">/</span> 250 мл</span>
+          </button>
+          <button class="dish-add" data-add="matcha" aria-label="Добавить в заказ: Матча-латте">В заказ <span aria-hidden="true">+</span></button>
+        </article>
+        <article class="dish" data-category="drinks" hidden>
+          <button class="dish-open" data-dish="cocoa" aria-label="Какао, 270 ₽. Посмотреть состав">
+            <div class="dish-image"><img src="assets/cocoa-720.webp" srcset="assets/cocoa-720.webp 720w, assets/cocoa.webp 1200w" sizes="(max-width: 767px) calc(100vw - 40px), (max-width: 1100px) calc((100vw - 114px)/3), 420px" alt="Горячее какао в светлой керамической чашке" width="1536" height="1024" loading="lazy" fetchpriority="low"></div>
+            <div class="dish-title"><h3>Какао</h3><span>270 ₽</span></div>
+            <p>На молоке, с тёмным шоколадом</p>
+            <span class="dish-meta">Напитки <span aria-hidden="true">/</span> 250 мл</span>
+          </button>
+          <button class="dish-add" data-add="cocoa" aria-label="Добавить в заказ: Какао">В заказ <span aria-hidden="true">+</span></button>
+        </article>
+        <article class="dish" data-category="drinks" hidden>
+          <button class="dish-open" data-dish="tea" aria-label="Чай с чабрецом, 290 ₽. Посмотреть состав">
+            <div class="dish-image"><img src="assets/tea-720.webp" srcset="assets/tea-720.webp 720w, assets/tea.webp 1200w" sizes="(max-width: 767px) calc(100vw - 40px), (max-width: 1100px) calc((100vw - 114px)/3), 420px" alt="Стеклянный чайник с чаем, лимоном и чабрецом" width="1536" height="1024" loading="lazy" fetchpriority="low"></div>
+            <div class="dish-title"><h3>Чай с чабрецом</h3><span>290 ₽</span></div>
+            <p>Чёрный чай, чабрец и лимон</p>
+            <span class="dish-meta">Напитки <span aria-hidden="true">/</span> 400 мл</span>
+          </button>
+          <button class="dish-add" data-add="tea" aria-label="Добавить в заказ: Чай с чабрецом">В заказ <span aria-hidden="true">+</span></button>
+        </article>
+        <article class="dish" data-category="drinks" hidden>
+          <button class="dish-open" data-dish="juice" aria-label="Апельсиновый фреш, 320 ₽. Посмотреть состав">
+            <div class="dish-image"><img src="assets/juice-720.webp" srcset="assets/juice-720.webp 720w, assets/juice.webp 1200w" sizes="(max-width: 767px) calc(100vw - 40px), (max-width: 1100px) calc((100vw - 114px)/3), 420px" alt="Стакан апельсинового сока и половинка апельсина" width="1536" height="1024" loading="lazy" fetchpriority="low"></div>
+            <div class="dish-title"><h3>Апельсиновый фреш</h3><span>320 ₽</span></div>
+            <p>Свежевыжатый, с мякотью</p>
+            <span class="dish-meta">Напитки <span aria-hidden="true">/</span> 250 мл</span>
+          </button>
+          <button class="dish-add" data-add="juice" aria-label="Добавить в заказ: Апельсиновый фреш">В заказ <span aria-hidden="true">+</span></button>
+        </article>
+      </div>
+      <button class="button more-button" id="show-more" aria-expanded="false" hidden>Показать ещё 14 позиций <span aria-hidden="true">↓</span></button>
+      <p class="menu-note">Нажмите на фотографию, чтобы посмотреть состав и аллергены.</p>
+    </section>
+
+    <section class="loyalty-section container" aria-labelledby="loyalty-title">
+      <div class="loyalty-rate"><span>5%</span><p>возвращаем бонусами</p></div>
+      <div class="loyalty-copy"><h2 id="loyalty-title">Бонусы за каждый заказ</h2><p>Копите бонусы и оплачивайте ими до 30% следующего заказа. Один бонус равен одному рублю.</p><button class="text-button" data-open-profile aria-haspopup="dialog">Открыть карту гостя <span aria-hidden="true">↗</span></button></div>
+    </section>
+
+    <section class="about-section container" id="about" aria-labelledby="about-title">
+      <div class="about-intro">
+        <h2 id="about-title">Ваш столик<br>в «Крошке».</h2>
+        <div class="about-copy"><p>В «Крошку» приходят на завтрак, встречаются с друзьями и делают перерыв на кофе. В зале светло, у окон стоят небольшие столики, вдоль стены тянется мягкий диван.</p><p>По утрам готовим завтраки и достаём из печи свежую выпечку. Любое блюдо и напиток можно взять с собой.</p></div>
+      </div>
+      <figure class="interior"><img src="assets/interior-720.webp" srcset="assets/interior-720.webp 720w, assets/interior.webp 1536w" sizes="(max-width: 767px) calc(100vw - 40px), (max-width: 1440px) calc(100vw - 112px), 1320px" alt="Пустой зал кафе с деревянными столами, зелёными диванами и большими окнами" width="1536" height="1024" loading="lazy" fetchpriority="low"></figure>
+    </section>
+
+    <section class="contact-section" id="contacts" aria-labelledby="contact-title">
+      <div class="container contact-layout">
+        <div class="contact-heading"><span class="contact-flower" aria-hidden="true">✳</span><h2 id="contact-title">До встречи<br>в «Крошке».</h2><p>Можно с собакой. И с хорошей книгой.</p></div>
+        <div class="contact-details">
+          <div><h3>Где мы</h3><p>Санкт-Петербург<br>ул. Тихая, 12</p></div>
+          <div><h3>Когда открыты</h3><p>Каждый день<br>с 8:00 до 21:00</p></div>
+          <div><h3>Заказы с собой</h3><a class="contact-email" href="#menu">Выбрать блюда <span aria-hidden="true">↗</span></a><p class="contact-caption">Завтраки, кофе и выпечку упакуем с собой.</p></div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="container footer"><a class="wordmark" href="#" aria-label="Крошка, вернуться наверх">крошка<span class="brand-mark" aria-hidden="true">✳</span></a><p>Кофе, завтраки и выпечка</p><button class="theme-toggle" id="theme-toggle" aria-label="Изменить цветовую тему">Тема: авто</button><a class="back-top" href="#">Наверх ↑</a></footer>
+
+  <dialog class="dish-dialog" id="dish-dialog" aria-labelledby="dialog-title">
+    <button class="dialog-close" aria-label="Закрыть описание блюда">×</button>
+    <img id="dialog-image" alt="" width="1536" height="1024">
+    <div class="dialog-body"><p class="dialog-meta" id="dialog-meta"></p><div class="dialog-title-row"><h2 id="dialog-title"></h2><span id="dialog-price"></span></div><p id="dialog-description"></p><h3>Состав</h3><p id="dialog-ingredients"></p><h3>Аллергены</h3><p id="dialog-allergens"></p><button class="button primary dialog-add" id="dialog-add">Добавить в заказ <span aria-hidden="true">+</span></button><p class="dialog-footnote">Если у вас есть аллергия, уточните состав у сотрудника кафе.</p></div>
+  </dialog>
+  <dialog class="profile-dialog auth-view" id="profile-dialog" aria-labelledby="profile-title">
+    <button class="dialog-close" aria-label="Закрыть профиль">×</button>
+    <div class="profile-heading"><p class="dialog-meta">Рады видеть вас в «Крошке»</p><h2 id="profile-title" tabindex="-1">Вход в профиль</h2></div>
+    <form class="auth-form" id="phone-form" novalidate>
+      <p class="auth-intro">Войдите по номеру телефона, чтобы копить бонусы и использовать их в кафе.</p>
+      <label for="guest-phone">Номер телефона</label>
+      <input id="guest-phone" name="phone" type="tel" inputmode="tel" autocomplete="tel" maxlength="22" placeholder="+7 (999) 123-45-67" aria-describedby="phone-error" required>
+      <p class="field-error" id="phone-error" role="alert" hidden></p>
+      <button class="button primary" type="submit">Получить код <span aria-hidden="true">↗</span></button>
+      <p class="auth-note">Для входа нужен только номер телефона.</p>
+    </form>
+    <form class="auth-form" id="code-form" novalidate hidden>
+      <p class="auth-intro">Введите 4 цифры для входа с номером<br><strong id="code-phone"></strong> <button class="change-phone" id="change-phone" type="button">Изменить</button></p>
+      <label for="sms-code">Код из СМС</label>
+      <input class="code-input" id="sms-code" name="code" type="text" inputmode="numeric" autocomplete="one-time-code" maxlength="4" pattern="[0-9]{4}" placeholder="····" aria-describedby="code-error" required>
+      <p class="field-error" id="code-error" role="alert" hidden></p>
+      <button class="button primary" type="submit">Войти <span aria-hidden="true">↗</span></button>
+    </form>
+    <div id="member-profile" hidden>
+      <div class="member-account"><div><span>Ваш номер</span><p id="member-phone"></p></div><button class="logout-button" id="profile-logout">Выйти</button></div>
+      <div class="profile-layout">
+      <div class="bonus-card"><span class="wordmark">крошка<span class="brand-mark" aria-hidden="true">✳</span></span><div class="bonus-balance"><strong>0</strong><span>бонусов на карте</span></div><p>5% с каждого заказа</p></div>
+      <div class="profile-details"><h3>Как это работает</h3><p>Бонусы начисляются после оплаты в кафе. Ими можно оплатить до 30% следующего заказа.</p><p class="bonus-equivalent">1 бонус = 1 ₽</p><div class="bonus-history"><h3>История бонусов</h3><p>Пока нет покупок</p><p>После первого заказа здесь появятся начисленные бонусы.</p></div></div>
+      </div>
+    </div>
+  </dialog>
+  <dialog class="cart-dialog" id="cart-dialog" aria-labelledby="cart-title">
+    <button class="dialog-close" aria-label="Закрыть заказ">×</button>
+    <div class="cart-heading"><p class="dialog-meta">С собой из «Крошки»</p><h2 id="cart-title">Ваш заказ</h2></div>
+    <div id="cart-empty"><h3>Что приготовим?</h3><p>Добавьте любимый завтрак или начните с кофе.</p><button class="button primary" id="cart-to-menu">Выбрать в меню <span aria-hidden="true">↗</span></button></div>
+    <div id="cart-content" hidden><ul class="cart-items" id="cart-items"></ul><div class="cart-summary"><div><span>Итого</span><strong id="cart-total"></strong></div><p>Начислим <span id="cart-bonus"></span> бонусов после оплаты</p></div><p class="cart-pickup">Самовывоз · ул. Тихая, 12<br>Каждый день с 8:00 до 21:00</p><button class="button primary checkout-button" id="checkout-button">Заказать с собой <span aria-hidden="true">↗</span></button><p id="checkout-status" role="status" aria-live="polite" hidden>Приём заказов на сайте пока недоступен. Корзина сохранена: вы можете показать её на кассе.</p></div>
+  </dialog>
+  <button class="button primary floating-cart" id="floating-cart" data-open-cart aria-haspopup="dialog" hidden>Ваш заказ <span id="floating-cart-total"></span></button>
+  <div class="cart-toast" id="cart-toast" role="status" aria-live="polite"></div>
+</body>
+</html>
