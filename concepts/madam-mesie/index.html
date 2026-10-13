@@ -1,0 +1,692 @@
+<!doctype html>
+<html lang="ru">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Мадам & Месье - концепт сайта парикмахерской в Колпино</title>
+<meta name="description" content="Концепт сайта для парикмахерской Мадам & Месье в Колпино: услуги и цены, мастера, работы, отзывы и онлайн-запись. Подготовил Евгений Афонин.">
+<meta name="robots" content="noindex">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,500;0,600;0,700;1,500;1,600&family=Golos+Text:wght@400;500;600;700&display=swap" rel="stylesheet">
+<script src="https://unpkg.com/@phosphor-icons/web@2.1.1"></script>
+<!--
+  Концепт сайта для парикмахерской "Мадам & Месье" (Колпино, пр. Ленина, 54).
+  Цвета взяты из салона: персиковые стены, чёрный логотип-силуэт, светлый камень.
+  Логотип и фото - из карточки салона на Яндекс Картах, мастера и запись - из их YCLIENTS,
+  цены - из YCLIENTS и прайса на Яндексе, отзывы - с Яндекс Карт дословно.
+-->
+<style>
+  :root {
+    --bg: #f7f1ec;
+    --surface: #fffdfb;
+    --peach: #f0d5c1;
+    --peach-2: #e6b897;
+    --line: #e8dbd0;
+    --text: #171412;
+    --muted: #6d6058;
+    --accent: #a3532c;
+    --ink: #171412;
+    --on-ink: #fffaf6;
+    --shadow: 0 20px 50px rgba(92, 52, 28, .14);
+    --r: 18px;
+    color-scheme: light;
+  }
+  /* Салон светлый и тёплый: тема зафиксирована, чтобы концепт выглядел как их интерьер. */
+  * { box-sizing: border-box; }
+  html { scroll-behavior: smooth; }
+  @media (prefers-reduced-motion: reduce) { html { scroll-behavior: auto; } }
+  body { margin: 0; background: var(--bg); color: var(--text); font: 16px/1.6 "Golos Text", system-ui, sans-serif; -webkit-font-smoothing: antialiased; }
+  img { display: block; max-width: 100%; }
+  a { color: inherit; }
+  .wrap { max-width: 1240px; margin: 0 auto; padding: 0 24px; }
+  h1, h2, h3 { margin: 0; font-family: "Cormorant Garamond", Georgia, serif; font-weight: 600; line-height: 1.08; letter-spacing: -.01em; }
+  h2 { font-size: clamp(36px, 4.6vw, 54px); }
+  h2 em, h1 em { font-style: italic; color: var(--accent); }
+  .lead { color: var(--muted); max-width: 58ch; margin: 14px 0 0; font-size: 17px; }
+  .kicker { display: inline-flex; align-items: center; gap: 8px; font-size: 14px; font-weight: 600; letter-spacing: .04em; text-transform: uppercase; color: var(--accent); }
+
+  /* полоса концепта */
+  .concept { background: var(--ink); color: var(--on-ink); font-size: 14px; }
+  .concept .wrap { display: flex; gap: 12px; align-items: center; justify-content: space-between; padding-top: 9px; padding-bottom: 9px; flex-wrap: wrap; }
+  .concept a { color: var(--peach); }
+
+  /* шапка */
+  header.top { position: sticky; top: 0; z-index: 20; background: color-mix(in srgb, var(--bg) 90%, transparent); backdrop-filter: blur(10px); border-bottom: 1px solid var(--line); }
+  header.top .wrap { display: flex; align-items: center; gap: 28px; height: 74px; }
+  .brand { display: flex; align-items: center; gap: 12px; text-decoration: none; }
+  .brand .mark { width: 40px; height: 40px; overflow: hidden; flex: none; }
+  .brand .mark img { width: 40px; height: auto; }
+  .brand b { display: block; font-family: "Cormorant Garamond", serif; font-size: 25px; font-weight: 700; line-height: 1; white-space: nowrap; }
+  .brand small { display: block; font-size: 12px; color: var(--muted); letter-spacing: .03em; margin-top: 3px; }
+  nav { display: flex; gap: 22px; font-weight: 500; font-size: 15px; }
+  nav a { text-decoration: none; color: var(--muted); }
+  nav a:hover { color: var(--text); }
+  .top-right { margin-left: auto; display: flex; align-items: center; gap: 18px; }
+  .top-phone { font-weight: 600; text-decoration: none; white-space: nowrap; }
+
+  /* кнопки */
+  .btn { display: inline-flex; align-items: center; justify-content: center; gap: 10px; border: 0; cursor: pointer; font: 600 16px/1 "Golos Text", sans-serif; padding: 17px 26px; border-radius: 999px; text-decoration: none; white-space: nowrap; transition: transform .2s cubic-bezier(.16,1,.3,1), background .2s, box-shadow .2s; }
+  .btn:active { transform: scale(.98); }
+  .btn-ink { background: var(--ink); color: var(--on-ink); }
+  .btn-ink:hover { background: #3a2f29; }
+  .btn-ghost { background: transparent; color: var(--text); box-shadow: inset 0 0 0 1.5px var(--text); }
+  .btn-ghost:hover { background: color-mix(in srgb, var(--text) 6%, transparent); }
+  .top .btn { padding: 12px 20px; font-size: 15px; }
+
+  /* первый экран */
+  .hero { padding: 56px 0 80px; }
+  .hero .wrap { display: grid; grid-template-columns: 1.1fr 1fr; gap: 64px; align-items: center; }
+  .hero h1 { font-size: clamp(46px, 5.4vw, 70px); margin-top: 18px; text-wrap: balance; }
+  .hero h1 em { white-space: nowrap; }
+  .hero .sub { font-size: 19px; color: var(--muted); margin: 24px 0 34px; max-width: 34ch; }
+  .hero .cta { display: flex; gap: 12px; flex-wrap: wrap; }
+  .rating { display: flex; align-items: center; gap: 12px; margin-top: 30px; font-size: 15px; color: var(--muted); }
+  .rating .stars { color: var(--accent); font-size: 18px; letter-spacing: 1px; white-space: nowrap; }
+  .rating b { color: var(--text); font-size: 18px; }
+  .stack { position: relative; padding: 0 0 48px 48px; }
+  .stack .main { border-radius: 200px 200px var(--r) var(--r); overflow: hidden; aspect-ratio: 4 / 5; box-shadow: var(--shadow); background: var(--peach); }
+  .stack .main img { width: 100%; height: 100%; object-fit: cover; }
+  .stack .small { position: absolute; left: 0; bottom: 0; width: 42%; aspect-ratio: 3 / 4; border-radius: var(--r); overflow: hidden; border: 6px solid var(--bg); box-shadow: var(--shadow); background: var(--peach); }
+  .stack .small img { width: 100%; height: 100%; object-fit: cover; }
+  .badge { position: absolute; right: -10px; top: 34px; background: var(--surface); border-radius: 14px; padding: 12px 16px; box-shadow: var(--shadow); display: flex; gap: 10px; align-items: center; font-size: 14px; line-height: 1.3; }
+  .badge i { font-size: 26px; color: var(--accent); }
+  .badge b { display: block; font-size: 15px; }
+
+  /* цифры */
+  .facts { background: var(--surface); border-top: 1px solid var(--line); border-bottom: 1px solid var(--line); }
+  .facts .wrap { display: grid; grid-template-columns: repeat(4, 1fr); }
+  .fact { padding: 26px 0; }
+  .fact + .fact { padding-left: 28px; border-left: 1px solid var(--line); }
+  .fact b { display: block; font-family: "Cormorant Garamond", serif; font-size: 38px; font-weight: 600; line-height: 1.05; }
+  .fact span { color: var(--muted); font-size: 15px; }
+
+  section { padding: 104px 0; scroll-margin-top: 80px; }
+  .head { display: flex; justify-content: space-between; align-items: end; gap: 32px; flex-wrap: wrap; }
+
+  /* услуги и цены */
+  .chips { display: flex; gap: 10px; flex-wrap: wrap; margin-top: 36px; }
+  .chip { appearance: none; cursor: pointer; font: 500 15px/1 "Golos Text", sans-serif; color: var(--text); background: var(--surface); border: 1px solid var(--line); border-radius: 999px; padding: 12px 18px; display: inline-flex; gap: 8px; align-items: center; transition: background .2s, border-color .2s, color .2s; }
+  .chip i { font-size: 18px; color: var(--accent); }
+  .chip:hover { border-color: var(--text); }
+  .chip:focus { outline: none; }
+  .chip:focus-visible { outline: 2px solid var(--accent); outline-offset: 3px; }
+  .chip[aria-selected="true"] { background: var(--ink); border-color: var(--ink); color: var(--on-ink); }
+  .chip[aria-selected="true"] i { color: var(--peach-2); }
+  .price-card { margin-top: 22px; background: var(--surface); border: 1px solid var(--line); border-radius: var(--r); padding: 40px 44px; display: grid; grid-template-columns: 1fr 300px; gap: 48px; }
+  .price-card[hidden] { display: none; }
+  .plist { list-style: none; margin: 0; padding: 0; columns: 2; column-gap: 44px; }
+  .plist li { break-inside: avoid; display: flex; align-items: baseline; gap: 10px; padding: 11px 0; border-bottom: 1px dashed var(--line); }
+  .plist .n { flex: 1; }
+  .plist .n small { display: block; color: var(--muted); font-size: 13.5px; line-height: 1.35; margin-top: 2px; }
+  .plist .p { font-weight: 600; white-space: nowrap; }
+  .side { border-left: 1px solid var(--line); padding-left: 40px; display: flex; flex-direction: column; gap: 16px; }
+  .side h3 { font-size: 30px; }
+  .side p { margin: 0; color: var(--muted); font-size: 15px; }
+  .side .btn { margin-top: auto; }
+  .note { margin: 18px 4px 0; color: var(--muted); font-size: 14px; }
+
+  /* мастера */
+  .masters { display: grid; grid-template-columns: repeat(4, 1fr); gap: 18px; margin-top: 44px; }
+  .master { background: var(--surface); border: 1px solid var(--line); border-radius: var(--r); padding: 22px; display: flex; flex-direction: column; gap: 12px; transition: transform .3s cubic-bezier(.16,1,.3,1), box-shadow .3s; }
+  .master:hover { transform: translateY(-3px); box-shadow: var(--shadow); }
+  .m-top { display: flex; gap: 14px; align-items: center; }
+  .m-top img { width: 64px; height: 64px; border-radius: 50%; object-fit: cover; flex: none; background: var(--peach); }
+  .m-top h3 { font-family: "Golos Text", sans-serif; font-size: 18px; font-weight: 600; letter-spacing: 0; line-height: 1.25; }
+  .m-top span { display: block; color: var(--muted); font-size: 14px; line-height: 1.3; margin-top: 2px; }
+  .master q { quotes: none; font-family: "Cormorant Garamond", serif; font-style: italic; font-size: 19px; line-height: 1.3; }
+  .master .meta { margin-top: auto; display: flex; justify-content: space-between; align-items: center; gap: 10px; padding-top: 12px; border-top: 1px solid var(--line); font-size: 14px; color: var(--muted); }
+  .master .meta a { color: var(--text); font-weight: 600; text-decoration: none; display: inline-flex; gap: 4px; align-items: center; }
+  .master .meta a:hover { color: var(--accent); }
+
+  /* работы */
+  .gallery { display: grid; grid-template-columns: repeat(4, 1fr); grid-auto-rows: 250px; gap: 14px; margin-top: 44px; }
+  .gallery figure { margin: 0; border-radius: var(--r); overflow: hidden; background: var(--peach); position: relative; }
+  .gallery figure.tall { grid-row: span 2; }
+  .gallery img { width: 100%; height: 100%; object-fit: cover; transition: transform .7s cubic-bezier(.16,1,.3,1); }
+  .gallery figure:hover img { transform: scale(1.04); }
+  .gallery figcaption { position: absolute; left: 12px; bottom: 12px; background: rgba(255, 253, 251, .92); border-radius: 999px; padding: 6px 12px; font-size: 13px; font-weight: 500; }
+  .more-link { color: var(--text); font-weight: 600; text-decoration: none; display: inline-flex; gap: 6px; align-items: center; border-bottom: 1.5px solid currentColor; padding-bottom: 2px; }
+  .more-link:hover { color: var(--accent); }
+
+  /* в салоне */
+  .salon { background: var(--peach); }
+  .salon .wrap { display: grid; grid-template-columns: 1fr 1.1fr; gap: 64px; align-items: center; }
+  .salon-photo { border-radius: var(--r); overflow: hidden; aspect-ratio: 4 / 4.4; box-shadow: var(--shadow); }
+  .salon-photo img { width: 100%; height: 100%; object-fit: cover; }
+  .perks { display: grid; grid-template-columns: 1fr 1fr; gap: 26px 32px; margin-top: 36px; }
+  .perk { display: flex; gap: 14px; }
+  .perk i { font-size: 28px; color: var(--accent); flex: none; margin-top: 2px; }
+  .perk b { display: block; font-weight: 600; }
+  .perk span { color: var(--muted); font-size: 15px; }
+
+  /* отзывы */
+  .reviews { display: grid; grid-template-columns: 300px 1fr; gap: 56px; margin-top: 44px; align-items: start; }
+  .score { position: sticky; top: 100px; }
+  .score .big { font-family: "Cormorant Garamond", serif; font-size: 96px; font-weight: 600; line-height: .9; }
+  .score .stars { color: var(--accent); font-size: 22px; letter-spacing: 2px; margin: 10px 0 8px; }
+  .score p { margin: 0 0 22px; color: var(--muted); }
+  .quotes { display: grid; grid-template-columns: 1fr 1fr; gap: 18px; }
+  .quote { background: var(--surface); border: 1px solid var(--line); border-radius: var(--r); padding: 28px; display: flex; flex-direction: column; gap: 18px; }
+  .quote q { quotes: none; font-family: "Cormorant Garamond", serif; font-size: 24px; line-height: 1.25; font-weight: 500; }
+  .quote .who { margin-top: auto; font-size: 14px; color: var(--muted); }
+  .quote .who b { color: var(--text); font-weight: 600; }
+
+  /* контакты */
+  .contacts .wrap { display: grid; grid-template-columns: 1fr 1.15fr; gap: 56px; align-items: stretch; }
+  .c-list { list-style: none; padding: 0; margin: 32px 0 34px; display: grid; gap: 20px; }
+  .c-list li { display: flex; gap: 14px; align-items: flex-start; }
+  .c-list i { font-size: 24px; color: var(--accent); margin-top: 2px; }
+  .c-list b { display: block; }
+  .c-list span, .c-list a { color: var(--muted); }
+  .c-list a { text-decoration: none; }
+  .c-list a:hover { color: var(--text); }
+  .c-cta { display: flex; gap: 12px; flex-wrap: wrap; }
+  .map { border-radius: var(--r); overflow: hidden; min-height: 440px; background: var(--peach); border: 1px solid var(--line); }
+  .map iframe { width: 100%; height: 100%; min-height: 440px; border: 0; display: block; }
+
+  footer { background: var(--ink); color: color-mix(in srgb, var(--on-ink) 78%, transparent); padding: 36px 0; font-size: 14px; }
+  footer .wrap { display: flex; justify-content: space-between; gap: 24px; flex-wrap: wrap; }
+  footer b { color: var(--on-ink); }
+  footer a { color: var(--peach); }
+
+  .mobile-cta { display: none; }
+
+  /* появление при прокрутке */
+  .rv { opacity: 0; transform: translateY(18px); transition: opacity .8s cubic-bezier(.16,1,.3,1), transform .8s cubic-bezier(.16,1,.3,1); }
+  .rv.in { opacity: 1; transform: none; }
+  @media (prefers-reduced-motion: reduce) { .rv { opacity: 1; transform: none; transition: none; } }
+
+  @media (max-width: 1100px) {
+    nav { display: none; }
+    .masters { grid-template-columns: repeat(3, 1fr); }
+    .price-card { grid-template-columns: 1fr; gap: 28px; }
+    .side { border-left: 0; padding-left: 0; border-top: 1px solid var(--line); padding-top: 24px; }
+  }
+  @media (max-width: 860px) {
+    .hero { padding: 32px 0 56px; }
+    .hero .wrap, .salon .wrap, .contacts .wrap, .reviews { grid-template-columns: 1fr; gap: 40px; }
+    .stack { max-width: 460px; }
+    .facts .wrap { grid-template-columns: 1fr 1fr; }
+    .fact:nth-child(3) { padding-left: 0; border-left: 0; }
+    .fact:nth-child(n+3) { border-top: 1px solid var(--line); }
+    .masters { grid-template-columns: 1fr 1fr; }
+    .gallery { grid-template-columns: 1fr 1fr; grid-auto-rows: 210px; }
+    .plist { columns: 1; }
+    .score { position: static; }
+    section { padding: 72px 0; }
+  }
+  @media (max-width: 600px) {
+    .wrap { padding: 0 16px; }
+    .top-phone { display: none; }
+    .brand small { display: none; }
+    header.top .wrap { height: 64px; }
+    .top .btn { padding: 11px 16px; font-size: 14px; }
+    .hero h1 { font-size: 44px; }
+    .hero .sub { font-size: 17px; }
+    .hero .cta .btn { flex: 1; }
+    .stack { padding: 0 0 36px 28px; }
+    .badge { right: 0; top: 18px; }
+    .fact b { font-size: 32px; }
+    .fact + .fact { padding-left: 16px; }
+    .fact:nth-child(3) { padding-left: 0; }
+    .chips { flex-wrap: nowrap; overflow-x: auto; margin-left: -16px; margin-right: -16px; padding: 2px 16px 6px; scrollbar-width: none; }
+    .chips::-webkit-scrollbar { display: none; }
+    .chip { flex: none; }
+    .price-card { padding: 24px 20px; }
+    .quotes, .perks { grid-template-columns: 1fr; }
+    /* мастера на телефоне листаются вбок, а не занимают 12 экранов */
+    .masters { display: flex; overflow-x: auto; scroll-snap-type: x mandatory; gap: 12px; margin-left: -16px; margin-right: -16px; padding: 4px 16px 10px; scrollbar-width: none; }
+    .masters::-webkit-scrollbar { display: none; }
+    .master { flex: 0 0 84%; scroll-snap-align: center; }
+    .master:hover { transform: none; box-shadow: none; }
+    .gallery { grid-auto-rows: 170px; gap: 10px; }
+    .quote q { font-size: 22px; }
+    .c-cta .btn { flex: 1; }
+    .map, .map iframe { min-height: 320px; }
+    footer { padding-bottom: 96px; }
+    .mobile-cta { display: flex; position: fixed; left: 16px; right: 16px; bottom: 14px; z-index: 30; box-shadow: 0 12px 30px rgba(23, 20, 18, .3); transition: transform .3s cubic-bezier(.16,1,.3,1), opacity .3s; }
+    .mobile-cta.away { transform: translateY(140%); opacity: 0; pointer-events: none; }
+  }
+</style>
+</head>
+<body>
+
+<div class="concept">
+  <div class="wrap">
+    <span><b>Концепт</b> сайта для салона "Мадам & Месье". Фото, цены, мастера и отзывы взяты из ваших карточек на Яндекс Картах и в YCLIENTS.</span>
+    <span>Подготовил Евгений Афонин</span>
+  </div>
+</div>
+
+<header class="top">
+  <div class="wrap">
+    <a class="brand" href="#top" aria-label="Мадам & Месье, наверх">
+      <span class="mark"><img src="https://avatars.mds.yandex.net/get-altay/4120601/2a000001773f4b206404976495ae8b7b8687/orig" alt=""></span>
+      <span><b>Мадам & Месье</b><small>парикмахерская · Колпино</small></span>
+    </a>
+    <nav aria-label="Разделы">
+      <a href="#prices">Услуги и цены</a>
+      <a href="#masters">Мастера</a>
+      <a href="#works">Работы</a>
+      <a href="#reviews">Отзывы</a>
+      <a href="#contacts">Контакты</a>
+    </nav>
+    <div class="top-right">
+      <a class="top-phone" href="tel:+79312566911">+7 931 256-69-11</a>
+      <a class="btn btn-ink" href="https://n412073.yclients.ru/" target="_blank" rel="noopener">Записаться</a>
+    </div>
+  </div>
+</header>
+
+<main id="top">
+
+<section class="hero">
+  <div class="wrap">
+    <div class="rv">
+      <span class="kicker"><i class="ph ph-scissors"></i> Колпино, проспект Ленина, 54</span>
+      <h1>Стрижки, цвет и уход для <em>мадам, месье</em> и их детей</h1>
+      <p class="sub">Женский и мужской зал, маникюр, брови и брейды. Двенадцать мастеров, онлайн-запись в пару касаний и кофе, пока вы в кресле.</p>
+      <div class="cta">
+        <a class="btn btn-ink" href="https://n412073.yclients.ru/" target="_blank" rel="noopener"><i class="ph ph-calendar-check"></i> Записаться онлайн</a>
+        <a class="btn btn-ghost" href="#prices">Цены</a>
+      </div>
+      <div class="rating">
+        <span class="stars" aria-hidden="true">★★★★★</span>
+        <span><b>5,0</b> · 351 оценка на Яндекс Картах</span>
+      </div>
+    </div>
+    <div class="stack rv">
+      <div class="main"><img src="https://avatars.mds.yandex.net/get-altay/4716261/2a0000018ff252484b67523fdc88d4faf97a/XXL" alt="Зал салона: зеркала, кресла и персиковые стены" fetchpriority="high"></div>
+      <div class="small"><img src="https://avatars.mds.yandex.net/get-altay/5598654/2a0000017f2cac5c30203c1efa768dd2e410/XL" alt="Работа мастера: светлое окрашивание на длинные волосы" loading="lazy"></div>
+      <div class="badge"><i class="ph-fill ph-medal"></i><span><b>Хорошее место 2026</b>награда Яндекс Карт</span></div>
+    </div>
+  </div>
+</section>
+
+<div class="facts">
+  <div class="wrap">
+    <div class="fact"><b>5,0</b><span>351 оценка на Яндексе</span></div>
+    <div class="fact"><b>12 мастеров</b><span>стилисты, маникюр, брови, брейды</span></div>
+    <div class="fact"><b>10:00–21:00</b><span>ежедневно, без выходных</span></div>
+    <div class="fact"><b>Lebel · Davines</b><span>и Keune для ухода в салоне</span></div>
+  </div>
+</div>
+
+<section id="prices">
+  <div class="wrap">
+    <div class="head rv">
+      <div>
+        <span class="kicker">Прайс</span>
+        <h2 style="margin-top:12px">Услуги и <em>цены</em></h2>
+        <p class="lead">Цена "от": точная зависит от длины волос и мастера. Свободное время сразу видно в онлайн-записи.</p>
+      </div>
+    </div>
+
+    <div class="chips rv" role="tablist" aria-label="Категории услуг">
+      <button class="chip" role="tab" id="t-w" aria-controls="p-w" aria-selected="true"><i class="ph ph-scissors"></i>Женщинам</button>
+      <button class="chip" role="tab" id="t-m" aria-controls="p-m" aria-selected="false" tabindex="-1"><i class="ph ph-user"></i>Мужчинам</button>
+      <button class="chip" role="tab" id="t-k" aria-controls="p-k" aria-selected="false" tabindex="-1"><i class="ph ph-baby"></i>Детям</button>
+      <button class="chip" role="tab" id="t-c" aria-controls="p-c" aria-selected="false" tabindex="-1"><i class="ph ph-palette"></i>Окрашивание</button>
+      <button class="chip" role="tab" id="t-h" aria-controls="p-h" aria-selected="false" tabindex="-1"><i class="ph ph-drop"></i>Уход и восстановление</button>
+      <button class="chip" role="tab" id="t-n" aria-controls="p-n" aria-selected="false" tabindex="-1"><i class="ph ph-hand"></i>Маникюр и педикюр</button>
+      <button class="chip" role="tab" id="t-b" aria-controls="p-b" aria-selected="false" tabindex="-1"><i class="ph ph-eye"></i>Брови и визаж</button>
+      <button class="chip" role="tab" id="t-r" aria-controls="p-r" aria-selected="false" tabindex="-1"><i class="ph ph-flower-lotus"></i>Брейды</button>
+    </div>
+
+    <div class="price-card" role="tabpanel" id="p-w" aria-labelledby="t-w">
+      <ul class="plist">
+        <li><span class="n">Стрижка, короткие волосы<small>до мочки уха</small></span><span class="p">от 2 000 ₽</span></li>
+        <li><span class="n">Стрижка, средняя длина<small>до плеч</small></span><span class="p">от 2 300 ₽</span></li>
+        <li><span class="n">Стрижка, длинные волосы<small>ниже плеч</small></span><span class="p">от 2 500 ₽</span></li>
+        <li><span class="n">Стрижка, очень длинные волосы<small>ниже лопаток</small></span><span class="p">от 3 000 ₽</span></li>
+        <li><span class="n">Стрижка + салонный уход<small>Davines или Keune, короткие волосы</small></span><span class="p">от 3 400 ₽</span></li>
+        <li><span class="n">Чёлка</span><span class="p">от 700 ₽</span></li>
+        <li><span class="n">Ровный срез<small>ниже плеч, без мытья и укладки</small></span><span class="p">от 1 400 ₽</span></li>
+        <li><span class="n">Укладка</span><span class="p">от 2 500 ₽</span></li>
+        <li><span class="n">Причёска</span><span class="p">от 5 200 ₽</span></li>
+        <li><span class="n">Плетение кос</span><span class="p">от 2 000 ₽</span></li>
+      </ul>
+      <div class="side">
+        <h3>Женский зал</h3>
+        <p>Стилисты подскажут форму и уход, а после стрижки покажут, как укладывать дома.</p>
+        <a class="btn btn-ink" href="https://n412073.yclients.ru/" target="_blank" rel="noopener">Выбрать время</a>
+      </div>
+    </div>
+
+    <div class="price-card" role="tabpanel" id="p-m" aria-labelledby="t-m" hidden>
+      <ul class="plist">
+        <li><span class="n">Стрижка модельная</span><span class="p">от 1 300 ₽</span></li>
+        <li><span class="n">Стрижка модельная удлинённая</span><span class="p">от 1 700 ₽</span></li>
+        <li><span class="n">Стрижка с насадками</span><span class="p">от 1 000 ₽</span></li>
+        <li><span class="n">Стрижка налысо</span><span class="p">от 700 ₽</span></li>
+        <li><span class="n">Стрижка бритвой</span><span class="p">3 200 ₽</span></li>
+        <li><span class="n">Камуфляж седины<small>KEUNE</small></span><span class="p">от 1 500 ₽</span></li>
+        <li><span class="n">Борода<small>коррекция формы, подравнивание</small></span><span class="p">750 ₽</span></li>
+        <li><span class="n">Стрижка бровей</span><span class="p">450 ₽</span></li>
+        <li><span class="n">Папа + сын<small>сын до 7 лет</small></span><span class="p">от 2 000 ₽</span></li>
+      </ul>
+      <div class="side">
+        <h3>Мужской зал</h3>
+        <p>Классика и удлинённые модельные стрижки, стрижка бритвой, борода и камуфляж седины.</p>
+        <a class="btn btn-ink" href="https://n412073.yclients.ru/" target="_blank" rel="noopener">Выбрать время</a>
+      </div>
+    </div>
+
+    <div class="price-card" role="tabpanel" id="p-k" aria-labelledby="t-k" hidden>
+      <ul class="plist">
+        <li><span class="n">Детская стрижка для мальчиков<small>до 7 лет</small></span><span class="p">от 1 000 ₽</span></li>
+        <li><span class="n">Рисунок машинкой</span><span class="p">от 600 ₽</span></li>
+        <li><span class="n">Мытьё головы и сушка<small>до 7 лет</small></span><span class="p">от 700 ₽</span></li>
+        <li><span class="n">Папа + сын<small>сын до 7 лет</small></span><span class="p">от 2 000 ₽</span></li>
+        <li><span class="n">Детский маникюр<small>до 7 лет</small></span><span class="p">1 200 ₽</span></li>
+        <li><span class="n">Детский маникюр + лак<small>до 7 лет</small></span><span class="p">1 350 ₽</span></li>
+        <li><span class="n">Косички и брейды</span><span class="p">от 2 000 ₽</span></li>
+      </ul>
+      <div class="side">
+        <h3>Детям</h3>
+        <p>Стрижки для мальчиков, косички и брейды для девочек. Можно прийти вместе с папой: есть услуга "Папа + сын".</p>
+        <a class="btn btn-ink" href="https://n412073.yclients.ru/" target="_blank" rel="noopener">Выбрать время</a>
+      </div>
+    </div>
+
+    <div class="price-card" role="tabpanel" id="p-c" aria-labelledby="t-c" hidden>
+      <ul class="plist">
+        <li><span class="n">Окрашивание в один тон</span><span class="p">от 3 200 ₽</span></li>
+        <li><span class="n">Окрашивание корней</span><span class="p">от 3 200 ₽</span></li>
+        <li><span class="n">Тонирование</span><span class="p">от 3 200 ₽</span></li>
+        <li><span class="n">Ретушь цвета</span><span class="p">от 3 700 ₽</span></li>
+        <li><span class="n">Контуринг</span><span class="p">от 5 500 ₽</span></li>
+        <li><span class="n">Сложное окрашивание</span><span class="p">от 6 500 ₽</span></li>
+        <li><span class="n">Сложное яркое скрытое окрашивание</span><span class="p">от 7 400 ₽</span></li>
+        <li><span class="n">Total Blonde</span><span class="p">от 7 200 ₽</span></li>
+      </ul>
+      <div class="side">
+        <h3>Окрашивание</h3>
+        <p>Цены указаны без учёта материалов. Для сложного цвета мастер сначала обсудит с вами результат и уход.</p>
+        <a class="btn btn-ink" href="https://n412073.yclients.ru/" target="_blank" rel="noopener">Выбрать время</a>
+      </div>
+    </div>
+
+    <div class="price-card" role="tabpanel" id="p-h" aria-labelledby="t-h" hidden>
+      <ul class="plist">
+        <li><span class="n">Салонный уход Lebel</span><span class="p">от 2 500 ₽</span></li>
+        <li><span class="n">Салонный уход Davines</span><span class="p">от 2 800 ₽</span></li>
+        <li><span class="n">Кератиновое насыщение KEUNE</span><span class="p">2 500 ₽</span></li>
+        <li><span class="n">Пилинг кожи головы Lebel</span><span class="p">2 300 ₽</span></li>
+        <li><span class="n">Холодное восстановление</span><span class="p">от 6 000 ₽</span></li>
+        <li><span class="n">Глубокая реконструкция Keralex</span><span class="p">от 6 300 ₽</span></li>
+        <li><span class="n">Кератин, ботокс, биксипластия<small>ровный срез в подарок</small></span><span class="p">от 8 500 ₽</span></li>
+        <li><span class="n">Тотальная реконструкция<small>ровный срез в подарок</small></span><span class="p">от 9 500 ₽</span></li>
+      </ul>
+      <div class="side">
+        <h3>Уход за волосами</h3>
+        <p>Профессиональная косметика Lebel, Davines и Keune. Средства для домашнего ухода можно купить в салоне.</p>
+        <a class="btn btn-ink" href="https://n412073.yclients.ru/" target="_blank" rel="noopener">Выбрать время</a>
+      </div>
+    </div>
+
+    <div class="price-card" role="tabpanel" id="p-n" aria-labelledby="t-n" hidden>
+      <ul class="plist">
+        <li><span class="n">Комбинированный или аппаратный маникюр</span><span class="p">от 1 600 ₽</span></li>
+        <li><span class="n">Маникюр с покрытием гель-лак<small>снятие, укрепление и выравнивание включены</small></span><span class="p">от 3 000 ₽</span></li>
+        <li><span class="n">Японский маникюр</span><span class="p">от 2 000 ₽</span></li>
+        <li><span class="n">Дизайн</span><span class="p">от 100 ₽</span></li>
+        <li><span class="n">Маникюр с гель-лаком и наращиванием</span><span class="p">от 5 600 ₽</span></li>
+        <li><span class="n">Экспресс-педикюр<small>только пальчики</small></span><span class="p">от 2 000 ₽</span></li>
+        <li><span class="n">Аппаратный педикюр PODOLOGIC</span><span class="p">от 3 000 ₽</span></li>
+        <li><span class="n">Педикюр с покрытием гель-лак</span><span class="p">от 2 600 ₽</span></li>
+      </ul>
+      <div class="side">
+        <h3>Маникюр и педикюр</h3>
+        <p>Женский и мужской маникюр, детский маникюр, аппаратный педикюр и дизайн.</p>
+        <a class="btn btn-ink" href="https://n412073.yclients.ru/" target="_blank" rel="noopener">Выбрать время</a>
+      </div>
+    </div>
+
+    <div class="price-card" role="tabpanel" id="p-b" aria-labelledby="t-b" hidden>
+      <ul class="plist">
+        <li><span class="n">Коррекция бровей</span><span class="p">1 400 ₽</span></li>
+        <li><span class="n">Коррекция и окрашивание бровей</span><span class="p">1 850 ₽</span></li>
+        <li><span class="n">Ламинирование бровей</span><span class="p">1 850 ₽</span></li>
+        <li><span class="n">Комплекс<small>коррекция, окрашивание, ламинирование</small></span><span class="p">2 650 ₽</span></li>
+        <li><span class="n">Ламинирование ресниц</span><span class="p">2 550 ₽</span></li>
+        <li><span class="n">Окрашивание ресниц</span><span class="p">900 ₽</span></li>
+        <li><span class="n">Визаж</span><span class="p">4 000 ₽</span></li>
+      </ul>
+      <div class="side">
+        <h3>Брови и визаж</h3>
+        <p>Форма, цвет и ламинирование бровей, ресницы и макияж на выход.</p>
+        <a class="btn btn-ink" href="https://n412073.yclients.ru/company/390529/personal/select-services?o=m1456309" target="_blank" rel="noopener">Записаться к бровисту</a>
+      </div>
+    </div>
+
+    <div class="price-card" role="tabpanel" id="p-r" aria-labelledby="t-r" hidden>
+      <ul class="plist">
+        <li><span class="n">2 брейда без канекалона</span><span class="p">2 000 ₽</span></li>
+        <li><span class="n">4 брейда с канекалоном</span><span class="p">4 600 ₽</span></li>
+        <li><span class="n">Боксёрские косы</span><span class="p">3 600 ₽</span></li>
+        <li><span class="n">Брейды-ободок</span><span class="p">от 3 000 ₽</span></li>
+        <li><span class="n">Косы объёмные 2Д</span><span class="p">2 800 ₽</span></li>
+        <li><span class="n">Афроклассика мужская на андеркат</span><span class="p">6 400 ₽</span></li>
+        <li><span class="n">Расплетение афрокос и брейдов</span><span class="p">1 200 ₽</span></li>
+      </ul>
+      <div class="side">
+        <h3>Брейды</h3>
+        <p>Косы для взрослых и детей: от двух брейдов до сложных причёсок с канекалоном.</p>
+        <a class="btn btn-ink" href="https://n412073.yclients.ru/company/390529/personal/select-services?o=m3224435" target="_blank" rel="noopener">Записаться к брейдеру</a>
+      </div>
+    </div>
+
+    <p class="note">Цены из онлайн-записи салона и карточки на Яндекс Картах. Полный прайс и свободное время в онлайн-записи.</p>
+  </div>
+</section>
+
+<section id="masters" style="background: var(--surface); border-top: 1px solid var(--line); border-bottom: 1px solid var(--line)">
+  <div class="wrap">
+    <div class="head rv">
+      <div>
+        <span class="kicker">Команда</span>
+        <h2 style="margin-top:12px">Мастера</h2>
+        <p class="lead">Запишитесь сразу к своему мастеру: кнопка откроет его расписание. Цитаты из отзывов гостей на Яндекс Картах.</p>
+      </div>
+    </div>
+
+    <div class="masters">
+      <article class="master rv">
+        <div class="m-top"><img src="https://assets.yclients.com/masters/sm/5/5f/5f779c6069cfa07_20241205194119.png" alt="Рина" loading="lazy"><div><h3>Рина</h3><span>Парикмахер-стилист</span></div></div>
+        <q>Подстригала сына 5 лет, мастер Рина, все прошло отлично.</q>
+        <div class="meta"><span>601 отзыв</span><a href="https://n412073.yclients.ru/company/390529/personal/select-services?o=m2602032" target="_blank" rel="noopener">Записаться <i class="ph ph-arrow-up-right"></i></a></div>
+      </article>
+      <article class="master rv">
+        <div class="m-top"><img src="https://assets.yclients.com/masters/sm/0/06/061f659e9a3edf2_20240324144608.png" alt="Юлия" loading="lazy"><div><h3>Юлия</h3><span>Парикмахер-стилист</span></div></div>
+        <q>Делала процедуру химической завивки на пайпы, и снова осталась в полном восторге!</q>
+        <div class="meta"><span>382 отзыва</span><a href="https://n412073.yclients.ru/company/390529/personal/select-services?o=m3155705" target="_blank" rel="noopener">Записаться <i class="ph ph-arrow-up-right"></i></a></div>
+      </article>
+      <article class="master rv">
+        <div class="m-top"><img src="https://assets.yclients.com/masters/sm/7/76/76c7c0d02ce312d_20230314141354.png" alt="Алевтина" loading="lazy"><div><h3>Алевтина</h3><span>Парикмахер-стилист</span></div></div>
+        <q>Мастер Алевтина сразу же поняла мои пожелания по стрижке.</q>
+        <div class="meta"><span>329 отзывов</span><a href="https://n412073.yclients.ru/company/390529/personal/select-services?o=m2531086" target="_blank" rel="noopener">Записаться <i class="ph ph-arrow-up-right"></i></a></div>
+      </article>
+      <article class="master rv">
+        <div class="m-top"><img src="https://assets.yclients.com/masters/sm/0/0e/0e3975e688ef5c9_20240629135334.png" alt="Дарья" loading="lazy"><div><h3>Дарья</h3><span>Парикмахер-стилист</span></div></div>
+        <q>Дарья учла все мои пожелания и дала рекомендации по укладке.</q>
+        <div class="meta"><span>247 отзывов</span><a href="https://n412073.yclients.ru/company/390529/personal/select-services?o=m3298652" target="_blank" rel="noopener">Записаться <i class="ph ph-arrow-up-right"></i></a></div>
+      </article>
+      <article class="master rv">
+        <div class="m-top"><img src="https://assets.yclients.com/masters/sm/9/93/930621281695735_20251119123532.png" alt="Екатерина" loading="lazy"><div><h3>Екатерина</h3><span>Парикмахер-стилист</span></div></div>
+        <q>Она помогла определиться с выбором стрижки и замечательно меня подстригла</q>
+        <div class="meta"><span>87 отзывов</span><a href="https://n412073.yclients.ru/company/390529/personal/select-services?o=m4737576" target="_blank" rel="noopener">Записаться <i class="ph ph-arrow-up-right"></i></a></div>
+      </article>
+      <article class="master rv">
+        <div class="m-top"><img src="https://assets.yclients.com/masters/sm/9/90/9098d9258ec4970_20260727123049.png" alt="Татьяна" loading="lazy"><div><h3>Татьяна</h3><span>Парикмахер-универсал</span></div></div>
+        <div class="meta"><span>25 отзывов</span><a href="https://n412073.yclients.ru/company/390529/personal/select-services?o=m5760954" target="_blank" rel="noopener">Записаться <i class="ph ph-arrow-up-right"></i></a></div>
+      </article>
+      <article class="master rv">
+        <div class="m-top"><img src="https://assets.yclients.com/masters/sm/1/10/1052d771718ae8e_20240227141458.png" alt="Алёна" loading="lazy"><div><h3>Алёна</h3><span>Мастер по реконструкции волос</span></div></div>
+        <div class="meta"><span>24 отзыва</span><a href="https://n412073.yclients.ru/company/390529/personal/select-master" target="_blank" rel="noopener">Записаться <i class="ph ph-arrow-up-right"></i></a></div>
+      </article>
+      <article class="master rv">
+        <div class="m-top"><img src="https://assets.yclients.com/masters/sm/6/61/61cc5dc35c11775_20210218201349.png" alt="Марианна Большакова" loading="lazy"><div><h3>Марианна</h3><span>Мастер ногтевого сервиса</span></div></div>
+        <q>Очень понравился маникюр у Марианны. Быстро, аккуратно, красиво.</q>
+        <div class="meta"><span>973 отзыва</span><a href="https://n412073.yclients.ru/company/390529/personal/select-services?o=m1259971" target="_blank" rel="noopener">Записаться <i class="ph ph-arrow-up-right"></i></a></div>
+      </article>
+      <article class="master rv">
+        <div class="m-top"><img src="https://assets.yclients.com/masters/sm/d/dd/dd2ba60ea95426d_20250404141715.png" alt="Полина" loading="lazy"><div><h3>Полина</h3><span>Мастер маникюра и педикюра</span></div></div>
+        <q>Полина привела мои ручки в порядок и дала необходимые рекомендации</q>
+        <div class="meta"><span>171 отзыв</span><a href="https://n412073.yclients.ru/company/390529/personal/select-services?o=m3809267" target="_blank" rel="noopener">Записаться <i class="ph ph-arrow-up-right"></i></a></div>
+      </article>
+      <article class="master rv">
+        <div class="m-top"><img src="https://assets.yclients.com/masters/sm/b/b3/b30d189b10f8594_20260820201817.png" alt="Регина" loading="lazy"><div><h3>Регина</h3><span>Мастер ногтевого сервиса</span></div></div>
+        <div class="meta"><span>15 отзывов</span><a href="https://n412073.yclients.ru/company/390529/personal/select-services?o=m5879382" target="_blank" rel="noopener">Записаться <i class="ph ph-arrow-up-right"></i></a></div>
+      </article>
+      <article class="master rv">
+        <div class="m-top"><img src="https://assets.yclients.com/masters/sm/b/be/be1bf435400f328_20211002163356.png" alt="Екатерина Романова" loading="lazy"><div><h3>Екатерина Романова</h3><span>Визажист-бровист</span></div></div>
+        <div class="meta"><span>282 отзыва</span><a href="https://n412073.yclients.ru/company/390529/personal/select-services?o=m1456309" target="_blank" rel="noopener">Записаться <i class="ph ph-arrow-up-right"></i></a></div>
+      </article>
+      <article class="master rv">
+        <div class="m-top"><img src="https://assets.yclients.com/masters/sm/e/e0/e04e5cbbb839857_20240508213904.png" alt="Елена" loading="lazy"><div><h3>Елена</h3><span>Брейдер</span></div></div>
+        <q>Заплетали ребенку косички у мастера Елена. Нам все очень понравилось!!</q>
+        <div class="meta"><span>34 отзыва</span><a href="https://n412073.yclients.ru/company/390529/personal/select-services?o=m3224435" target="_blank" rel="noopener">Записаться <i class="ph ph-arrow-up-right"></i></a></div>
+      </article>
+    </div>
+    <p class="note">Число отзывов у мастера - из онлайн-записи салона.</p>
+  </div>
+</section>
+
+<section id="works">
+  <div class="wrap">
+    <div class="head rv">
+      <div>
+        <span class="kicker">Портфолио</span>
+        <h2 style="margin-top:12px">Работы <em>мастеров</em></h2>
+      </div>
+      <a class="more-link" href="https://vk.com/mm_kolpino" target="_blank" rel="noopener">Больше работ во ВКонтакте <i class="ph ph-arrow-up-right"></i></a>
+    </div>
+    <div class="gallery">
+      <figure class="tall rv"><img src="https://avatars.mds.yandex.net/get-altay/16182900/2a000001963deaad778de99145dd2e4a10c0/XL" alt="Химическая завивка, медный оттенок" loading="lazy"><figcaption>Завивка</figcaption></figure>
+      <figure class="rv"><img src="https://avatars.mds.yandex.net/get-altay/5598654/2a0000017f2cac5c30203c1efa768dd2e410/XL" alt="Светлое окрашивание на длинные волосы" loading="lazy"><figcaption>Блонд</figcaption></figure>
+      <figure class="tall rv"><img src="https://avatars.mds.yandex.net/get-altay/19766436/2a0000019f0e90f5d2f5d4a1e31aa6c5bcff/XL" alt="Брейды для девочки" loading="lazy"><figcaption>Брейды</figcaption></figure>
+      <figure class="tall rv"><img src="https://avatars.mds.yandex.net/get-altay/5459048/2a0000017f2cae807bd448dfb3b07ab558a5/XL" alt="Окрашивание и стрижка, гостья у зеркала" loading="lazy"><figcaption>Окрашивание</figcaption></figure>
+      <figure class="rv"><img src="https://avatars.mds.yandex.net/get-altay/6333331/2a0000017f2cafbf474203862bf5a03c071e/XL" alt="Педикюр с красным покрытием" loading="lazy"><figcaption>Педикюр</figcaption></figure>
+    </div>
+  </div>
+</section>
+
+<section class="salon" id="salon">
+  <div class="wrap">
+    <div class="salon-photo rv"><img src="https://avatars.mds.yandex.net/get-altay/8128315/2a0000018ff253df0963a8fa458ef7d05030/XXL" alt="Вход в парикмахерскую Мадам & Месье с пандусом" loading="lazy"></div>
+    <div class="rv">
+      <span class="kicker">В салоне</span>
+      <h2 style="margin-top:12px">Приходите <em>не торопясь</em></h2>
+      <p class="lead" style="color: #5f514a">Так о салоне пишут гости: встречают с улыбкой, предлагают кофе и подробно расспрашивают о пожеланиях.</p>
+      <div class="perks">
+        <div class="perk"><i class="ph ph-coffee"></i><div><b>Кофе, чай и сладости</b><span>есть сладости без сахара</span></div></div>
+        <div class="perk"><i class="ph ph-lollipop"></i><div><b>Угощение для детей</b><span>после стрижки</span></div></div>
+        <div class="perk"><i class="ph ph-drop-half"></i><div><b>Lebel, Davines, Keune</b><span>домашний уход можно купить в салоне</span></div></div>
+        <div class="perk"><i class="ph ph-gift"></i><div><b>Подарочные сертификаты</b><span>можно подарить близким</span></div></div>
+        <div class="perk"><i class="ph ph-wheelchair"></i><div><b>Вход с пандусом</b><span>удобно с коляской</span></div></div>
+        <div class="perk"><i class="ph ph-credit-card"></i><div><b>Оплата картой</b><span>и Wi-Fi для гостей</span></div></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="reviews">
+  <div class="wrap">
+    <div class="head rv">
+      <div>
+        <span class="kicker">Отзывы</span>
+        <h2 style="margin-top:12px">Что пишут <em>гости</em></h2>
+      </div>
+    </div>
+    <div class="reviews">
+      <div class="score rv">
+        <div class="big">5,0</div>
+        <div class="stars" aria-hidden="true">★★★★★</div>
+        <p>351 оценка и 188 отзывов на Яндекс Картах. Салон отвечает на отзывы.</p>
+        <a class="more-link" href="https://yandex.ru/maps/org/madam_mesye/114140595755/reviews/" target="_blank" rel="noopener">Читать все отзывы <i class="ph ph-arrow-up-right"></i></a>
+      </div>
+      <div class="quotes">
+        <figure class="quote rv" style="margin:0"><q>Знакомство с салоном и мастером Екатериной оставило самые лучшие впечатления, для меня лучший салон в Колпино найден</q><figcaption class="who"><b>Natalya</b> · сентябрь 2026</figcaption></figure>
+        <figure class="quote rv" style="margin:0"><q>Крутое место, удобно записаться и я всегда получаю кроме хорошей стрижки, советы по уходу за волосами.</q><figcaption class="who"><b>Антон Т.</b> · апрель 2026</figcaption></figure>
+        <figure class="quote rv" style="margin:0"><q>Меня отговорили от челки, которая объективно сделала бы мою жизнь хуже, за что бесконечно признательна</q><figcaption class="who"><b>Мария Трейзе</b> · ноябрь 2025</figcaption></figure>
+        <figure class="quote rv" style="margin:0"><q>Встретили чаем с шоколадкой, предложили парковочное место для авто, администратор вежливая, атмосфера приятная</q><figcaption class="who"><b>Галина Иванова</b> · октябрь 2025</figcaption></figure>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="contacts" id="contacts" style="background: var(--surface); border-top: 1px solid var(--line)">
+  <div class="wrap">
+    <div class="rv">
+      <span class="kicker">Контакты</span>
+      <h2 style="margin-top:12px">Ждём вас <em>в Колпино</em></h2>
+      <ul class="c-list">
+        <li><i class="ph ph-map-pin"></i><div><b>Проспект Ленина, 54, строение 1</b><span>Колпино, Санкт-Петербург</span></div></li>
+        <li><i class="ph ph-clock"></i><div><b>Ежедневно 10:00–21:00</b><span>без выходных</span></div></li>
+        <li><i class="ph ph-phone"></i><div><b><a href="tel:+79312566911" style="color:inherit">+7 931 256-69-11</a></b><span>звонок или WhatsApp</span></div></li>
+        <li><i class="ph ph-chat-circle-text"></i><div><b>ВКонтакте</b><a href="https://vk.com/mm_kolpino" target="_blank" rel="noopener">vk.com/mm_kolpino</a></div></li>
+      </ul>
+      <div class="c-cta">
+        <a class="btn btn-ink" href="https://n412073.yclients.ru/" target="_blank" rel="noopener"><i class="ph ph-calendar-check"></i> Записаться онлайн</a>
+        <a class="btn btn-ghost" href="https://yandex.ru/maps/org/madam_mesye/114140595755/?rtext=~59.749789%2C30.571531" target="_blank" rel="noopener">Маршрут</a>
+      </div>
+    </div>
+    <div class="map rv">
+      <iframe src="https://yandex.ru/map-widget/v1/org/madam_mesye/114140595755/?ll=30.571531%2C59.749789&z=16" title="Мадам & Месье на Яндекс Картах" loading="lazy" allowfullscreen></iframe>
+    </div>
+  </div>
+</section>
+
+</main>
+
+<footer>
+  <div class="wrap">
+    <div><b>Мадам & Месье</b><br>Колпино, проспект Ленина, 54, стр. 1</div>
+    <div>Концепт подготовил <b>Евгений Афонин</b><br><a href="tel:+79119070350">+7 911 907-03-50</a>, Telegram <a href="https://t.me/X1nN0n" target="_blank" rel="noopener">@X1nN0n</a> · <a href="https://x1nnon.github.io/portfolio/" target="_blank" rel="noopener">портфолио</a></div>
+  </div>
+</footer>
+
+<a class="btn btn-ink mobile-cta" href="https://n412073.yclients.ru/" target="_blank" rel="noopener"><i class="ph ph-calendar-check"></i> Записаться онлайн</a>
+
+<script>
+  // Вкладки прайса (стрелки на клавиатуре тоже работают)
+  const tabs = [...document.querySelectorAll('.chip')];
+  const select = (t) => {
+    tabs.forEach((x) => {
+      const on = x === t;
+      x.setAttribute('aria-selected', on);
+      x.tabIndex = on ? 0 : -1;
+      document.getElementById(x.getAttribute('aria-controls')).hidden = !on;
+    });
+  };
+  tabs.forEach((t, i) => {
+    t.addEventListener('click', () => select(t));
+    t.addEventListener('keydown', (e) => {
+      const d = e.key === 'ArrowRight' ? 1 : e.key === 'ArrowLeft' ? -1 : 0;
+      if (!d) return;
+      const n = tabs[(i + d + tabs.length) % tabs.length];
+      select(n);
+      n.focus();
+      n.scrollIntoView({ block: 'nearest', inline: 'nearest' });
+    });
+  });
+
+  // Кнопка записи внизу экрана на телефоне прячется у контактов
+  const mcta = document.querySelector('.mobile-cta');
+  if ('IntersectionObserver' in window) {
+    new IntersectionObserver(([en]) => mcta.classList.toggle('away', en.isIntersecting), { threshold: .05 }).observe(document.getElementById('contacts'));
+  }
+
+  // Плавное появление блоков
+  const items = document.querySelectorAll('.rv');
+  if (matchMedia('(prefers-reduced-motion: no-preference)').matches && 'IntersectionObserver' in window) {
+    const io = new IntersectionObserver((es) => es.forEach((en) => { if (en.isIntersecting) { en.target.classList.add('in'); io.unobserve(en.target); } }), { threshold: .12 });
+    items.forEach((el) => io.observe(el));
+  } else {
+    items.forEach((el) => el.classList.add('in'));
+  }
+</script>
+</body>
+</html>
