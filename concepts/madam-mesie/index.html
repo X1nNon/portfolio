@@ -8,11 +8,13 @@
 <meta name="robots" content="noindex">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,500;0,600;0,700;1,500;1,600&family=Golos+Text:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,500;0,600;0,700;1,500;1,600&family=Golos+Text:wght@400;500;600;700&family=Montserrat:wght@700&family=Great+Vibes&display=swap" rel="stylesheet">
 <script src="https://unpkg.com/@phosphor-icons/web@2.1.1"></script>
 <!--
   Концепт сайта для парикмахерской "Мадам & Месье" (Колпино, пр. Ленина, 54).
   Цвета взяты из салона: персиковые стены, чёрный логотип-силуэт, светлый камень.
+  Первый экран: их логотип-силуэт как окно, внутри фото их холла; рядом надпись как на их вывеске.
+  silhouette.png - маска, вырезанная из их логотипа и увеличенная.
   Логотип и фото - из карточки салона на Яндекс Картах, мастера и запись - из их YCLIENTS,
   цены - из YCLIENTS и прайса на Яндексе, отзывы - с Яндекс Карт дословно.
 -->
@@ -22,6 +24,7 @@
     --surface: #fffdfb;
     --peach: #f0d5c1;
     --peach-2: #e6b897;
+    --wall: #ecd6c4;
     --line: #e8dbd0;
     --text: #171412;
     --muted: #6d6058;
@@ -75,23 +78,22 @@
   .top .btn { padding: 12px 20px; font-size: 15px; }
 
   /* первый экран */
-  .hero { padding: 56px 0 80px; }
-  .hero .wrap { display: grid; grid-template-columns: 1.1fr 1fr; gap: 64px; align-items: center; }
-  .hero h1 { font-size: clamp(46px, 5.4vw, 70px); margin-top: 18px; text-wrap: balance; }
-  .hero h1 em { white-space: nowrap; }
-  .hero .sub { font-size: 19px; color: var(--muted); margin: 24px 0 34px; max-width: 34ch; }
-  .hero .cta { display: flex; gap: 12px; flex-wrap: wrap; }
-  .rating { display: flex; align-items: center; gap: 12px; margin-top: 30px; font-size: 15px; color: var(--muted); }
-  .rating .stars { color: var(--accent); font-size: 18px; letter-spacing: 1px; white-space: nowrap; }
-  .rating b { color: var(--text); font-size: 18px; }
-  .stack { position: relative; padding: 0 0 48px 48px; }
-  .stack .main { border-radius: 200px 200px var(--r) var(--r); overflow: hidden; aspect-ratio: 4 / 5; box-shadow: var(--shadow); background: var(--peach); }
-  .stack .main img { width: 100%; height: 100%; object-fit: cover; }
-  .stack .small { position: absolute; left: 0; bottom: 0; width: 42%; aspect-ratio: 3 / 4; border-radius: var(--r); overflow: hidden; border: 6px solid var(--bg); box-shadow: var(--shadow); background: var(--peach); }
-  .stack .small img { width: 100%; height: 100%; object-fit: cover; }
-  .badge { position: absolute; right: -10px; top: 34px; background: var(--surface); border-radius: 14px; padding: 12px 16px; box-shadow: var(--shadow); display: flex; gap: 10px; align-items: center; font-size: 14px; line-height: 1.3; }
-  .badge i { font-size: 26px; color: var(--accent); }
-  .badge b { display: block; font-size: 15px; }
+  /* первый экран: их логотип-силуэт как окно, внутри их холл; рядом надпись как на вывеске */
+  .window { padding: 0; background: var(--wall); }
+  .window-in { min-height: clamp(560px, calc(100svh - 110px), 820px); display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); gap: 40px; align-items: center; padding-top: 32px; padding-bottom: 32px; }
+  .signage { margin: 16px 0 0; display: grid; }
+  .signage .caps { font-family: "Montserrat", "Golos Text", sans-serif; font-weight: 700; font-size: clamp(17px, 1.9vw, 26px); letter-spacing: .16em; text-transform: uppercase; line-height: 1; }
+  .signage .script { display: grid; margin-top: .12em; font-family: "Great Vibes", cursive; font-weight: 400; font-size: clamp(64px, 8.2vw, 128px); line-height: .95; letter-spacing: 0; }
+  .signage .script span { white-space: nowrap; }
+  .signage .script span + span { padding-left: 1.1em; }
+  .window-lead { margin: 22px 0 30px; font-size: 18px; color: #5d4f47; max-width: 34ch; }
+  .window-lead a { color: var(--text); text-decoration-color: var(--peach-2); text-underline-offset: 3px; }
+  .cta { display: flex; gap: 12px; flex-wrap: wrap; }
+  .window-art { justify-self: center; filter: drop-shadow(0 30px 40px rgba(92, 52, 28, .25)); }
+  .sil { width: min(100%, calc(min(76svh, 700px) * .921)); aspect-ratio: 1470 / 1596; background: var(--peach); -webkit-mask: url("silhouette.png") center / contain no-repeat; mask: url("silhouette.png") center / contain no-repeat; }
+  .sil img { width: 100%; height: 100%; object-fit: cover; object-position: 55% 40%; animation: sil-in 7s cubic-bezier(.16,1,.3,1) both; }
+  @keyframes sil-in { from { transform: scale(1.12); } to { transform: none; } }
+  @media (prefers-reduced-motion: reduce) { .sil img { animation: none; } }
 
   /* цифры */
   .facts { background: var(--surface); border-top: 1px solid var(--line); border-bottom: 1px solid var(--line); }
@@ -204,9 +206,9 @@
     .side { border-left: 0; padding-left: 0; border-top: 1px solid var(--line); padding-top: 24px; }
   }
   @media (max-width: 860px) {
-    .hero { padding: 32px 0 56px; }
-    .hero .wrap, .salon .wrap, .contacts .wrap, .reviews { grid-template-columns: 1fr; gap: 40px; }
-    .stack { max-width: 460px; }
+    .window-in { grid-template-columns: 1fr; min-height: 0; gap: 30px; padding-top: 30px; padding-bottom: 44px; }
+    .sil { width: min(100%, 460px); }
+    .salon .wrap, .contacts .wrap, .reviews { grid-template-columns: 1fr; gap: 40px; }
     .facts .wrap { grid-template-columns: 1fr 1fr; }
     .fact:nth-child(3) { padding-left: 0; border-left: 0; }
     .fact:nth-child(n+3) { border-top: 1px solid var(--line); }
@@ -222,11 +224,11 @@
     .brand small { display: none; }
     header.top .wrap { height: 64px; }
     .top .btn { padding: 11px 16px; font-size: 14px; }
-    .hero h1 { font-size: 44px; }
-    .hero .sub { font-size: 17px; }
-    .hero .cta .btn { flex: 1; }
-    .stack { padding: 0 0 36px 28px; }
-    .badge { right: 0; top: 18px; }
+    .signage .caps { font-size: 16px; letter-spacing: .14em; }
+    .signage .script { font-size: 64px; }
+    .window-lead { font-size: 16.5px; margin: 16px 0 24px; }
+    .cta { width: 100%; }
+    .cta .btn { flex: 1; }
     .fact b { font-size: 32px; }
     .fact + .fact { padding-left: 16px; }
     .fact:nth-child(3) { padding-left: 0; }
@@ -281,25 +283,19 @@
 
 <main id="top">
 
-<section class="hero">
-  <div class="wrap">
+<section class="window" aria-label="Мадам & Месье">
+  <div class="wrap window-in">
     <div class="rv">
-      <span class="kicker"><i class="ph ph-scissors"></i> Колпино, проспект Ленина, 54</span>
-      <h1>Стрижки, цвет и уход для <em>мадам, месье</em> и их детей</h1>
-      <p class="sub">Женский и мужской зал, маникюр, брови и брейды. Двенадцать мастеров, онлайн-запись в пару касаний и кофе, пока вы в кресле.</p>
+      <span class="kicker"><i class="ph ph-map-pin"></i> Колпино · проспект Ленина, 54</span>
+      <h1 class="signage"><span class="caps">Парикмахерская</span><span class="script"><span>Мадам &amp;</span><span>Месье</span></span></h1>
+      <p class="window-lead">Женский и мужской зал, <a href="#prices" data-tab="t-k">детские стрижки</a>, маникюр, брови и брейды. Ежедневно с 10 до 21.</p>
       <div class="cta">
         <a class="btn btn-ink" href="https://n412073.yclients.ru/" target="_blank" rel="noopener"><i class="ph ph-calendar-check"></i> Записаться онлайн</a>
         <a class="btn btn-ghost" href="#prices">Цены</a>
       </div>
-      <div class="rating">
-        <span class="stars" aria-hidden="true">★★★★★</span>
-        <span><b>5,0</b> · 351 оценка на Яндекс Картах</span>
-      </div>
     </div>
-    <div class="stack rv">
-      <div class="main"><img src="https://avatars.mds.yandex.net/get-altay/4716261/2a0000018ff252484b67523fdc88d4faf97a/XXL" alt="Зал салона: зеркала, кресла и персиковые стены" fetchpriority="high"></div>
-      <div class="small"><img src="https://avatars.mds.yandex.net/get-altay/5598654/2a0000017f2cac5c30203c1efa768dd2e410/XL" alt="Работа мастера: светлое окрашивание на длинные волосы" loading="lazy"></div>
-      <div class="badge"><i class="ph-fill ph-medal"></i><span><b>Хорошее место 2026</b>награда Яндекс Карт</span></div>
+    <div class="window-art rv">
+      <div class="sil"><img src="https://avatars.mds.yandex.net/get-altay/12595784/2a0000018ff253baa993e5ca4476b0bb80bf/XXXL" alt="Логотип салона, а внутри их холл: оранжевый диван, растения и логотип на стене" fetchpriority="high"></div>
     </div>
   </div>
 </section>
@@ -564,7 +560,7 @@
       <a class="more-link" href="https://vk.com/mm_kolpino" target="_blank" rel="noopener">Больше работ во ВКонтакте <i class="ph ph-arrow-up-right"></i></a>
     </div>
     <div class="gallery">
-      <figure class="tall rv"><img src="https://avatars.mds.yandex.net/get-altay/16182900/2a000001963deaad778de99145dd2e4a10c0/XL" alt="Химическая завивка, медный оттенок" loading="lazy"><figcaption>Завивка</figcaption></figure>
+      <figure class="tall rv"><img src="https://avatars.mds.yandex.net/get-altay/16182900/2a000001963deaad778de99145dd2e4a10c0/XL" alt="Кудри медного оттенка" loading="lazy"><figcaption>Кудри</figcaption></figure>
       <figure class="rv"><img src="https://avatars.mds.yandex.net/get-altay/5598654/2a0000017f2cac5c30203c1efa768dd2e410/XL" alt="Светлое окрашивание на длинные волосы" loading="lazy"><figcaption>Блонд</figcaption></figure>
       <figure class="tall rv"><img src="https://avatars.mds.yandex.net/get-altay/19766436/2a0000019f0e90f5d2f5d4a1e31aa6c5bcff/XL" alt="Брейды для девочки" loading="lazy"><figcaption>Брейды</figcaption></figure>
       <figure class="tall rv"><img src="https://avatars.mds.yandex.net/get-altay/5459048/2a0000017f2cae807bd448dfb3b07ab558a5/XL" alt="Окрашивание и стрижка, гостья у зеркала" loading="lazy"><figcaption>Окрашивание</figcaption></figure>
@@ -672,6 +668,10 @@
       n.scrollIntoView({ block: 'nearest', inline: 'nearest' });
     });
   });
+
+
+  // Ссылки с data-tab сразу открывают нужную вкладку прайса
+  document.querySelectorAll('[data-tab]').forEach((a) => a.addEventListener('click', () => select(document.getElementById(a.dataset.tab))));
 
   // Кнопка записи внизу экрана на телефоне прячется у контактов
   const mcta = document.querySelector('.mobile-cta');
