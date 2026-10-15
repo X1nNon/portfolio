@@ -19,9 +19,8 @@
   Цвет и знак - из их логотипа (белая пропись L и E с линией ноги на черном) и черного зала студии.
   Логотип, фото и отзывы - из карточки студии на Яндекс Картах, отзывы дословно. Цены и время процедур -
   из онлайн-записи студии (YCLIENTS) на 15 октября 2026.
-  Запись: кнопки открывают YCLIENTS студии окном поверх сайта. Лазерная эпиляция в YCLIENTS видна только
-  после выбора мастера, поэтому кнопки лазера ведут сразу к Виктории (m5101737), а в окне записи можно
-  переключиться на Снежану (m6034815).
+  Запись: кнопки открывают онлайн-запись студии (YCLIENTS) окном поверх сайта, на той же странице выбора
+  услуг, что и кнопка записи в их группе ВК. Лазерная эпиляция там - последняя вкладка услуг.
 -->
 <style>
   :root[data-theme="dark"] {
@@ -221,9 +220,6 @@
   .yc-top b { font: 500 26px/1.1 "Cormorant Garamond", serif; }
   .yc-top small { display: block; color: var(--muted); font-size: 14px; }
   .yc-x { flex: none; width: 46px; height: 46px; display: grid; place-items: center; background: none; border: 1px solid var(--line-2); color: var(--text); font-size: 22px; cursor: pointer; }
-  .yc-note { margin: 0; display: flex; align-items: center; gap: 10px; padding: 10px 22px; border-bottom: 1px solid var(--line); color: var(--muted); font-size: 15px; line-height: 1.4; }
-  .yc-note i { flex: none; color: var(--accent); font-size: 20px; }
-  .yc-note a { color: var(--text); white-space: nowrap; text-underline-offset: 3px; }
   .yc-frame { position: relative; flex: 1; background: #fff; }
   .yc-wait { position: absolute; inset: 0; margin: 0; display: grid; place-content: center; gap: 6px; padding: 0 24px; text-align: center; color: #6f6a65; font-size: 16px; }
   .yc-wait a { color: #1b1214; }
@@ -303,7 +299,6 @@
     .bar .btn { min-height: 56px; padding: 0 10px; letter-spacing: .12em; font-size: 14px; }
     .yc { width: 100vw; max-width: 100vw; height: 100vh; height: 100dvh; max-height: 100dvh; border: 0; }
     .yc-top { padding-left: 18px; }
-    .yc-note { padding: 10px 18px; font-size: 14.5px; }
   }
   @media (prefers-reduced-motion: reduce) { html { scroll-behavior: auto; } .zoom img, .btn, .bar, .svc-toggle { transition: none; } .svc[open] .svc-body { animation: none; } }
 </style>
@@ -393,7 +388,7 @@
 <div class="prow"><dt>Ноги полностью + тотальное бикини + подмышки<small>1 час</small></dt><dd>4&nbsp;450&nbsp;₽</dd></div>
 </dl>
 <p class="svc-note">У лазерной эпиляции есть противопоказания. Перед записью уточните у специалиста подготовку и возможность проведения процедуры.</p>
-<div class="svc-acts"><a class="btn" href="https://n1881606.yclients.com/company/1663644/personal/select-services?o=m5101737" target="_blank" rel="noopener" data-yc><i class="ph-light ph-calendar-check"></i>Выбрать время</a><a class="text-link" href="https://n1881606.yclients.com/company/1663644/personal/select-services?o=m5101737" target="_blank" rel="noopener" data-yc>Полный прайс в YCLIENTS<i class="ph-light ph-arrow-up-right"></i></a></div>
+<div class="svc-acts"><a class="btn" href="https://n1881606.yclients.com/company/1663644/personal/select-services?o=" target="_blank" rel="noopener" data-yc><i class="ph-light ph-calendar-check"></i>Выбрать время</a><a class="text-link" href="https://n1881606.yclients.com/company/1663644/personal/select-services?o=" target="_blank" rel="noopener" data-yc>Полный прайс в YCLIENTS<i class="ph-light ph-arrow-up-right"></i></a></div>
           </div>
         </details>
         <details class="svc" id="manicure">
@@ -564,7 +559,6 @@
 <dialog class="yc" aria-labelledby="yc-h">
   <div class="yc-in">
     <div class="yc-top"><div><b id="yc-h">Онлайн-запись</b><small>выберите услугу, мастера и время</small></div><button class="yc-x" type="button" aria-label="Закрыть"><i class="ph-light ph-x"></i></button></div>
-    <p class="yc-note"><i class="ph-light ph-sparkle"></i><span>Лазерная эпиляция: выберите мастера, <a href="https://n1881606.yclients.com/company/1663644/personal/select-services?o=m5101737" target="_blank" rel="noopener" data-yc>Викторию</a> или <a href="https://n1881606.yclients.com/company/1663644/personal/select-services?o=m6034815" target="_blank" rel="noopener" data-yc>Снежану</a></span></p>
     <div class="yc-frame">
       <p class="yc-wait">Загружаем запись…</p>
       <iframe title="Онлайн-запись Laser Exclusive" allow="payment"></iframe>
