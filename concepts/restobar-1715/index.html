@@ -1,0 +1,1045 @@
+<!doctype html>
+<html lang="ru" data-theme="dark">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>1715 - концепт сайта рестобара в Мурино и на Новой Охте</title>
+<meta name="description" content="Концепт сайта рестобара 1715: меню с ценами двух залов, бронь стола, афиша, банкеты и контакты. Подготовил Евгений Афонин.">
+<meta name="robots" content="noindex">
+<meta name="theme-color" content="#0e1310">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="preconnect" href="https://avatars.mds.yandex.net">
+<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&family=Unbounded:wght@500;600&display=swap" rel="stylesheet">
+<script src="https://unpkg.com/@phosphor-icons/web@2.1.1"></script>
+<script>document.documentElement.classList.add('js');try{var t=localStorage.getItem('r1715-theme');if(t==='light'||t==='dark')document.documentElement.dataset.theme=t;}catch(e){}</script>
+<!--
+  Концепт сайта для рестобара 1715: два зала, Мурино (Екатерининская ул., 3/4) и Санкт-Петербург (пр. Маршака, 10).
+  Источники, проверено 21.10.2026:
+  - меню, цены и фото блюд - карточки обеих точек на Яндекс Картах, раздел "Меню" (загружено представителем организации).
+    В карточке Маршака, 10 фото блюд нет: подставлены фото тех же блюд с Екатерининской, блюда без пары показаны строками без фото;
+  - фото залов, логотип, рейтинг, отзывы, часы работы, бизнес-ланч, цена пива, веранда, трансляции - карточки на Яндекс Картах;
+  - завтраки 09:00-12:00 и телефоны менеджеров залов - группа ВКонтакте vk.com/restobar1715;
+  - афиша, банкеты, фитнес-меню - Telegram-канал t.me/restobar1715 (посты 27.09-20.10.2026);
+  - приложение - rbcn.mobi/get/reo ("Рестобар 1715" в Google Play: заказ с собой и доставка).
+  Бронь в макете никуда не отправляется: после отправки показываем, как будет выглядеть подтверждение.
+  На рабочем сайте заявка уходит менеджеру выбранного зала в Telegram.
+  Цвета: темно-зеленый из логотипа и зала, янтарный акцент - от барных стульев и теплого света.
+-->
+<style>
+  :root { --r-card: 6px; --r-input: 4px; --r-btn: 3px; --wrap: 1320px; --gut: 40px; --head: 72px; }
+  :root[data-theme="dark"] {
+    --bg: #0e1310; --bg-2: #121915; --panel: #18211c; --panel-2: #1f2a24; --text: #eef0ea; --muted: #a2ada5; --faint: #7f8a82;
+    --line: rgba(238, 240, 234, .12); --line-2: rgba(238, 240, 234, .26);
+    --accent: #e9a24b; --accent-hover: #f3b466; --on-accent: #1d1307; --accent-ink: #f0b162; --danger: #ff9d8c;
+    --btn: #eef0ea; --on-btn: #0f1612;
+    --logo-filter: invert(1) hue-rotate(180deg) brightness(1.12); --logo-blend: screen;
+    --glass: rgba(14, 19, 16, .8); --shadow: 0 22px 60px rgba(0, 0, 0, .45);
+    color-scheme: dark;
+  }
+  :root[data-theme="light"] {
+    --bg: #eef1ec; --bg-2: #e6ebe4; --panel: #f9fbf7; --panel-2: #e2e8e0; --text: #142019; --muted: #54615a; --faint: #66736b;
+    --line: #d2dad2; --line-2: #a9b5ac;
+    --accent: #e9a24b; --accent-hover: #f0b062; --on-accent: #1d1307; --accent-ink: #94500f; --danger: #b3261e;
+    --btn: #1c3125; --on-btn: #f1f3ee;
+    --logo-filter: none; --logo-blend: multiply;
+    --glass: rgba(238, 241, 236, .86); --shadow: 0 22px 60px rgba(36, 56, 44, .16);
+    color-scheme: light;
+  }
+  [hidden] { display: none !important; }
+  * { box-sizing: border-box; }
+  html { scroll-behavior: smooth; scroll-padding-top: calc(var(--head) + 16px); background: var(--bg); -webkit-text-size-adjust: 100%; }
+  body { margin: 0; background: var(--bg); color: var(--text); font: 400 17px/1.6 "Manrope", system-ui, sans-serif; -webkit-font-smoothing: antialiased; }
+  img { display: block; max-width: 100%; }
+  a { color: inherit; }
+  button, input, select, textarea { font: inherit; color: inherit; }
+  :focus-visible { outline: 2px solid var(--accent); outline-offset: 3px; }
+  .wrap { width: min(var(--wrap), 100%); margin: 0 auto; padding: 0 var(--gut); }
+  h1, h2, h3 { margin: 0; font-family: "Unbounded", "Manrope", sans-serif; font-weight: 600; letter-spacing: -.02em; }
+  h2 { font-size: clamp(30px, 3.2vw, 44px); line-height: 1.1; }
+  section { padding: 110px 0; }
+  .lead { margin: 16px 0 0; color: var(--muted); font-size: 18px; max-width: 34em; }
+  .sr { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap; }
+  .skip { position: absolute; left: 12px; top: -60px; z-index: 100; padding: 10px 16px; border-radius: var(--r-btn); background: var(--btn); color: var(--on-btn); font-weight: 700; text-decoration: none; }
+  .skip:focus { top: 12px; }
+
+  /* Кнопки: прямоугольные, прописные буквы шрифтом логотипа. Скругления по всей странице небольшие:
+     кнопки 3px, поля 4px, карточки и фото 6px */
+  .btn { display: inline-flex; align-items: center; justify-content: center; gap: 14px; min-height: 56px; padding: 0 26px; border-radius: var(--r-btn); background: var(--btn); color: var(--on-btn); border: 1px solid var(--btn); font: 600 12.5px/1 "Unbounded", "Manrope", sans-serif; letter-spacing: .06em; text-transform: uppercase; text-decoration: none; white-space: nowrap; cursor: pointer; transition: background-color .2s, border-color .2s, color .2s, transform .15s; }
+  .btn:hover { background: var(--accent); border-color: var(--accent); color: var(--on-accent); }
+  .btn:active { transform: translateY(1px); }
+  .btn i { font-size: 17px; transition: transform .2s; }
+  .btn:hover .ph-arrow-right { transform: translateX(4px); }
+  .btn:hover .ph-arrow-up-right { transform: translate(2px, -2px); }
+  .btn.ghost { background: transparent; color: var(--text); border-color: var(--line-2); }
+  .btn.ghost:hover { background: transparent; border-color: var(--text); color: var(--text); }
+  .btn.sm { min-height: 44px; padding: 0 18px; gap: 10px; font-size: 11.5px; }
+  .btn.sm i { font-size: 16px; }
+  .icon-btn { display: inline-grid; place-items: center; width: 44px; height: 44px; border-radius: var(--r-btn); border: 1px solid var(--line-2); background: transparent; cursor: pointer; font-size: 22px; }
+  .link { display: inline-flex; align-items: center; gap: 6px; color: var(--accent-ink); font-weight: 700; text-decoration: none; }
+  .link:hover { text-decoration: underline; text-underline-offset: 4px; }
+
+  /* Полоса концепта */
+  .concept { background: #253029; color: #e7ebe5; font-size: 14px; line-height: 1.45; }
+  .concept .wrap { display: flex; gap: 8px 20px; align-items: center; justify-content: space-between; flex-wrap: wrap; padding-top: 9px; padding-bottom: 9px; }
+  .theme { display: inline-flex; border: 1px solid #6f7d74; border-radius: var(--r-btn); overflow: hidden; flex: none; }
+  .theme button { display: inline-flex; align-items: center; gap: 6px; background: none; border: 0; color: #e7ebe5; font-size: 13px; padding: 6px 12px; cursor: pointer; }
+  .theme button[aria-pressed="true"] { background: #e7ebe5; color: #18211c; }
+
+  /* Шапка */
+  /* фон шапки сплошной: на нем логотип с белым фоном "растворяется" через mix-blend-mode */
+  header.site { position: sticky; top: 0; z-index: 40; background: var(--bg); border-bottom: 1px solid var(--line); }
+  header.site .wrap { height: var(--head); display: flex; align-items: center; justify-content: space-between; gap: 24px; }
+  .logo { display: block; flex: none; width: 104px; aspect-ratio: 397 / 242; }
+  .logo img { width: 100%; height: 100%; object-fit: cover; object-position: 50% 48%; filter: var(--logo-filter); mix-blend-mode: var(--logo-blend); }
+  .nav { display: flex; gap: 32px; }
+  .nav a { color: var(--muted); font-weight: 600; font-size: 16px; text-decoration: none; transition: color .2s; }
+  .nav a:hover { color: var(--text); }
+  .head-cta { display: flex; align-items: center; gap: 12px; }
+  .menu-btn { display: none; }
+  .mnav { border-top: 1px solid var(--line); padding: 8px var(--gut) 18px; display: grid; }
+  .mnav a { padding: 12px 0; font-size: 19px; font-weight: 700; text-decoration: none; border-bottom: 1px solid var(--line); }
+  .mnav a:last-child { border-bottom: 0; }
+
+  /* Первый экран: текст слева, фото справа */
+  .hero { padding: 48px 0 96px; }
+  .hero .wrap { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 470px); gap: 56px; align-items: center; min-height: calc(100svh - var(--head) - 150px); }
+  .hero-eyebrow { display: inline-flex; align-items: center; gap: 10px; margin: 0 0 22px; color: var(--muted); font-weight: 700; font-size: 15px; letter-spacing: .03em; }
+  .hero-eyebrow i { color: var(--accent-ink); font-size: 19px; }
+  .hero h1 { font-size: clamp(30px, 2.75vw, 40px); line-height: 1.14; text-wrap: balance; }
+  .hero-sub { margin: 24px 0 0; color: var(--muted); font-size: 19px; max-width: 32em; }
+  .hero-cta { margin-top: 34px; display: flex; flex-wrap: wrap; gap: 14px; }
+  .hero-media { position: relative; width: 100%; padding: 0 0 64px 52px; }
+  .hero-main { width: 100%; aspect-ratio: 3 / 4; max-height: calc(100svh - var(--head) - 190px); min-height: 380px; border-radius: var(--r-card); overflow: hidden; background: var(--panel); }
+  .hero-main img { width: 100%; height: 100%; object-fit: cover; }
+  .hero-dish { position: absolute; left: 0; bottom: 0; width: 58%; aspect-ratio: 3 / 2; border-radius: var(--r-card); overflow: hidden; border: 6px solid var(--bg); box-shadow: var(--shadow); background: var(--panel); }
+  .hero-dish img { width: 100%; height: 100%; object-fit: cover; }
+
+  /* Меню */
+  .menu-head { display: flex; justify-content: space-between; align-items: flex-end; flex-wrap: wrap; gap: 22px 40px; margin-bottom: 30px; }
+  .menu-head .lead { margin-top: 12px; }
+  .seg { display: inline-flex; border: 1px solid var(--line-2); border-radius: var(--r-btn); overflow: hidden; }
+  .seg button { border: 0; background: none; border-radius: 0; padding: 11px 22px; cursor: pointer; color: var(--muted); font-weight: 700; font-size: 15px; line-height: 1.25; text-align: left; transition: background-color .2s, color .2s; }
+  .seg button + button { border-left: 1px solid var(--line-2); }
+  .seg button small { display: block; font-weight: 500; font-size: 12.5px; }
+  .seg button:hover { color: var(--text); }
+  .seg button[aria-pressed="true"] { background: var(--btn); color: var(--on-btn); }
+  .cats { display: flex; gap: 30px; overflow-x: auto; scroll-snap-type: x proximity; border-bottom: 1px solid var(--line); margin-bottom: 28px; scrollbar-width: none; }
+  .cats::-webkit-scrollbar { display: none; }
+  .cats button { flex: none; scroll-snap-align: start; border: 0; border-bottom: 2px solid transparent; margin-bottom: -1px; background: none; border-radius: 0; padding: 12px 0 14px; cursor: pointer; color: var(--muted); font-weight: 700; font-size: 16px; white-space: nowrap; transition: color .2s, border-color .2s; }
+  .cats button span { margin-left: 4px; font-size: 12px; vertical-align: super; color: var(--faint); font-weight: 600; }
+  .cats button:hover { color: var(--text); }
+  .cats button[aria-selected="true"] { color: var(--text); border-bottom-color: var(--accent); }
+  .dishes { display: grid; grid-template-columns: repeat(auto-fill, minmax(232px, 1fr)); gap: 22px; }
+  .dish { display: flex; flex-direction: column; border-radius: var(--r-card); overflow: hidden; background: var(--panel); }
+  .dish .ph { aspect-ratio: 4 / 3; overflow: hidden; background: var(--panel-2); }
+  .dish .ph img { width: 100%; height: 100%; object-fit: cover; transition: transform .6s cubic-bezier(.2, .7, .2, 1); }
+  .dish:hover .ph img { transform: scale(1.04); }
+  .dish .bd { flex: 1; display: flex; flex-direction: column; gap: 6px; padding: 16px 18px 18px; }
+  .dish h3 { font-family: "Manrope", sans-serif; font-weight: 700; font-size: 17px; line-height: 1.3; letter-spacing: 0; }
+  .dish p { margin: 0; color: var(--muted); font-size: 14.5px; line-height: 1.45; }
+  .price { font-family: "Unbounded", sans-serif; font-weight: 600; font-size: 18px; color: var(--accent-ink); white-space: nowrap; }
+  .dish .price { margin-top: auto; padding-top: 8px; }
+  .more { margin-top: 30px; }
+  .more h3 { font-family: "Manrope", sans-serif; font-size: 15px; font-weight: 700; color: var(--muted); letter-spacing: 0; margin-bottom: 4px; }
+  .rows { display: grid; grid-template-columns: 1fr 1fr; column-gap: 48px; }
+  .row { display: flex; justify-content: space-between; align-items: baseline; gap: 20px; padding: 14px 0; border-top: 1px solid var(--line); }
+  .row b { font-weight: 700; }
+  .row small { display: block; color: var(--muted); font-size: 14px; }
+  .row .price { font-size: 16px; }
+  .app-strip { margin-top: 44px; display: flex; align-items: center; flex-wrap: wrap; gap: 16px 24px; padding: 22px 26px; border: 1px solid var(--line); border-radius: var(--r-card); }
+  .app-strip > i { font-size: 30px; color: var(--accent-ink); }
+  .app-strip div { flex: 1 1 280px; }
+  .app-strip b { display: block; font-size: 18px; font-weight: 800; }
+  .app-strip span { color: var(--muted); }
+
+  /* Каждый день: четыре факта в линию */
+  .offers { padding: 0; }
+  .offers .grid { display: grid; grid-template-columns: repeat(4, 1fr); border-top: 1px solid var(--line); border-bottom: 1px solid var(--line); }
+  .offer { padding: 40px 30px 38px; border-left: 1px solid var(--line); }
+  .offer:first-child { border-left: 0; padding-left: 0; }
+  .offer .v { font-family: "Unbounded", sans-serif; font-weight: 600; font-size: clamp(34px, 3vw, 46px); line-height: 1; color: var(--accent-ink); }
+  .offer h3 { font-family: "Manrope", sans-serif; font-size: 18px; font-weight: 800; letter-spacing: 0; margin: 18px 0 6px; }
+  .offer p { margin: 0; color: var(--muted); font-size: 15.5px; }
+
+  /* Афиша */
+  .events-grid { margin-top: 36px; display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); grid-auto-rows: minmax(260px, auto); gap: 18px; }
+  .ev { position: relative; overflow: hidden; border-radius: var(--r-card); background: var(--panel); padding: 26px; display: flex; flex-direction: column; justify-content: flex-end; gap: 8px; }
+  .ev > *:not(img) { position: relative; z-index: 2; }
+  .ev.photo { color: #f3f4ef; }
+  .ev.photo img { position: absolute; inset: 0; z-index: 0; width: 100%; height: 100%; object-fit: cover; transition: transform 1.2s cubic-bezier(.2, .7, .2, 1); }
+  .ev.photo:hover img { transform: scale(1.03); }
+  .ev.photo::after { content: ""; position: absolute; inset: 0; z-index: 1; background: linear-gradient(180deg, rgba(8, 12, 10, .05) 20%, rgba(8, 12, 10, .88) 100%); }
+  .ev.k::after { background: linear-gradient(180deg, rgba(8, 12, 10, .3) 0%, rgba(8, 12, 10, .93) 72%); }
+  .ev.main { grid-column: 1 / 3; grid-row: 1 / 3; padding: 34px; }
+  .ev.k { grid-column: 3; grid-row: 1; }
+  .ev.s { grid-column: 4; grid-row: 1; }
+  .ev.sp { grid-column: 3 / 5; grid-row: 2; background: var(--panel-2); }
+  .ev .when { margin: 0; font-weight: 700; font-size: 14.5px; color: var(--accent-ink); }
+  .ev.photo .when { color: #f3b466; }
+  .ev h3 { font-size: 22px; line-height: 1.2; }
+  .ev.main h3 { font-size: clamp(30px, 3vw, 44px); }
+  .ev p { margin: 0; color: var(--muted); font-size: 15.5px; }
+  .ev.photo p { color: rgba(243, 244, 239, .84); }
+  .ev.main p { font-size: 17px; max-width: 30em; }
+  .ev.main .btn { align-self: flex-start; margin-top: 12px; }
+  .ev > i { font-size: 34px; color: var(--accent-ink); margin-bottom: auto; }
+
+  /* Банкеты */
+  .banq .wrap { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); gap: 72px; align-items: center; }
+  .from { margin: 28px 0 26px; font-family: "Unbounded", sans-serif; font-weight: 600; font-size: clamp(26px, 2.4vw, 34px); color: var(--accent-ink); }
+  .from span { font-family: "Manrope", sans-serif; font-size: 17px; font-weight: 600; color: var(--muted); }
+  .fine { margin: 18px 0 0; color: var(--faint); font-size: 14px; max-width: 32em; }
+  .banq-photos { display: grid; grid-template-columns: 1fr 1fr; gap: 18px; align-items: start; }
+  .banq-photos figure { margin: 0; aspect-ratio: 3 / 4; border-radius: var(--r-card); overflow: hidden; background: var(--panel); }
+  .banq-photos figure:nth-child(2) { margin-top: 80px; }
+  .banq-photos img { width: 100%; height: 100%; object-fit: cover; }
+
+  /* Отзывы */
+  .rev .wrap { display: grid; grid-template-columns: minmax(0, .75fr) minmax(0, 1.6fr); gap: 64px; align-items: start; }
+  .score .num { margin-top: 30px; font-family: "Unbounded", sans-serif; font-weight: 600; font-size: clamp(76px, 7vw, 104px); line-height: .9; }
+  .stars { display: flex; gap: 4px; margin: 14px 0 16px; color: var(--accent-ink); font-size: 22px; }
+  .score p { margin: 0 0 12px; color: var(--muted); }
+  .award { display: flex; align-items: center; gap: 10px; color: var(--text) !important; font-weight: 700; }
+  .award i { font-size: 22px; color: var(--accent-ink); }
+  .quotes { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; }
+  .q { margin: 0; padding: 28px; border-radius: var(--r-card); background: var(--panel); }
+  .q blockquote { margin: 0; font-size: 17px; }
+  .q figcaption { margin-top: 16px; color: var(--muted); font-size: 14.5px; }
+  .q.big { grid-column: 1 / -1; padding: 0 0 18px; background: none; }
+  .q.big blockquote { font-family: "Unbounded", sans-serif; font-weight: 500; font-size: clamp(21px, 2vw, 28px); line-height: 1.35; letter-spacing: -.01em; }
+
+  /* Бронь */
+  .book .wrap { display: grid; grid-template-columns: minmax(0, .82fr) minmax(0, 1.18fr); gap: 60px; align-items: stretch; }
+  .book-photo { border-radius: var(--r-card); overflow: hidden; background: var(--panel); min-height: 560px; }
+  .book-photo img { width: 100%; height: 100%; object-fit: cover; }
+  .book form { margin-top: 30px; display: grid; gap: 18px; }
+  .field { display: flex; flex-direction: column; gap: 8px; min-width: 0; margin: 0; padding: 0; border: 0; }
+  .field label, .legend { font-weight: 700; font-size: 15px; padding: 0; }
+  .opt { color: var(--faint); font-weight: 500; }
+  .input { width: 100%; min-height: 52px; border-radius: var(--r-input); border: 1px solid var(--line-2); background: var(--panel); padding: 0 16px; color: var(--text); font-size: 16px; }
+  .input::placeholder { color: var(--faint); opacity: 1; }
+  .input:focus { outline: 2px solid var(--accent); outline-offset: 1px; }
+  .input[aria-invalid="true"] { border-color: var(--danger); }
+  select.input { -webkit-appearance: none; appearance: none; padding-right: 42px; cursor: pointer; }
+  .sel { position: relative; }
+  .sel i { position: absolute; right: 16px; top: 50%; transform: translateY(-50%); pointer-events: none; color: var(--muted); }
+  .halls { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
+  .hall { position: relative; display: block; }
+  .hall input { position: absolute; opacity: 0; inset: 0; margin: 0; cursor: pointer; }
+  .hall span { display: block; padding: 13px 16px; border-radius: var(--r-input); border: 1px solid var(--line-2); background: var(--panel); transition: border-color .2s, box-shadow .2s; }
+  .hall span b { display: block; }
+  .hall span small { color: var(--muted); font-size: 14px; }
+  .hall input:checked + span { border-color: var(--accent); box-shadow: inset 0 0 0 1px var(--accent); }
+  .hall input:focus-visible + span { outline: 2px solid var(--accent); outline-offset: 2px; }
+  .grid3 { display: grid; grid-template-columns: 1.25fr 1fr 1fr; gap: 14px; }
+  .grid2 { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; }
+  .err { color: var(--danger); font-size: 14px; min-height: 0; }
+  .err:empty { display: none; }
+  .check { display: flex; gap: 12px; align-items: flex-start; color: var(--muted); font-size: 14.5px; cursor: pointer; }
+  .check input { flex: none; width: 20px; height: 20px; margin: 2px 0 0; accent-color: var(--accent); }
+  .check a { color: var(--text); }
+  .form-foot { display: flex; flex-wrap: wrap; align-items: center; gap: 14px 22px; margin-top: 4px; }
+  .call { margin: 0; color: var(--muted); font-size: 14.5px; }
+  .call a { color: var(--text); font-weight: 700; text-decoration: none; white-space: nowrap; }
+  .done { margin-top: 30px; padding: 32px; border-radius: var(--r-card); background: var(--panel); outline: none; }
+  .done > i { font-size: 44px; color: var(--accent-ink); }
+  .done h3 { margin: 10px 0 8px; font-size: 26px; }
+  .done p { margin: 0 0 14px; color: var(--muted); }
+  .done p[data-summary] { color: var(--text); font-size: 18px; font-weight: 600; }
+  .done a { color: var(--text); font-weight: 700; }
+
+  /* Контакты */
+  .places { margin-top: 36px; display: grid; grid-template-columns: 1fr 1fr; gap: 22px; }
+  .place { display: grid; grid-template-columns: minmax(0, .8fr) minmax(0, 1.2fr); border-radius: var(--r-card); overflow: hidden; background: var(--panel); }
+  .place .ph { min-height: 100%; background: var(--panel-2); }
+  .place .ph img { width: 100%; height: 100%; object-fit: cover; }
+  .place .bd { padding: 26px 28px; display: flex; flex-direction: column; gap: 12px; }
+  .place h3 { font-size: 24px; }
+  .addr { margin: 0; font-weight: 700; }
+  .addr span { display: block; color: var(--muted); font-weight: 500; font-size: 15px; }
+  .hours { margin: 0; display: grid; gap: 2px; font-size: 15.5px; }
+  .hours div { display: flex; gap: 12px; }
+  .hours dt { color: var(--muted); min-width: 92px; }
+  .hours dd { margin: 0; font-weight: 600; }
+  .tel { font-family: "Unbounded", sans-serif; font-weight: 600; font-size: 19px; text-decoration: none; }
+  .feat { margin: 0; color: var(--muted); font-size: 15px; }
+  .acts { display: flex; flex-wrap: wrap; gap: 10px; margin-top: auto; padding-top: 6px; }
+  .acts .btn[aria-pressed="true"] { border-color: var(--accent); color: var(--accent-ink); }
+  .map { margin-top: 22px; height: 440px; border-radius: var(--r-card); overflow: hidden; background: var(--panel-2); }
+  .map iframe { display: block; width: 100%; height: 100%; border: 0; }
+  .socials { margin-top: 26px; display: flex; flex-wrap: wrap; gap: 12px; }
+
+  /* Подвал */
+  footer.site { padding: 56px 0 110px; border-top: 1px solid var(--line); color: var(--muted); font-size: 15px; }
+  footer.site .wrap { display: grid; grid-template-columns: auto 1fr auto; gap: 18px 40px; align-items: center; }
+  footer.site p { margin: 0; }
+  footer.site a { color: var(--text); }
+  .foot-links { display: flex; flex-wrap: wrap; gap: 8px 22px; justify-content: flex-end; }
+
+  /* Нижняя панель на телефоне */
+  .bar { position: fixed; z-index: 45; left: 0; right: 0; bottom: 0; display: none; gap: 8px; padding: 10px var(--gut) calc(10px + env(safe-area-inset-bottom)); background: var(--bg); border-top: 1px solid var(--line); transform: translateY(105%); transition: transform .35s cubic-bezier(.2, .7, .2, 1); }
+  .bar.on { transform: none; }
+  .bar .btn { min-height: 48px; padding: 0 16px; font-size: 11.5px; }
+  .bar .btn:not(.ghost) { flex: 1; }
+
+  dialog.pol { border: 0; border-radius: var(--r-card); background: var(--panel); color: var(--text); padding: 30px; width: min(520px, calc(100% - 32px)); box-shadow: var(--shadow); }
+  dialog.pol::backdrop { background: rgba(5, 8, 6, .62); }
+  dialog.pol h3 { font-size: 22px; margin-bottom: 12px; }
+  dialog.pol p { color: var(--muted); margin: 0 0 20px; }
+
+  /* Появление при прокрутке и первый экран */
+  @media (prefers-reduced-motion: no-preference) {
+    .js [data-reveal] { opacity: 0; transform: translateY(20px); transition: opacity .8s cubic-bezier(.2, .7, .2, 1), transform .8s cubic-bezier(.2, .7, .2, 1); transition-delay: calc(var(--d, 0) * 90ms); }
+    .js [data-reveal].in { opacity: 1; transform: none; }
+    .hero-main img { animation: settle 1.8s cubic-bezier(.2, .7, .2, 1) both; }
+    .hero-dish { animation: rise 1s .35s cubic-bezier(.2, .7, .2, 1) both; }
+    @keyframes settle { from { transform: scale(1.08); } to { transform: none; } }
+    @keyframes rise { from { opacity: 0; transform: translateY(24px); } to { opacity: 1; transform: none; } }
+  }
+  @media (prefers-reduced-motion: reduce) { html { scroll-behavior: auto; } .btn, .dish .ph img, .ev.photo img, .bar { transition: none; } }
+
+  @media (max-width: 1180px) {
+    .nav { gap: 22px; }
+    .offers .grid { grid-template-columns: 1fr 1fr; }
+    .offer:nth-child(3) { border-left: 0; padding-left: 0; }
+    .offer:nth-child(n+3) { border-top: 1px solid var(--line); }
+    .events-grid { grid-template-columns: 1fr 1fr; }
+    .ev.main { grid-column: 1 / -1; grid-row: auto; min-height: 460px; }
+    .ev.k, .ev.s { grid-column: auto; grid-row: auto; }
+    .ev.sp { grid-column: 1 / -1; grid-row: auto; }
+    .place { grid-template-columns: 1fr; }
+    .place .ph { aspect-ratio: 16 / 9; }
+  }
+  @media (max-width: 1150px) {
+    .hero .wrap { grid-template-columns: 1fr; min-height: 0; gap: 40px; }
+    .hero h1 { font-size: clamp(28px, 4.2vw, 42px); }
+    .hero-media { justify-self: start; max-width: 560px; }
+    .hero-main { max-height: none; min-height: 0; }
+  }
+  @media (max-width: 1023px) {
+    .nav { display: none; }
+    .menu-btn { display: inline-grid; }
+    .banq .wrap, .rev .wrap { grid-template-columns: 1fr; }
+    .banq .wrap, .rev .wrap { gap: 44px; }
+    .book .wrap { grid-template-columns: 1fr; }
+    .book-photo { display: none; }
+    footer.site .wrap { grid-template-columns: 1fr; }
+    .foot-links { justify-content: flex-start; }
+  }
+  @media (max-width: 760px) {
+    :root { --gut: 16px; --head: 64px; }
+    body { font-size: 16px; }
+    section { padding: 72px 0; }
+    .concept { font-size: 13px; }
+    .logo { width: 92px; }
+    .head-cta .btn { display: none; }
+    .hero { padding: 32px 0 64px; }
+    .hero-eyebrow { font-size: 14px; margin-bottom: 16px; }
+    .hero-sub { font-size: 17px; margin-top: 18px; }
+    .hero-cta { margin-top: 26px; }
+    .hero-cta .btn { flex: 1 1 auto; }
+    .hero-media { padding: 0 0 48px 36px; }
+    .hero-dish { width: 62%; border-width: 4px; }
+    .seg { width: 100%; }
+    .seg button { flex: 1; padding: 9px 14px; }
+    .dishes { grid-template-columns: 1fr 1fr; gap: 12px; }
+    .dish .bd { padding: 12px 12px 14px; gap: 4px; }
+    .dish h3 { font-size: 15px; }
+    .dish p { font-size: 13.5px; }
+    .dish .price { font-size: 16px; }
+    .rows { grid-template-columns: 1fr; }
+    .app-strip { padding: 20px; }
+    .cats { gap: 22px; -webkit-mask-image: linear-gradient(90deg, #000 82%, transparent); mask-image: linear-gradient(90deg, #000 82%, transparent); }
+    .offers .grid { grid-template-columns: 1fr 1fr; }
+    .offer { padding: 28px 16px 26px; }
+    .offer:nth-child(odd) { padding-left: 0; }
+    .offer:nth-child(even) { padding-right: 0; }
+    .events-grid { grid-template-columns: 1fr; grid-auto-rows: auto; }
+    .ev { min-height: 220px; padding: 22px; }
+    .ev.main { min-height: 480px; padding: 24px; }
+    .ev.k { min-height: 300px; }
+    .banq-photos figure:nth-child(2) { margin-top: 44px; }
+    .quotes { grid-template-columns: 1fr; }
+    .q { padding: 22px; }
+    .grid3 { grid-template-columns: 1fr 1fr; }
+    .grid3 .field:first-child { grid-column: 1 / -1; }
+    .grid2, .halls, .places { grid-template-columns: 1fr; }
+    .place .bd { padding: 22px; }
+    .map { height: 360px; }
+    .bar { display: flex; }
+  }
+</style>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "Restaurant",
+      "name": "Рестобар 1715",
+      "address": { "@type": "PostalAddress", "streetAddress": "Екатерининская ул., 3/4", "addressLocality": "Мурино", "addressRegion": "Ленинградская область", "addressCountry": "RU" },
+      "geo": { "@type": "GeoCoordinates", "latitude": 60.057246, "longitude": 30.434698 },
+      "telephone": "+7 911 999-17-15",
+      "priceRange": "1500-2500 ₽",
+      "openingHoursSpecification": [
+        { "@type": "OpeningHoursSpecification", "dayOfWeek": ["Monday", "Tuesday", "Wednesday", "Thursday", "Sunday"], "opens": "09:00", "closes": "01:00" },
+        { "@type": "OpeningHoursSpecification", "dayOfWeek": ["Friday", "Saturday"], "opens": "09:00", "closes": "02:00" }
+      ]
+    },
+    {
+      "@type": "Restaurant",
+      "name": "Рестобар 1715",
+      "address": { "@type": "PostalAddress", "streetAddress": "пр. Маршака, 10", "addressLocality": "Санкт-Петербург", "addressCountry": "RU" },
+      "geo": { "@type": "GeoCoordinates", "latitude": 60.033399, "longitude": 30.447508 },
+      "telephone": "+7 996 777-17-15",
+      "servesCuisine": ["Европейская", "Американская"],
+      "openingHoursSpecification": [
+        { "@type": "OpeningHoursSpecification", "dayOfWeek": ["Monday", "Tuesday", "Wednesday", "Thursday", "Sunday"], "opens": "12:00", "closes": "01:00" },
+        { "@type": "OpeningHoursSpecification", "dayOfWeek": ["Friday", "Saturday"], "opens": "12:00", "closes": "02:00" }
+      ]
+    }
+  ]
+}
+</script>
+</head>
+<body>
+<a class="skip" href="#main">К содержанию</a>
+
+<div class="concept">
+  <div class="wrap">
+    <span><b>Концепт</b> сайта для рестобара 1715 от Евгения Афонина. Меню, цены, фото и отзывы взяты из ваших карточек на Яндекс Картах, афиша из вашего Telegram-канала.</span>
+    <span class="theme" role="group" aria-label="Цвет сайта"><button type="button" data-set="dark" aria-pressed="true"><i class="ph ph-moon"></i>Темный</button><button type="button" data-set="light" aria-pressed="false"><i class="ph ph-sun"></i>Светлый</button></span>
+  </div>
+</div>
+
+<header class="site">
+  <div class="wrap">
+    <a class="logo" href="#top" aria-label="Рестобар 1715, наверх"><img src="https://avatars.mds.yandex.net/get-altay/17700564/2a0000019c2898edd3ba1b9e63940d0c44f6/XL" alt="" width="397" height="397"></a>
+    <nav class="nav" aria-label="Разделы">
+      <a href="#menu">Меню</a><a href="#events">Афиша</a><a href="#banquets">Банкеты</a><a href="#reviews">Отзывы</a><a href="#contacts">Контакты</a>
+    </nav>
+    <div class="head-cta">
+      <a class="btn sm" href="#booking">Забронировать стол</a>
+      <button class="icon-btn menu-btn" type="button" aria-expanded="false" aria-controls="mnav" aria-label="Открыть разделы"><i class="ph ph-list"></i></button>
+    </div>
+  </div>
+  <nav class="mnav" id="mnav" aria-label="Разделы сайта" hidden>
+    <a href="#menu">Меню</a><a href="#events">Афиша</a><a href="#banquets">Банкеты</a><a href="#reviews">Отзывы</a><a href="#booking">Бронь стола</a><a href="#contacts">Контакты</a>
+  </nav>
+</header>
+
+<main id="main">
+
+  <section class="hero" id="top" aria-labelledby="hero-title">
+    <div class="wrap">
+      <div class="hero-text">
+        <p class="hero-eyebrow"><i class="ph ph-map-pin"></i>Рестобар в Мурино и на Новой Охте</p>
+        <h1 id="hero-title">Любой вечер лучше начать или закончить в 1715</h1>
+        <p class="hero-sub">Сочные бургеры, рёбра и стейки, крафтовое пиво и фирменные коктейли. Открыты до 01:00, в пятницу и субботу до 02:00.</p>
+        <div class="hero-cta">
+          <a class="btn" href="#booking">Забронировать стол<i class="ph ph-arrow-right"></i></a>
+          <a class="btn ghost" href="#menu">Смотреть меню</a>
+        </div>
+      </div>
+      <div class="hero-media">
+        <div class="hero-main"><img src="https://avatars.mds.yandex.net/get-altay/14235465/2a00000193b61a8ab7adc9b16bf9d264026c/XXXL" alt="Барная стойка с оранжевыми стульями в зале на Екатерининской улице" width="960" height="1280" fetchpriority="high"></div>
+        <div class="hero-dish"><img src="https://avatars.mds.yandex.net/get-altay/18754568/2a0000019dc577e8c6b91938e54106595025/XXL" alt="Бургер с говядиной и сыром из меню 1715" width="960" height="653"></div>
+      </div>
+    </div>
+  </section>
+
+  <section class="menu" id="menu" aria-labelledby="menu-title">
+    <div class="wrap">
+      <div class="menu-head">
+        <div>
+          <h2 id="menu-title">Меню</h2>
+          <p class="lead">Цены в двух залах немного отличаются, поэтому сначала выберите свой.</p>
+        </div>
+        <div class="seg" role="group" aria-label="Зал">
+          <button type="button" data-loc="murino" aria-pressed="true">Мурино<small>Екатерининская ул., 3/4</small></button>
+          <button type="button" data-loc="ohta" aria-pressed="false">Новая Охта<small>пр. Маршака, 10</small></button>
+        </div>
+      </div>
+      <div class="cats" role="tablist" aria-label="Разделы меню"></div>
+      <div id="dish-panel" role="tabpanel" tabindex="0">
+        <div class="dishes"></div>
+        <div class="more" hidden><h3>Ещё в разделе</h3><div class="rows"></div></div>
+      </div>
+      <div class="app-strip">
+        <i class="ph ph-device-mobile" aria-hidden="true"></i>
+        <div><b>Заказ с собой и доставка</b><span>В приложении 1715: выберите блюда, время и удобный способ оплаты.</span></div>
+        <a class="btn ghost sm" href="https://rbcn.mobi/get/reo" target="_blank" rel="noopener">Скачать приложение<i class="ph ph-arrow-up-right"></i></a>
+      </div>
+    </div>
+  </section>
+
+  <section class="offers" aria-labelledby="offers-title">
+    <h2 class="sr" id="offers-title">Каждый день в 1715</h2>
+    <div class="wrap">
+      <div class="grid">
+        <div class="offer" data-reveal><div class="v">9:00</div><h3>Завтраки</h3><p>На Екатерининской с 9:00 до 12:00.</p></div>
+        <div class="offer" data-reveal style="--d:1"><div class="v">390&nbsp;₽</div><h3>Бизнес-ланч</h3><p>В обоих залах.</p></div>
+        <div class="offer" data-reveal style="--d:2"><div class="v">−15%</div><h3>Именинникам</h3><p>За 3&nbsp;дня до дня рождения и 3&nbsp;дня после. Понадобится паспорт.</p></div>
+        <div class="offer" data-reveal style="--d:3"><div class="v">02:00</div><h3>До двух ночи</h3><p>В пятницу и субботу. В остальные дни до 01:00.</p></div>
+      </div>
+    </div>
+  </section>
+
+  <section class="events" id="events" aria-labelledby="events-title">
+    <div class="wrap">
+      <h2 id="events-title">Афиша</h2>
+      <div class="events-grid">
+        <article class="ev main photo" data-reveal>
+          <img src="https://avatars.mds.yandex.net/get-altay/19547275/2a0000019c6bbc7bd89eb266ae25a3d66a7e/XXXL" alt="Бар с неоновой вывеской 1715 в зале на проспекте Маршака" loading="lazy" width="960" height="960">
+          <p class="when">31 октября, 19:00 · оба зала</p>
+          <h3>Хэллоуин в 1715</h3>
+          <p>Приходите в костюмах: приветственный напиток, сладости и подарки гостям в костюмах.</p>
+          <a class="btn" href="#booking" data-date="2026-10-31" data-time="19:00">Забронировать стол<i class="ph ph-arrow-right"></i></a>
+        </article>
+        <article class="ev k photo" data-reveal style="--d:1">
+          <img src="https://avatars.mds.yandex.net/get-altay/20069665/2a0000019e6fff648791bfad712e5586d8d5/XL" alt="Коктейли в рестобаре 1715" loading="lazy" width="600" height="800">
+          <p class="when">Было 16 октября, Маршака, 10</p>
+          <h3>НЕкараоке-вечеринка</h3>
+          <p>Песни по заказу, коктейли 2=3 и лотерея с призами.</p>
+        </article>
+        <article class="ev s" data-reveal style="--d:2">
+          <i class="ph ph-microphone-stage" aria-hidden="true"></i>
+          <p class="when">Было 9 октября, Маршака, 10</p>
+          <h3>Стендап</h3>
+          <p>Вечер смеха, начало в 20:00.</p>
+        </article>
+        <article class="ev sp" data-reveal style="--d:1">
+          <i class="ph ph-television-simple" aria-hidden="true"></i>
+          <h3>Спорт и настолки</h3>
+          <p>Трансляции матчей в обоих залах, на Маршака 5&nbsp;экранов. Настольные игры для компании.</p>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <section class="banq" id="banquets" aria-labelledby="banq-title">
+    <div class="wrap">
+      <div class="banq-text" data-reveal>
+        <h2 id="banq-title">Банкеты на Маршака, 10</h2>
+        <p class="lead">Праздник, корпоратив или большой семейный вечер для компании от 6&nbsp;гостей. Три пакета на выбор: «Стандарт», «Премиум» и «Детский». В каждый уже входят блюда и напитки.</p>
+        <p class="from">от 1&nbsp;650&nbsp;₽ <span>на гостя</span></p>
+        <a class="btn" href="#booking" data-hall="ohta" data-occasion="Банкет">Обсудить банкет<i class="ph ph-arrow-right"></i></a>
+        <p class="fine">Состав пакетов расскажет менеджер. Банкетные предложения не суммируются с другими скидками и акциями.</p>
+      </div>
+      <div class="banq-photos" data-reveal style="--d:1">
+        <figure><img src="https://avatars.mds.yandex.net/get-altay/20410725/2a0000019eda9da555859fac174de0ab1333/XL" alt="Диваны и столы в зале на проспекте Маршака" loading="lazy" width="600" height="800"></figure>
+        <figure><img src="https://avatars.mds.yandex.net/get-altay/18785127/2a0000019eda9d82e9a9a1dd4eb7c661a2eb/XL" alt="Игровой уголок с игрушками в зале на проспекте Маршака" loading="lazy" width="600" height="800"></figure>
+      </div>
+    </div>
+  </section>
+
+  <section class="rev" id="reviews" aria-labelledby="rev-title">
+    <div class="wrap">
+      <div class="score" data-reveal>
+        <h2 id="rev-title">Отзывы гостей</h2>
+        <div class="num">5,0</div>
+        <div class="stars" aria-label="5 из 5"><i class="ph-fill ph-star"></i><i class="ph-fill ph-star"></i><i class="ph-fill ph-star"></i><i class="ph-fill ph-star"></i><i class="ph-fill ph-star"></i></div>
+        <p>1&nbsp;066 оценок и 720 отзывов на Яндекс Картах у зала на Екатерининской. У зала на Маршака тоже 5,0 при 110 оценках.</p>
+        <p class="award"><i class="ph-fill ph-trophy"></i>«Хорошее место 2026» по версии Яндекса</p>
+        <a class="link" href="https://yandex.ru/maps/org/restoran_1715/190002508803/reviews/" target="_blank" rel="noopener">Все отзывы на Яндекс Картах <i class="ph ph-arrow-up-right"></i></a>
+      </div>
+      <div class="quotes">
+        <figure class="q big" data-reveal>
+          <blockquote>«Всегда приятно найти классное место в спальном районе... стильный интерьер, заботливый сервис, вкусная еда, вменяемые цены.»</blockquote>
+          <figcaption>Софья С., отзыв на Яндекс Картах, май 2026</figcaption>
+        </figure>
+        <figure class="q" data-reveal style="--d:1">
+          <blockquote>«Зашли вечером случайно и были приятно удивлены... Заказали гренки к пиву, они „Бомбические“!»</blockquote>
+          <figcaption>Алена М., отзыв на Яндекс Картах, июнь 2026</figcaption>
+        </figure>
+        <figure class="q" data-reveal style="--d:2">
+          <blockquote>«Мы ели ребра, они прекрасны. Я не любитель рёбер, но в следующий раз возьму две порции.»</blockquote>
+          <figcaption>Ирина М., отзыв на Яндекс Картах, апрель 2026</figcaption>
+        </figure>
+      </div>
+    </div>
+  </section>
+
+  <section class="book" id="booking" aria-labelledby="book-title">
+    <div class="wrap">
+      <div class="book-photo" data-reveal><img src="https://avatars.mds.yandex.net/get-altay/14917207/2a000001990eb01f07fb08e55fe01c6117fe/XXXL" alt="Столы у окон в зале на Екатерининской улице" loading="lazy" width="960" height="1280"></div>
+      <div class="book-main">
+        <h2 id="book-title">Забронировать стол</h2>
+        <p class="lead">Оставьте заявку, менеджер зала перезвонит и подтвердит бронь.</p>
+        <form id="book-form" novalidate>
+          <fieldset class="field">
+            <legend class="legend">Зал</legend>
+            <div class="halls">
+              <label class="hall"><input type="radio" name="hall" value="murino" checked><span><b>Мурино</b><small>Екатерининская ул., 3/4</small></span></label>
+              <label class="hall"><input type="radio" name="hall" value="ohta"><span><b>Новая Охта</b><small>пр. Маршака, 10</small></span></label>
+            </div>
+          </fieldset>
+          <div class="grid3">
+            <div class="field"><label for="f-date">Дата</label><input class="input" id="f-date" name="date" type="date" required aria-describedby="e-date"><small class="err" id="e-date"></small></div>
+            <div class="field"><label for="f-time">Время</label><div class="sel"><select class="input" id="f-time" name="time"></select><i class="ph ph-caret-down"></i></div></div>
+            <div class="field"><label for="f-guests">Гостей</label><div class="sel"><select class="input" id="f-guests" name="guests"><option>1</option><option selected>2</option><option>3</option><option>4</option><option>5</option><option>6</option><option>7</option><option>8</option><option>9</option><option>10</option><option>11</option><option>12</option><option value="13">13 и больше</option></select><i class="ph ph-caret-down"></i></div></div>
+          </div>
+          <div class="grid2">
+            <div class="field"><label for="f-name">Имя</label><input class="input" id="f-name" name="guest-name" autocomplete="name" required aria-describedby="e-name"><small class="err" id="e-name"></small></div>
+            <div class="field"><label for="f-phone">Телефон</label><input class="input" id="f-phone" name="phone" type="tel" inputmode="tel" autocomplete="tel" placeholder="+7 900 000-00-00" required aria-describedby="e-phone"><small class="err" id="e-phone"></small></div>
+          </div>
+          <div class="grid2">
+            <div class="field"><label for="f-occ">Повод <span class="opt">необязательно</span></label><div class="sel"><select class="input" id="f-occ" name="occasion"><option value="">Без повода</option><option>День рождения</option><option>Банкет</option><option>Корпоратив</option><option>Свидание</option></select><i class="ph ph-caret-down"></i></div></div>
+            <div class="field"><label for="f-note">Пожелания <span class="opt">необязательно</span></label><input class="input" id="f-note" name="note" placeholder="Например, столик у окна"></div>
+          </div>
+          <div>
+            <label class="check"><input type="checkbox" id="f-consent" name="consent" required aria-describedby="e-consent"><span>Согласен на обработку персональных данных по <a href="#policy" data-policy>политике конфиденциальности</a></span></label>
+            <small class="err" id="e-consent"></small>
+          </div>
+          <div class="form-foot">
+            <button class="btn" type="submit">Отправить заявку</button>
+            <p class="call">Или позвоните: <a href="tel:+79119991715">+7 911 999-17-15</a> Мурино, <a href="tel:+79967771715">+7 996 777-17-15</a> Маршака</p>
+          </div>
+        </form>
+        <div class="done" id="book-done" tabindex="-1" hidden>
+          <i class="ph-fill ph-check-circle" aria-hidden="true"></i>
+          <h3>Заявка принята</h3>
+          <p data-summary></p>
+          <p>Это макет, поэтому заявка никуда не ушла. На рабочем сайте она сразу придёт менеджеру зала в Telegram, и он перезвонит. Чтобы забронировать стол сейчас, позвоните <a data-call href="tel:+79119991715">+7 911 999-17-15</a>.</p>
+          <button class="btn ghost sm" type="button" data-again>Новая заявка</button>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="contacts" id="contacts" aria-labelledby="ct-title">
+    <div class="wrap">
+      <h2 id="ct-title">Как нас найти</h2>
+      <div class="places">
+        <article class="place" data-reveal>
+          <div class="ph"><img src="https://avatars.mds.yandex.net/get-altay/16472720/2a0000019e3a2de4c1c380ead459130ef38c/XL" alt="Вход в рестобар 1715 на Екатерининской улице в Мурино" loading="lazy" width="600" height="800"></div>
+          <div class="bd">
+            <h3>Мурино</h3>
+            <p class="addr">Екатерининская ул., 3/4<span>Вход на углу дома, метро Девяткино 1,1&nbsp;км</span></p>
+            <dl class="hours"><div><dt>Пн-Чт, Вс</dt><dd>09:00-01:00</dd></div><div><dt>Пт, Сб</dt><dd>09:00-02:00</dd></div><div><dt>Завтраки</dt><dd>09:00-12:00</dd></div></dl>
+            <a class="tel" href="tel:+79119991715">+7 911 999-17-15</a>
+            <p class="feat">Летняя веранда, можно с собакой.</p>
+            <div class="acts">
+              <a class="btn ghost sm" href="https://yandex.ru/maps/?rtext=~60.057246%2C30.434698" target="_blank" rel="noopener"><i class="ph ph-navigation-arrow"></i>Маршрут</a>
+              <button class="btn ghost sm" type="button" data-map="murino" aria-pressed="true"><i class="ph ph-map-trifold"></i>На карте</button>
+            </div>
+          </div>
+        </article>
+        <article class="place" data-reveal style="--d:1">
+          <div class="ph"><img src="https://avatars.mds.yandex.net/get-altay/17043127/2a0000019ba1629144024f3e4754a5615954/XL" alt="Вывеска рестобара 1715 на проспекте Маршака" loading="lazy" width="800" height="800"></div>
+          <div class="bd">
+            <h3>Новая Охта</h3>
+            <p class="addr">Санкт-Петербург, пр. Маршака, 10<span>Вход со стороны ул. Даниила Хармса, метро Девяткино 2,3&nbsp;км</span></p>
+            <dl class="hours"><div><dt>Пн-Чт, Вс</dt><dd>12:00-01:00</dd></div><div><dt>Пт, Сб</dt><dd>12:00-02:00</dd></div></dl>
+            <a class="tel" href="tel:+79967771715">+7 996 777-17-15</a>
+            <p class="feat">Банкеты от 6&nbsp;гостей, детское меню, 5&nbsp;экранов для трансляций.</p>
+            <div class="acts">
+              <a class="btn ghost sm" href="https://yandex.ru/maps/?rtext=~60.033399%2C30.447508" target="_blank" rel="noopener"><i class="ph ph-navigation-arrow"></i>Маршрут</a>
+              <button class="btn ghost sm" type="button" data-map="ohta" aria-pressed="false"><i class="ph ph-map-trifold"></i>На карте</button>
+            </div>
+          </div>
+        </article>
+      </div>
+      <div class="map" id="map" role="region" aria-label="Карта"></div>
+      <div class="socials">
+        <a class="btn ghost sm" href="https://t.me/restobar1715" target="_blank" rel="noopener"><i class="ph ph-telegram-logo"></i>Telegram-канал</a>
+        <a class="btn ghost sm" href="https://vk.com/restobar1715" target="_blank" rel="noopener">ВКонтакте</a>
+        <a class="btn ghost sm" href="https://rbcn.mobi/get/reo" target="_blank" rel="noopener"><i class="ph ph-device-mobile"></i>Приложение 1715</a>
+      </div>
+    </div>
+  </section>
+
+</main>
+
+<footer class="site">
+  <div class="wrap">
+    <a class="logo" href="#top" aria-label="Наверх"><img src="https://avatars.mds.yandex.net/get-altay/17700564/2a0000019c2898edd3ba1b9e63940d0c44f6/XL" alt="" width="397" height="397" loading="lazy"></a>
+    <p>Рестобар 1715. Мурино, Екатерининская ул., 3/4 и Санкт-Петербург, пр. Маршака, 10.</p>
+    <div class="foot-links">
+      <a href="#policy" data-policy>Политика конфиденциальности</a>
+      <span>Концепт сайта: Евгений Афонин, <a href="https://t.me/X1nN0n" target="_blank" rel="noopener">@X1nN0n</a></span>
+    </div>
+  </div>
+</footer>
+
+<div class="bar">
+  <a class="btn ghost" href="#menu">Меню</a>
+  <a class="btn" href="#booking">Забронировать стол</a>
+</div>
+
+<dialog class="pol" id="policy" aria-labelledby="pol-title">
+  <h3 id="pol-title">Политика конфиденциальности</h3>
+  <p>На рабочем сайте здесь будет политика обработки персональных данных с реквизитами 1715. Она нужна по закону (152-ФЗ), потому что форма брони собирает имя и телефон гостя.</p>
+  <form method="dialog"><button class="btn sm">Понятно</button></form>
+</dialog>
+
+<script>
+(() => {
+  const $ = (s, r = document) => r.querySelector(s);
+  const $$ = (s, r = document) => [...r.querySelectorAll(s)];
+  const reduce = matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+  // Фото блюд: раздел "Меню" в карточке зала на Екатерининской (Яндекс Карты)
+  const IMG = (k) => 'https://avatars.mds.yandex.net/get-sprav-products/' + PH[k] + '/XL';
+  const PH = {
+    b1715: '2757887/2a00000196964df6ab304b7c0f2cc618d255', joe: '21065090/2a000001a0a1c2d11018eb2e94f39cc3f8c6',
+    cheese: '11530991/2a0000018ea963b8e84e768da3fd97fb51db', cherry: '13059590/2a0000018ea9618f726368d817c1eb524026',
+    bbq: '13059590/2a0000018ea9607a29f7e9fc3f14e7358e9f', pork: '5514775/2a0000019e69ba27e33f777fc30c21e94b08',
+    chickb: '11530991/2a0000018ea9634123eb7cc7297b745d0497', kebab: '21065090/2a000001a0a58da6f7b929cf214c83a0fa4a',
+    deer: '19300642/2a000001a0a586bb722a83334220a3004757', julien: '2899371/2a000001969653903ea36217a3b10756157a',
+    beerset: '5512660/2a0000019e69b569f54890c06ca12044e9e1', tartare: '13055270/2a0000018ea9503eaa0bb0743080f41c5382',
+    ceviche: '21168328/2a000001a0a5892a7edf0055639396e7aa6b', basturma: '1521147/2a000001956054586154f25c2e30219915b6',
+    mozz: '11530991/2a0000018ea94fad2b89c30ff7fb3773b229', dumpl: '1643978/2a000001951e79559af75545a93fae83be23',
+    chechil: '5567679/2a00000192af38842c42fc407d6905bd0099', veg: '2760763/2a000001956050d4a6ee79b8240ed71ea2a4',
+    wings: '5393394/2a0000019e69b66930392f062c1f77e4e55d', ribs: '2808945/2a0000019e69b68745a524a76454fbefd80e',
+    flank: '17791271/2a0000019c6b801fe63f6998eb1c22013d52', bbqset: '2701203/2a000001969649123ca381e112db6231ad84',
+    squid: '21065090/2a000001a0a1c271685a78e685e0f8f2bee7', saus: '2791887/2a0000019db4f475997226bf6e07fc74b86a',
+    breast: '13059590/2a0000018ea95c44a545478df1232de25838', schnitz: '2808945/2a00000192af34d91ff2d579557a0256988c',
+    chili: '21065090/2a000001a0a58c92726e424388dce434e529', sShrimp: '5514775/2a0000019e69ac616755ee9ace635d4be87a',
+    sBeef: '1521147/2a00000195604d86ef43ecdb94c0f06b5fe0', sChick: '2808945/2a0000019e69acbb735d11d997fe0d32e211',
+    sVeg: '2773996/2a00000192af3bc374290006b9ae6c7cff17', coleslaw: '9240521/2a0000019e69e0989f84253699c289274202',
+    chowder: '21065090/2a000001a0a58aadaeb061bed7a905b9fd6c', borsch: '944742/2a00000192af40cb68bf3fbfa8099c7e0936',
+    batSoup: '21168328/2a000001a0a589d2c56e33b0eff0b936252e', noodle: '1521147/2a000001956059d52c87fcbfaeda4fa38596',
+    asparagus: '2757887/2a00000199d39bb3ec35359fb99964d5532b', corn: '19861719/2a000001a0a58b3132d34ecbeeeaefd70d85',
+    mash: '1540730/2a00000192af477f0468a19b6e5fe25221ea', baked: '10118156/2a00000192af492cf9c9b937e55e1edec4e1',
+    batat: '1521147/2a000001969650179b9a9de940af1bc92c6f', truffle: '944742/2a00000196964ec8ba1a0bcaae19d980e8d1',
+    cheese4: '21168328/2a000001a0a5878728abd8519ed7674998da', fries: '13059590/2a0000018ea95682d80d3b6b78c0db675fc5',
+    honey: '1530321/2a00000192af2df43ce6dc0d9454d6fb1eb3',
+  };
+
+  // Меню обоих залов из карточек на Яндекс Картах: [название, цена, описание, фото]
+  const MENU = {
+    murino: { cats: [
+      ['Бургеры', [
+        ['Бургер 1715 с картофелем фри', 990, '', 'b1715'],
+        ['Бургер «Грязный Джо»', 990, '', 'joe'],
+        ['Бургер с мраморной говядиной, вишней и сыром дорблю', 690, '', 'cherry'],
+        ['Бургер с олениной и соусом из чёрной смородины', 690, '', 'deer'],
+        ['Жюльен-бургер', 690, '', 'julien'],
+        ['Чизбургер с мраморной говядиной', 680, '', 'cheese'],
+        ['BBQ-бургер с мраморной говядиной, моцареллой и беконом', 680, '', 'bbq'],
+        ['Бургер-кебаб из баранины', 680, '', 'kebab'],
+        ['Бургер со свининой и копчёно-печёным перцем', 670, '', 'pork'],
+        ['Бургер с куриным филе', 620, '', 'chickb'],
+      ]],
+      ['Закуски', [
+        ['Пивной набор', 990, 'Пельмешки, чечил, орешки, луковые кольца, гренки и соус тартар', 'beerset'],
+        ['Севиче из тунца с авокадо', 740, '', 'ceviche'],
+        ['Тартар из говядины', 690, '', 'tartare'],
+        ['Жареная моцарелла с малиновым соусом', 560, '', 'mozz'],
+        ['Бастурма', 520, '', 'basturma'],
+        ['Жареные пельмешки', 390, 'Мини-пельмешки со специями и зеленью', 'dumpl'],
+        ['Жареный чечил', 390, '', 'chechil'],
+        ['Овощные палочки с соусом тартар', 320, '', 'veg'],
+      ]],
+      ['Крылья и рёбра', [
+        ['Рёбра', 780, 'Барбекю, острые, медово-горчичные или вишнёвые. Подаются с битыми огурцами', 'ribs'],
+        ['Крылья', 680, 'Острые, азиатские, медово-горчичные или вишнёвые', 'wings'],
+      ]],
+      ['Горячее', [
+        ['Барбекю-набор', 1990, '', 'bbqset'],
+        ['Стейк Фланк', 1350, '', 'flank'],
+        ['Кальмар на гриле', 720, '', 'squid'],
+        ['Колбаски с печёным картофелем', 720, '', 'saus'],
+        ['Куриная грудка под сливочным соусом с грибами и микс-салатом', 710, '', 'breast'],
+        ['Куриный шницель с картофельным салатом', 690, '', 'schnitz'],
+        ['Свинина в соусе сладкий чили', 640, '', 'chili'],
+      ]],
+      ['Салаты', [
+        ['Салат с креветками', 690, 'Заправка цезарь', 'sShrimp'],
+        ['Салат с томлёной говядиной', 690, '', 'sBeef'],
+        ['Салат с курицей', 660, 'Заправка цезарь', 'sChick'],
+        ['Овощной салат с авокадо и сливочным кремом', 660, '', 'sVeg'],
+        ['Коул слоу', 360, '', 'coleslaw'],
+      ]],
+      ['Супы', [
+        ['Чаудер', 640, 'Мясной или рыбный на выбор', 'chowder'],
+        ['Борщ с копчёной говядиной', 560, '', 'borsch'],
+        ['Крем-суп из батата', 540, '', 'batSoup'],
+        ['Суп куриный с лапшой', 420, '', 'noodle'],
+      ]],
+      ['Гарниры', [
+        ['Спаржа на гриле', 360, '', 'asparagus'],
+        ['Кукуруза на гриле', 360, '', 'corn'],
+        ['Картофельное пюре со сливочным маслом', 280, '', 'mash'],
+        ['Печёный картофель в перечном соусе', 280, '', 'baked'],
+      ]],
+      ['Фри', [
+        ['Батат с соусом кимчи', 480, '', 'batat'],
+        ['Фри трюфельная', 460, '', 'truffle'],
+        ['Фри 4 сыра', 460, '', 'cheese4'],
+        ['Картофель фри', 310, '', 'fries'],
+      ]],
+      ['Десерты', [
+        ['Медовик', 380, '', 'honey'],
+      ]],
+    ] },
+    ohta: { cats: [
+      ['Бургеры', [
+        ['Фирменный бургер 1715 под сливочно-горчичным соусом с пармезаном', 990, 'Подаётся с картофелем фри', 'b1715'],
+        ['Большой смешбургер', 990, '', ''],
+        ['Смешбургер трюфельный', 760, '', ''],
+        ['Бургер с мраморной говядиной, вишней и сыром дорблю', 680, '', 'cherry'],
+        ['Бургер-кебаб с бараниной', 660, '', 'kebab'],
+        ['Кесадилья', 660, '', ''],
+        ['Бургер с томлёной свининой и картофелем пай', 620, 'С печёным болгарским перцем', ''],
+        ['Бургер с олениной', 620, 'С соусом из чёрной смородины', 'deer'],
+        ['Чизбургер из мраморной говядины', 610, '', 'cheese'],
+        ['Бургер с куриным филе', 610, '', 'chickb'],
+      ]],
+      ['Закуски', [
+        ['Пивной набор', 990, '', 'beerset'],
+        ['Жареные тигровые креветки в хрустящей панировке с соусом айоли', 680, '', ''],
+        ['Тартар из говядины 1715', 660, '', 'tartare'],
+        ['Жареная моцарелла с малиновым соусом', 490, '', 'mozz'],
+        ['Сельдь с картофелем', 420, '', ''],
+        ['Жареный чечил', 360, '', 'chechil'],
+        ['Жареные пельмешки к пиву', 350, '', 'dumpl'],
+        ['Гренки с соусом тартар', 340, '', ''],
+        ['Овощные палочки с соусом тартар', 290, '', 'veg'],
+        ['Луковые кольца', 280, 'С соусом тартар', ''],
+        ['Битые огурцы с кимчи', 240, '', ''],
+        ['Ореховый микс', 220, '', ''],
+      ]],
+      ['Крылья и рёбра', [
+        ['Рёбра', 740, 'Барбекю, острые, медово-горчичные или вишнёвые', 'ribs'],
+        ['Крылья', 660, 'Азиатские, вишнёвые, медово-горчичные или острые', 'wings'],
+      ]],
+      ['Стейки', [
+        ['Стейк Фланк', 1350, 'Подаётся со спаржей', 'flank'],
+        ['Стейк из свиной шеи', 790, 'С картофелем стоун', ''],
+      ]],
+      ['Горячее', [
+        ['Барбекю-набор', 1990, '', 'bbqset'],
+        ['Жареные тигровые креветки в соусе свит чили', 790, 'С авокадо', ''],
+        ['Колбаски: австрийская, испанская или швейцарская', 690, 'С печёным картофелем', 'saus'],
+        ['Судак', 690, 'С картофельным пюре и песто', ''],
+        ['Куриный шницель', 650, 'С картофельным салатом', 'schnitz'],
+        ['Томлёная свинина в сладком соусе чили', 640, 'С картофельными чипсами', 'chili'],
+      ]],
+      ['Салаты', [
+        ['Салат с креветками', 690, '', 'sShrimp'],
+        ['Салат с томлёной говядиной', 670, '', 'sBeef'],
+        ['Овощной салат с авокадо и сливочным кремом', 640, '', 'sVeg'],
+        ['Салат с курицей', 590, '', 'sChick'],
+      ]],
+      ['Супы', [
+        ['Чаудер', 640, 'Мясной или рыбный', 'chowder'],
+        ['Борщ с копчёной говядиной', 520, '', 'borsch'],
+        ['Крем-суп из батата', 520, '', 'batSoup'],
+        ['Куриный суп с лапшой', 390, '', 'noodle'],
+      ]],
+      ['Гарниры', [
+        ['Кукуруза на гриле', 360, '', 'corn'],
+        ['Спаржа на гриле', 340, '', 'asparagus'],
+        ['Картофельное пюре', 260, 'Со сливочным маслом', 'mash'],
+        ['Печёный картофель', 260, 'В перечном соусе', 'baked'],
+        ['Булочка 1715 с чесночным маслом', 140, '', ''],
+      ]],
+      ['Фри', [
+        ['Батат с соусом кимчи', 480, '', 'batat'],
+        ['Фри трюфельная с пармезаном', 460, '', 'truffle'],
+        ['Фри 4 сыра', 460, '', 'cheese4'],
+        ['Картофель фри', 290, 'Сырный соус или кетчуп на выбор', 'fries'],
+        ['Соусы', 90, 'Айоли, барбекю, кетчуп, тартар, вишнёвый, малиновый, сырный, терияки', ''],
+      ]],
+      ['Десерты', [
+        ['Пирог медовик', 360, '', 'honey'],
+      ]],
+    ] },
+  };
+
+  const money = (n) => n.toLocaleString('ru-RU') + ' ₽';
+  const esc = (s) => s.replace(/[&<>"]/g, (c) => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;' }[c]));
+  const state = { loc: 'murino', cat: 'Бургеры' };
+  const catsEl = $('.cats'), grid = $('.dishes'), more = $('.more'), rows = $('.rows'), panel = $('#dish-panel');
+
+  function renderCats() {
+    const cats = MENU[state.loc].cats;
+    if (!cats.some(([n]) => n === state.cat)) state.cat = cats[0][0];
+    catsEl.innerHTML = cats.map(([n, items], i) => {
+      const on = n === state.cat;
+      return `<button type="button" role="tab" id="tab-${i}" aria-selected="${on}" aria-controls="dish-panel" tabindex="${on ? 0 : -1}" data-cat="${esc(n)}">${esc(n)}<span>${items.length}</span></button>`;
+    }).join('');
+  }
+  function renderDishes() {
+    const items = MENU[state.loc].cats.find(([n]) => n === state.cat)[1];
+    const withPh = items.filter((d) => d[3]), noPh = items.filter((d) => !d[3]);
+    grid.innerHTML = withPh.map(([t, p, d, k]) => `<article class="dish"><div class="ph"><img src="${IMG(k)}" alt="${esc(t)}" loading="lazy" width="800" height="600"></div><div class="bd"><h3>${esc(t)}</h3>${d ? `<p>${esc(d)}</p>` : ''}<span class="price">${money(p)}</span></div></article>`).join('');
+    rows.innerHTML = noPh.map(([t, p, d]) => `<div class="row"><div><b>${esc(t)}</b>${d ? `<small>${esc(d)}</small>` : ''}</div><span class="price">${money(p)}</span></div>`).join('');
+    grid.hidden = !withPh.length;
+    more.hidden = !noPh.length;
+    $('h3', more).hidden = !withPh.length;
+    panel.setAttribute('aria-labelledby', $('[aria-selected="true"]', catsEl).id);
+  }
+  function selectCat(cat, focus) {
+    state.cat = cat;
+    renderCats();
+    renderDishes();
+    const cur = $('[aria-selected="true"]', catsEl);
+    if (focus) cur.focus();
+    catsEl.scrollTo({ left: cur.offsetLeft - catsEl.offsetLeft - 8, behavior: reduce ? 'auto' : 'smooth' });
+  }
+  catsEl.addEventListener('click', (e) => { const b = e.target.closest('[data-cat]'); if (b) selectCat(b.dataset.cat, false); });
+  catsEl.addEventListener('keydown', (e) => {
+    const keys = ['ArrowRight', 'ArrowLeft', 'Home', 'End'];
+    if (!keys.includes(e.key)) return;
+    e.preventDefault();
+    const tabs = $$('[role="tab"]', catsEl);
+    let i = tabs.findIndex((t) => t.getAttribute('aria-selected') === 'true');
+    if (e.key === 'ArrowRight') i = (i + 1) % tabs.length;
+    else if (e.key === 'ArrowLeft') i = (i - 1 + tabs.length) % tabs.length;
+    else i = e.key === 'Home' ? 0 : tabs.length - 1;
+    selectCat(tabs[i].dataset.cat, true);
+  });
+  $$('.seg [data-loc]').forEach((b) => b.addEventListener('click', () => {
+    state.loc = b.dataset.loc;
+    $$('.seg [data-loc]').forEach((x) => x.setAttribute('aria-pressed', x === b));
+    renderCats();
+    renderDishes();
+    // выбранный зал подставляем и в бронь
+    const r = $(`#book-form input[name="hall"][value="${state.loc}"]`);
+    if (r && !r.checked) { r.checked = true; fillTimes(); }
+  }));
+
+  // Бронь: в макете заявка никуда не отправляется
+  const form = $('#book-form'), done = $('#book-done'), F = form.elements;
+  const HALL = {
+    murino: { name: 'Мурино, Екатерининская ул., 3/4', tel: '+79119991715', telText: '+7 911 999-17-15', open: 9 },
+    ohta: { name: 'Новая Охта, пр. Маршака, 10', tel: '+79967771715', telText: '+7 996 777-17-15', open: 12 },
+  };
+  const pad = (n) => String(n).padStart(2, '0');
+  const iso = (d) => d.getFullYear() + '-' + pad(d.getMonth() + 1) + '-' + pad(d.getDate());
+  function fillTimes(pref) {
+    const sel = F.namedItem('time'), keep = pref || sel.value || '19:00';
+    let html = '';
+    for (let m = HALL[F.namedItem('hall').value].open * 60; m <= 23 * 60; m += 30) {
+      const v = pad(Math.floor(m / 60)) + ':' + pad(m % 60);
+      html += `<option${v === keep ? ' selected' : ''}>${v}</option>`;
+    }
+    sel.innerHTML = html;
+    if (![...sel.options].some((o) => o.selected && o.value === keep)) sel.value = '19:00';
+  }
+  function resetForm() {
+    form.reset();
+    F.namedItem('date').min = iso(new Date());
+    F.namedItem('date').value = iso(new Date());
+    fillTimes('19:00');
+  }
+  resetForm();
+  $$('input[name="hall"]', form).forEach((r) => r.addEventListener('change', () => fillTimes()));
+
+  const guestsText = (v) => {
+    if (v === '13') return '13 и больше гостей';
+    const n = +v, a = n % 10, b = n % 100;
+    return n + ' ' + (a === 1 && b !== 11 ? 'гость' : a >= 2 && a <= 4 && (b < 12 || b > 14) ? 'гостя' : 'гостей');
+  };
+  const fields = { date: 'f-date', name: 'f-name', phone: 'f-phone', consent: 'f-consent' };
+  const setErr = (key, msg) => {
+    $('#e-' + key).textContent = msg || '';
+    $('#' + fields[key]).setAttribute('aria-invalid', msg ? 'true' : 'false');
+  };
+  form.addEventListener('submit', (e) => {
+    e.preventDefault();
+    const name = $('#f-name').value.trim();
+    const digits = $('#f-phone').value.replace(/\D/g, '');
+    const date = F.namedItem('date').value;
+    setErr('name', name.length < 2 ? 'Напишите, как к вам обращаться' : '');
+    setErr('phone', digits.length < 10 || digits.length > 11 ? 'Проверьте номер: нужно 10 или 11 цифр' : '');
+    setErr('date', !date || date < iso(new Date()) ? 'Выберите сегодняшнюю или будущую дату' : '');
+    setErr('consent', $('#f-consent').checked ? '' : 'Без согласия заявку не принять');
+    const bad = $('[aria-invalid="true"]', form);
+    if (bad) { bad.focus(); return; }
+    const h = HALL[F.namedItem('hall').value];
+    const when = new Date(date + 'T12:00:00').toLocaleDateString('ru-RU', { day: 'numeric', month: 'long' });
+    const occ = F.namedItem('occasion').value;
+    $('[data-summary]', done).textContent = `${h.name}, ${when} в ${F.namedItem('time').value}, ${guestsText(F.namedItem('guests').value)}${occ ? ', ' + occ.toLowerCase() : ''}.`;
+    const call = $('[data-call]', done);
+    call.href = 'tel:' + h.tel;
+    call.textContent = h.telText;
+    form.hidden = true;
+    done.hidden = false;
+    done.focus();
+  });
+  $('[data-again]', done).addEventListener('click', () => { done.hidden = true; form.hidden = false; resetForm(); });
+
+  // Кнопки, ведущие к брони, подставляют зал, дату или повод
+  $$('a[href="#booking"]').forEach((a) => a.addEventListener('click', () => {
+    if (!done.hidden) { done.hidden = true; form.hidden = false; }
+    if (a.dataset.hall) { const r = $(`input[name="hall"][value="${a.dataset.hall}"]`, form); if (r) r.checked = true; }
+    if (a.dataset.date && a.dataset.date >= iso(new Date())) F.namedItem('date').value = a.dataset.date;
+    fillTimes(a.dataset.time);
+    if (a.dataset.occasion) F.namedItem('occasion').value = a.dataset.occasion;
+  }));
+
+  // Карта: грузим, когда до нее доскроллили, и переключаем между залами
+  const map = $('#map');
+  const MAPS = {
+    murino: { src: 'https://yandex.ru/map-widget/v1/?ll=30.434698%2C60.057246&mode=search&oid=190002508803&ol=biz&z=16', title: 'Рестобар 1715 на карте: Мурино, Екатерининская ул., 3/4' },
+    ohta: { src: 'https://yandex.ru/map-widget/v1/?ll=30.447508%2C60.033399&mode=search&oid=38979236606&ol=biz&z=16', title: 'Рестобар 1715 на карте: пр. Маршака, 10' },
+  };
+  let mapLoc = 'murino', mapOn = false;
+  function showMap(loc) {
+    mapLoc = loc;
+    mapOn = true;
+    map.innerHTML = `<iframe src="${MAPS[loc].src}" title="${MAPS[loc].title}" loading="lazy" allowfullscreen></iframe>`;
+    $$('[data-map]').forEach((b) => b.setAttribute('aria-pressed', b.dataset.map === loc));
+  }
+  if ('IntersectionObserver' in window) {
+    new IntersectionObserver((es, o) => { if (es[0].isIntersecting) { if (!mapOn) showMap(mapLoc); o.disconnect(); } }, { rootMargin: '400px' }).observe(map);
+  } else { showMap(mapLoc); }
+  $$('[data-map]').forEach((b) => b.addEventListener('click', () => {
+    if (b.dataset.map !== mapLoc || !mapOn) showMap(b.dataset.map);
+    map.scrollIntoView({ behavior: reduce ? 'auto' : 'smooth', block: 'center' });
+  }));
+
+  // Разделы на телефоне
+  const mb = $('.menu-btn'), mnav = $('#mnav');
+  const setNav = (open) => {
+    mb.setAttribute('aria-expanded', open);
+    mb.setAttribute('aria-label', open ? 'Закрыть разделы' : 'Открыть разделы');
+    mb.innerHTML = open ? '<i class="ph ph-x"></i>' : '<i class="ph ph-list"></i>';
+    mnav.hidden = !open;
+  };
+  mb.addEventListener('click', () => setNav(mb.getAttribute('aria-expanded') !== 'true'));
+  mnav.addEventListener('click', (e) => { if (e.target.closest('a')) setNav(false); });
+
+  // Нижняя панель на телефоне: после первого экрана и не поверх формы брони
+  const bar = $('.bar');
+  if ('IntersectionObserver' in window) {
+    let past = false, atForm = false;
+    const sync = () => bar.classList.toggle('on', past && !atForm);
+    new IntersectionObserver(([e]) => { past = !e.isIntersecting && e.boundingClientRect.top < 0; sync(); }).observe($('.hero-cta'));
+    new IntersectionObserver(([e]) => { atForm = e.isIntersecting; sync(); }, { rootMargin: '0px 0px -30% 0px' }).observe($('.book-main'));
+  } else { bar.classList.add('on'); }
+
+  // Появление блоков при прокрутке
+  const rev = $$('[data-reveal]');
+  if (!reduce && 'IntersectionObserver' in window) {
+    const io = new IntersectionObserver((es) => es.forEach((e) => { if (e.isIntersecting) { e.target.classList.add('in'); io.unobserve(e.target); } }), { rootMargin: '0px 0px -8% 0px' });
+    rev.forEach((el) => io.observe(el));
+  } else { rev.forEach((el) => el.classList.add('in')); }
+
+  // Политика конфиденциальности (в макете - пояснение)
+  const pol = $('#policy');
+  $$('[data-policy]').forEach((a) => a.addEventListener('click', (e) => { e.preventDefault(); if (pol.showModal) pol.showModal(); }));
+
+  // Переключатель темы (только для концепта)
+  const root = document.documentElement;
+  const paintTheme = (t) => {
+    root.dataset.theme = t;
+    $$('.theme button').forEach((b) => b.setAttribute('aria-pressed', b.dataset.set === t));
+    $('meta[name="theme-color"]').content = t === 'dark' ? '#0e1310' : '#eef1ec';
+  };
+  $$('.theme button').forEach((b) => b.addEventListener('click', () => {
+    paintTheme(b.dataset.set);
+    try { localStorage.setItem('r1715-theme', b.dataset.set); } catch (e) {}
+  }));
+  paintTheme(root.dataset.theme === 'light' ? 'light' : 'dark');
+
+  renderCats();
+  renderDishes();
+})();
+</script>
+</body>
+</html>
