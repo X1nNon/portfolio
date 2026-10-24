@@ -1,357 +1,65 @@
 <!doctype html>
-<html lang="ru" data-theme="dark">
-<head>
-<meta charset="utf-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Laser Exclusive - концепт сайта студии в Гатчине</title>
-<meta name="description" content="Концепт сайта студии Laser Exclusive в Гатчине: лазерная эпиляция, маникюр, педикюр, ресницы и брови. Цены, отзывы, запись. Подготовил Евгений Афонин.">
-<meta name="robots" content="noindex">
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link rel="preconnect" href="https://n1881606.yclients.com">
-<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,500;0,600;1,500;1,600&family=Jost:wght@300;400;500&display=swap" rel="stylesheet">
-<script src="https://unpkg.com/@phosphor-icons/web@2.1.1"></script>
-<!--
-  Концепт сайта для студии Laser Exclusive (Гатчина, Соборная ул., 15, вход со двора).
-  Главное на виду: цены и кнопка "Записаться". Цены - пять направлений списком, каждое раскрывается по нажатию
-  и показывает основные услуги; полный прайс - в онлайн-записи.
-  Крупный шрифт, высокий контраст, понятные кнопки.
-  Цвет и знак - из их логотипа (белая пропись L и E с линией ноги на черном) и черного зала студии.
-  Логотип, фото и отзывы - из карточки студии на Яндекс Картах, отзывы дословно. Цены и время процедур -
-  из онлайн-записи студии (YCLIENTS) на 15 октября 2026.
-  Запись: кнопки открывают онлайн-запись студии (YCLIENTS) окном поверх сайта, на той же странице выбора
-  услуг, что и кнопка записи в их группе ВК. Лазерная эпиляция там - последняя вкладка услуг.
--->
-<style>
-  :root[data-theme="dark"] {
-    --bg: #0b0b0c; --panel: #141415; --panel-2: #1b1b1d; --text: #f4f1ec; --muted: #aaa49e; --line: rgba(255,255,255,.12); --line-2: rgba(255,255,255,.28);
-    --accent: #ebc7cc; --accent-text: #1b1214; --logo-blend: screen; --logo-filter: none; --glass: rgba(11,11,12,.72);
-  }
-  :root[data-theme="light"] {
-    --bg: #f7f6f4; --panel: #ffffff; --panel-2: #efedea; --text: #151414; --muted: #615c57; --line: #dfdbd6; --line-2: #b9b3ad;
-    --accent: #2a2224; --accent-text: #ffffff; --logo-blend: multiply; --logo-filter: invert(1) grayscale(1) contrast(1.8) brightness(1.08); --glass: rgba(255,255,255,.82);
-  }
-  * { box-sizing: border-box; }
-  html { scroll-behavior: smooth; scroll-padding-top: 96px; background: var(--bg); }
-  html:has(dialog[open]) { overflow: hidden; }
-  body { margin: 0; background: var(--bg); color: var(--text); font: 300 19px/1.6 "Jost", system-ui, sans-serif; -webkit-font-smoothing: antialiased; }
-  img { display: block; max-width: 100%; }
-  a { color: inherit; }
-  button { font: inherit; color: inherit; }
-  .container { width: min(1560px, 100%); margin: 0 auto; padding: 0 48px; }
-  .serif { font-family: "Cormorant Garamond", Georgia, serif; font-weight: 500; }
-  .caps { text-transform: uppercase; letter-spacing: .2em; font-size: 13px; font-weight: 400; }
-  .mark { mix-blend-mode: var(--logo-blend); filter: var(--logo-filter); object-fit: cover; }
-  /* края свечения логотипа растушеваны, чтобы не было видно прямоугольника картинки */
-  .mark { -webkit-mask-image: radial-gradient(ellipse 50% 50% at 50% 50%, #000 66%, transparent 100%); mask-image: radial-gradient(ellipse 50% 50% at 50% 50%, #000 66%, transparent 100%); }
-  section { padding: 120px 0; }
-  .eyebrow { color: var(--muted); display: flex; align-items: center; gap: 14px; margin: 0 0 18px; }
-  .eyebrow::before { content: ""; width: 40px; height: 1px; background: var(--line-2); }
-  h2 { margin: 0; font-size: clamp(44px, 5vw, 68px); line-height: 1; letter-spacing: -.01em; }
-  h2 em, h1 em { font-style: italic; }
-  a:focus-visible, button:focus-visible { outline: 2px solid var(--accent); outline-offset: 4px; }
-
-  .concept { background: #2a2a2d; color: #e6e3df; font-size: 15px; line-height: 1.4; }
-  .concept .container { display: flex; gap: 10px 20px; align-items: center; justify-content: space-between; flex-wrap: wrap; padding-top: 9px; padding-bottom: 9px; }
-  .theme { display: inline-flex; border: 1px solid #76727a; flex: none; }
-  .theme button { background: none; border: 0; color: #e6e3df; font-size: 14px; line-height: 1; padding: 7px 12px; cursor: pointer; }
-  .theme button[aria-pressed="true"] { background: #e6e3df; color: #1b1b1d; }
-
-  /* кнопки */
-  .btn { display: inline-flex; align-items: center; justify-content: center; gap: 12px; min-height: 62px; padding: 0 38px; background: var(--accent); color: var(--accent-text); border: 1px solid var(--accent); text-decoration: none; text-transform: uppercase; letter-spacing: .16em; font-size: 15px; font-weight: 500; cursor: pointer; transition: transform .2s, box-shadow .2s, background .2s; }
-  .btn:hover { transform: translateY(-1px); box-shadow: 0 10px 30px rgba(235, 199, 204, .16); }
-  .btn i { font-size: 20px; }
-  .btn.ghost { background: transparent; color: var(--text); border-color: var(--line-2); }
-  .btn.ghost:hover { border-color: var(--text); box-shadow: none; }
-
-  /* шапка */
-  header { position: sticky; top: 0; z-index: 30; background: color-mix(in srgb, var(--bg) 90%, transparent); backdrop-filter: blur(10px); border-bottom: 1px solid var(--line); }
-  header .container { height: 84px; display: flex; align-items: center; justify-content: space-between; gap: 24px; }
-  .brand { display: flex; align-items: center; gap: 14px; text-decoration: none; }
-  .brand .mark { width: 86px; height: 44px; }
-  .brand span { font-size: 14px; letter-spacing: .32em; text-transform: uppercase; font-weight: 400; }
-  header nav { display: flex; gap: 36px; }
-  header nav a { text-decoration: none; color: var(--muted); font-size: 16px; transition: color .2s; }
-  header nav a:hover { color: var(--text); }
-  .head-right { display: flex; align-items: center; gap: 26px; }
-  .head-right .tel { text-decoration: none; font-size: 19px; font-weight: 400; }
-  header .btn { min-height: 50px; padding: 0 26px; font-size: 14px; }
-
-  /* первый экран: текст слева, фото справа на всю высоту */
-  .hero { padding: 0; display: grid; grid-template-columns: 1.1fr .9fr; align-items: center; min-height: calc(100svh - 140px); }
-  .hero-text { display: flex; flex-direction: column; justify-content: center; padding: 56px clamp(40px, 4vw, 80px) 56px max(48px, calc((100vw - 1560px) / 2 + 48px)); }
-  .hero-text .mark { width: 220px; aspect-ratio: 2.1 / 1; margin: 0 0 22px -16px; }
-  .hero h1 { margin: 14px 0 0; font-size: clamp(54px, 4.6vw, 80px); line-height: .98; letter-spacing: -.015em; font-weight: 500; }
-  .hero .meta { margin: 26px 0 0; display: flex; flex-wrap: wrap; gap: 8px 24px; color: var(--muted); }
-  .hero .meta span { display: inline-flex; align-items: center; gap: 8px; }
-  .hero .meta i { color: var(--accent); font-size: 20px; }
-  .hero .cta { margin-top: 34px; display: flex; flex-wrap: wrap; gap: 16px 28px; align-items: center; }
-  .hero .cta .tel { font-size: 23px; font-weight: 400; text-decoration: none; }
-  .hero .promo { margin-top: 36px; padding-top: 22px; border-top: 1px solid var(--line); display: flex; align-items: center; gap: 18px; max-width: 520px; color: var(--muted); }
-  .hero .promo b { font: 600 46px/1 "Cormorant Garamond", serif; color: var(--accent); white-space: nowrap; }
-  /* справа - фото в рамке, целиком в экране; снимки студии сменяют друг друга */
-  .hero-media { position: relative; justify-self: end; margin-right: max(48px, calc((100vw - 1560px) / 2 + 48px)); padding: 36px 0 36px 60px; }
-  .frame { position: relative; height: min(calc(100svh - 220px), 700px); aspect-ratio: 4 / 5; }
-  .frame::before { content: ""; position: absolute; inset: 18px -18px -18px 18px; border: 1px solid var(--accent); opacity: .55; }
-  .slides { position: absolute; inset: 0; overflow: hidden; background: var(--panel); }
-  .slides img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; opacity: 0; transform: scale(1.07); transition: opacity 1.4s ease, transform 7s linear; }
-  .slides img.on { opacity: 1; transform: scale(1); }
-  .dots { position: absolute; z-index: 2; right: 18px; bottom: 18px; display: flex; gap: 6px; }
-  .dots span { width: 28px; height: 2px; background: rgba(255,255,255,.4); transition: background .4s; }
-  .dots span.on { background: #fff; }
-  .pill { position: absolute; z-index: 3; left: 0; bottom: 84px; display: flex; align-items: center; gap: 20px; padding: 16px 22px; background: var(--glass); -webkit-backdrop-filter: blur(12px); backdrop-filter: blur(12px); border: 1px solid var(--line-2); }
-  .pill b { font: 600 34px/1 "Cormorant Garamond", serif; }
-  .pill .stars { color: #f2b636; font-size: 13px; letter-spacing: 1px; margin-left: 8px; vertical-align: 4px; }
-  .pill small { display: block; margin-top: 4px; font-size: 13px; line-height: 1.35; color: var(--muted); }
-  .pill .sep { width: 1px; height: 44px; background: var(--line-2); }
-
-  /* цены */
-  .sec-head { display: flex; align-items: flex-end; justify-content: space-between; gap: 24px 40px; flex-wrap: wrap; margin-bottom: 44px; }
-  .sec-head p.side { margin: 0; color: var(--muted); max-width: 380px; }
-  /* направления списком: строка раскрывается (details) и показывает цены с длительностью и кнопку записи */
-  .catalog { border-top: 1px solid var(--line-2); }
-  .svc { border-bottom: 1px solid var(--line); scroll-margin-top: 96px; }
-  .svc summary { display: grid; grid-template-columns: 64px minmax(0, 1fr) auto 52px; align-items: center; gap: 28px; min-height: 128px; padding: 26px 14px; list-style: none; cursor: pointer; transition: background .2s; }
-  .svc summary::-webkit-details-marker { display: none; }
-  .svc-num { align-self: start; padding-top: 12px; color: var(--accent); font-size: 15px; letter-spacing: .12em; }
-  .svc-head { display: flex; flex-direction: column; gap: 6px; }
-  .svc-name { font-size: 44px; line-height: 1.02; }
-  .svc-desc { color: var(--muted); font-size: 17px; }
-  .svc-from { text-align: right; white-space: nowrap; font: 600 32px/1 "Cormorant Garamond", serif; }
-  .svc-from small { display: block; margin-top: 8px; font: 300 14px/1.2 "Jost", sans-serif; color: var(--muted); }
-  .svc-from .opened, .svc[open] .svc-from .closed { display: none; }
-  .svc[open] .svc-from .opened { display: block; }
-  .svc-toggle { width: 52px; height: 52px; display: grid; place-items: center; border-radius: 50%; background: color-mix(in srgb, var(--accent) 14%, transparent); color: var(--accent); font-size: 22px; transition: transform .3s, background .3s, color .3s; }
-  .svc[open] .svc-toggle { transform: rotate(45deg); background: var(--accent); color: var(--accent-text); }
-  @media (hover: hover) {
-    .svc summary:hover { background: var(--panel); }
-    .svc summary:hover .svc-toggle { background: color-mix(in srgb, var(--accent) 26%, transparent); }
-    .svc[open] summary:hover .svc-toggle { background: var(--accent); }
-  }
-  .svc[open] summary { border-bottom: 1px solid var(--line); }
-  .svc-body { padding: 4px 14px 32px 106px; }
-  .svc[open] .svc-body { animation: svc-in .35s ease; }
-  @keyframes svc-in { from { opacity: 0; transform: translateY(-8px); } }
-  .svc-body h3 { margin: 26px 0 0; font: 500 22px/1.12 "Jost", sans-serif; }
-  .plist { margin: 0; }
-  .prow { display: grid; grid-template-columns: minmax(0, 1fr) auto; gap: 28px; padding: 18px 0; border-bottom: 1px solid var(--line); }
-  .prow:last-child { border-bottom: 0; }
-  .prow dt { font-size: 17px; font-weight: 400; line-height: 1.45; }
-  .prow dt small { display: block; margin-top: 4px; color: var(--muted); font-size: 14px; font-weight: 300; }
-  .prow dd { margin: 0; white-space: nowrap; font-size: 19px; font-weight: 500; }
-  .svc-note { margin: 20px 0; padding: 18px 20px; background: color-mix(in srgb, var(--accent) 10%, transparent); color: var(--muted); font-size: 15px; }
-  .svc-acts { display: flex; flex-wrap: wrap; align-items: center; gap: 16px 30px; margin-top: 25px; }
-  .svc-acts .btn { min-height: 54px; padding: 0 24px; font-size: 14px; }
-  .catalog-foot { display: flex; justify-content: space-between; align-items: flex-start; gap: 12px 48px; flex-wrap: wrap; padding-top: 24px; }
-  .catalog-foot p { margin: 0; color: var(--muted); font-size: 15px; }
-  .text-link { display: inline-flex; align-items: center; gap: 8px; font-size: 16px; text-decoration: underline; text-underline-offset: 5px; text-decoration-color: var(--line-2); transition: text-decoration-color .2s; }
-  .text-link:hover { text-decoration-color: var(--text); }
-  .text-link i { font-size: 18px; color: var(--accent); }
-
-  /* студия */
-  .studio-grid { display: grid; grid-template-columns: 5fr 7fr; gap: 64px; align-items: start; }
-  .studio-text p { margin: 22px 0 0; font-size: 20px; color: var(--muted); }
-  .studio-text p b { color: var(--text); font-weight: 400; }
-  .stats { margin-top: 40px; display: grid; grid-template-columns: 1fr 1fr; border-top: 1px solid var(--line); }
-  .stats div { padding: 22px 0; border-bottom: 1px solid var(--line); }
-  .stats div:nth-child(odd) { padding-right: 20px; border-right: 1px solid var(--line); }
-  .stats div:nth-child(even) { padding-left: 24px; }
-  .stats b { display: block; font: 600 44px/1 "Cormorant Garamond", serif; }
-  .stats span { color: var(--muted); font-size: 16px; }
-  .mosaic { display: grid; grid-template-columns: 1.2fr 1fr 1fr; grid-template-rows: 310px 310px; gap: 12px; }
-  .mosaic .zoom:first-child { grid-row: span 2; }
-  .zoom { position: relative; display: block; padding: 0; border: 0; background: var(--panel); cursor: zoom-in; overflow: hidden; }
-  .zoom img { width: 100%; height: 100%; object-fit: cover; transition: transform .6s cubic-bezier(.2,.7,.2,1); }
-  .zoom:hover img { transform: scale(1.04); }
-  .zoom .z { position: absolute; right: 12px; bottom: 12px; width: 40px; height: 40px; display: grid; place-items: center; background: rgba(0,0,0,.55); color: #fff; font-size: 20px; }
-
-  /* отзывы */
-  .rev-head { display: flex; align-items: flex-end; justify-content: space-between; gap: 24px; flex-wrap: wrap; margin-bottom: 44px; }
-  .score { display: flex; align-items: center; gap: 22px; }
-  .score b { font: 600 84px/1 "Cormorant Garamond", serif; }
-  .score .stars { color: #f2b636; font-size: 22px; letter-spacing: 2px; }
-  .score a { display: block; color: var(--muted); font-size: 16px; text-underline-offset: 4px; }
-  .reviews { display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; }
-  .review { margin: 0; background: var(--panel); border: 1px solid var(--line); padding: 34px 32px 30px; display: flex; flex-direction: column; gap: 22px; }
-  .review .q { font: 600 64px/.5 "Cormorant Garamond", serif; color: var(--accent); height: 26px; }
-  .review p { margin: 0; font-size: 19px; flex: 1; }
-  .review .who { display: flex; align-items: center; justify-content: space-between; gap: 12px; padding-top: 18px; border-top: 1px solid var(--line); color: var(--muted); font-size: 16px; }
-  .review .who b { color: var(--text); font-weight: 400; display: block; }
-  .review .stars { color: #f2b636; letter-spacing: 1px; font-size: 15px; }
-
-  /* контакты */
-  .contacts-grid { display: grid; grid-template-columns: 5fr 7fr; gap: 64px; align-items: stretch; }
-  .addr { margin: 26px 0 0; font: 500 38px/1.15 "Cormorant Garamond", serif; }
-  .lines { margin-top: 26px; display: grid; gap: 16px; }
-  .line { display: grid; grid-template-columns: 30px 1fr; gap: 14px; align-items: start; }
-  .line i { color: var(--accent); font-size: 24px; margin-top: 2px; }
-  .line a { text-decoration: none; }
-  .line small { display: block; color: var(--muted); font-size: 16px; }
-  .line small a { text-decoration: underline; text-underline-offset: 3px; }
-  .entrance { margin-top: 30px; display: grid; grid-template-columns: 150px 1fr; gap: 20px; align-items: center; text-align: left; width: 100%; background: var(--panel); border: 1px solid var(--line); padding: 12px; cursor: zoom-in; }
-  .entrance img { width: 150px; height: 120px; object-fit: cover; }
-  .entrance b { display: block; font-weight: 400; font-size: 19px; }
-  .entrance span { color: var(--muted); font-size: 16px; display: inline-flex; align-items: center; gap: 8px; }
-  .map { width: 100%; height: 100%; min-height: 520px; border: 0; background: var(--panel); display: block; }
-
-  footer.site { border-top: 1px solid var(--line); padding: 44px 0 120px; color: var(--muted); font-size: 16px; line-height: 1.8; }
-  footer.site .container { display: flex; justify-content: space-between; gap: 24px 48px; flex-wrap: wrap; }
-  footer.site b { color: var(--text); font-weight: 400; }
-  footer.site a { color: var(--text); }
-
-  /* увеличенное фото */
-  .lb { padding: 0; border: 0; background: transparent; max-width: 100vw; max-height: 100vh; width: 100vw; height: 100vh; }
-  .lb::backdrop { background: rgba(5,5,6,.92); }
-  .lb-in { position: relative; width: 100%; height: 100%; display: grid; place-items: center; padding: 70px 90px; }
-  .lb img { max-width: 100%; max-height: calc(100vh - 160px); object-fit: contain; }
-  .lb p { position: absolute; left: 0; right: 0; bottom: 24px; margin: 0; text-align: center; color: #d8d4cf; font-size: 17px; }
-  .lb button { position: absolute; background: rgba(255,255,255,.08); border: 1px solid rgba(255,255,255,.25); color: #fff; width: 58px; height: 58px; display: grid; place-items: center; font-size: 26px; cursor: pointer; }
-  .lb button[hidden] { display: none; }
-  .lb .x { top: 18px; right: 18px; }
-  .lb .prev { left: 18px; top: 50%; translate: 0 -50%; }
-  .lb .next { right: 18px; top: 50%; translate: 0 -50%; }
-
-  .bar { display: none; }
-  /* онлайн-запись студии (YCLIENTS) открывается окном поверх сайта */
-  .yc { padding: 0; border: 1px solid var(--line-2); background: var(--panel); color: var(--text); width: min(560px, 100vw); height: min(880px, 92vh); max-height: 92vh; }
-  .yc::backdrop { background: rgba(5,5,6,.75); }
-  .yc-in { height: 100%; display: flex; flex-direction: column; }
-  .yc-top { display: flex; align-items: center; justify-content: space-between; gap: 12px; padding: 12px 12px 12px 22px; border-bottom: 1px solid var(--line); }
-  .yc-top b { font: 500 26px/1.1 "Cormorant Garamond", serif; }
-  .yc-top small { display: block; color: var(--muted); font-size: 14px; }
-  .yc-x { flex: none; width: 46px; height: 46px; display: grid; place-items: center; background: none; border: 1px solid var(--line-2); color: var(--text); font-size: 22px; cursor: pointer; }
-  .yc-frame { position: relative; flex: 1; background: #fff; }
-  .yc-wait { position: absolute; inset: 0; margin: 0; display: grid; place-content: center; gap: 6px; padding: 0 24px; text-align: center; color: #6f6a65; font-size: 16px; }
-  .yc-wait a { color: #1b1214; }
-  .yc iframe { position: absolute; inset: 0; width: 100%; height: 100%; border: 0; opacity: 0; pointer-events: none; transition: opacity .3s; }
-  .yc iframe.ready { opacity: 1; pointer-events: auto; background: #fff; }
-  .swipe-hint { display: none; margin-top: 12px; color: var(--muted); font-size: 15px; }
-
-  @media (max-width: 1100px) {
-    header nav { display: none; }
-    .svc-name { font-size: 38px; }
-    .studio-grid, .contacts-grid { grid-template-columns: 1fr; gap: 44px; }
-    .reviews { grid-template-columns: 1fr 1fr; }
-  }
-  @media (max-width: 760px) {
-    body { font-size: 18px; }
-    .container { padding: 0 18px; }
-    section { padding: 72px 0; }
-    header .container { height: 66px; }
-    .brand .mark { width: 74px; height: 38px; }
-    .brand span { font-size: 12px; letter-spacing: .24em; }
-    .head-right .tel, header .btn { display: none; }
-    .hero { grid-template-columns: 1fr; min-height: 0; }
-    .hero-media { order: -1; justify-self: stretch; margin: 0; padding: 0; }
-    .frame { height: 38vh; min-height: 260px; width: 100%; aspect-ratio: auto; }
-    .frame::before { display: none; }
-    .pill { left: 12px; bottom: 12px; padding: 10px 14px; gap: 14px; }
-    .pill b { font-size: 26px; }
-    .pill small { font-size: 12px; }
-    .pill .sep { height: 34px; }
-    .dots { top: 14px; bottom: auto; right: 14px; }
-    .hero-text { padding: 28px 18px 50px; }
-    .hero-text .mark { display: none; }
-    .hero h1 { font-size: 44px; }
-    .hero .cta { margin-top: 26px; }
-    .hero .promo { margin-top: 28px; }
-    .hero .meta { flex-direction: column; gap: 6px; }
-    .hero .cta .btn { width: 100%; }
-    .hero .cta { gap: 18px; }
-    .hero .promo b { font-size: 40px; }
-    h2 { font-size: 42px; }
-    .svc summary { grid-template-columns: minmax(0, 1fr) 42px; gap: 10px 14px; min-height: 0; padding: 22px 0; }
-    .svc-num { display: none; }
-    .svc-name { font-size: 34px; }
-    .svc-desc { font-size: 15.5px; }
-    .svc-from { grid-column: 1; grid-row: 2; display: flex; align-items: baseline; gap: 14px; text-align: left; font-size: 27px; }
-    .svc-from small { margin: 0; font-size: 13px; }
-    .svc[open] .svc-from .opened { display: inline; }
-    .svc-toggle { grid-column: 2; grid-row: 1 / 3; width: 42px; height: 42px; font-size: 19px; }
-    .svc-body { padding: 5px 0 24px; }
-    .svc-body h3 { font-size: 21px; }
-    .prow { gap: 15px; padding: 16px 0; }
-    .prow dt { font-size: 16px; }
-    .prow dt small { font-size: 13px; }
-    .prow dd { font-size: 17px; }
-    .svc-note { padding: 15px; font-size: 14.5px; }
-    .svc-acts { flex-direction: column; align-items: flex-start; gap: 18px; }
-    .svc-acts .btn { width: 100%; }
-    .catalog-foot { flex-direction: column; }
-    .stats b { font-size: 38px; }
-    .mosaic { display: flex; overflow-x: auto; scroll-snap-type: x mandatory; scroll-padding: 0 18px; gap: 10px; margin: 0 -18px; padding: 0 18px; scrollbar-width: none; }
-    .mosaic .zoom { flex: 0 0 76%; height: 340px; scroll-snap-align: start; }
-    .swipe-hint { display: block; }
-    .rev-head { margin-bottom: 30px; }
-    .score b { font-size: 68px; }
-    .reviews { display: flex; overflow-x: auto; scroll-snap-type: x mandatory; scroll-padding: 0 18px; gap: 12px; margin: 0 -18px; padding: 0 18px; scrollbar-width: none; }
-    .review { flex: 0 0 86%; scroll-snap-align: start; padding: 26px 22px 22px; }
-    .addr { font-size: 32px; }
-    .entrance { grid-template-columns: 110px 1fr; }
-    .entrance img { width: 110px; height: 96px; }
-    .map { min-height: 340px; }
-    .lb-in { padding: 70px 10px 90px; }
-    .lb .prev, .lb .next { top: auto; bottom: 14px; translate: none; }
-    .lb .prev { left: 14px; } .lb .next { right: 14px; }
-    .lb p { bottom: 30px; padding: 0 84px; font-size: 15px; }
-    .bar { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; position: fixed; left: 0; right: 0; bottom: 0; z-index: 40; padding: 10px 12px calc(10px + env(safe-area-inset-bottom)); background: var(--bg); border-top: 1px solid var(--line); transform: translateY(110%); transition: transform .3s; }
-    .bar.on { transform: none; }
-    .bar .btn { min-height: 56px; padding: 0 10px; letter-spacing: .12em; font-size: 14px; }
-    .yc { width: 100vw; max-width: 100vw; height: 100vh; height: 100dvh; max-height: 100dvh; border: 0; }
-    .yc-top { padding-left: 18px; }
-  }
-  @media (prefers-reduced-motion: reduce) { html { scroll-behavior: auto; } .zoom img, .btn, .bar, .svc-toggle { transition: none; } .svc[open] .svc-body { animation: none; } }
+<html lang="ru-RU" data-theme="dark"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1"><title>Лазер Эксклюзив — студия красоты в Гатчине</title>
+<meta name='robots' content='noindex, nofollow' />
+<style id="wp-img-auto-sizes-contain-inline-css">
+img:is([sizes=auto i],[sizes^="auto," i]){contain-intrinsic-size:3000px 1500px}
+/*# sourceURL=wp-img-auto-sizes-contain-inline-css */
 </style>
-</head>
-<body>
+<style id="wp-block-library-inline-css">
+:root{--wp-block-synced-color:#7a00df;--wp-block-synced-color--rgb:122,0,223;--wp-bound-block-color:var(--wp-block-synced-color);--wp-editor-canvas-background:#ddd;--wp-admin-theme-color:#007cba;--wp-admin-theme-color--rgb:0,124,186;--wp-admin-theme-color-darker-10:#006ba1;--wp-admin-theme-color-darker-10--rgb:0,107,160.5;--wp-admin-theme-color-darker-20:#005a87;--wp-admin-theme-color-darker-20--rgb:0,90,135;--wp-admin-border-width-focus:2px}@media (min-resolution:192dpi){:root{--wp-admin-border-width-focus:1.5px}}.wp-element-button{cursor:pointer}:root .has-very-light-gray-background-color{background-color:#eee}:root .has-very-dark-gray-background-color{background-color:#313131}:root .has-very-light-gray-color{color:#eee}:root .has-very-dark-gray-color{color:#313131}:root .has-vivid-green-cyan-to-vivid-cyan-blue-gradient-background{background:linear-gradient(135deg,#00d084,#0693e3)}:root .has-purple-crush-gradient-background{background:linear-gradient(135deg,#34e2e4,#4721fb 50%,#ab1dfe)}:root .has-hazy-dawn-gradient-background{background:linear-gradient(135deg,#faaca8,#dad0ec)}:root .has-subdued-olive-gradient-background{background:linear-gradient(135deg,#fafae1,#67a671)}:root .has-atomic-cream-gradient-background{background:linear-gradient(135deg,#fdd79a,#004a59)}:root .has-nightshade-gradient-background{background:linear-gradient(135deg,#330968,#31cdcf)}:root .has-midnight-gradient-background{background:linear-gradient(135deg,#020381,#2874fc)}:root{--wp--preset--font-size--normal:16px;--wp--preset--font-size--huge:42px}.has-regular-font-size{font-size:1em}.has-larger-font-size{font-size:2.625em}.has-normal-font-size{font-size:var(--wp--preset--font-size--normal)}.has-huge-font-size{font-size:var(--wp--preset--font-size--huge)}:root .has-text-align-center{text-align:center}:root .has-text-align-left{text-align:left}:root .has-text-align-right{text-align:right}.has-fit-text{white-space:nowrap!important}#end-resizable-editor-section{display:none}.aligncenter{clear:both}.items-justified-left{justify-content:flex-start}.items-justified-center{justify-content:center}.items-justified-right{justify-content:flex-end}.items-justified-space-between{justify-content:space-between}.screen-reader-text{word-wrap:normal!important;border:0;clip-path:inset(50%);height:1px;margin:-1px;overflow:hidden;padding:0;position:absolute;width:1px;word-break:normal!important}.screen-reader-text:focus{background-color:#ddd;clip-path:none;color:#444;display:block;font-size:1em;height:auto;left:5px;line-height:normal;padding:15px 23px 14px;text-decoration:none;top:5px;width:auto;z-index:100000}html :where(.has-border-color){border-style:solid}html :where([style^=border-color],[style*=";border-color"],[style*="; border-color"]){border-style:solid}html :where([style^=border-top-color],[style*=";border-top-color"],[style*="; border-top-color"]){border-top-style:solid}html :where([style^=border-right-color],[style*=";border-right-color"],[style*="; border-right-color"]){border-right-style:solid}html :where([style^=border-bottom-color],[style*=";border-bottom-color"],[style*="; border-bottom-color"]){border-bottom-style:solid}html :where([style^=border-left-color],[style*=";border-left-color"],[style*="; border-left-color"]){border-left-style:solid}html :where([style^=border-width],[style*=";border-width"],[style*="; border-width"]){border-style:solid}html :where([style^=border-top-width],[style*=";border-top-width"],[style*="; border-top-width"]){border-top-style:solid}html :where([style^=border-right-width],[style*=";border-right-width"],[style*="; border-right-width"]){border-right-style:solid}html :where([style^=border-bottom-width],[style*=";border-bottom-width"],[style*="; border-bottom-width"]){border-bottom-style:solid}html :where([style^=border-left-width],[style*=";border-left-width"],[style*="; border-left-width"]){border-left-style:solid}html :where(img[class*=wp-image-]){height:auto;max-width:100%}:where(figure){margin:0 0 1em}html :where(.is-position-sticky){--wp-admin--admin-bar--position-offset:var(--wp-admin--admin-bar--height,0px)}@media screen and (max-width:600px){html :where(.is-position-sticky){--wp-admin--admin-bar--position-offset:0px}}
 
-<div class="concept">
-  <div class="container">
-    <span><b>Концепт</b> сайта для Laser Exclusive от Евгения Афонина. Фото и отзывы - из вашей карточки на Яндекс Картах, цены - из вашей онлайн-записи.</span>
-    <span class="theme" role="group" aria-label="Цвет сайта"><button type="button" data-set="dark" aria-pressed="true">Темный</button><button type="button" data-set="light" aria-pressed="false">Светлый</button></span>
-  </div>
-</div>
+/*# sourceURL=/wp-includes/css/dist/block-library/common.min.css */
+</style>
+<style id="classic-theme-styles-inline-css">
+/*! This file is auto-generated */
+.wp-block-button__link{color:#fff;background-color:#32373c;border-radius:9999px;box-shadow:none;text-decoration:none;padding:calc(.667em + 2px) calc(1.333em + 2px);font-size:1.125em}.wp-block-file__button{background:#32373c;color:#fff;text-decoration:none}
+/*# sourceURL=/wp-includes/css/classic-themes.min.css */
+</style>
+
+<style id="global-styles-inline-css">
+:root{--wp--preset--aspect-ratio--square: 1;--wp--preset--aspect-ratio--4-3: 4/3;--wp--preset--aspect-ratio--3-4: 3/4;--wp--preset--aspect-ratio--3-2: 3/2;--wp--preset--aspect-ratio--2-3: 2/3;--wp--preset--aspect-ratio--16-9: 16/9;--wp--preset--aspect-ratio--9-16: 9/16;--wp--preset--color--black: #000000;--wp--preset--color--cyan-bluish-gray: #abb8c3;--wp--preset--color--white: #ffffff;--wp--preset--color--pale-pink: #f78da7;--wp--preset--color--vivid-red: #cf2e2e;--wp--preset--color--luminous-vivid-orange: #ff6900;--wp--preset--color--luminous-vivid-amber: #fcb900;--wp--preset--color--light-green-cyan: #7bdcb5;--wp--preset--color--vivid-green-cyan: #00d084;--wp--preset--color--pale-cyan-blue: #8ed1fc;--wp--preset--color--vivid-cyan-blue: #0693e3;--wp--preset--color--vivid-purple: #9b51e0;--wp--preset--gradient--vivid-cyan-blue-to-vivid-purple: linear-gradient(135deg,rgb(6,147,227) 0%,rgb(155,81,224) 100%);--wp--preset--gradient--light-green-cyan-to-vivid-green-cyan: linear-gradient(135deg,rgb(122,220,180) 0%,rgb(0,208,130) 100%);--wp--preset--gradient--luminous-vivid-amber-to-luminous-vivid-orange: linear-gradient(135deg,rgb(252,185,0) 0%,rgb(255,105,0) 100%);--wp--preset--gradient--luminous-vivid-orange-to-vivid-red: linear-gradient(135deg,rgb(255,105,0) 0%,rgb(207,46,46) 100%);--wp--preset--gradient--very-light-gray-to-cyan-bluish-gray: linear-gradient(135deg,rgb(238,238,238) 0%,rgb(169,184,195) 100%);--wp--preset--gradient--cool-to-warm-spectrum: linear-gradient(135deg,rgb(74,234,220) 0%,rgb(151,120,209) 20%,rgb(207,42,186) 40%,rgb(238,44,130) 60%,rgb(251,105,98) 80%,rgb(254,248,76) 100%);--wp--preset--gradient--blush-light-purple: linear-gradient(135deg,rgb(255,206,236) 0%,rgb(152,150,240) 100%);--wp--preset--gradient--blush-bordeaux: linear-gradient(135deg,rgb(254,205,165) 0%,rgb(254,45,45) 50%,rgb(107,0,62) 100%);--wp--preset--gradient--luminous-dusk: linear-gradient(135deg,rgb(255,203,112) 0%,rgb(199,81,192) 50%,rgb(65,88,208) 100%);--wp--preset--gradient--pale-ocean: linear-gradient(135deg,rgb(255,245,203) 0%,rgb(182,227,212) 50%,rgb(51,167,181) 100%);--wp--preset--gradient--electric-grass: linear-gradient(135deg,rgb(202,248,128) 0%,rgb(113,206,126) 100%);--wp--preset--gradient--midnight: linear-gradient(135deg,rgb(2,3,129) 0%,rgb(40,116,252) 100%);--wp--preset--font-size--small: 13px;--wp--preset--font-size--medium: 20px;--wp--preset--font-size--large: 36px;--wp--preset--font-size--x-large: 42px;--wp--preset--spacing--20: 0.44rem;--wp--preset--spacing--30: 0.67rem;--wp--preset--spacing--40: 1rem;--wp--preset--spacing--50: 1.5rem;--wp--preset--spacing--60: 2.25rem;--wp--preset--spacing--70: 3.38rem;--wp--preset--spacing--80: 5.06rem;--wp--preset--shadow--natural: 6px 6px 9px rgba(0, 0, 0, 0.2);--wp--preset--shadow--deep: 12px 12px 50px rgba(0, 0, 0, 0.4);--wp--preset--shadow--sharp: 6px 6px 0px rgba(0, 0, 0, 0.2);--wp--preset--shadow--outlined: 6px 6px 0px -3px rgb(255, 255, 255), 6px 6px rgb(0, 0, 0);--wp--preset--shadow--crisp: 6px 6px 0px rgb(0, 0, 0);}.wp-block-button{--wp--preset--dimension--25: 25%;--wp--preset--dimension--50: 50%;--wp--preset--dimension--75: 75%;--wp--preset--dimension--100: 100%;}:where(body) { margin: 0; }:where(.is-layout-flex){gap: 0.5em;}:where(.is-layout-grid){gap: 0.5em;}body .is-layout-flex{display: flex;}.is-layout-flex{flex-wrap: wrap;align-items: center;}.is-layout-flex > :is(*, div){margin: 0;}body .is-layout-grid{display: grid;}.is-layout-grid > :is(*, div){margin: 0;}body{padding-top: 0px;padding-right: 0px;padding-bottom: 0px;padding-left: 0px;}:root :where(.wp-element-button, .wp-block-button__link){background-color: #32373c;border-width: 0;color: #fff;font-family: inherit;font-size: inherit;font-style: inherit;font-weight: inherit;letter-spacing: inherit;line-height: inherit;padding-top: calc(0.667em + 2px);padding-right: calc(1.333em + 2px);padding-bottom: calc(0.667em + 2px);padding-left: calc(1.333em + 2px);text-decoration: none;text-transform: inherit;}.has-black-color{color: var(--wp--preset--color--black) !important;}.has-cyan-bluish-gray-color{color: var(--wp--preset--color--cyan-bluish-gray) !important;}.has-white-color{color: var(--wp--preset--color--white) !important;}.has-pale-pink-color{color: var(--wp--preset--color--pale-pink) !important;}.has-vivid-red-color{color: var(--wp--preset--color--vivid-red) !important;}.has-luminous-vivid-orange-color{color: var(--wp--preset--color--luminous-vivid-orange) !important;}.has-luminous-vivid-amber-color{color: var(--wp--preset--color--luminous-vivid-amber) !important;}.has-light-green-cyan-color{color: var(--wp--preset--color--light-green-cyan) !important;}.has-vivid-green-cyan-color{color: var(--wp--preset--color--vivid-green-cyan) !important;}.has-pale-cyan-blue-color{color: var(--wp--preset--color--pale-cyan-blue) !important;}.has-vivid-cyan-blue-color{color: var(--wp--preset--color--vivid-cyan-blue) !important;}.has-vivid-purple-color{color: var(--wp--preset--color--vivid-purple) !important;}.has-black-background-color{background-color: var(--wp--preset--color--black) !important;}.has-cyan-bluish-gray-background-color{background-color: var(--wp--preset--color--cyan-bluish-gray) !important;}.has-white-background-color{background-color: var(--wp--preset--color--white) !important;}.has-pale-pink-background-color{background-color: var(--wp--preset--color--pale-pink) !important;}.has-vivid-red-background-color{background-color: var(--wp--preset--color--vivid-red) !important;}.has-luminous-vivid-orange-background-color{background-color: var(--wp--preset--color--luminous-vivid-orange) !important;}.has-luminous-vivid-amber-background-color{background-color: var(--wp--preset--color--luminous-vivid-amber) !important;}.has-light-green-cyan-background-color{background-color: var(--wp--preset--color--light-green-cyan) !important;}.has-vivid-green-cyan-background-color{background-color: var(--wp--preset--color--vivid-green-cyan) !important;}.has-pale-cyan-blue-background-color{background-color: var(--wp--preset--color--pale-cyan-blue) !important;}.has-vivid-cyan-blue-background-color{background-color: var(--wp--preset--color--vivid-cyan-blue) !important;}.has-vivid-purple-background-color{background-color: var(--wp--preset--color--vivid-purple) !important;}.has-black-border-color{border-color: var(--wp--preset--color--black) !important;}.has-cyan-bluish-gray-border-color{border-color: var(--wp--preset--color--cyan-bluish-gray) !important;}.has-white-border-color{border-color: var(--wp--preset--color--white) !important;}.has-pale-pink-border-color{border-color: var(--wp--preset--color--pale-pink) !important;}.has-vivid-red-border-color{border-color: var(--wp--preset--color--vivid-red) !important;}.has-luminous-vivid-orange-border-color{border-color: var(--wp--preset--color--luminous-vivid-orange) !important;}.has-luminous-vivid-amber-border-color{border-color: var(--wp--preset--color--luminous-vivid-amber) !important;}.has-light-green-cyan-border-color{border-color: var(--wp--preset--color--light-green-cyan) !important;}.has-vivid-green-cyan-border-color{border-color: var(--wp--preset--color--vivid-green-cyan) !important;}.has-pale-cyan-blue-border-color{border-color: var(--wp--preset--color--pale-cyan-blue) !important;}.has-vivid-cyan-blue-border-color{border-color: var(--wp--preset--color--vivid-cyan-blue) !important;}.has-vivid-purple-border-color{border-color: var(--wp--preset--color--vivid-purple) !important;}.has-vivid-cyan-blue-to-vivid-purple-gradient-background{background: var(--wp--preset--gradient--vivid-cyan-blue-to-vivid-purple) !important;}.has-light-green-cyan-to-vivid-green-cyan-gradient-background{background: var(--wp--preset--gradient--light-green-cyan-to-vivid-green-cyan) !important;}.has-luminous-vivid-amber-to-luminous-vivid-orange-gradient-background{background: var(--wp--preset--gradient--luminous-vivid-amber-to-luminous-vivid-orange) !important;}.has-luminous-vivid-orange-to-vivid-red-gradient-background{background: var(--wp--preset--gradient--luminous-vivid-orange-to-vivid-red) !important;}.has-very-light-gray-to-cyan-bluish-gray-gradient-background{background: var(--wp--preset--gradient--very-light-gray-to-cyan-bluish-gray) !important;}.has-cool-to-warm-spectrum-gradient-background{background: var(--wp--preset--gradient--cool-to-warm-spectrum) !important;}.has-blush-light-purple-gradient-background{background: var(--wp--preset--gradient--blush-light-purple) !important;}.has-blush-bordeaux-gradient-background{background: var(--wp--preset--gradient--blush-bordeaux) !important;}.has-luminous-dusk-gradient-background{background: var(--wp--preset--gradient--luminous-dusk) !important;}.has-pale-ocean-gradient-background{background: var(--wp--preset--gradient--pale-ocean) !important;}.has-electric-grass-gradient-background{background: var(--wp--preset--gradient--electric-grass) !important;}.has-midnight-gradient-background{background: var(--wp--preset--gradient--midnight) !important;}.has-small-font-size{font-size: var(--wp--preset--font-size--small) !important;}.has-medium-font-size{font-size: var(--wp--preset--font-size--medium) !important;}.has-large-font-size{font-size: var(--wp--preset--font-size--large) !important;}.has-x-large-font-size{font-size: var(--wp--preset--font-size--x-large) !important;}
+/*# sourceURL=global-styles-inline-css */
+</style>
+
+<link rel='stylesheet' id='mirada-css' href='./wp-content/themes/mirada/style.css' media='all' />
+<meta name="generator" content="WordPress 7.1.3" />
+<link rel="icon" type="image/png" sizes="32x32" href="./wp-content/themes/mirada/assets/brand/mira-icon-32.png"><link rel="apple-touch-icon" sizes="180x180" href="./wp-content/themes/mirada/assets/brand/mira-icon-180.png"><meta name="description" content="Студия красоты «Лазер Эксклюзив» в Гатчине: лазерная эпиляция, маникюр, педикюр, ресницы и брови. Услуги, цены и онлайн-запись. Соборная улица, 15."><meta property="og:title" content="Лазер Эксклюзив — студия красоты в Гатчине"><meta property="og:type" content="website"><meta property="og:description" content="Студия красоты «Лазер Эксклюзив» в Гатчине: лазерная эпиляция, маникюр, педикюр, ресницы и брови. Услуги, цены и онлайн-запись. Соборная улица, 15."><meta property="og:image" content="./wp-content/themes/mirada/assets/photos/photo-eb59cf0b9e22703a.jpg"><script type="application/ld+json">{"@context":"https:\/\/schema.org","@type":"BeautySalon","name":"\u041b\u0430\u0437\u0435\u0440 \u042d\u043a\u0441\u043a\u043b\u044e\u0437\u0438\u0432","telephone":"+7 931 383-55-51","address":"\u0413\u0430\u0442\u0447\u0438\u043d\u0430, \u0421\u043e\u0431\u043e\u0440\u043d\u0430\u044f \u0443\u043b\u0438\u0446\u0430, 15"}</script></head>
+<body class="home blog wp-theme-mirada">
+
+<a class="skip-link" href="#top">Перейти к содержимому</a>
 
 <header>
   <div class="container">
-    <a class="brand" href="#top"><img class="mark" src="https://avatars.mds.yandex.net/get-altay/9724410/2a000001893ef7aff8e5a7a42fb245014613/L" alt=""><span>Laser Exclusive</span></a>
+    <a class="brand" href="#top" aria-label="Студия красоты «Лазер Эксклюзив», на главную"><span>Лазер Эксклюзив</span></a>
     <nav aria-label="Разделы"><a href="#prices">Цены</a><a href="#studio">Студия</a><a href="#reviews">Отзывы</a><a href="#contacts">Контакты</a></nav>
-    <div class="head-right">
+    <details class="mobile-nav"><summary>Меню</summary><nav aria-label="Меню разделов"><a href="#prices">Услуги и цены</a><a href="#studio">Студия</a><a href="#reviews">Отзывы</a><a href="#contacts">Контакты</a></nav></details>
+    <div class="head-right"><div class="theme" role="group" aria-label="Цвет сайта"><button type="button" data-set="dark" aria-pressed="true">Тёмная</button><button type="button" data-set="light" aria-pressed="false">Светлая</button></div>
       <a class="tel" href="tel:+79313835551">+7 931 383-55-51</a>
-      <a class="btn" href="https://n1881606.yclients.com/company/1663644/personal/select-services?o=" target="_blank" rel="noopener" data-yc>Записаться</a>
+      <a class="btn" href="https://n1881606.yclients.ru/company/1663644/personal/select-services?o=" target="_blank" rel="noopener" data-yc="">Записаться</a>
     </div>
   </div>
 </header>
 
-<main id="top">
+<main id="top" tabindex="-1">
 
-  <section class="hero" aria-label="Laser Exclusive">
+  <section class="hero" aria-label="Студия красоты «Лазер Эксклюзив»">
     <div class="hero-text">
-      <img class="mark" src="https://avatars.mds.yandex.net/get-altay/9724410/2a000001893ef7aff8e5a7a42fb245014613/XL" alt="Знак студии Laser Exclusive">
-      <p class="eyebrow caps">Студия красоты в Гатчине</p>
-      <h1 class="serif">Лазерная эпиляция <em>и&nbsp;красота</em></h1>
-      <p class="meta"><span><i class="ph-light ph-map-pin"></i>Соборная, 15, вход со двора</span><span><i class="ph-light ph-clock"></i>Ежедневно с 9 до 21</span></p>
+      
+      <h1 class="serif">Студия красоты<br />
+в Гатчине</h1><p class="hero-intro">Лазерная эпиляция, маникюр, педикюр, ресницы и брови.</p>
+      <p class="meta"><span>Соборная, 15, вход со двора</span><span>С 10:00 до 21:00</span></p>
       <div class="cta">
-        <a class="btn" href="https://n1881606.yclients.com/company/1663644/personal/select-services?o=" target="_blank" rel="noopener" data-yc><i class="ph-light ph-calendar-check"></i>Записаться</a>
-        <a class="tel" href="tel:+79313835551">+7 931 383-55-51</a>
+        <a class="btn" href="https://n1881606.yclients.ru/company/1663644/personal/select-services?o=" target="_blank" rel="noopener" data-yc=""><svg class="icon" aria-hidden="true" focusable="false" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 256 256" fill="currentColor"><path d="M208,34H182V24a6,6,0,0,0-12,0V34H86V24a6,6,0,0,0-12,0V34H48A14,14,0,0,0,34,48V208a14,14,0,0,0,14,14H208a14,14,0,0,0,14-14V48A14,14,0,0,0,208,34ZM48,46H74V56a6,6,0,0,0,12,0V46h84V56a6,6,0,0,0,12,0V46h26a2,2,0,0,1,2,2V82H46V48A2,2,0,0,1,48,46ZM208,210H48a2,2,0,0,1-2-2V94H210V208A2,2,0,0,1,208,210Zm-39.76-86.24a6,6,0,0,1,0,8.48l-48,48a6,6,0,0,1-8.48,0l-24-24a6,6,0,0,1,8.48-8.48L116,167.51l43.76-43.75A6,6,0,0,1,168.24,123.76Z"></path></svg>Записаться</a>
+        <a class="btn ghost" href="tel:+79313835551">Позвонить</a>
       </div>
-      <div class="promo"><b>−30%</b><span>новым клиентам на лазерную эпиляцию отдельных зон</span></div>
+      <div class="promo"><b>−30%</b><span>новым клиентам на отдельные зоны лазерной эпиляции<small>На комплексы акция не распространяется.</small></span></div>
     </div>
     <div class="hero-media">
       <div class="frame">
-        <div class="slides">
-          <img class="on" src="https://avatars.mds.yandex.net/get-altay/16965486/2a000001999936eadddb16e34b5a0a79282e/XXXL" alt="Мастер проводит процедуру лазерной эпиляции" fetchpriority="high">
-          <img src="https://avatars.mds.yandex.net/get-altay/16416536/2a000001999935e39ad7a23c7dd29d4df58d/XXXL" alt="Мастер у аппарата для лазерной эпиляции" decoding="async">
-          <img src="https://avatars.mds.yandex.net/get-altay/20011141/2a0000019d0648cdfbb19a5df575e6a544ac/XXXL" alt="Зал студии" decoding="async">
-          <img src="https://avatars.mds.yandex.net/get-altay/16478002/2a0000019aa81eb1c40ce87b0d4147b895b2/XXXL" alt="Маникюр нюдового оттенка" decoding="async">
-        </div>
-        <div class="dots" aria-hidden="true"><span class="on"></span><span></span><span></span><span></span></div>
+        <div class="slides"><img class="on" src="./wp-content/themes/mirada/assets/photos/photo-eb59cf0b9e22703a.jpg" alt="Маникюрный зал" fetchpriority="high"><img class="" src="./wp-content/themes/mirada/assets/photos/photo-866f21301a630637.jpg" alt="Маникюр нюдового оттенка" decoding="async"><img class="" src="./wp-content/themes/mirada/assets/photos/photo-7881c48edf9456de.jpg" alt="Кабинет лазерной эпиляции" decoding="async"><img class="" src="./wp-content/themes/mirada/assets/photos/photo-9f95c23bedebd68a.jpg" alt="Маникюр с красным покрытием" decoding="async"></div>
+        <button class="slide-pause" type="button" aria-pressed="false">Остановить фото</button><div class="dots" aria-hidden="true"><span class="on"></span><span class=""></span><span class=""></span><span class=""></span></div>
       </div>
-      <div class="pill">
-        <div><b>5,0</b><span class="stars" aria-label="5 из 5">★★★★★</span><small>104 отзыва на Яндекс Картах</small></div>
-        <span class="sep" aria-hidden="true"></span>
-        <div><b>2026</b><small>Хорошее место<br>Яндекс Карт</small></div>
-      </div>
+      <div class="pill"><div><b>5,0</b><small><a href="https://yandex.ru/maps/org/200613950557/reviews/" target="_blank" rel="noopener">Отзывы на Яндекс Картах</a></small></div><span class="sep" aria-hidden="true"></span><div><b>2026</b><small>Хорошее место<br>Яндекс Карт</small></div></div>
     </div>
   </section>
 
@@ -361,112 +69,20 @@
         <div><p class="eyebrow caps">Цены</p><h2 id="prices-h" class="serif">Услуги <em>и цены</em></h2></div>
         <p class="side">Выберите направление, чтобы посмотреть услуги и цены.</p>
       </div>
-      <div class="catalog">
-        <details class="svc" id="laser">
-          <summary>
-            <span class="svc-num" aria-hidden="true">01</span>
-            <span class="svc-head"><span class="svc-name serif">Лазерная эпиляция</span><span class="svc-desc">Отдельные зоны и комплексы</span></span>
-            <span class="svc-from">от&nbsp;400&nbsp;₽<small class="closed">Смотреть цены</small><small class="opened">Свернуть</small></span>
-            <span class="svc-toggle" aria-hidden="true"><i class="ph-light ph-plus"></i></span>
-          </summary>
-          <div class="svc-body">
-<dl class="plist">
-<div class="prow"><dt>Линия живота<small>5 минут</small></dt><dd>400&nbsp;₽</dd></div>
-<div class="prow"><dt>Одна зона лица<small>10 минут</small></dt><dd>600&nbsp;₽</dd></div>
-<div class="prow"><dt>Подмышечные впадины<small>15 минут</small></dt><dd>800&nbsp;₽</dd></div>
-<div class="prow"><dt>Бикини классическое<small>15 минут</small></dt><dd>1&nbsp;100&nbsp;₽</dd></div>
-<div class="prow"><dt>Бикини тотальное<small>15 минут</small></dt><dd>2&nbsp;200&nbsp;₽</dd></div>
-<div class="prow"><dt>Голени с коленями<small>25 минут</small></dt><dd>1&nbsp;700&nbsp;₽</dd></div>
-<div class="prow"><dt>Ноги полностью<small>30 минут</small></dt><dd>2&nbsp;600&nbsp;₽</dd></div>
-<div class="prow"><dt>Руки полностью<small>20 минут</small></dt><dd>1&nbsp;600&nbsp;₽</dd></div>
-</dl>
-<h3>Комплексы</h3>
-<dl class="plist">
-<div class="prow"><dt>Голени с коленями + подмышки<small>30 минут</small></dt><dd>2&nbsp;000&nbsp;₽</dd></div>
-<div class="prow"><dt>Тотальное бикини + подмышки<small>30 минут</small></dt><dd>2&nbsp;400&nbsp;₽</dd></div>
-<div class="prow"><dt>Голени + тотальное бикини + подмышки<small>45 минут</small></dt><dd>3&nbsp;750&nbsp;₽</dd></div>
-<div class="prow"><dt>Ноги полностью + тотальное бикини + подмышки<small>1 час</small></dt><dd>4&nbsp;450&nbsp;₽</dd></div>
-</dl>
-<p class="svc-note">У лазерной эпиляции есть противопоказания. Перед записью уточните у специалиста подготовку и возможность проведения процедуры.</p>
-<div class="svc-acts"><a class="btn" href="https://n1881606.yclients.com/company/1663644/personal/select-services?o=" target="_blank" rel="noopener" data-yc><i class="ph-light ph-calendar-check"></i>Выбрать время</a><a class="text-link" href="https://n1881606.yclients.com/company/1663644/personal/select-services?o=" target="_blank" rel="noopener" data-yc>Полный прайс в YCLIENTS<i class="ph-light ph-arrow-up-right"></i></a></div>
-          </div>
-        </details>
-        <details class="svc" id="manicure">
-          <summary>
-            <span class="svc-num" aria-hidden="true">02</span>
-            <span class="svc-head"><span class="svc-name serif">Маникюр</span><span class="svc-desc">Без покрытия, с гель-лаком или дизайном</span></span>
-            <span class="svc-from">от&nbsp;1&nbsp;200&nbsp;₽<small class="closed">Смотреть цены</small><small class="opened">Свернуть</small></span>
-            <span class="svc-toggle" aria-hidden="true"><i class="ph-light ph-plus"></i></span>
-          </summary>
-          <div class="svc-body">
-<dl class="plist">
-<div class="prow"><dt>Комбинированный маникюр без покрытия<small>1 час</small></dt><dd>1&nbsp;200&nbsp;₽</dd></div>
-<div class="prow"><dt>Снятие, маникюр с укреплением и покрытием<small>1 час 30 минут</small></dt><dd>1&nbsp;900&nbsp;₽</dd></div>
-<div class="prow"><dt>Снятие покрытия другого мастера, маникюр с укреплением и покрытием<small>1 час 30 минут</small></dt><dd>2&nbsp;100&nbsp;₽</dd></div>
-<div class="prow"><dt>Френч<small>Дополнение к маникюру</small></dt><dd>500&nbsp;₽</dd></div>
-<div class="prow"><dt>Дизайн<small>Фольга, стемпинг, втирка, слайдеры</small></dt><dd>50–500&nbsp;₽</dd></div>
-<div class="prow"><dt>Снятие гель-лака без покрытия<small>10 минут</small></dt><dd>500&nbsp;₽</dd></div>
-</dl>
-<div class="svc-acts"><a class="btn" href="https://n1881606.yclients.com/company/1663644/personal/select-services?o=" target="_blank" rel="noopener" data-yc><i class="ph-light ph-calendar-check"></i>Выбрать время</a><a class="text-link" href="https://n1881606.yclients.com/company/1663644/personal/select-services?o=" target="_blank" rel="noopener" data-yc>Полный прайс в YCLIENTS<i class="ph-light ph-arrow-up-right"></i></a></div>
-          </div>
-        </details>
-        <details class="svc" id="pedicure">
-          <summary>
-            <span class="svc-num" aria-hidden="true">03</span>
-            <span class="svc-head"><span class="svc-name serif">Педикюр</span><span class="svc-desc">Обработка стоп и пальцев, покрытие</span></span>
-            <span class="svc-from">от&nbsp;1&nbsp;300&nbsp;₽<small class="closed">Смотреть цены</small><small class="opened">Свернуть</small></span>
-            <span class="svc-toggle" aria-hidden="true"><i class="ph-light ph-plus"></i></span>
-          </summary>
-          <div class="svc-body">
-<dl class="plist">
-<div class="prow"><dt>Экспресс-педикюр<small>Только пальцы · 30 минут</small></dt><dd>1&nbsp;300&nbsp;₽</dd></div>
-<div class="prow"><dt>Педикюр<small>Стопы и пальцы · 1 час</small></dt><dd>1&nbsp;900&nbsp;₽</dd></div>
-<div class="prow"><dt>Экспресс-педикюр с покрытием<small>1 час 25 минут</small></dt><dd>2&nbsp;300&nbsp;₽</dd></div>
-<div class="prow"><dt>Smart-педикюр с покрытием<small>1 час 30 минут</small></dt><dd>2&nbsp;600&nbsp;₽</dd></div>
-<div class="prow"><dt>Снятие гель-лака без покрытия<small>15 минут</small></dt><dd>500&nbsp;₽</dd></div>
-</dl>
-<div class="svc-acts"><a class="btn" href="https://n1881606.yclients.com/company/1663644/personal/select-services?o=" target="_blank" rel="noopener" data-yc><i class="ph-light ph-calendar-check"></i>Выбрать время</a><a class="text-link" href="https://n1881606.yclients.com/company/1663644/personal/select-services?o=" target="_blank" rel="noopener" data-yc>Полный прайс в YCLIENTS<i class="ph-light ph-arrow-up-right"></i></a></div>
-          </div>
-        </details>
-        <details class="svc" id="lashes">
-          <summary>
-            <span class="svc-num" aria-hidden="true">04</span>
-            <span class="svc-head"><span class="svc-name serif">Ресницы</span><span class="svc-desc">Наращивание, ламинирование и окрашивание</span></span>
-            <span class="svc-from">от&nbsp;600&nbsp;₽<small class="closed">Смотреть цены</small><small class="opened">Свернуть</small></span>
-            <span class="svc-toggle" aria-hidden="true"><i class="ph-light ph-plus"></i></span>
-          </summary>
-          <div class="svc-body">
-<dl class="plist">
-<div class="prow"><dt>Окрашивание ресниц<small>30 минут</small></dt><dd>600&nbsp;₽</dd></div>
-<div class="prow"><dt>Ламинирование ресниц<small>1 час</small></dt><dd>1&nbsp;800&nbsp;₽</dd></div>
-<div class="prow"><dt>Наращивание ресниц: классика<small>1 час 30 минут</small></dt><dd>2&nbsp;200&nbsp;₽</dd></div>
-<div class="prow"><dt>Наращивание ресниц: 1,5D<small>2 часа</small></dt><dd>2&nbsp;400&nbsp;₽</dd></div>
-<div class="prow"><dt>Наращивание ресниц: 2D<small>2 часа</small></dt><dd>2&nbsp;600&nbsp;₽</dd></div>
-<div class="prow"><dt>Наращивание ресниц: 3D<small>2 часа 30 минут</small></dt><dd>2&nbsp;800&nbsp;₽</dd></div>
-</dl>
-<div class="svc-acts"><a class="btn" href="https://n1881606.yclients.com/company/1663644/personal/select-services?o=" target="_blank" rel="noopener" data-yc><i class="ph-light ph-calendar-check"></i>Выбрать время</a><a class="text-link" href="https://n1881606.yclients.com/company/1663644/personal/select-services?o=" target="_blank" rel="noopener" data-yc>Полный прайс в YCLIENTS<i class="ph-light ph-arrow-up-right"></i></a></div>
-          </div>
-        </details>
-        <details class="svc" id="brows">
-          <summary>
-            <span class="svc-num" aria-hidden="true">05</span>
-            <span class="svc-head"><span class="svc-name serif">Брови</span><span class="svc-desc">Форма, цвет и ламинирование</span></span>
-            <span class="svc-from">от&nbsp;700&nbsp;₽<small class="closed">Смотреть цены</small><small class="opened">Свернуть</small></span>
-            <span class="svc-toggle" aria-hidden="true"><i class="ph-light ph-plus"></i></span>
-          </summary>
-          <div class="svc-body">
-<dl class="plist">
-<div class="prow"><dt>Моделирование бровей воском<small>40 минут</small></dt><dd>700&nbsp;₽</dd></div>
-<div class="prow"><dt>Окрашивание бровей<small>30 минут</small></dt><dd>700&nbsp;₽</dd></div>
-<div class="prow"><dt>Ламинирование бровей<small>30 минут</small></dt><dd>1&nbsp;800&nbsp;₽</dd></div>
-</dl>
-<div class="svc-acts"><a class="btn" href="https://n1881606.yclients.com/company/1663644/personal/select-services?o=" target="_blank" rel="noopener" data-yc><i class="ph-light ph-calendar-check"></i>Выбрать время</a><a class="text-link" href="https://n1881606.yclients.com/company/1663644/personal/select-services?o=" target="_blank" rel="noopener" data-yc>Полный прайс в YCLIENTS<i class="ph-light ph-arrow-up-right"></i></a></div>
-          </div>
-        </details>
-      </div>
+      <div class="catalog">    <details class="svc" id="laser"><summary><span class="svc-num" aria-hidden="true">01</span><span class="svc-head"><span class="svc-name serif">Лазерная эпиляция</span><span class="svc-desc">Отдельные зоны и комплексы</span></span><span class="svc-from">от 400 ₽<small class="closed">Смотреть цены</small><small class="opened">Свернуть</small></span><span class="svc-toggle" aria-hidden="true">+</span></summary><div class="svc-body">
+    <dl class="plist"><div class="prow"><dt>Линия живота<small>5 минут</small></dt><dd>400 ₽</dd></div><div class="prow"><dt>Одна зона лица<small>10 минут</small></dt><dd>600 ₽</dd></div><div class="prow"><dt>Подмышечные впадины<small>15 минут</small></dt><dd>800 ₽</dd></div><div class="prow"><dt>Бикини классическое<small>15 минут</small></dt><dd>1 100 ₽</dd></div><div class="prow"><dt>Бикини тотальное<small>15 минут</small></dt><dd>2 200 ₽</dd></div><div class="prow"><dt>Голени с коленями<small>25 минут</small></dt><dd>1 700 ₽</dd></div><div class="prow"><dt>Ноги полностью<small>30 минут</small></dt><dd>2 600 ₽</dd></div><div class="prow"><dt>Руки полностью<small>20 минут</small></dt><dd>1 600 ₽</dd></div></dl><h3>Комплексы</h3><p class="combo-terms">Цены комплексов уже включают скидку 20%. Дополнительные скидки на них не действуют. У «Суперкомбо» фиксированная цена без скидок.</p><dl class="plist"><div class="prow"><dt>Голени с коленями + подмышки<small>30 минут</small></dt><dd>2 000 ₽</dd></div><div class="prow"><dt>Тотальное бикини + подмышки<small>30 минут</small></dt><dd>2 400 ₽</dd></div><div class="prow"><dt>Голени + тотальное бикини + подмышки<small>45 минут</small></dt><dd>3 750 ₽</dd></div><div class="prow"><dt>Ноги полностью + тотальное бикини + подмышки<small>1 час</small></dt><dd>4 450 ₽</dd></div></dl>    <p class="svc-note">У лазерной эпиляции есть противопоказания. Перед записью уточните у специалиста подготовку и возможность проведения процедуры.</p><div class="svc-acts"><a class="btn" href="https://n1881606.yclients.ru/company/1663644/personal/select-services?o=" target="_blank" rel="noopener" data-yc>Выбрать время</a><a class="text-link" href="https://n1881606.yclients.ru/company/1663644/personal/select-services?o=" target="_blank" rel="noopener" data-yc>Полный прайс в YCLIENTS ↗</a></div></div></details>
+        <details class="svc" id="manicure"><summary><span class="svc-num" aria-hidden="true">02</span><span class="svc-head"><span class="svc-name serif">Маникюр</span><span class="svc-desc">Без покрытия, с гель-лаком или дизайном</span></span><span class="svc-from">от 1 200 ₽<small class="closed">Смотреть цены</small><small class="opened">Свернуть</small></span><span class="svc-toggle" aria-hidden="true">+</span></summary><div class="svc-body">
+    <dl class="plist"><div class="prow"><dt>Комбинированный маникюр без покрытия<small>1 час</small></dt><dd>1 200 ₽</dd></div><div class="prow"><dt>Снятие, маникюр с укреплением и покрытием<small>1 час 30 минут</small></dt><dd>1 900 ₽</dd></div><div class="prow"><dt>Снятие покрытия другого мастера, маникюр с укреплением и покрытием<small>1 час 30 минут</small></dt><dd>2 100 ₽</dd></div><div class="prow"><dt>Френч<small>Дополнение к маникюру</small></dt><dd>500 ₽</dd></div><div class="prow"><dt>Дизайн<small>Фольга, стемпинг, втирка, слайдеры</small></dt><dd>50–500 ₽</dd></div><div class="prow"><dt>Снятие гель-лака без покрытия<small>10 минут</small></dt><dd>500 ₽</dd></div></dl>    <div class="svc-acts"><a class="btn" href="https://n1881606.yclients.ru/company/1663644/personal/select-services?o=" target="_blank" rel="noopener" data-yc>Выбрать время</a><a class="text-link" href="https://n1881606.yclients.ru/company/1663644/personal/select-services?o=" target="_blank" rel="noopener" data-yc>Полный прайс в YCLIENTS ↗</a></div></div></details>
+        <details class="svc" id="pedicure"><summary><span class="svc-num" aria-hidden="true">03</span><span class="svc-head"><span class="svc-name serif">Педикюр</span><span class="svc-desc">Обработка стоп и пальцев, покрытие</span></span><span class="svc-from">от 1 300 ₽<small class="closed">Смотреть цены</small><small class="opened">Свернуть</small></span><span class="svc-toggle" aria-hidden="true">+</span></summary><div class="svc-body">
+    <dl class="plist"><div class="prow"><dt>Экспресс-педикюр<small>Только пальцы · 30 минут</small></dt><dd>1 300 ₽</dd></div><div class="prow"><dt>Педикюр<small>Стопы и пальцы · 1 час</small></dt><dd>1 900 ₽</dd></div><div class="prow"><dt>Экспресс-педикюр с покрытием<small>1 час 25 минут</small></dt><dd>2 300 ₽</dd></div><div class="prow"><dt>Smart-педикюр с покрытием<small>1 час 30 минут</small></dt><dd>2 600 ₽</dd></div><div class="prow"><dt>Снятие гель-лака без покрытия<small>15 минут</small></dt><dd>500 ₽</dd></div></dl>    <div class="svc-acts"><a class="btn" href="https://n1881606.yclients.ru/company/1663644/personal/select-services?o=" target="_blank" rel="noopener" data-yc>Выбрать время</a><a class="text-link" href="https://n1881606.yclients.ru/company/1663644/personal/select-services?o=" target="_blank" rel="noopener" data-yc>Полный прайс в YCLIENTS ↗</a></div></div></details>
+        <details class="svc" id="lashes"><summary><span class="svc-num" aria-hidden="true">04</span><span class="svc-head"><span class="svc-name serif">Ресницы</span><span class="svc-desc">Наращивание, ламинирование и окрашивание</span></span><span class="svc-from">от 600 ₽<small class="closed">Смотреть цены</small><small class="opened">Свернуть</small></span><span class="svc-toggle" aria-hidden="true">+</span></summary><div class="svc-body">
+    <dl class="plist"><div class="prow"><dt>Окрашивание ресниц<small>30 минут</small></dt><dd>600 ₽</dd></div><div class="prow"><dt>Ламинирование ресниц<small>1 час</small></dt><dd>1 800 ₽</dd></div><div class="prow"><dt>Наращивание ресниц: классика<small>1 час 30 минут</small></dt><dd>2 200 ₽</dd></div><div class="prow"><dt>Наращивание ресниц: 1,5D<small>2 часа</small></dt><dd>2 400 ₽</dd></div><div class="prow"><dt>Наращивание ресниц: 2D<small>2 часа</small></dt><dd>2 600 ₽</dd></div><div class="prow"><dt>Наращивание ресниц: 3D<small>2 часа 30 минут</small></dt><dd>2 800 ₽</dd></div></dl>    <div class="svc-acts"><a class="btn" href="https://n1881606.yclients.ru/company/1663644/personal/select-services?o=" target="_blank" rel="noopener" data-yc>Выбрать время</a><a class="text-link" href="https://n1881606.yclients.ru/company/1663644/personal/select-services?o=" target="_blank" rel="noopener" data-yc>Полный прайс в YCLIENTS ↗</a></div></div></details>
+        <details class="svc" id="brows"><summary><span class="svc-num" aria-hidden="true">05</span><span class="svc-head"><span class="svc-name serif">Брови</span><span class="svc-desc">Форма, цвет и ламинирование</span></span><span class="svc-from">от 700 ₽<small class="closed">Смотреть цены</small><small class="opened">Свернуть</small></span><span class="svc-toggle" aria-hidden="true">+</span></summary><div class="svc-body">
+    <dl class="plist"><div class="prow"><dt>Моделирование бровей воском<small>40 минут</small></dt><dd>700 ₽</dd></div><div class="prow"><dt>Окрашивание бровей<small>30 минут</small></dt><dd>700 ₽</dd></div><div class="prow"><dt>Ламинирование бровей<small>30 минут</small></dt><dd>1 800 ₽</dd></div></dl>    <div class="svc-acts"><a class="btn" href="https://n1881606.yclients.ru/company/1663644/personal/select-services?o=" target="_blank" rel="noopener" data-yc>Выбрать время</a><a class="text-link" href="https://n1881606.yclients.ru/company/1663644/personal/select-services?o=" target="_blank" rel="noopener" data-yc>Полный прайс в YCLIENTS ↗</a></div></div></details>
+    </div>
       <div class="catalog-foot">
         <p>Здесь основные услуги. Полный прайс и свободное время доступны при записи.</p>
-        <a class="text-link" href="tel:+79313835551">Помочь с выбором? Позвоните<i class="ph-light ph-arrow-up-right"></i></a>
+        <a class="text-link" href="tel:+79313835551">Помочь с выбором? Позвоните<svg class="icon" aria-hidden="true" focusable="false" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 256 256" fill="currentColor"><path d="M198,64V168a6,6,0,0,1-12,0V78.48L68.24,196.24a6,6,0,0,1-8.48-8.48L177.52,70H88a6,6,0,0,1,0-12H192A6,6,0,0,1,198,64Z"></path></svg></a>
       </div>
     </div>
   </section>
@@ -475,24 +91,12 @@
     <div class="container studio-grid">
       <div class="studio-text">
         <p class="eyebrow caps">Студия</p>
-        <h2 id="studio-h" class="serif">Студия <em>в центре</em> Гатчины</h2>
-        <p><b>Лазерную эпиляцию на диодном лазере проводят мастера Виктория и Снежана.</b> Чаще всего в отзывах благодарят Викторию.</p>
-        <p>Здесь же делают маникюр и педикюр, наращивают и ламинируют ресницы, оформляют брови. Есть подарочные сертификаты.</p>
-        <div class="stats">
-          <div><b>5,0</b><span>оценка на Яндекс Картах</span></div>
-          <div><b>104</b><span>отзыва гостей</span></div>
-          <div><b>2026</b><span>«Хорошее место» Яндекс Карт</span></div>
-          <div><b>9–21</b><span>ежедневно, без выходных</span></div>
-        </div>
+        <h2 id="studio-h" class="serif">Студия в центре Гатчины</h2><p>В студии делают маникюр и педикюр, наращивают и ламинируют ресницы, оформляют брови и проводят лазерную эпиляцию.<br /></p><p>Есть подарочные сертификаты. Выбрать услугу и время можно онлайн или по телефону.</p>
+        
+        <div class="stats"><div><b>5,0</b><span>оценка на Яндекс Картах</span></div><div><b>105</b><span>отзывов гостей</span></div><div><b>2026</b><span>«Хорошее место» Яндекс Карт</span></div><div><b>С 10:00 до 21:00</b><span>часы работы</span></div></div>
       </div>
       <div>
-        <div class="mosaic">
-          <button class="zoom" type="button" data-full="https://avatars.mds.yandex.net/get-altay/20011141/2a0000019d0648cdfbb19a5df575e6a544ac/XXXL" data-cap="Зал студии"><img src="https://avatars.mds.yandex.net/get-altay/20011141/2a0000019d0648cdfbb19a5df575e6a544ac/XL" alt="Зал студии" loading="lazy"><span class="z"><i class="ph-light ph-arrows-out-simple"></i></span></button>
-          <button class="zoom" type="button" data-full="https://avatars.mds.yandex.net/get-altay/16914582/2a000001999ab5727bbf9ad4115a45105950/XXXL" data-cap="Стойка администратора"><img src="https://avatars.mds.yandex.net/get-altay/16914582/2a000001999ab5727bbf9ad4115a45105950/XL" alt="Стойка администратора с логотипом" loading="lazy"><span class="z"><i class="ph-light ph-arrows-out-simple"></i></span></button>
-          <button class="zoom" type="button" data-full="https://avatars.mds.yandex.net/get-altay/8074519/2a000001893ef82394e0a9392f998a38ce7b/XXXL" data-cap="Диодный лазер"><img src="https://avatars.mds.yandex.net/get-altay/8074519/2a000001893ef82394e0a9392f998a38ce7b/XL" alt="Насадка диодного лазера и защитные очки" loading="lazy"><span class="z"><i class="ph-light ph-arrows-out-simple"></i></span></button>
-          <button class="zoom" type="button" data-full="https://avatars.mds.yandex.net/get-altay/16443419/2a00000199d449c323ad5d6501cdfb110b57/XXXL" data-cap="Процедура лазерной эпиляции"><img src="https://avatars.mds.yandex.net/get-altay/16443419/2a00000199d449c323ad5d6501cdfb110b57/XL" alt="Процедура лазерной эпиляции" loading="lazy"><span class="z"><i class="ph-light ph-arrows-out-simple"></i></span></button>
-          <button class="zoom" type="button" data-full="https://avatars.mds.yandex.net/get-altay/16435010/2a0000019c439427497c9b10b10e98e655cd/XXXL" data-cap="Маникюр"><img src="https://avatars.mds.yandex.net/get-altay/16435010/2a0000019c439427497c9b10b10e98e655cd/XL" alt="Маникюр с красным покрытием" loading="lazy"><span class="z"><i class="ph-light ph-arrows-out-simple"></i></span></button>
-        </div>
+        <div class="mosaic"><button class="zoom" type="button" data-full="./wp-content/themes/mirada/assets/photos/photo-9fa68a45a321cad7.jpg" data-cap="Холл и стойка администратора"><img src="./wp-content/themes/mirada/assets/photos/photo-9fa68a45a321cad7.jpg" alt="Холл и стойка администратора" loading="lazy" decoding="async"><span class="cap" aria-hidden="true">Холл и стойка администратора</span><span class="z" aria-hidden="true">↗</span></button><button class="zoom" type="button" data-full="./wp-content/themes/mirada/assets/photos/photo-fe4eebe5d8f34478.jpg" data-cap="Кабинет ресниц и бровей"><img src="./wp-content/themes/mirada/assets/photos/photo-fe4eebe5d8f34478.jpg" alt="Кабинет ресниц и бровей" loading="lazy" decoding="async"><span class="cap" aria-hidden="true">Кабинет ресниц и бровей</span><span class="z" aria-hidden="true">↗</span></button><button class="zoom" type="button" data-full="./wp-content/themes/mirada/assets/photos/photo-7881c48edf9456de.jpg" data-cap="Кабинет лазерной эпиляции"><img src="./wp-content/themes/mirada/assets/photos/photo-7881c48edf9456de.jpg" alt="Кабинет лазерной эпиляции" loading="lazy" decoding="async"><span class="cap" aria-hidden="true">Кабинет лазерной эпиляции</span><span class="z" aria-hidden="true">↗</span></button><button class="zoom" type="button" data-full="./wp-content/themes/mirada/assets/photos/photo-c0c89f3c66db3223.jpg" data-cap="Рабочее место мастера маникюра"><img src="./wp-content/themes/mirada/assets/photos/photo-c0c89f3c66db3223.jpg" alt="Рабочее место мастера маникюра" loading="lazy" decoding="async"><span class="cap" aria-hidden="true">Рабочее место мастера маникюра</span><span class="z" aria-hidden="true">↗</span></button><button class="zoom" type="button" data-full="./wp-content/themes/mirada/assets/photos/photo-866f21301a630637.jpg" data-cap="Маникюр нюдового оттенка"><img src="./wp-content/themes/mirada/assets/photos/photo-866f21301a630637.jpg" alt="Маникюр нюдового оттенка" loading="lazy" decoding="async"><span class="cap" aria-hidden="true">Маникюр нюдового оттенка</span><span class="z" aria-hidden="true">↗</span></button><button class="zoom" type="button" data-full="./wp-content/themes/mirada/assets/photos/photo-9f95c23bedebd68a.jpg" data-cap="Маникюр с красным покрытием"><img src="./wp-content/themes/mirada/assets/photos/photo-9f95c23bedebd68a.jpg" alt="Маникюр с красным покрытием" loading="lazy" decoding="async"><span class="cap" aria-hidden="true">Маникюр с красным покрытием</span><span class="z" aria-hidden="true">↗</span></button><button class="zoom" type="button" data-full="./wp-content/themes/mirada/assets/photos/photo-eb59cf0b9e22703a.jpg" data-cap="Маникюрный зал"><img src="./wp-content/themes/mirada/assets/photos/photo-eb59cf0b9e22703a.jpg" alt="Маникюрный зал" loading="lazy" decoding="async"><span class="cap" aria-hidden="true">Маникюрный зал</span><span class="z" aria-hidden="true">↗</span></button></div>
         <p class="swipe-hint">Листайте фото. Нажмите, чтобы увеличить.</p>
       </div>
     </div>
@@ -502,25 +106,9 @@
     <div class="container">
       <div class="rev-head">
         <div><p class="eyebrow caps">Отзывы</p><h2 id="rev-h" class="serif">Что пишут <em>гости</em></h2></div>
-        <div class="score"><b>5,0</b><div><div class="stars" aria-label="5 из 5">★★★★★</div><a href="https://yandex.ru/maps/org/200613950557/reviews/" target="_blank" rel="noopener">104 отзыва на Яндекс Картах</a></div></div>
+        <div class="score"><b>5,0</b><div><a href="https://yandex.ru/maps/org/200613950557/reviews/" target="_blank" rel="noopener">Отзывы на Яндекс Картах</a></div></div>
       </div>
-      <div class="reviews">
-        <blockquote class="review">
-          <span class="q" aria-hidden="true">“</span>
-          <p>Первый раз была на процедуре лазерной эпиляции. Мастер Виктория очень к себе расположила! Будто на массаже побывала, чуть не уснула!</p>
-          <div class="who"><div><b>Ирина Денисова</b>лазерная эпиляция</div><span class="stars" aria-label="5 из 5">★★★★★</span></div>
-        </blockquote>
-        <blockquote class="review">
-          <span class="q" aria-hidden="true">“</span>
-          <p>Недавно делала в студии маникюр, очень понравилась мастер Туркан, супер аккуратно обработала ручки и помогла выбрать цвет. Результат порадовал, запишусь повторно!</p>
-          <div class="who"><div><b>Алина Клементьева</b>маникюр</div><span class="stars" aria-label="5 из 5">★★★★★</span></div>
-        </blockquote>
-        <blockquote class="review">
-          <span class="q" aria-hidden="true">“</span>
-          <p>Наращиваю реснички, хорошо делает мастер Татьяна и держатся отлично. Запись всегда в удобное для меня время.</p>
-          <div class="who"><div><b>Ксения П.</b>ресницы</div><span class="stars" aria-label="5 из 5">★★★★★</span></div>
-        </blockquote>
-      </div>
+      <div class="reviews"><blockquote class="review"><span class="q" aria-hidden="true">“</span><p>Первый раз была на процедуре лазерной эпиляции. Мастер Виктория очень к себе расположила! Будто на массаже побывала, чуть не уснула!</p><div class="who"><div><b>Ирина Д.</b>лазерная эпиляция</div><a href="https://yandex.ru/maps/org/200613950557/reviews/" target="_blank" rel="noopener" aria-label="Источник отзыва">↗</a></div></blockquote><blockquote class="review"><span class="q" aria-hidden="true">“</span><p>Недавно делала в студии маникюр, очень понравилась мастер Туркан, супер аккуратно обработала ручки и помогла выбрать цвет. Результат порадовал, запишусь повторно!</p><div class="who"><div><b>Алина К.</b>маникюр</div><a href="https://yandex.ru/maps/org/200613950557/reviews/" target="_blank" rel="noopener" aria-label="Источник отзыва">↗</a></div></blockquote><blockquote class="review"><span class="q" aria-hidden="true">“</span><p>Наращиваю реснички, хорошо делает мастер Татьяна и держатся отлично. Запись всегда в удобное для меня время.</p><div class="who"><div><b>Ксения П.</b>ресницы</div><a href="https://yandex.ru/maps/org/200613950557/reviews/" target="_blank" rel="noopener" aria-label="Источник отзыва">↗</a></div></blockquote></div>
       <p class="swipe-hint">Листайте отзывы</p>
     </div>
   </section>
@@ -532,42 +120,35 @@
         <h2 id="contacts-h" class="serif">Как нас <em>найти</em></h2>
         <p class="addr">Гатчина, Соборная улица, 15</p>
         <div class="lines">
-          <div class="line"><i class="ph-light ph-door-open"></i><div>Вход со двора, дверь с крыльцом<small>рядом есть парковка</small></div></div>
-          <div class="line"><i class="ph-light ph-clock"></i><div>Ежедневно с 9:00 до 21:00</div></div>
-          <div class="line"><i class="ph-light ph-phone"></i><div><a href="tel:+79313835551">+7 931 383-55-51</a><small>звонки и <a href="https://wa.me/79313835551" target="_blank" rel="noopener">WhatsApp</a></small></div></div>
-          <div class="line"><i class="ph-light ph-map-trifold"></i><div>Второй кабинет лазерной эпиляции<small>д. Малое Верево, ул. Кириллова, 1</small></div></div>
+          <div class="line"><svg class="icon" aria-hidden="true" focusable="false" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 256 256" fill="currentColor"><path d="M232,218H206V40a14,14,0,0,0-14-14H64A14,14,0,0,0,50,40V218H24a6,6,0,0,0,0,12H232a6,6,0,0,0,0-12ZM194,40V218H174V38h18A2,2,0,0,1,194,40ZM62,40a2,2,0,0,1,2-2h98V218H62Zm80,92a10,10,0,1,1-10-10A10,10,0,0,1,142,132Z"></path></svg><div>Вход со двора, дверь с крыльцом<small>Парковка во дворе и рядом со студией</small></div></div>
+          <div class="line"><svg class="icon" aria-hidden="true" focusable="false" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 256 256" fill="currentColor"><path d="M128,26A102,102,0,1,0,230,128,102.12,102.12,0,0,0,128,26Zm0,192a90,90,0,1,1,90-90A90.1,90.1,0,0,1,128,218Zm62-90a6,6,0,0,1-6,6H128a6,6,0,0,1-6-6V72a6,6,0,0,1,12,0v50h50A6,6,0,0,1,190,128Z"></path></svg><div>С 10:00 до 21:00</div></div>
+          <div class="line"><svg class="icon" aria-hidden="true" focusable="false" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 256 256" fill="currentColor"><path d="M221.59,160.3l-47.24-21.17a14,14,0,0,0-13.28,1.22,4.81,4.81,0,0,0-.56.42l-24.69,21a1.88,1.88,0,0,1-1.68.06c-15.87-7.66-32.31-24-40-39.65a1.91,1.91,0,0,1,0-1.68l21.07-25a6.13,6.13,0,0,0,.42-.58,14,14,0,0,0,1.12-13.27L95.73,34.49a14,14,0,0,0-14.56-8.38A54.24,54.24,0,0,0,34,80c0,78.3,63.7,142,142,142a54.25,54.25,0,0,0,53.89-47.17A14,14,0,0,0,221.59,160.3ZM176,210C104.32,210,46,151.68,46,80A42.23,42.23,0,0,1,82.67,38h.23a2,2,0,0,1,1.84,1.31l21.1,47.11a2,2,0,0,1,0,1.67L84.73,113.15a4.73,4.73,0,0,0-.43.57,14,14,0,0,0-.91,13.73c8.87,18.16,27.17,36.32,45.53,45.19a14,14,0,0,0,13.77-1c.19-.13.38-.27.56-.42l24.68-21a1.92,1.92,0,0,1,1.6-.1l47.25,21.17a2,2,0,0,1,1.21,2A42.24,42.24,0,0,1,176,210Z"></path></svg><div><a href="tel:+79313835551">+7 931 383-55-51</a><small>поможем выбрать услугу и время</small></div></div>
         </div>
-        <button class="entrance zoom" type="button" data-group="enter" data-full="https://avatars.mds.yandex.net/get-altay/14920258/2a00000198bcdb911ab5b8cad393b5885c48/XXXL" data-cap="Вход в студию со двора">
-          <img src="https://avatars.mds.yandex.net/get-altay/14920258/2a00000198bcdb911ab5b8cad393b5885c48/L" alt="Вход в студию со двора" loading="lazy">
-          <div><b>Фото входа</b><span><i class="ph-light ph-arrows-out-simple"></i>нажмите, чтобы увеличить</span></div>
-        </button>
+        <p class="arrival-note">Фасад дома закрыт строительными лесами и тентом. Если не найдёте вход, позвоните — подскажем дорогу.</p>
       </div>
-      <iframe class="map" data-src="https://yandex.ru/map-widget/v1/?ll=30.125398%2C59.565652&mode=search&oid=200613950557&ol=biz&z=16" title="Laser Exclusive на Яндекс Картах"></iframe>
+      <div class="map-shell"><div class="service-gate" data-gate="map"><h3>Карта Яндекса</h3><p>Чтобы увидеть карту, разрешите её загрузку. Яндекс получит IP-адрес и сведения о браузере и может использовать cookies.</p><p><a href="./privacy-settings/index.html" target="_blank" rel="noopener noreferrer">Как используются данные</a></p><button class="btn" type="button" data-allow-service="map">Разрешить и показать карту</button><p class="service-gate-note">Разрешение можно отменить в настройках конфиденциальности.</p></div><a href="https://yandex.ru/maps/org/200613950557/" target="_blank" rel="noopener noreferrer">Открыть маршрут на Яндекс Картах ↗</a><iframe class="map" data-src="https://yandex.ru/map-widget/v1/?ll=30.125398%2C59.565652&#038;mode=search&#038;oid=200613950557&#038;ol=biz&#038;z=16" title="Студия красоты «Лазер Эксклюзив» на Яндекс Картах" referrerpolicy="no-referrer" hidden=""></iframe></div>
     </div>
   </section>
 
 </main>
 
 <footer class="site">
-  <div class="container">
-    <div><b>Laser Exclusive</b><br>Гатчина, Соборная улица, 15<br><a href="tel:+79313835551">+7 931 383-55-51</a> · <a href="https://vk.com/laserexclusive" target="_blank" rel="noopener">ВКонтакте</a></div>
-    <div><a href="#" aria-disabled="true">Политика обработки персональных данных</a><br><a href="#" aria-disabled="true">Согласие на обработку персональных данных</a><br>В готовом сайте здесь будут документы по 152-ФЗ.</div>
-    <div>Концепт подготовил <b>Евгений Афонин</b><br><a href="tel:+79119070350">+7 911 907-03-50</a>, Telegram <a href="https://t.me/X1nN0n" target="_blank" rel="noopener">@X1nN0n</a></div>
-  </div>
+  <div class="container"><div><b>Студия красоты «Лазер Эксклюзив»</b><br>Гатчина, Соборная улица, 15<br><a href="tel:+79313835551">+7 931 383-55-51</a></div><div class="social-links"><a href="https://vk.com/laserexclusive" target="_blank" rel="noopener">ВКонтакте</a></div><div><a href="#prices">Услуги и цены</a><br><a href="#contacts">Как добраться</a><br><span class="owner">ИП Акинина В. Ю.<br>ИНН 471906070460 · ОГРНИП 325470400012691</span><nav class="legal-links" aria-label="Документы и конфиденциальность"><a href="./privacy/index.html">Политика обработки данных</a><a href="./booking-consent/index.html">Согласие при записи</a><a href="./privacy-settings/index.html">Cookies и внешние сервисы</a><button class="privacy-link" type="button" data-privacy-open hidden>Настройки конфиденциальности</button></nav></div></div>
 </footer>
 
 <dialog class="yc" aria-labelledby="yc-h">
   <div class="yc-in">
-    <div class="yc-top"><div><b id="yc-h">Онлайн-запись</b><small>выберите услугу, мастера и время</small></div><button class="yc-x" type="button" aria-label="Закрыть"><i class="ph-light ph-x"></i></button></div>
-    <div class="yc-frame">
-      <p class="yc-wait">Загружаем запись…</p>
-      <iframe title="Онлайн-запись Laser Exclusive" allow="payment"></iframe>
+    <div class="yc-top"><div><b id="yc-h">Онлайн-запись</b><small>выберите услугу, мастера и время</small></div><button class="yc-x" type="button" aria-label="Закрыть"><svg class="icon" aria-hidden="true" focusable="false" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 256 256" fill="currentColor"><path d="M204.24,195.76a6,6,0,1,1-8.48,8.48L128,136.49,60.24,204.24a6,6,0,0,1-8.48-8.48L119.51,128,51.76,60.24a6,6,0,0,1,8.48-8.48L128,119.51l67.76-67.75a6,6,0,0,1,8.48,8.48L136.49,128Z"></path></svg></button></div>
+    <div class="yc-frame"><div class="service-gate" data-gate="booking"><h3>Запись через YCLIENTS</h3><p>Чтобы выбрать услугу и время, разрешите загрузить окно YCLIENTS. Сервис получит IP-адрес и сведения о браузере и может использовать cookies. Имя и телефон вводятся на следующем шаге, с отдельным согласием в форме записи. В окне записи название студии пока написано латиницей: Laser Exclusive.</p><p><a href="./privacy-settings/index.html" target="_blank" rel="noopener noreferrer">Как используются данные</a> · <a href="./booking-consent/index.html" target="_blank" rel="noopener noreferrer">Согласие при записи</a></p><button class="btn" type="button" data-allow-service="booking">Разрешить и открыть запись</button><p class="service-gate-note">Разрешение можно отменить в настройках конфиденциальности.</p></div>
+      <p class="yc-wait" role="status" hidden="">Загружаем запись…</p>
+      <iframe title="Онлайн-запись в студию «Лазер Эксклюзив»" referrerpolicy="no-referrer" hidden=""></iframe>
     </div>
+    <div class="yc-fallback"><button type="button" class="privacy-link" data-privacy-open="" hidden="">Конфиденциальность</button><a href="https://n1881606.yclients.ru/company/1663644/personal/select-services?o=" target="_blank" rel="noopener">Открыть запись отдельно</a><a href="tel:+79313835551">Позвонить в студию</a></div>
   </div>
 </dialog>
 
-<nav class="bar" aria-label="Запись">
-  <a class="btn" href="https://n1881606.yclients.com/company/1663644/personal/select-services?o=" target="_blank" rel="noopener" data-yc>Записаться</a>
+<nav class="bar on" aria-label="Запись">
+  <a class="btn" href="https://n1881606.yclients.ru/company/1663644/personal/select-services?o=" target="_blank" rel="noopener" data-yc="">Записаться</a>
   <a class="btn ghost" href="tel:+79313835551">Позвонить</a>
 </nav>
 
@@ -575,108 +156,29 @@
   <div class="lb-in">
     <img alt="">
     <p></p>
-    <button class="x" type="button" aria-label="Закрыть"><i class="ph-light ph-x"></i></button>
-    <button class="prev" type="button" aria-label="Предыдущее фото"><i class="ph-light ph-caret-left"></i></button>
-    <button class="next" type="button" aria-label="Следующее фото"><i class="ph-light ph-caret-right"></i></button>
+    <button class="x" type="button" aria-label="Закрыть"><svg class="icon" aria-hidden="true" focusable="false" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 256 256" fill="currentColor"><path d="M204.24,195.76a6,6,0,1,1-8.48,8.48L128,136.49,60.24,204.24a6,6,0,0,1-8.48-8.48L119.51,128,51.76,60.24a6,6,0,0,1,8.48-8.48L128,119.51l67.76-67.75a6,6,0,0,1,8.48,8.48L136.49,128Z"></path></svg></button>
+    <button class="prev" type="button" aria-label="Предыдущее фото"><svg class="icon" aria-hidden="true" focusable="false" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 256 256" fill="currentColor"><path d="M164.24,203.76a6,6,0,1,1-8.48,8.48l-80-80a6,6,0,0,1,0-8.48l80-80a6,6,0,0,1,8.48,8.48L88.49,128Z"></path></svg></button>
+    <button class="next" type="button" aria-label="Следующее фото"><svg class="icon" aria-hidden="true" focusable="false" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 256 256" fill="currentColor"><path d="M180.24,132.24l-80,80a6,6,0,0,1-8.48-8.48L167.51,128,91.76,52.24a6,6,0,0,1,8.48-8.48l80,80A6,6,0,0,1,180.24,132.24Z"></path></svg></button>
   </div>
 </dialog>
 
-<script>
-  // Первый экран: фото сменяются каждые 5 секунд
-  const slides = [...document.querySelectorAll('.slides img')];
-  const dots = [...document.querySelectorAll('.dots span')];
-  let cur = 0;
-  const go = (i) => {
-    slides[cur].classList.remove('on'); dots[cur].classList.remove('on');
-    cur = (i + slides.length) % slides.length;
-    slides[cur].classList.add('on'); dots[cur].classList.add('on');
-  };
-  if (!matchMedia('(prefers-reduced-motion: reduce)').matches) setInterval(() => { if (!document.hidden) go(cur + 1); }, 5000);
 
-  // Онлайн-запись: YCLIENTS студии открывается окном прямо на сайте.
-  // Окно помнит открытую запись: если закрыть и снова открыть ту же, выбор в ней сохранится.
-  const yc = document.querySelector('.yc');
-  const ycFrame = yc.querySelector('iframe');
-  const ycWait = yc.querySelector('.yc-wait');
-  let ycTimer;
-  const openYC = (url) => {
-    if (ycFrame.dataset.url !== url) {
-      ycFrame.dataset.url = url;
-      ycFrame.classList.remove('ready');
-      ycWait.textContent = 'Загружаем запись…';
-      clearTimeout(ycTimer);
-      ycTimer = setTimeout(() => {
-        const a = Object.assign(document.createElement('a'), { href: url, target: '_blank', rel: 'noopener', textContent: 'Открыть её отдельно' });
-        ycWait.replaceChildren('Запись не загрузилась.', a);
-      }, 12000);
-      ycFrame.src = url;
-    }
-    if (!yc.open) yc.showModal();
-  };
-  ycFrame.addEventListener('load', () => { if (ycFrame.dataset.url) { clearTimeout(ycTimer); ycFrame.classList.add('ready'); } });
-  document.querySelectorAll('[data-yc]').forEach((a) => a.addEventListener('click', (e) => {
-    if (e.ctrlKey || e.metaKey || e.shiftKey || e.altKey) return;
-    e.preventDefault();
-    openYC(a.href);
-  }));
-  yc.querySelector('.yc-x').addEventListener('click', () => yc.close());
-  yc.addEventListener('click', (e) => { if (e.target === yc) yc.close(); });
 
-  // Направление в ценах раскрывается и по ссылке вида #laser
-  const revealHash = () => {
-    const el = location.hash.length > 1 && document.getElementById(location.hash.slice(1));
-    if (el && el.matches('.svc')) el.open = true;
-  };
-  revealHash();
-  window.addEventListener('hashchange', revealHash);
 
-  // Фото открываются крупно, листаются стрелками
-  const lb = document.querySelector('.lb');
-  const lbImg = lb.querySelector('img'), lbCap = lb.querySelector('p');
-  let group = [], idx = 0;
-  const show = (i) => {
-    idx = (i + group.length) % group.length;
-    lbImg.src = group[idx].dataset.full;
-    lbImg.alt = group[idx].dataset.cap || '';
-    lbCap.textContent = group[idx].dataset.cap || '';
-    const many = group.length > 1;
-    lb.querySelector('.prev').hidden = !many; lb.querySelector('.next').hidden = !many;
-  };
-  document.querySelectorAll('.zoom').forEach((z) => z.addEventListener('click', () => {
-    const g = z.dataset.group || 'studio';
-    group = [...document.querySelectorAll('.zoom')].filter((x) => (x.dataset.group || 'studio') === g);
-    show(group.indexOf(z));
-    lb.showModal();
-  }));
-  lb.querySelector('.x').addEventListener('click', () => lb.close());
-  lb.querySelector('.prev').addEventListener('click', () => show(idx - 1));
-  lb.querySelector('.next').addEventListener('click', () => show(idx + 1));
-  lb.addEventListener('click', (e) => { if (e.target === lb || e.target.classList.contains('lb-in')) lb.close(); });
-  lb.addEventListener('keydown', (e) => { if (e.key === 'ArrowLeft') show(idx - 1); if (e.key === 'ArrowRight') show(idx + 1); });
-
-  // Карта грузится, когда до нее долистали
-  const map = document.querySelector('.map');
-  const loadMap = () => { if (!map.src) map.src = map.dataset.src; };
-  if ('IntersectionObserver' in window) {
-    new IntersectionObserver((es, o) => { if (es[0].isIntersecting) { loadMap(); o.disconnect(); } }, { rootMargin: '400px' }).observe(map);
-  } else { loadMap(); }
-
-  // Нижняя панель на телефоне - когда первая кнопка "Записаться" ушла с экрана
-  const bar = document.querySelector('.bar');
-  const heroCta = document.querySelector('.hero .cta');
-  if ('IntersectionObserver' in window) {
-    new IntersectionObserver(([e]) => bar.classList.toggle('on', !e.isIntersecting && e.boundingClientRect.top < 0)).observe(heroCta);
-  } else { bar.classList.add('on'); }
-
-  // Переключатель темы (только для концепта)
-  const root = document.documentElement;
-  const setTheme = (t) => {
-    root.dataset.theme = t;
-    document.querySelectorAll('.theme button').forEach((b) => b.setAttribute('aria-pressed', b.dataset.set === t));
-    try { localStorage.setItem('le-theme', t); } catch (e) {}
-  };
-  document.querySelectorAll('.theme button').forEach((b) => b.addEventListener('click', () => setTheme(b.dataset.set)));
-  try { const saved = localStorage.getItem('le-theme'); if (saved) setTheme(saved); } catch (e) {}
-</script>
-</body>
-</html>
+    <aside class="privacy-notice" aria-label="Хранение настроек" hidden>
+      <p>Сайт запоминает выбранную тему. Карта и онлайн-запись загружаются только с вашего разрешения. <a href="./privacy-settings/index.html">О cookies и данных</a></p>
+      <div><button class="btn ghost" type="button" data-privacy-open>Настроить</button><button class="btn" type="button" data-notice-close>Понятно</button></div>
+    </aside>
+    <dialog class="privacy-dialog" aria-labelledby="privacy-title">
+      <div class="privacy-heading"><h2 id="privacy-title">Настройки данных</h2><button type="button" class="privacy-close" aria-label="Закрыть настройки">×</button></div>
+      <p>Разрешите только нужные сервисы. Выбор действует в этой вкладке до её закрытия, не более 12 часов.</p>
+      <form class="privacy-form">
+        <label class="privacy-choice"><input type="checkbox" name="booking"><span><b>Онлайн-запись YCLIENTS</b><small>Сервис получит IP-адрес и сведения о браузере, сможет использовать cookies. Имя и телефон вводятся позже, с отдельным согласием в форме записи.</small></span></label>
+        <label class="privacy-choice"><input type="checkbox" name="map"><span><b>Яндекс Карты</b><small>Яндекс получит IP-адрес и сведения о браузере, сможет использовать cookies. Адрес студии можно прочитать и без карты.</small></span></label>
+        <p><a href="./privacy-settings/index.html" target="_blank" rel="noopener noreferrer">Сервисы и сроки хранения</a> · <a href="./privacy/index.html" target="_blank" rel="noopener noreferrer">Политика обработки данных</a></p>
+        <div class="privacy-actions"><button type="button" class="btn ghost" data-privacy-reject>Отключить оба</button><button type="submit" class="btn">Сохранить выбор</button></div>
+      </form>
+    </dialog><p class="privacy-status" role="status" aria-live="polite"></p>
+    <script id="mirada-privacy-js" src="./wp-content/themes/mirada/assets/privacy.js"></script>
+<script id="mirada-js" src="./wp-content/themes/mirada/assets/app.js"></script>
+</body></html>
