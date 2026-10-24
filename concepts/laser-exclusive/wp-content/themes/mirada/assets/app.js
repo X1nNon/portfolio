@@ -53,7 +53,12 @@
   lb.addEventListener('click', (e) => { if (e.target === lb || e.target.classList.contains('lb-in')) lb.close(); });
   lb.addEventListener('keydown', (e) => { if (e.key === 'ArrowLeft') show(idx - 1); if (e.key === 'ArrowRight') show(idx + 1); });
 
-  // Mobile contact actions are visible from the first screen.
+  // Нижняя плашка записи на телефоне появляется, когда кнопки первого экрана ушли вверх
+  const bar = document.querySelector('.bar');
+  const heroCta = document.querySelector('.hero .cta');
+  if (bar && heroCta && 'IntersectionObserver' in window) {
+    new IntersectionObserver(([e]) => bar.classList.toggle('on', !e.isIntersecting && e.boundingClientRect.top < 0)).observe(heroCta);
+  }
   document.querySelectorAll('.mobile-nav a').forEach(a => a.addEventListener('click', () => { document.querySelector('.mobile-nav').open = false; }));
   document.addEventListener('keydown', e => { if (e.key === 'Escape') document.querySelector('.mobile-nav').open = false; });
   // Both colour themes are available to visitors.

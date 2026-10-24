@@ -512,3 +512,13 @@ html:has(dialog[open]) .privacy-notice{display:none}
   .zoom .cap { font-size:14px; padding:40px 14px 12px; }
 }
 @media(max-width:360px) { .brand span { font-size:14px; letter-spacing:.04em; } }
+/* 25.10.2026: нижняя плашка записи на телефоне появляется, только когда кнопки первого экрана ушли вверх (класс on ставит app.js) */
+.bar { display:none; }
+@media(max-width:760px) {
+  body { padding-bottom:calc(78px + env(safe-area-inset-bottom)); }
+  .bar { display:grid; grid-template-columns:1fr 1fr; gap:10px; position:fixed; left:0; right:0; bottom:0; z-index:40; padding:10px 12px calc(10px + env(safe-area-inset-bottom)); background:var(--bg); border-top:1px solid var(--line); transform:translateY(110%); visibility:hidden; transition:transform .3s, visibility 0s .3s; }
+  .bar.on { transform:none; visibility:visible; transition:transform .3s; }
+  .bar .btn { min-height:56px; padding:0 10px; font-size:12px; letter-spacing:.06em; }
+  html:has(.bar.on) .privacy-notice { bottom:calc(82px + env(safe-area-inset-bottom)); }
+}
+@media(prefers-reduced-motion:reduce) { .bar, .bar.on { transition:none; } }
