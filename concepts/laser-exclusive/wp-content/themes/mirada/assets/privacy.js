@@ -1,7 +1,9 @@
 (() => {
   'use strict';
-  const KEY = 'mirada-external-v1', NOTICE = 'mirada-privacy-notice-v1';
+  const KEY = 'mirada-external-v1', NOTICE = 'mirada-privacy-notice-v2';
   const TTL = 12 * 60 * 60 * 1000, NOTICE_TTL = 180 * 24 * 60 * 60 * 1000;
+  // Уведомление о cookies появляется через NOTICE_DELAY и держится NOTICE_SHOW (столько же идёт полоска в style.css).
+  const NOTICE_DELAY = 1200, NOTICE_SHOW = 9000;
   const empty = () => ({booking: false, map: false, expires: 0});
   let prefs = empty();
   try {
@@ -61,8 +63,29 @@
     try { sessionStorage.setItem(KEY, JSON.stringify(prefs)); } catch (_) {}
     applyRestrictions(); scheduleExpiry();
   };
+  // Уведомление о cookies без кнопок (30.10.2026): появляется само и само скрывается.
+  // Отсчёт стоит, пока на уведомлении курсор или фокус и пока вкладка в фоне.
+  let noticeTimer, noticeLeft = NOTICE_SHOW, noticeSince = 0;
+  let noticeOn = false, noticeDone = false, noticeHover = false, noticeFocus = false;
+  const pauseNotice = () => {
+    if (!noticeSince) return;
+    noticeLeft -= Date.now() - noticeSince; noticeSince = 0;
+    clearTimeout(noticeTimer); notice.classList.add('paused');
+  };
+  const runNotice = () => {
+    if (!noticeOn || noticeDone || noticeSince || noticeHover || noticeFocus || document.hidden) return;
+    noticeSince = Date.now(); notice.classList.remove('paused');
+    noticeTimer = setTimeout(acknowledge, Math.max(noticeLeft, 0));
+  };
+  const showNotice = () => {
+    notice.hidden = false;
+    // Класс on ставится в следующем кадре, иначе браузер не проиграет появление.
+    noticeTimer = setTimeout(() => { noticeOn = true; notice.classList.add('on'); runNotice(); }, 30);
+  };
   const acknowledge = () => {
-    notice.hidden = true;
+    noticeDone = true; noticeOn = false; noticeSince = 0; clearTimeout(noticeTimer);
+    notice.classList.remove('on');
+    if (!notice.hidden) noticeTimer = setTimeout(() => { notice.hidden = true; }, 450);
     try { localStorage.setItem(NOTICE, String(Date.now())); } catch (_) {}
   };
   const syncControls = () => {
@@ -87,12 +110,19 @@
     update(empty()); acknowledge(); closeSettings();
     status.textContent = 'Внешние сервисы отключены. Позвонить в студию можно без них.';
   });
-  document.querySelector('[data-notice-close]').addEventListener('click', acknowledge);
   try {
-    const readAt = Number(localStorage.getItem(NOTICE));
-    notice.hidden = readAt > 0 && readAt <= Date.now() && Date.now() - readAt < NOTICE_TTL;
-    if (!notice.hidden) localStorage.removeItem(NOTICE);
-  } catch (_) { notice.hidden = false; }
+    localStorage.removeItem('mirada-privacy-notice-v1'); // отметка старого уведомления с кнопкой «Понятно»
+    const shownAt = Number(localStorage.getItem(NOTICE));
+    noticeDone = shownAt > 0 && shownAt <= Date.now() && Date.now() - shownAt < NOTICE_TTL;
+    if (!noticeDone) localStorage.removeItem(NOTICE);
+  } catch (_) { /* Без хранилища уведомление показывается при каждом открытии. */ }
+  if (!noticeDone) {
+    noticeTimer = setTimeout(showNotice, NOTICE_DELAY);
+    notice.addEventListener('mouseenter', () => { noticeHover = true; pauseNotice(); });
+    notice.addEventListener('mouseleave', () => { noticeHover = false; runNotice(); });
+    notice.addEventListener('focusin', () => { noticeFocus = true; pauseNotice(); });
+    notice.addEventListener('focusout', () => { noticeFocus = false; runNotice(); });
+  }
 
   const loadBooking = () => {
     if (!frame || !permitted('booking') || !allowedURL(bookingUrl, 'booking')) return;
@@ -133,6 +163,6 @@
     if (kind === 'booking') loadBooking(); else loadMap();
   }));
   // Stored permission never preloads an external service: the visitor must open it.
-  document.addEventListener('visibilitychange', expire);
+  document.addEventListener('visibilitychange', () => { expire(); if (document.hidden) pauseNotice(); else runNotice(); });
   scheduleExpiry(); applyRestrictions();
 })();

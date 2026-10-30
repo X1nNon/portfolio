@@ -1,6 +1,6 @@
 /*
 Theme Name: Лазер Эксклюзив
-Version: 1.2.0
+Version: 1.2.1
 Requires at least: 6.6
 Requires PHP: 8.1
 Text Domain: mirada
@@ -82,9 +82,6 @@ Text Domain: mirada
 
   .concept { background: #2a2a2d; color: #e6e3df; font-size: 15px; line-height: 1.4; }
   .concept .container { display: flex; gap: 10px 20px; align-items: center; justify-content: space-between; flex-wrap: wrap; padding-top: 9px; padding-bottom: 9px; }
-  .theme { display: inline-flex; border: 1px solid #76727a; flex: none; }
-  .theme button { background: none; border: 0; color: #e6e3df; font-size: 14px; line-height: 1; padding: 7px 12px; cursor: pointer; }
-  .theme button[aria-pressed="true"] { background: #e6e3df; color: #1b1b1d; }
 
   /* кнопки */
   .btn { display: inline-flex; align-items: center; justify-content: center; gap: 12px; min-height: 62px; padding: 0 38px; background: var(--accent); color: var(--accent-text); border: 1px solid var(--accent-border); text-decoration: none; text-transform: uppercase; letter-spacing: .16em; font-size: 15px; font-weight: 500; cursor: pointer; transition: transform .2s, box-shadow .2s, background .2s; }
@@ -338,9 +335,11 @@ summary:focus-visible { outline:2px solid var(--focus); outline-offset:4px; }
 .brand span { font-size:25px; letter-spacing:.13em; font-weight:600; }
 .head-right { gap:18px; }
 header nav { gap:24px; }
-.theme { border-color:var(--line-2); }
-.theme button { min-height:44px; padding:0 10px; color:var(--muted); font-size:12px; }
-.theme button[aria-pressed="true"] { background:var(--accent); color:var(--accent-text); }
+/* 30.10.2026: тема переключается одной квадратной кнопкой-значком в рамке, как «Меню»: луна - тёмная тема, солнце - светлая */
+.theme-toggle { display:grid; place-items:center; width:44px; height:44px; flex:none; padding:0; background:none; border:1px solid var(--line-2); color:var(--text); cursor:pointer; transition:border-color .2s; }
+.theme-toggle:hover { border-color:var(--text); }
+.theme-toggle .icon { grid-area:1/1; width:22px; height:22px; transition:opacity .3s, transform .5s cubic-bezier(.2,.8,.2,1); }
+html[data-theme="dark"] .theme-toggle .sun, html[data-theme="light"] .theme-toggle .moon { opacity:0; transform:rotate(-90deg) scale(.5); }
 .mobile-nav { display:none; }
 .hero { min-height:calc(100svh - 84px); }
 .hero-text { min-width:0; }
@@ -398,7 +397,6 @@ footer.site { padding-bottom:50px; }
   header .container { gap:10px; padding:0 14px; min-height:72px; height:auto; }
   .brand span { font-size:19px; letter-spacing:.08em; }
   .head-right { gap:0; }
-  .theme button { font-size:11px; padding:0 7px; }
   .mobile-nav { margin-left:auto; }
   .mobile-nav summary { padding:0 8px; font-size:12px; }
   .hero h1 { font-size:clamp(32px,8.8vw,45px); }
@@ -429,7 +427,6 @@ footer.site { padding-bottom:50px; }
   header .container { padding:0 10px; gap:6px; }
   .brand span { font-size:17px; letter-spacing:.06em; }
   .mobile-nav summary { padding:0 6px; }
-  .theme button { padding:0 6px; }
 }
 .brand img { width:200px; height:48px; object-fit:contain; display:block; }
 .brand picture { display:block; min-width:0; }
@@ -463,10 +460,17 @@ html[data-theme="dark"] .brand .brand-dark { display:block; }
 .privacy-storage dd{margin-left:0;color:var(--muted)}
 .legal-footer{border-top:1px solid var(--line);margin-top:44px;padding-top:20px}
 .legal-footer .legal-links{max-width:none}
-.privacy-notice{position:fixed;bottom:22px;left:22px;z-index:60;width:min(500px,calc(100% - 44px));padding:22px 24px;border:1px solid var(--line-2);border-radius:6px;background:var(--panel);color:var(--text);box-shadow:0 8px 36px #0002}
-.privacy-notice p{font-size:15px;line-height:1.65;margin:0 0 16px}
-.privacy-notice>div{display:flex;gap:12px;justify-content:flex-end;flex-wrap:wrap}
-.privacy-notice .btn{min-height:44px;padding:10px 18px;font-size:14px;cursor:pointer}
+/* 30.10.2026: уведомление о cookies без кнопок. privacy.js показывает его через секунду после загрузки и через 9 секунд
+   прячет; полоска внизу показывает, сколько осталось, и стоит, пока на уведомлении курсор или фокус */
+.privacy-notice{position:fixed;bottom:22px;left:22px;z-index:60;width:min(430px,calc(100% - 44px));padding:16px 20px 18px;border:1px solid var(--line-2);border-radius:6px;background:var(--panel);color:var(--text);box-shadow:0 8px 36px #0003;overflow:hidden;opacity:0;transform:translateY(14px);transition:opacity .45s,transform .45s cubic-bezier(.2,.8,.2,1),bottom .3s}
+.privacy-notice.on{opacity:1;transform:none}
+.privacy-notice p{font-size:14px;line-height:1.6;margin:0;text-wrap:pretty}
+.privacy-notice a{text-underline-offset:3px}
+.privacy-notice-timer{position:absolute;left:0;bottom:0;width:100%;height:2px;background:var(--accent-ink);transform-origin:left}
+.privacy-notice.on .privacy-notice-timer{animation:privacy-notice-timer 9s linear forwards}
+.privacy-notice.paused .privacy-notice-timer{animation-play-state:paused}
+@keyframes privacy-notice-timer{to{transform:scaleX(0)}}
+@media(prefers-reduced-motion:reduce){.privacy-notice-timer{display:none}}
 html:has(dialog[open]) .privacy-notice{display:none}
 .privacy-dialog{width:min(610px,calc(100vw - 28px));max-height:90vh;max-height:90dvh;padding:28px;border:1px solid var(--line-2);border-radius:6px;background:var(--panel);color:var(--text);overflow-y:auto;overscroll-behavior:contain}
 .privacy-dialog::backdrop{background:#000a}
@@ -494,8 +498,7 @@ html:has(dialog[open]) .privacy-notice{display:none}
 .yc:has(.service-gate:not([hidden])) .yc-top small{display:none}
 .privacy-status{position:absolute;width:1px;height:1px;overflow:hidden;clip-path:inset(50%);white-space:nowrap}
 @media(max-width:700px){
- .privacy-notice{bottom:calc(12px + env(safe-area-inset-bottom));left:12px;width:calc(100% - 24px);padding:16px}
- .privacy-notice p{font-size:14px;margin-bottom:12px}.privacy-notice>div{gap:10px}.privacy-notice .btn{flex:1}
+ .privacy-notice{bottom:calc(12px + env(safe-area-inset-bottom));left:12px;width:calc(100% - 24px);padding:14px 16px 16px}
  .privacy-dialog{padding:20px}.privacy-heading h2{font-size:22px}.privacy-choice{padding:16px 0}
  .privacy-actions .btn{min-width:130px}.service-gate{padding:22px 20px}
  .service-gate p{font-size:14px}.service-gate .btn{font-size:15px}

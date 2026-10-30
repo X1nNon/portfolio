@@ -61,12 +61,18 @@
   }
   document.querySelectorAll('.mobile-nav a').forEach(a => a.addEventListener('click', () => { document.querySelector('.mobile-nav').open = false; }));
   document.addEventListener('keydown', e => { if (e.key === 'Escape') document.querySelector('.mobile-nav').open = false; });
-  // Both colour themes are available to visitors.
+  // Тема переключается одной кнопкой-значком (30.10.2026): луна - тёмная, солнце - светлая.
+  // Смена темы идёт плавным переходом, если браузер умеет View Transitions и не просили меньше движения.
   const root = document.documentElement;
+  const themeBtn = document.querySelector('.theme-toggle');
   const setTheme = (t) => {
     root.dataset.theme = t;
-    document.querySelectorAll('.theme button').forEach((b) => b.setAttribute('aria-pressed', b.dataset.set === t));
-    try { localStorage.setItem('mirada-theme', t); } catch (e) {}
+    themeBtn.setAttribute('aria-pressed', String(t === 'dark'));
   };
-  document.querySelectorAll('.theme button').forEach((b) => b.addEventListener('click', () => setTheme(b.dataset.set)));
+  themeBtn.addEventListener('click', () => {
+    const next = root.dataset.theme === 'dark' ? 'light' : 'dark';
+    if (document.startViewTransition && !motion.matches) document.startViewTransition(() => setTheme(next));
+    else setTheme(next);
+    try { localStorage.setItem('mirada-theme', next); } catch (e) {}
+  });
   try { const saved = localStorage.getItem('mirada-theme'); if (saved === 'dark' || saved === 'light') setTheme(saved); } catch (e) {}
