@@ -165,9 +165,9 @@ svg { width: 1em; height: 1em; flex: none; }
   .header-cta { padding: 0 16px; }
 }
 
-/* ---------- первый экран: атлас */
-.hero { padding: clamp(18px, 3vw, 36px) 0 clamp(48px, 6vw, 80px); }
-.hero-grid { display: grid; gap: clamp(28px, 3vw, 44px); grid-template-columns: minmax(0, 1fr); }
+/* ---------- первый экран: студия и Ольга у своей вывески */
+.hero { padding: 0 0 clamp(48px, 5vw, 72px); }
+.hero-grid { display: grid; gap: clamp(24px, 3vw, 48px); grid-template-columns: minmax(0, 1fr); }
 .kicker {
   display: block; margin-bottom: clamp(14px, 2vw, 22px);
   font: 500 13px/1.35 var(--font-mono); letter-spacing: .08em; text-transform: uppercase; color: var(--accent-ink);
@@ -177,6 +177,44 @@ svg { width: 1em; height: 1em; flex: none; }
 .h1-b { display: block; font-weight: 820; }
 .lead { margin: clamp(18px, 2.4vw, 28px) 0 clamp(24px, 3vw, 34px); max-width: 34ch; font-size: clamp(18px, 1.5vw, 20px); line-height: 1.45; color: var(--ink-2); }
 .hero-actions { display: flex; flex-wrap: wrap; gap: 12px; }
+.hero-meta { display: grid; gap: 4px; margin-top: clamp(20px, 2.6vw, 30px); font: 400 14px/1.4 var(--font-mono); color: var(--muted); }
+
+/* на телефоне фото во всю ширину, сразу под шапкой */
+.hero-photo { order: -1; position: relative; margin: 0 calc(-1 * var(--gutter)); }
+.hero-photo img { width: 100%; aspect-ratio: 1; object-fit: cover; }
+/* выноска как на атласе: подпись, линия, точка на Ольге. --x и --y - доля кадра */
+.callout {
+  --x0: var(--gutter); --x: 68.4%; --y: 79.1%;
+  position: absolute; left: var(--x0); top: var(--y); width: calc(var(--x) - var(--x0) + 6px);
+  display: flex; align-items: center; translate: 0 -50%;
+}
+.callout-label { flex: 0 1 auto; max-width: calc(100% - 34px); display: grid; gap: 4px; padding: 9px 13px 10px; background: var(--paper); color: var(--ink); }
+.callout-name { font: 700 22px/1 var(--font-display); letter-spacing: .005em; }
+.callout-role { font: 500 11px/1.3 var(--font-mono); letter-spacing: .06em; text-transform: uppercase; color: var(--muted); }
+.callout::before { content: ""; order: 1; flex: 1; min-width: 18px; height: 1.5px; background: var(--accent); }
+.callout::after { content: ""; order: 2; flex: none; width: 11px; height: 11px; border-radius: 999px; background: var(--accent); box-shadow: 0 0 0 2px #FFFFFF; }
+
+@media (min-width: 760px) {
+  .hero { padding-top: clamp(20px, 3vw, 40px); }
+  .hero-grid { grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); align-items: center; }
+  .hero-photo { order: 0; margin: 0; }
+  .hero-photo img { aspect-ratio: 4 / 5; }
+  .callout { --x0: 18px; --x: 63.5%; }
+  .h1-main { font-size: clamp(72px, 11vw, 132px); }
+}
+/* на широком экране кадр снова квадратный: видны букет и визитки на стойке */
+@media (min-width: 1100px) {
+  .hero-grid { gap: clamp(40px, 4vw, 64px); }
+  .hero-photo img { aspect-ratio: 1; }
+  .callout { --x: 68.4%; }
+  .h1-main { font-size: clamp(120px, 12.4vw, 188px); }
+}
+
+/* ---------- атлас стопы: сразу за первым экраном */
+.where { padding: clamp(44px, 5vw, 72px) 0 clamp(48px, 6vw, 80px); border-top: 1px solid var(--line); }
+.where-grid { display: grid; gap: clamp(28px, 3vw, 44px); grid-template-columns: minmax(0, 1fr); }
+.where-title { display: block; font-family: var(--font-display); font-size: clamp(62px, 16vw, 124px); line-height: .84; letter-spacing: -.012em; }
+.where-copy .lead { margin-bottom: 0; }
 
 .atlas { margin: 0; display: flex; flex-direction: column; }
 /* лист тянется на высоту легенды, рисунок стоит по центру листа */
@@ -249,16 +287,16 @@ svg { width: 1em; height: 1em; flex: none; }
 .lg-unsure svg { display: inline; width: 18px; height: 18px; margin-left: 6px; vertical-align: -3px; color: var(--accent-ink); }
 
 @media (min-width: 760px) {
-  .hero-grid { grid-template-columns: minmax(0, 1.05fr) minmax(0, 1fr); }
-  .hero-copy { grid-column: 1 / -1; }
-  .h1-main { font-size: clamp(80px, 11vw, 128px); }
-  .h1-a, .h1-b { display: inline; }
+  .where-grid { grid-template-columns: minmax(0, 1.05fr) minmax(0, 1fr); }
+  .where-copy { grid-column: 1 / -1; }
+  .where-title { font-size: clamp(76px, 10.4vw, 124px); }
+  .where-title .h1-a, .where-title .h1-b { display: inline; }
 }
 @media (min-width: 1260px) {
-  .hero-grid { grid-template-columns: minmax(0, .9fr) minmax(0, 1.2fr) minmax(0, .9fr); gap: clamp(28px, 2.6vw, 44px); }
-  .hero-copy { grid-column: auto; padding-top: clamp(8px, 3vh, 36px); }
-  .h1-main { font-size: clamp(84px, 7.6vw, 120px); }
-  .h1-a, .h1-b { display: block; }
+  .where-grid { grid-template-columns: minmax(0, .9fr) minmax(0, 1.2fr) minmax(0, .9fr); gap: clamp(28px, 2.6vw, 44px); }
+  .where-copy { grid-column: auto; padding-top: clamp(8px, 3vh, 36px); }
+  .where-title { font-size: clamp(84px, 7.6vw, 120px); }
+  .where-title .h1-a, .where-title .h1-b { display: block; }
 }
 
 /* ---------- «Не понимаю, какая услуга мне нужна»: единственный блок в фирменном цвете */
@@ -549,7 +587,15 @@ svg { width: 1em; height: 1em; flex: none; }
   .hero-copy > * { animation: rise .9s var(--ease) both; }
   .hero-copy .lead { animation-delay: .12s; }
   .hero-copy .hero-actions { animation-delay: .22s; }
+  .hero-copy .hero-meta { animation-delay: .3s; }
+  /* выноска тянется к Ольге так же, как выноски на атласе */
+  .callout-label { animation: rise .7s var(--ease) .45s both; }
+  .callout::before { transform-origin: left center; animation: grow .55s var(--ease) .8s both; }
+  .callout::after { animation: pop .45s cubic-bezier(.34, 1.56, .64, 1) 1.25s both; }
   .legend { animation: rise .9s var(--ease) .3s both; }
+  /* стопа ждёт, пока до неё долистают, и рисуется уже на глазах */
+  .js .where:not(.is-live) :is(.atlas-svg *, .pin, .legend) { animation-play-state: paused; }
+  .js .where:not(.is-live) .pin::after { animation-play-state: paused; }
   .lg-body { animation: fade .4s ease both; }
   .photo-dialog[open] { animation: rise .45s var(--ease) both; }
 }
@@ -558,3 +604,4 @@ svg { width: 1em; height: 1em; flex: none; }
 @keyframes pop { from { opacity: 0; scale: .4; } to { opacity: 1; scale: 1; } }
 @keyframes rise { from { opacity: 0; translate: 0 18px; } to { opacity: 1; translate: 0 0; } }
 @keyframes ring { 0% { opacity: .9; scale: .85; } 100% { opacity: 0; scale: 1.5; } }
+@keyframes grow { from { scale: 0 1; } to { scale: 1 1; } }

@@ -53,6 +53,14 @@
   });
   select('ingrown');
 
+  // Стопа рисуется, когда до неё долистали: на первом экране теперь фото студии
+  const where = $('.where');
+  new IntersectionObserver(([e], o) => {
+    if (!e.isIntersecting) return;
+    where.classList.add('is-live');
+    o.disconnect();
+  }, { threshold: 0.35 }).observe($('.atlas', where));
+
   // Окно с фото: до и после из атласа открываются по одному, работы мастеров листаются стрелками
   const dialog = $('#photo-dialog');
   if (dialog && typeof dialog.showModal === 'function') {

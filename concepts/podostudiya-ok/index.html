@@ -17,7 +17,7 @@
 <link rel="apple-touch-icon" href="assets/img/apple-touch-icon.png">
 <link rel="preload" href="assets/fonts/sofia-sans-extra-condensed-cyrillic-wght-normal.woff2" as="font" type="font/woff2" crossorigin>
 <link rel="preload" href="assets/fonts/sofia-sans-cyrillic-wght-normal.woff2" as="font" type="font/woff2" crossorigin>
-<link rel="stylesheet" href="styles.css?v=20261030">
+<link rel="stylesheet" href="styles.css?v=20261031">
 <script>document.documentElement.classList.add('js')</script>
 <script type="application/ld+json">
 {
@@ -54,7 +54,7 @@
   <div class="wrap header-row">
     <a class="brand" href="#top" aria-label="ПодоСтудия OK, в начало страницы"><span class="logo" aria-hidden="true"></span></a>
     <nav class="nav" aria-label="Разделы">
-      <a href="#top">Где болит</a>
+      <a href="#where">Где болит</a>
       <a href="#manicure">Маникюр</a>
       <a href="#prices">Цены</a>
       <a href="#team">Мастера</a>
@@ -69,7 +69,7 @@
   </div>
   <div class="mobile-menu" id="mobile-menu" hidden>
     <nav class="wrap" aria-label="Разделы">
-      <a href="#top">Где болит</a>
+      <a href="#where">Где болит</a>
       <a href="#visit">Как проходит приём</a>
       <a href="#manicure">Маникюр и педикюр</a>
       <a href="#prices">Цены</a>
@@ -83,16 +83,35 @@
 
 <main id="main">
 
-  <!-- Первый экран: атлас стопы. Слева вопрос, в центре стопа сверху и снизу, справа расшифровка зон -->
+  <!-- Первый экран: студия и Ольга у своей вывески. Выноска к фото устроена как выноски на атласе -->
   <section class="hero" id="top" aria-labelledby="hero-title">
     <div class="wrap hero-grid">
       <div class="hero-copy">
-        <h1 id="hero-title"><span class="kicker">Подолог и маникюр в Новом Девяткино</span><span class="h1-main"><span class="h1-a">Покажите,</span> <span class="h1-b">где болит</span></span></h1>
-        <p class="lead">Нажмите на стопе место, которое беспокоит. Расскажем, что с&nbsp;этим делает подолог и сколько стоит приём.</p>
+        <h1 id="hero-title"><span class="kicker">ПодоСтудия OK в Новом Девяткино</span><span class="h1-main"><span class="h1-b">Подолог</span> <span class="h1-a">и маникюр</span></span></h1>
+        <p class="lead">Вросший ноготь без операции, стержневые мозоли и трещины, ногти после травм и грибка. Маникюр и педикюр здесь&nbsp;же.</p>
         <div class="hero-actions">
           <a class="btn btn-primary" href="https://dikidi.net/297741" target="_blank" rel="noopener">Записаться</a>
           <a class="btn btn-ghost" href="tel:+79219115003" aria-label="Позвонить: +7 921 911-50-03">+7 921 911-50-03</a>
         </div>
+        <p class="hero-meta"><span>Главная, 13, второй этаж</span><span>Без выходных, 10:00-21:00</span></p>
+      </div>
+      <figure class="hero-photo">
+        <picture>
+          <source media="(min-width: 1100px)" srcset="assets/img/olga-sign-1x1-800.webp 800w, assets/img/olga-sign-1x1-1024.webp 1024w" sizes="min(46vw, 660px)" width="1024" height="1024">
+          <source media="(min-width: 760px)" srcset="assets/img/olga-sign-4x5-560.webp 560w, assets/img/olga-sign-4x5-819.webp 819w" sizes="46vw" width="819" height="1024">
+          <img src="assets/img/olga-sign-1x1-800.webp" srcset="assets/img/olga-sign-1x1-480.webp 480w, assets/img/olga-sign-1x1-800.webp 800w, assets/img/olga-sign-1x1-1024.webp 1024w" sizes="100vw" width="1024" height="1024" alt="Руководитель студии за стойкой ресепшена, над ней светится вывеска с логотипом OK PodoStudio и надписью «Студия маникюра и подологии»" fetchpriority="high">
+        </picture>
+        <figcaption class="callout"><span class="callout-label"><span class="callout-name">Ольга Кветковская</span><span class="callout-role">руководитель и ведущий подолог</span></span></figcaption>
+      </figure>
+    </div>
+  </section>
+
+  <!-- Атлас стопы. Слева вопрос, в центре стопа сверху и снизу, справа расшифровка зон -->
+  <section class="where" id="where" aria-labelledby="where-title">
+    <div class="wrap where-grid">
+      <div class="where-copy">
+        <h2 id="where-title" class="where-title reveal"><span class="h1-a">Покажите,</span> <span class="h1-b">где болит</span></h2>
+        <p class="lead reveal">Нажмите на стопе место, которое беспокоит. Расскажем, что с&nbsp;этим делает подолог и сколько стоит приём.</p>
       </div>
 
       <figure class="atlas" aria-label="Стопа сверху и со стороны подошвы, на ней отмечены места, с которыми приходят к подологу">
@@ -618,6 +637,6 @@
   <a class="btn btn-icon" href="tel:+79219115003" aria-label="Позвонить"><svg aria-hidden="true"><use href="assets/icons.svg#i-phone"></use></svg></a>
 </nav>
 
-<script src="app.js?v=20261030" defer></script>
+<script src="app.js?v=20261031" defer></script>
 </body>
 </html>
