@@ -26,7 +26,7 @@
   --font-text: "Sofia Sans", system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
   --font-mono: "IBM Plex Mono", ui-monospace, "Cascadia Mono", Consolas, monospace;
 
-  /* светлая тема: серые стены студии, белые листы, малиновый как в логотипе */
+  /* светлая тема: серые стены студии, белые листы, розовый из логотипа (#EA028C), притемнён для белого текста на кнопках */
   --bg: #F2F3F3;
   --paper: #FAFBFB;
   --ink: #16171A;
@@ -34,15 +34,16 @@
   --muted: #64686F;
   --line: #D5D8DB;
   --line-strong: #A9AEB4;
-  --accent: #C3245E;
-  --accent-ink: #A31D4E;
-  --accent-zone: rgb(195 36 94 / .2);
+  --accent: #C41C76;
+  --accent-ink: #A3175F;
+  --accent-zone: rgb(196 28 118 / .2);
   --on-accent: #FFFFFF;
   --foot-fill: #FFFFFF;
   --foot-line: #16171A;
   --foot-detail: #9A9EA5;
   --foot-faint: #C2C6CB;
   --nail: #F3F0F1;
+  --logo-pink: #EA028C;
   --header-bg: rgb(242 243 243 / .86);
   --shadow: 0 18px 40px -24px rgb(22 23 26 / .35);
 
@@ -63,9 +64,9 @@
     --muted: #9A9EA6;
     --line: #2A2C31;
     --line-strong: #565A62;
-    --accent: #C3245E;
-    --accent-ink: #F27AA6;
-    --accent-zone: rgb(242 122 166 / .26);
+    --accent: #C41C76;
+    --accent-ink: #F47CBE;
+    --accent-zone: rgb(244 124 190 / .26);
     --foot-fill: #1C1D21;
     --foot-line: #E4E6E9;
     --foot-detail: #7B8088;
@@ -114,11 +115,11 @@ svg { width: 1em; height: 1em; flex: none; }
 .btn svg { width: 20px; height: 20px; }
 .btn:active { transform: scale(.98); }
 .btn-primary { background: var(--accent); color: var(--on-accent); }
-.btn-primary:hover { background: #A81E50; }
+.btn-primary:hover { background: #A8185F; }
 .btn-ghost { padding: 0 18px; border-color: var(--ink); color: var(--ink); font-family: var(--font-mono); font-weight: 500; font-size: 15px; }
 .btn-ghost:hover { background: var(--ink); color: var(--bg); }
-.btn-light { background: #FFFFFF; color: #A31D4E; }
-.btn-light:hover { background: #FBE9F0; }
+.btn-light { background: #FFFFFF; color: #A3175F; }
+.btn-light:hover { background: #FBE8F2; }
 .btn-sm { min-height: 42px; padding: 0 20px; font-size: 16px; }
 .btn-icon { width: 52px; padding: 0; background: var(--paper); border-color: var(--line-strong); color: var(--ink); }
 .btn-icon svg { width: 22px; height: 22px; }
@@ -135,10 +136,19 @@ svg { width: 1em; height: 1em; flex: none; }
 .site-header.is-scrolled { border-bottom-color: var(--line); }
 .header-row { display: flex; align-items: center; gap: 28px; height: var(--header-h); }
 .brand { display: block; color: var(--ink); flex: none; }
-.logo {
-  display: block; width: 88px; aspect-ratio: 594 / 330; background: currentColor;
-  -webkit-mask: url("assets/img/logo-mask.png") center / contain no-repeat;
-  mask: url("assets/img/logo-mask.png") center / contain no-repeat;
+/* логотип в цвете, как на вывеске: OK цветом текста (в тёмной теме светлый), розовые надписи и пяточка.
+   Маски собирает tools/logo-color.py */
+.logo { position: relative; display: block; width: 88px; aspect-ratio: 380 / 209; }
+.logo::before, .logo::after { content: ""; position: absolute; inset: 0; }
+.logo::before {
+  background: currentColor;
+  -webkit-mask: url("assets/img/logo-ink.png") center / contain no-repeat;
+  mask: url("assets/img/logo-ink.png") center / contain no-repeat;
+}
+.logo::after {
+  background: var(--logo-pink);
+  -webkit-mask: url("assets/img/logo-pink.png") center / contain no-repeat;
+  mask: url("assets/img/logo-pink.png") center / contain no-repeat;
 }
 .nav { display: flex; gap: 28px; margin-left: auto; }
 .nav a { text-decoration: none; font-weight: 500; font-size: 16px; color: var(--ink-2); padding: 6px 0; border-bottom: 1.5px solid transparent; transition: color .2s, border-color .2s; }
@@ -175,16 +185,19 @@ svg { width: 1em; height: 1em; flex: none; }
 .h1-main { display: block; font-family: var(--font-display); font-size: clamp(66px, 17vw, 128px); line-height: .84; letter-spacing: -.012em; }
 .h1-a { display: block; font-weight: 250; }
 .h1-b { display: block; font-weight: 820; }
+/* третья строка, как на листовках студии: «Студия / подологии / маникюра и педикюра» */
+.h1-sub { display: block; margin-top: .16em; font-size: .4em; font-weight: 300; line-height: 1; letter-spacing: 0; }
 .lead { margin: clamp(18px, 2.4vw, 28px) 0 clamp(24px, 3vw, 34px); max-width: 34ch; font-size: clamp(18px, 1.5vw, 20px); line-height: 1.45; color: var(--ink-2); }
+.lead-plus { display: block; margin-top: .45em; }
 .hero-actions { display: flex; flex-wrap: wrap; gap: 12px; }
 .hero-meta { display: grid; gap: 4px; margin-top: clamp(20px, 2.6vw, 30px); font: 400 14px/1.4 var(--font-mono); color: var(--muted); }
 
 /* на телефоне фото во всю ширину, сразу под шапкой */
 .hero-photo { order: -1; position: relative; margin: 0 calc(-1 * var(--gutter)); }
 .hero-photo img { width: 100%; aspect-ratio: 1; object-fit: cover; }
-/* выноска как на атласе: подпись, линия, точка на Ольге. --x и --y - доля кадра */
+/* выноска как на атласе: подпись, линия, точка на форме Ольги. --x и --y - доля кадра */
 .callout {
-  --x0: var(--gutter); --x: 68.4%; --y: 79.1%;
+  --x0: var(--gutter); --x: 66%; --y: 75.8%;
   position: absolute; left: var(--x0); top: var(--y); width: calc(var(--x) - var(--x0) + 6px);
   display: flex; align-items: center; translate: 0 -50%;
 }
@@ -193,20 +206,24 @@ svg { width: 1em; height: 1em; flex: none; }
 .callout-role { font: 500 11px/1.3 var(--font-mono); letter-spacing: .06em; text-transform: uppercase; color: var(--muted); }
 .callout::before { content: ""; order: 1; flex: 1; min-width: 18px; height: 1.5px; background: var(--accent); }
 .callout::after { content: ""; order: 2; flex: none; width: 11px; height: 11px; border-radius: 999px; background: var(--accent); box-shadow: 0 0 0 2px #FFFFFF; }
+@media (max-width: 380px) {
+  .callout-label { padding: 8px 11px 9px; }
+  .callout-name { font-size: 19px; }
+}
 
 @media (min-width: 760px) {
   .hero { padding-top: clamp(20px, 3vw, 40px); }
   .hero-grid { grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); align-items: center; }
   .hero-photo { order: 0; margin: 0; }
   .hero-photo img { aspect-ratio: 4 / 5; }
-  .callout { --x0: 18px; --x: 63.5%; }
+  .callout { --x0: 18px; --x: 67.6%; }
   .h1-main { font-size: clamp(72px, 11vw, 132px); }
 }
 /* на широком экране кадр снова квадратный: видны букет и визитки на стойке */
 @media (min-width: 1100px) {
   .hero-grid { gap: clamp(40px, 4vw, 64px); }
   .hero-photo img { aspect-ratio: 1; }
-  .callout { --x: 68.4%; }
+  .callout { --x: 66%; }
   .h1-main { font-size: clamp(120px, 12.4vw, 188px); }
 }
 
