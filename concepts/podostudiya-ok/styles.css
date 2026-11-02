@@ -548,6 +548,8 @@ svg { width: 1em; height: 1em; flex: none; }
 .footer-brand { display: flex; align-items: flex-start; gap: 18px; }
 .footer-brand .logo { width: 72px; color: var(--ink); }
 .footer-brand b { color: var(--ink); }
+/* реквизиты ИП, как были на Taplink студии (просьба Ольги 02.11.2026) */
+.footer-legal { display: block; margin-top: 10px; font: 400 13px/1.55 var(--font-mono); color: var(--muted); }
 .footer-note, .footer-made { font: 400 13px/1.55 var(--font-mono); color: var(--muted); }
 .footer-made a { color: var(--ink-2); }
 @media (min-width: 900px) {
