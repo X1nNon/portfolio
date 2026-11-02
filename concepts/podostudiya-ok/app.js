@@ -61,37 +61,42 @@
     o.disconnect();
   }, { threshold: 0.35 }).observe($('.atlas', where));
 
-  // Окно с фото: до и после из атласа открываются по одному, работы мастеров листаются стрелками
+  // Окно с фото: до и после из атласа и работы мастеров. Внутри набора фото листаются стрелками
   const dialog = $('#photo-dialog');
   if (dialog && typeof dialog.showModal === 'function') {
     const img = $('img', dialog);
     const cap = $('figcaption', dialog);
     const nav = $('.dialog-nav', dialog);
-    const works = $$('.work-link');
-    let current = -1;
-    const open = (src, alt, caption, index = -1) => {
-      current = index;
-      nav.hidden = index < 0;
-      img.src = src;
-      img.alt = alt;
-      cap.textContent = caption;
+    const item = (a) => ({
+      src: a.getAttribute('href'), alt: a.dataset.alt || $('img', a)?.alt || '', caption: a.dataset.caption || '',
+      w: Number(a.dataset.w) || 0, h: Number(a.dataset.h) || 0,
+    });
+    let set = [];
+    let current = 0;
+    const show = (i) => {
+      current = (i + set.length) % set.length;
+      const it = set[current];
+      nav.hidden = set.length < 2;
+      // фото случаев разного формата: окно берёт их пропорции, работы мастеров квадратные
+      dialog.classList.toggle('is-case', it.w > 0);
+      img.style.aspectRatio = it.w ? `${it.w} / ${it.h}` : '';
+      img.src = it.src;
+      img.alt = it.alt;
+      cap.textContent = it.caption;
       if (!dialog.open) dialog.showModal();
     };
-    const showWork = (i) => {
-      const n = (i + works.length) % works.length;
-      const link = works[n];
-      open(link.getAttribute('href'), $('img', link).alt, link.dataset.caption || '', n);
-    };
-    $$('.photo-link').forEach((link) => link.addEventListener('click', (e) => {
+    const bind = (links) => links.forEach((a, i) => a.addEventListener('click', (e) => {
       e.preventDefault();
-      open(link.getAttribute('href'), link.dataset.alt || '', link.dataset.caption || '');
+      set = links.map(item);
+      show(i);
     }));
-    works.forEach((link, i) => link.addEventListener('click', (e) => { e.preventDefault(); showWork(i); }));
-    $$('[data-step]', nav).forEach((btn) => btn.addEventListener('click', () => showWork(current + Number(btn.dataset.step))));
+    $$('.photo-set').forEach((s) => bind($$('a', s)));
+    bind($$('.work-link'));
+    $$('[data-step]', nav).forEach((btn) => btn.addEventListener('click', () => show(current + Number(btn.dataset.step))));
     dialog.addEventListener('keydown', (e) => {
-      if (current < 0) return;
-      if (e.key === 'ArrowRight') showWork(current + 1);
-      if (e.key === 'ArrowLeft') showWork(current - 1);
+      if (set.length < 2) return;
+      if (e.key === 'ArrowRight') show(current + 1);
+      if (e.key === 'ArrowLeft') show(current - 1);
     });
     dialog.addEventListener('click', (e) => { if (e.target === dialog) dialog.close(); });
   }

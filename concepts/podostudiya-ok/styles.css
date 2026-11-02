@@ -564,6 +564,7 @@ svg { width: 1em; height: 1em; flex: none; }
 .photo-dialog::backdrop { background: rgb(17 18 20 / .72); }
 .photo-dialog figure { margin: 0; }
 .photo-dialog img { width: 100%; aspect-ratio: 720 / 719; object-fit: cover; background: var(--line); }
+.photo-dialog.is-case img { object-fit: contain; max-height: calc(92dvh - 120px); }
 .photo-dialog figcaption { padding: 16px 64px 18px 20px; font: 400 14px/1.5 var(--font-mono); color: var(--ink-2); }
 .photo-dialog form { position: absolute; top: 12px; right: 12px; margin: 0; }
 /* стрелки листания стоят в строке подписи, справа */
