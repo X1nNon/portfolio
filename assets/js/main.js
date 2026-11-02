@@ -3,7 +3,7 @@
 (() => {
   // Контакты для кнопок «Написать». Кнопка без ссылки прячется, чтобы на сайте не было нерабочих кнопок.
   const CONTACTS = {
-    telegram: 'https://t.me/X1nN0n',
+    telegram: 'https://t.me/x1nnon',
     max: 'https://max.ru/u/f9LHodD0cOJ6XFs0k5o8QsKO2rrF3OVAb4TDwJ0YbtX43iOG3LH2091j7XY',
     email: 'eugenerussia21@gmail.com',
   };
