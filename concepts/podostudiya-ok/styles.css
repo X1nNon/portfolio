@@ -385,15 +385,11 @@ svg { width: 1em; height: 1em; flex: none; }
   .work { flex: 0 0 min(74vw, 320px); scroll-snap-align: start; }
   .price-list.mani-menu { order: 4; margin-top: 0; }
   .mani-actions { order: 5; margin-top: -8px; }
-  .compare { order: 6; }
 }
 @media (min-width: 1100px) {
   /* компьютер: меню прилипает слева, работы мозаикой 4x4, две крупные плитки шахматкой */
   .mani-grid { grid-template-columns: minmax(0, .74fr) minmax(0, 1.66fr); gap: clamp(40px, 4.5vw, 72px); align-items: start; }
   .mani-aside { position: sticky; top: calc(var(--header-h) + 24px); }
-  .mani-aside .compare { margin-top: 36px; }
-  .mani-aside .compare-grid { grid-template-columns: 1fr; gap: 16px; }
-  .mani-aside .compare-grid > div + div { border-left: 0; padding-left: 0; padding-top: 16px; border-top: 1px solid var(--line); }
   .works { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); grid-auto-flow: dense; gap: 26px 12px; }
   .work-big { grid-column: span 2; grid-row: span 2; display: flex; flex-direction: column; }
   .work-big .work-link { flex: 1; aspect-ratio: auto; min-height: 0; }
@@ -406,13 +402,24 @@ svg { width: 1em; height: 1em; flex: none; }
 .round-btn svg { width: 22px; height: 22px; }
 .round-btn:hover:not(:disabled) { background: var(--ink); color: var(--bg); }
 .round-btn:disabled { opacity: .3; cursor: default; }
-.compare { background: var(--paper); border: 1px solid var(--line); padding: clamp(20px, 2.4vw, 28px); }
-.compare h3 { font: 760 clamp(28px, 2.4vw, 34px)/1 var(--font-display); margin-bottom: 18px; }
-.compare-grid { display: grid; gap: 20px; }
-.compare h4 { font: 700 17px var(--font-text); margin-bottom: 6px; }
-.compare p { color: var(--ink-2); font-size: 15.5px; }
-.compare .price { margin-top: 10px; font: 500 14px var(--font-mono); color: var(--ink); }
-@media (min-width: 560px) { .compare-grid { grid-template-columns: 1fr 1fr; } .compare-grid > div + div { border-left: 1px solid var(--line); padding-left: 20px; } }
+/* ---------- новинки: бондирование крупно (его сейчас берут больше всего), глянцевание и плёнки сбоку */
+.new-grid { display: grid; gap: clamp(28px, 3.4vw, 48px); margin-top: clamp(28px, 3.4vw, 44px); }
+.new-main { display: grid; gap: clamp(18px, 2.4vw, 32px); padding: clamp(14px, 1.8vw, 22px); background: var(--paper); border: 1px solid var(--line); }
+.new-main > img { width: 100%; height: auto; }
+.new-tag { font: 500 13px/1.35 var(--font-mono); letter-spacing: .08em; text-transform: uppercase; color: var(--accent-ink); }
+.novelties h3 { font: 760 clamp(30px, 2.8vw, 40px)/1 var(--font-display); margin: 0 0 12px; }
+.new-main h3 { margin-top: 10px; font-size: clamp(40px, 4.4vw, 64px); }
+.novelties .new-text p:not([class]), .new-item p:not([class]) { max-width: 46ch; color: var(--ink-2); }
+.new-price { margin: 14px 0 22px; font: 500 15px/1.4 var(--font-mono); color: var(--ink); }
+.new-item .new-price { margin-bottom: 0; }
+.new-side { display: grid; gap: clamp(24px, 3vw, 36px); align-content: start; }
+.new-item { display: grid; gap: 16px; padding-top: 18px; border-top: 2px solid var(--ink); }
+.new-item:has(> .photo-set) { grid-template-columns: minmax(96px, 34%) minmax(0, 1fr); align-items: start; }
+.new-photo { display: block; cursor: zoom-in; }
+.new-photo img { width: 100%; height: auto; transition: opacity .2s; }
+.new-photo:hover img { opacity: .88; }
+@media (min-width: 760px) { .new-main { grid-template-columns: minmax(0, .85fr) minmax(0, 1fr); align-items: center; } }
+@media (min-width: 1100px) { .new-grid { grid-template-columns: minmax(0, 1.55fr) minmax(0, 1fr); align-items: start; } }
 
 /* цены */
 .prices-head { display: grid; gap: 16px; margin-bottom: clamp(32px, 4vw, 52px); }
@@ -564,7 +571,7 @@ svg { width: 1em; height: 1em; flex: none; }
 .photo-dialog::backdrop { background: rgb(17 18 20 / .72); }
 .photo-dialog figure { margin: 0; }
 .photo-dialog img { width: 100%; aspect-ratio: 720 / 719; object-fit: cover; background: var(--line); }
-.photo-dialog.is-case img { object-fit: contain; max-height: calc(92dvh - 120px); }
+.photo-dialog.is-case img { object-fit: contain; max-height: calc(92dvh - 120px); background: var(--paper); }
 .photo-dialog figcaption { padding: 16px 64px 18px 20px; font: 400 14px/1.5 var(--font-mono); color: var(--ink-2); }
 .photo-dialog form { position: absolute; top: 12px; right: 12px; margin: 0; }
 /* стрелки листания стоят в строке подписи, справа */
