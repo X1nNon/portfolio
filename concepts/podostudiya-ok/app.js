@@ -148,6 +148,43 @@
   }), { threshold: 0.12, rootMargin: '0px 0px -6% 0px' });
   $$('.reveal').forEach((el) => reveal.observe(el));
 
+  // Cookies и Яндекс Метрика. Номер счётчика в <meta name="ym-id">: пока он пустой, нет ни Метрики, ни уведомления.
+  // Метрика грузится только после «Разрешить», выбор хранится в браузере. ?cookie-preview показывает уведомление для проверки
+  const cookie = $('#cookie');
+  const ymId = Number($('meta[name="ym-id"]')?.content) || 0;
+  const preview = new URLSearchParams(location.search).has('cookie-preview');
+  const KEY = 'podo-cookies';
+  const getChoice = () => { try { return localStorage.getItem(KEY); } catch { return null; } };
+  const setChoice = (v) => { try { localStorage.setItem(KEY, v); } catch { /* приватный режим: спросим снова в следующий раз */ } };
+  const loadMetrika = () => {
+    if (!ymId || window.ym) return;
+    window.ym = function () { (window.ym.a = window.ym.a || []).push(arguments); };
+    window.ym.l = Date.now();
+    const s = document.createElement('script');
+    s.async = true;
+    s.src = 'https://mc.yandex.ru/metrika/tag.js';
+    document.head.append(s);
+    window.ym(ymId, 'init', { clickmap: true, trackLinks: true, accurateTrackBounce: true });
+  };
+  const showCookie = (on) => {
+    cookie.hidden = !on;
+    document.body.classList.toggle('has-cookie', on);
+  };
+  if (cookie && (ymId || preview)) {
+    const choice = getChoice();
+    if (choice === 'yes') loadMetrika();
+    if (!choice || preview) showCookie(true);
+    $$('[data-consent]', cookie).forEach((btn) => btn.addEventListener('click', () => {
+      setChoice(btn.dataset.consent);
+      showCookie(false);
+      if (btn.dataset.consent === 'yes') loadMetrika();
+    }));
+    $$('[data-cookie-settings]').forEach((btn) => {
+      btn.hidden = false;
+      btn.addEventListener('click', () => showCookie(true));
+    });
+  }
+
   // Плашка «Записаться» на телефоне: видна, когда кнопки первого экрана ушли вверх, и прячется у контактов
   const bar = $('.mbar');
   const seen = new Map();

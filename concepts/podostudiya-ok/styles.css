@@ -568,6 +568,31 @@ svg { width: 1em; height: 1em; flex: none; }
 .mbar .btn-primary { flex: 1; }
 @media (min-width: 900px) { .mbar { display: none; } }
 
+/* уведомление о cookies: прямые углы, кнопки-пилюли; пока оно на экране, плашка записи спрятана */
+.cookie { position: fixed; left: 12px; right: 12px; bottom: calc(12px + env(safe-area-inset-bottom)); z-index: 45; max-width: 520px; display: grid; gap: 12px; padding: 16px 18px; background: var(--paper); color: var(--ink); border: 1px solid var(--line-strong); box-shadow: var(--shadow); font-size: 15px; line-height: 1.45; }
+.cookie-title { font: 700 22px/1 var(--font-display); }
+.cookie p { color: var(--ink-2); }
+.cookie a { color: var(--accent-ink); text-underline-offset: 3px; }
+.cookie-actions { display: flex; flex-wrap: wrap; gap: 10px; }
+.has-cookie .mbar { display: none; }
+@media (min-width: 760px) { .cookie { left: auto; right: 24px; bottom: 24px; } }
+.footer-links { display: flex; flex-wrap: wrap; gap: 6px 18px; margin-top: 12px; }
+.footer-links a, .link-btn { font: 400 13px/1.55 var(--font-mono); color: var(--ink-2); text-decoration: underline; text-underline-offset: 3px; background: none; border: 0; padding: 0; cursor: pointer; }
+.footer-note p + p { margin-top: 12px; }
+
+/* страница политики */
+.doc-back { margin-left: auto; font: 500 15px var(--font-mono); color: var(--ink-2); text-underline-offset: 4px; }
+.doc { max-width: 76ch; padding: clamp(28px, 5vw, 56px) 0 clamp(48px, 7vw, 88px); }
+.doc h1 { font: 760 clamp(40px, 6vw, 72px)/.95 var(--font-display); }
+.doc-date { margin: 14px 0 28px; font: 400 14px var(--font-mono); color: var(--muted); }
+.doc h2 { margin: 40px 0 12px; font: 740 clamp(26px, 3vw, 34px)/1.05 var(--font-display); }
+.doc h3 { margin: 24px 0 8px; font: 700 18px/1.3 var(--font-text); }
+.doc p, .doc li { color: var(--ink-2); }
+.doc p + p { margin-top: 12px; }
+.doc ul { padding-left: 1.2em; display: grid; gap: 6px; }
+.doc a { color: var(--accent-ink); text-underline-offset: 3px; }
+.doc-page .footer-grid { padding-bottom: 40px; }
+
 /* фото до и после */
 .photo-dialog { width: min(92vw, 720px); max-height: 92dvh; padding: 0; border: 0; background: var(--paper); color: var(--ink); box-shadow: var(--shadow); overflow: auto; }
 .photo-dialog::backdrop { background: rgb(17 18 20 / .72); }
