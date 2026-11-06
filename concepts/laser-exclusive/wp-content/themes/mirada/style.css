@@ -1,6 +1,6 @@
 /*
 Theme Name: Лазер Эксклюзив
-Version: 1.2.1
+Version: 1.2.3
 Requires at least: 6.6
 Requires PHP: 8.1
 Text Domain: mirada
@@ -137,7 +137,7 @@ Text Domain: mirada
   /* направления списком: строка раскрывается (details) и показывает цены с длительностью и кнопку записи */
   .catalog { border-top: 1px solid var(--line-2); }
   .svc { border-bottom: 1px solid var(--line); scroll-margin-top: 96px; }
-  .svc summary { display: grid; grid-template-columns: 64px minmax(0, 1fr) auto 52px; align-items: center; gap: 28px; min-height: 128px; padding: 26px 14px; list-style: none; cursor: pointer; transition: background .2s; }
+  .svc summary { display: grid; grid-template-columns: minmax(0, 1fr) auto 52px; align-items: center; gap: 28px; min-height: 128px; padding: 26px 14px; list-style: none; cursor: pointer; transition: background .2s; }
   .svc summary::-webkit-details-marker { display: none; }
   .svc-num { align-self: start; padding-top: 12px; color: var(--accent-ink); font-size: 15px; letter-spacing: .12em; }
   .svc-head { display: flex; flex-direction: column; gap: 6px; }
@@ -525,3 +525,24 @@ html:has(dialog[open]) .privacy-notice{display:none}
   html:has(.bar.on) .privacy-notice { bottom:calc(82px + env(safe-area-inset-bottom)); }
 }
 @media(prefers-reduced-motion:reduce) { .bar, .bar.on { transition:none; } }
+
+/* Approved studio wordmark: the same artwork with ink adapted to the two themes. */
+.brand .studio-logo { width:clamp(175px,18vw,244px); height:auto; }
+html[data-theme="light"] .brand .studio-logo { filter:brightness(0) opacity(.86); }
+.studio-services { margin:22px 0; }
+.studio-services h3 { font-size:16px; font-weight:600; margin:0 0 8px; }
+.studio-services ul { margin:0; padding-left:1.2em; color:var(--muted); line-height:1.7; }
+.stats > div:nth-child(2) b { font-size:clamp(24px,3vw,34px); }
+@media(max-width:760px) {
+  .brand .studio-logo { width:clamp(138px,45vw,178px); }
+  .stats > div:nth-child(2) span { display:block; }
+}
+
+/* Frame the supplied photos above their older signatures without changing the originals. */
+@media(min-width:761px) {
+  .slides img[src$="assets/photos/photo-a6d795d7af73ce7a.jpg"],
+  .slides img[src$="assets/photos/photo-cda4b55280442306.jpg"],
+  .slides img[src$="assets/photos/photo-a620d600b1e66989.jpg"],
+  .slides img[src$="assets/photos/photo-c0079ede8bd32475.jpg"],
+  .slides img[src$="assets/photos/photo-c6b1590f7c745479.jpg"] { object-position:center top; transform-origin:center top; scale:1.17; }
+}
