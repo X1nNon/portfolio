@@ -1,6 +1,6 @@
 /*
 Theme Name: Лазер Эксклюзив
-Version: 1.2.3
+Version: 1.2.4
 Requires at least: 6.6
 Requires PHP: 8.1
 Text Domain: mirada
@@ -527,14 +527,14 @@ html:has(dialog[open]) .privacy-notice{display:none}
 @media(prefers-reduced-motion:reduce) { .bar, .bar.on { transition:none; } }
 
 /* Approved studio wordmark: the same artwork with ink adapted to the two themes. */
-.brand .studio-logo { width:clamp(175px,18vw,244px); height:auto; }
+.brand .studio-logo { width:clamp(194px,20vw,272px); height:auto; }
 html[data-theme="light"] .brand .studio-logo { filter:brightness(0) opacity(.86); }
 .studio-services { margin:22px 0; }
 .studio-services h3 { font-size:16px; font-weight:600; margin:0 0 8px; }
 .studio-services ul { margin:0; padding-left:1.2em; color:var(--muted); line-height:1.7; }
 .stats > div:nth-child(2) b { font-size:clamp(24px,3vw,34px); }
 @media(max-width:760px) {
-  .brand .studio-logo { width:clamp(138px,45vw,178px); }
+  .brand .studio-logo { width:clamp(152px,50vw,198px); }
   .stats > div:nth-child(2) span { display:block; }
 }
 
