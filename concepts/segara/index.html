@@ -1,0 +1,198 @@
+<!doctype html>
+<html lang="ru">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="robots" content="noindex, nofollow">
+  <meta name="description" content="Сегара. Дороги из асфальтовой крошки для коттеджных посёлков и аренда спецтехники в Ленинградской области.">
+  <meta property="og:type" content="website">
+  <meta property="og:title" content="Сегара | Макет сайта">
+  <meta property="og:description" content="Дороги для коттеджных посёлков, интерактивная схема проезда и аренда спецтехники.">
+  <meta property="og:url" content="https://x1nnon.github.io/portfolio/concepts/segara/">
+  <meta property="og:image" content="https://x1nnon.github.io/portfolio/concepts/segara/assets/road.webp">
+  <title>Сегара | Дороги и спецтехника в Ленобласти</title>
+  <link rel="icon" href="assets/mark.svg" type="image/svg+xml">
+  <link rel="stylesheet" href="styles.css">
+  <link rel="stylesheet" href="atlas.css">
+  <script src="app.js" defer></script>
+</head>
+<body>
+  <a class="skip-link" href="#main">Перейти к содержанию</a>
+  <header class="site-header shell">
+    <a class="brand" href="#top" aria-label="Сегара, в начало страницы"><img src="assets/logo-segara.svg" alt="" width="290" height="56"></a>
+    <nav class="nav" aria-label="Разделы сайта">
+      <a href="#atlas">Схема дороги</a>
+      <a href="#estimate">Смета</a>
+      <a href="#fleet">Техника</a>
+    </nav>
+    <span class="header-link header-region">Ленинградская область</span>
+  </header>
+  <main id="main">
+    <section class="hero shell" id="top" aria-labelledby="hero-title">
+      <div class="hero-copy">
+        <h1 id="hero-title">Дороги для<br>коттеджных посёлков</h1>
+        <p>Устраиваем подъезды и улицы из асфальтовой крошки по всей Ленобласти.</p>
+        <a class="button" href="#atlas">Разобрать свой проезд <span aria-hidden="true">↘</span></a>
+      </div>
+      <figure class="hero-figure">
+        <img src="assets/road.webp" alt="Проезд из асфальтовой крошки между участками" width="1600" height="757" fetchpriority="high">
+        <figcaption>Как выглядит покрытие · иллюстрация</figcaption>
+      </figure>
+    </section>
+
+    <section class="atlas shell" id="atlas" aria-labelledby="atlas-title">
+      <div class="atlas-heading">
+        <h2 id="atlas-title">Покажите, какой у вас проезд</h2>
+        <p>Выберите точку на схеме. Подскажем, что посмотреть и какие фото пригодятся для сметы.</p>
+      </div>
+      <div class="atlas-layout">
+        <figure class="map">
+          <div class="map-plate" data-active="ground" role="group" aria-label="Выберите, что сейчас на месте проезда">
+            <svg viewBox="0 0 680 352" class="site-plan" aria-hidden="true" focusable="false">
+              <defs>
+                <pattern id="map-grid" width="24" height="24" patternUnits="userSpaceOnUse">
+                  <path d="M24 0H0V24" fill="none" stroke="currentColor" stroke-opacity=".16" />
+                </pattern>
+                <pattern id="map-stone" width="19" height="16" patternUnits="userSpaceOnUse">
+                  <path d="m2 7 2-2 2 2-2 2zm9 5 3-2 1 2-2 2zM13 3l2-1 1 2-2 1z" fill="currentColor" />
+                </pattern>
+                <path id="route" d="M-20 269H129c72 0 103-17 137-63l42-56c28-38 59-55 106-55h282" />
+                <path id="gravel-route" d="M190 261c31-9 53-25 76-55l42-56c28-38 59-55 106-55h15" />
+              </defs>
+              <rect width="680" height="352" fill="url(#map-grid)" />
+              <g class="plots" fill="none" stroke="currentColor" stroke-width="1.25">
+                <path d="M30 24h156v111H30zM186 24h106v87H186zM315 13h134v39H315zM449 13h122v39H449zM571 13h93v39h-93zM34 316h150v36H34zM410 216h118v108H410zM528 216h133v108H528z" />
+                <path d="M50 42h48v34H50zM109 82h56v33h-56zM207 41h43v35h-43zM430 237h48v40h-48zM571 235h63v39h-63z" class="buildings" />
+                <path d="M485 151v65M547 151v65M648 151v65M187 136v74M76 135v80M286 290l27 62M366 210v123" stroke-dasharray="4 4" />
+              </g>
+              <g class="trees">
+                <circle cx="57" cy="180" r="8" /><circle cx="67" cy="165" r="4" /><circle cx="158" cy="173" r="7" />
+                <circle cx="344" cy="266" r="8" /><circle cx="352" cy="284" r="5" /><circle cx="369" cy="301" r="9" />
+                <circle cx="387" cy="313" r="5" /><circle cx="616" cy="185" r="9" /><circle cx="630" cy="173" r="5" />
+              </g>
+              <use href="#route" class="road-edge" stroke-width="72" />
+              <use href="#route" class="road-body" stroke-width="68" />
+              <use href="#route" class="road-axis" stroke-width="1.5" stroke-dasharray="7 9" />
+              <path class="pond" d="M480 106c5-9 19-12 34-7 15 4 22 5 39 2 22-5 41 2 44 13 3 10-9 17-24 17-16 0-21-5-37-3-25 2-64-1-56-22Z" />
+              <path class="water-lines" d="M490 114c10-4 18 2 34 2m22-4c17-5 27-3 40 1" fill="none" />
+              <path class="guide guide-ground" d="M113 206v48h-1" />
+              <path class="guide guide-gravel" d="M353 172v29h-41" />
+              <path class="guide guide-water" d="M556 160v-34" />
+              <path class="zone zone-ground" d="M20 269h113c16 0 30-1 43-4" />
+              <use href="#gravel-route" class="zone zone-gravel" />
+              <use href="#gravel-route" class="stone" />
+              <path class="zone zone-water" d="M480 106c5-9 19-12 34-7 15 4 22 5 39 2 22-5 41 2 44 13 3 10-9 17-24 17-16 0-21-5-37-3-25 2-64-1-56-22Z" />
+            </svg>
+            <button class="pin pin-ground" type="button" data-scenario="ground" aria-pressed="true" aria-controls="atlas-ground" aria-label="1. Грунт или колея">1</button>
+            <button class="pin pin-gravel" type="button" data-scenario="gravel" aria-pressed="false" aria-controls="atlas-gravel" aria-label="2. Уже есть щебень">2</button>
+            <button class="pin pin-water" type="button" data-scenario="water" aria-pressed="false" aria-controls="atlas-water" aria-label="3. Стоит вода">3</button>
+          </div>
+          <figcaption class="map-caption"><span>1 Грунт или колея</span><span>2 Есть щебень</span><span>3 Стоит вода</span></figcaption>
+        </figure>
+
+        <div class="atlas-result" aria-live="polite">
+          <article class="scenario" id="atlas-ground">
+            <p class="scenario-index">01 / Грунт</p>
+            <h3>Грунт или колея</h3>
+            <p>Если проезд пока грунтовый или машины оставляют глубокую колею, сначала нужно оценить грунт и нагрузку на дорогу. От этого зависит, как подготовить основание под крошку.</p>
+            <dl><dt>Что прислать</dt><dd>Фото проезда целиком и крупный план колеи. Укажите, ездят ли по нему грузовики.</dd></dl>
+          </article>
+          <article class="scenario" id="atlas-gravel" hidden>
+            <p class="scenario-index">02 / Щебень</p>
+            <h3>Уже есть щебень</h3>
+            <p>Существующее основание иногда можно использовать. Важно понять, где щебень держится, а где появились просадки или оголился грунт.</p>
+            <dl><dt>Что прислать</dt><dd>Фото поверхности, обочины и ям, если они есть. Если знаете, напишите, когда отсыпали дорогу.</dd></dl>
+          </article>
+          <article class="scenario" id="atlas-water" hidden>
+            <p class="scenario-index">03 / Вода</p>
+            <h3>После дождя стоят лужи</h3>
+            <p>Отметьте, где собирается вода. До выбора покрытия нужно понять, есть ли у неё выход с дороги и в каком состоянии обочины.</p>
+            <dl><dt>Что прислать</dt><dd>Фото после дождя, общий вид обочин и канавы, если она есть.</dd></dl>
+          </article>
+          <a class="button atlas-action" id="use-scenario" href="#estimate">Добавить в запрос <span aria-hidden="true">↘</span></a>
+        </div>
+      </div>
+    </section>
+
+    <section class="roads shell" id="roads" aria-labelledby="roads-title">
+      <div class="roads-copy">
+        <h2 id="roads-title">Что входит в работы</h2>
+        <p>Строим подъезды к посёлкам и дороги внутри них. Состав работ зависит от состояния проезда и от того, какой транспорт по нему ездит.</p>
+      </div>
+      <ol class="process">
+        <li><span>01</span><div><strong>Собираем исходные данные</strong><p>Нужны место, примерные размеры и фото. Если проездом пользуются грузовики, сообщите об этом сразу.</p></div></li>
+        <li><span>02</span><div><strong>Определяем, что делать с основанием</strong><p>По состоянию дороги решаем, можно ли использовать существующее основание и где нужна подготовка.</p></div></li>
+        <li><span>03</span><div><strong>Укладываем и уплотняем крошку</strong><p>Распределяем материал по подготовленному основанию и укатываем катком.</p></div></li>
+      </ol>
+    </section>
+
+    <section class="estimate shell" id="estimate" aria-labelledby="estimate-title">
+      <div class="estimate-copy">
+        <h2 id="estimate-title">Что отправить для сметы</h2>
+        <p>Укажите посёлок и примерные размеры. Если точной длины нет, можно отправить запрос без размеров.</p>
+        <form id="road-form">
+          <label for="condition">Что сейчас на месте
+            <select id="condition" name="condition">
+              <option value="">Не указано</option>
+              <option value="ground">Грунт или колея</option>
+              <option value="gravel">Уже есть щебень</option>
+              <option value="water">После дождя стоят лужи</option>
+            </select>
+          </label>
+          <div class="dimensions">
+            <label for="length">Длина, м <input id="length" name="length" inputmode="decimal" placeholder="100" maxlength="9" pattern="[0-9]+([.,][0-9]{1,2})?"></label>
+            <label for="width">Ширина, м <input id="width" name="width" inputmode="decimal" placeholder="4" maxlength="8" pattern="[0-9]+([.,][0-9]{1,2})?"></label>
+          </div>
+          <label for="location">Посёлок или адрес
+            <input id="location" name="location" placeholder="Например, посёлок Суйда" maxlength="140">
+          </label>
+          <button type="submit" class="button">Подготовить сообщение <span aria-hidden="true">↘</span></button>
+          <div class="message" id="message" hidden>
+            <label for="message-text">Текст для подрядчика</label>
+            <textarea id="message-text" rows="6" readonly></textarea>
+            <button type="button" class="button button-secondary" id="copy-message">Скопировать текст</button>
+            <p id="copy-status" role="status"></p>
+          </div>
+        </form>
+      </div>
+      <div class="estimate-result">
+        <p class="result-label" id="area-label">Площадь проезда</p>
+        <div class="result-line" id="area-line" hidden><output form="road-form" id="area" for="length width" aria-labelledby="area-label"></output><span>м²</span></div>
+        <p class="area-empty" id="area-empty" role="status">Появится, когда укажете длину и ширину.</p>
+        <div class="road-diagram" aria-hidden="true">
+          <div class="measure measure-length"><span id="measure-length">Длина</span></div>
+          <div class="asphalt"></div>
+          <div class="measure measure-width"><span id="measure-width">Ширина</span></div>
+        </div>
+        <p class="result-note">Расчёт для участка одинаковой ширины. Например, 100 × 4 м = 400 м².</p>
+        <p class="estimate-explainer"><strong>От чего зависит смета</strong><br>От состояния основания, площади, объёма подготовки и доставки материала. К сообщению можно приложить фотографии в мессенджере.</p>
+      </div>
+    </section>
+
+    <section class="fleet shell" id="fleet" aria-labelledby="fleet-title">
+      <h2 id="fleet-title">Техника в аренду</h2>
+      <ul class="fleet-list">
+        <li><img src="assets/excavator.webp" alt="" width="768" height="512" loading="lazy"><div><h3>Экскаваторы</h3><p>Разработка грунта, траншеи, погрузка. Для заявки укажите задачу и примерные размеры выемки.</p></div></li>
+        <li><img src="assets/loader.webp" alt="" width="768" height="512" loading="lazy"><div><h3>Манипулятор</h3><p>Погрузка, перевозка и выгрузка. Понадобятся вес и габариты груза, адреса погрузки и выгрузки.</p></div></li>
+        <li><img src="assets/roller.webp" alt="" width="768" height="512" loading="lazy"><div><h3>Каток</h3><p>Уплотнение основания и покрытия. Сообщите материал, площадь участка и ширину проезда.</p></div></li>
+      </ul>
+      <p class="fleet-note">Иллюстрации техники для макета.</p>
+    </section>
+
+    <section class="faq shell" aria-labelledby="faq-title">
+      <h2 id="faq-title">Частые вопросы</h2>
+      <div class="faq-list">
+        <details><summary>Что такое асфальтовая крошка?</summary><p>Это материал, который получают при снятии или измельчении старого асфальтового покрытия. Его распределяют по подготовленному основанию и уплотняют катком.</p></details>
+        <details><summary>Можно уложить крошку поверх щебня?</summary><p>Зависит от состояния щебёночного основания. Для оценки пригодятся фотографии поверхности, обочин и мест, где появились просадки.</p></details>
+        <details><summary>Что делать, если дорога разной ширины?</summary><p>Разбейте её на участки с примерно одинаковой шириной. Для каждого укажите длину и ширину отдельно. Можно также прислать схему или отметку на карте.</p></details>
+        <details><summary>Что указать при аренде техники?</summary><p>Назовите технику или опишите задачу. Укажите адрес, нужную дату, примерное время работы и особенности подъезда.</p></details>
+      </div>
+    </section>
+  </main>
+  <footer class="site-footer shell">
+    <img src="assets/logo-segara.svg" alt="Сегара" width="290" height="56">
+    <p>Дороги и спецтехника<br>в Ленинградской области</p>
+    <a href="#top">Наверх <span aria-hidden="true">↑</span></a>
+  </footer>
+</body>
+</html>

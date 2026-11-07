@@ -1,0 +1,9 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 290 56" role="img" aria-label="Сегара">
+  <path fill="#e5ef67" d="M0 0h56v56H0z"/>
+  <path fill="#20241c" d="M9 44v-9c0-14 10-23 23-23h13v8H32c-9 0-15 6-15 15v9zm13 0v-9c0-6 4-10 10-10h13v8H32c-1 0-2 1-2 2v9z"/>
+  <style>
+    .wordmark { fill: #20241c; }
+    @media (prefers-color-scheme: dark) { .wordmark { fill: #f2f1e8; } }
+  </style>
+  <path class="wordmark" d="M99 13v8H85c-4 0-7 3-7 7s3 7 7 7h14v8H85c-9 0-16-6-16-15s7-15 16-15zm8 0h27v7h-19v4h17v7h-17v5h19v7h-27zm35 0h25v8h-17v22h-8zm42 0h9l14 30h-9l-2-5h-15l-2 5h-9zm0 18h9l-4.5-10zm30-18h17c8 0 12 5 12 11s-4 11-12 11h-9v8h-8zm8 7v8h9c3 0 4-1 4-4s-1-4-4-4zm39-7h9l14 30h-9l-2-5h-15l-2 5h-9zm0 18h9l-4.5-10z"/>
+</svg>

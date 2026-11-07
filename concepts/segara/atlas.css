@@ -1,0 +1,101 @@
+.atlas {
+  padding-top: clamp(26px, 4vw, 52px);
+  border-top: 1px solid var(--line);
+}
+.atlas-heading h2, .roads h2, .estimate h2, .fleet h2, .faq h2 {
+  font-size: clamp(2.5rem, 5vw, 4.75rem);
+}
+.atlas-heading > p {
+  margin-top: 12px;
+  max-width: 58ch;
+  color: var(--muted);
+}
+.atlas-layout {
+  display: grid;
+  grid-template-columns: minmax(0, 1.55fr) minmax(0, 1fr);
+  gap: clamp(20px, 3.6vw, 50px);
+  align-items: start;
+  margin-top: 22px;
+}
+.map-plate {
+  position: relative;
+  isolation: isolate;
+  border: 1px solid var(--line);
+  background: var(--surface);
+  color: var(--ink);
+}
+.site-plan { display: block; width: 100%; height: auto; }
+.site-plan .plots { opacity: .38; }
+.site-plan .buildings { fill: currentColor; fill-opacity: .2; }
+.site-plan .trees { fill: currentColor; opacity: .23; }
+.site-plan .road-edge { fill: none; stroke: var(--field-line); }
+.site-plan .road-body { fill: none; stroke: var(--field); }
+.site-plan .road-axis { fill: none; stroke: var(--field-line); }
+.site-plan .pond { fill: currentColor; fill-opacity: .2; stroke: var(--field-line); }
+.site-plan .water-lines { stroke: var(--field-line); }
+.site-plan .guide { fill: none; stroke: var(--muted); stroke-width: 1.6; }
+.site-plan .zone { opacity: 0; }
+.site-plan .zone-ground, .site-plan .zone-gravel {
+  fill: none;
+  stroke: var(--signal);
+  stroke-width: 40;
+  stroke-linecap: round;
+}
+.site-plan .zone-water { fill: var(--signal); stroke: var(--field-line); }
+.site-plan .stone {
+  fill: none;
+  stroke: url(#map-stone);
+  stroke-width: 20;
+  stroke-linecap: round;
+  opacity: .43;
+}
+[data-active="ground"] .zone-ground,
+[data-active="gravel"] .zone-gravel,
+[data-active="water"] .zone-water { opacity: 1; }
+.pin {
+  position: absolute;
+  z-index: 1;
+  transform: translate(-50%, -50%);
+  width: 44px;
+  height: 44px;
+  padding: 0;
+  border: 1px solid var(--field-line);
+  border-radius: 50%;
+  background: var(--field);
+  color: var(--ink);
+  font-weight: 760;
+}
+.pin:hover { box-shadow: 0 0 0 3px var(--field-line); }
+.pin[aria-pressed="true"] { background: var(--signal); color: var(--on-signal); border-color: var(--on-signal); }
+.pin-ground { left: 16.62%; top: 58.52%; }
+.pin-gravel { left: 51.91%; top: 48.86%; }
+.pin-water { left: 81.76%; top: 45.45%; }
+.map-caption { display: flex; flex-wrap: wrap; gap: 4px 14px; margin-top: 9px; }
+.atlas-result {
+  padding: 16px 0 0;
+  border-top: 1px solid var(--line);
+}
+.scenario-index { margin-bottom: 8px; color: var(--muted); font-size: .81rem; font-weight: 670; }
+.scenario > p:not(.scenario-index) { margin-top: 12px; color: var(--muted); }
+.scenario dl { margin: 15px 0; padding-top: 12px; border-top: 1px solid var(--line); }
+.scenario dt { font-weight: 700; }
+.scenario dd { margin: 4px 0 0; color: var(--muted); }
+.atlas-action { margin-top: 5px; }
+
+.faq {
+  display: grid;
+  grid-template-columns: minmax(0, .8fr) minmax(0, 1.2fr);
+  gap: clamp(20px, 4.6vw, 66px);
+  margin-top: clamp(64px, 9vw, 140px);
+}
+.faq-list { border-top: 1px solid var(--line); }
+.faq details { border-bottom: 1px solid var(--line); }
+.faq summary { position: relative; padding: 15px 30px 15px 0; cursor: pointer; font-weight: 700; list-style: none; }
+.faq summary::-webkit-details-marker { display: none; }
+.faq summary::after { content: "+"; position: absolute; inset: 12px 2px auto auto; font-size: 1.2rem; }
+.faq details[open] summary::after { content: "−"; }
+.faq details p { color: var(--muted); margin-bottom: 15px; }
+
+@media (max-width: 760px) {
+  .atlas-layout, .faq { grid-template-columns: minmax(0, 1fr); }
+}
