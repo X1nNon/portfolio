@@ -76,3 +76,30 @@
     try { localStorage.setItem('mirada-theme', next); } catch (e) {}
   });
   try { const saved = localStorage.getItem('mirada-theme'); if (saved === 'dark' || saved === 'light') setTheme(saved); } catch (e) {}
+
+  // 10.11.2026: светящийся логотип на первом экране (ролик студии). Играет, пока виден, и останавливается по нажатию.
+  // При «меньше движения» остаётся заставка. Маленький логотип в шапке появляется, когда крупный ушёл с экрана.
+  const brand = document.querySelector('.hero-brand');
+  const logo = brand && brand.querySelector('video');
+  const header = document.querySelector('header');
+  if (brand && logo) {
+    let logoStopped = motion.matches, logoSeen = false;
+    const syncLogo = () => {
+      brand.disabled = motion.matches;
+      brand.setAttribute('aria-pressed', String(logoStopped));
+      brand.setAttribute('aria-label', motion.matches ? 'Лазер Эксклюзив' : `Лазер Эксклюзив. ${logoStopped ? 'Включить' : 'Остановить'} анимацию логотипа`);
+      if (!motion.matches && !logoStopped && logoSeen && !document.hidden) logo.play().catch(() => {});
+      else logo.pause();
+    };
+    brand.addEventListener('click', () => { logoStopped = !logoStopped; syncLogo(); });
+    motion.addEventListener('change', () => { logoStopped = motion.matches; syncLogo(); });
+    document.addEventListener('visibilitychange', syncLogo);
+    if ('IntersectionObserver' in window) {
+      // шапка липкая: всё, что под ней, считается невидимым
+      new IntersectionObserver(([e]) => {
+        logoSeen = e.isIntersecting;
+        header.classList.toggle('brand-off', e.intersectionRatio >= 0.4);
+        syncLogo();
+      }, { rootMargin: `-${header.offsetHeight}px 0px 0px 0px`, threshold: [0, 0.4] }).observe(brand);
+    } else { logoSeen = true; syncLogo(); }
+  }
