@@ -1,6 +1,6 @@
 /*
 Theme Name: Лазер Эксклюзив
-Version: 1.2.8
+Version: 1.2.9
 Requires at least: 6.6
 Requires PHP: 8.1
 Text Domain: mirada
@@ -570,22 +570,22 @@ html[data-theme="light"] .brand .studio-logo { filter:brightness(0) opacity(.86)
 .dots span { min-width:4px; }
 .slide-status { position:absolute; width:1px; height:1px; overflow:hidden; clip-path:inset(50%); white-space:nowrap; }
 
-/* 11.11.2026, тема 1.2.8: крупный светящийся логотип студии над заголовком первого экрана (как в 1.2.5, но картинкой AVIF
-   вместо ролика), в шапке обычный логотип. Пара «логотип + текст» по центру высоты рядом с фото; на телефоне логотип
-   первым, как обложка в группе. У картинки поле 3% под свечение, сдвиг выравнивает буквы по краю заголовка.
-   Видна одна из четырёх картинок: анимация или неподвижный кадр (класс stopped ставит app.js) под текущую тему. */
+/* 11.11.2026, тема 1.2.8–1.2.9: крупный светящийся логотип студии над заголовком первого экрана (как в 1.2.5, но картинкой
+   AVIF вместо ролика). Пара «логотип + текст» по центру высоты рядом с фото; на телефоне логотип первым, как обложка
+   в группе. У картинки поле 3% под свечение, сдвиг выравнивает буквы по краю заголовка. Видна картинка под текущую тему. */
 .hero { grid-template-areas:". media" "brand media" "text media" ". media"; grid-template-rows:1fr auto auto 1fr; }
 .hero-text { grid-area:text; padding-top:8px; }
 .hero-media { grid-area:media; }
-.hero-brand { grid-area:brand; justify-self:start; display:block; width:clamp(324px, 32.4vw, 540px); padding:0; margin:0 0 0 max(48px, calc((100vw - 1560px) / 2 + 48px)); border:0; background:none; color:inherit; cursor:pointer; translate:-3% 0; }
-.hero-brand:disabled { cursor:default; }
-.hero-brand > * { display:none; width:100%; height:auto; }
-.hero-brand picture > img { display:block; width:100%; height:auto; }
-html[data-theme="dark"] .hero-brand:not(.stopped) > .anim.on-dark,
-html[data-theme="light"] .hero-brand:not(.stopped) > .anim.on-light,
-html[data-theme="dark"] .hero-brand.stopped > .still.on-dark,
-html[data-theme="light"] .hero-brand.stopped > .still.on-light { display:block; }
+.hero-brand { grid-area:brand; justify-self:start; display:block; width:clamp(324px, 32.4vw, 540px); margin:0 0 0 max(48px, calc((100vw - 1560px) / 2 + 48px)); translate:-3% 0; }
+.hero-brand > picture { display:none; }
+.hero-brand img { display:block; width:100%; height:auto; }
+html[data-theme="dark"] .hero-brand > .on-dark, html[data-theme="light"] .hero-brand > .on-light { display:block; }
 html[data-theme="light"] .hero-brand img { filter:brightness(0) opacity(.86); }
+/* 1.2.9: пока крупный логотип на экране, маленький в шапке спрятан, как в 1.2.5. Класс brand-off у шапки стоит с самого
+   начала (без мигания при загрузке), app.js снимает его после прокрутки. Без скрипта (нет класса js) логотип в шапке виден. */
+header .brand { transition:opacity .35s, visibility .35s; }
+html.js header.brand-off .brand { opacity:0; visibility:hidden; }
+@media(prefers-reduced-motion:reduce) { header .brand { transition:none; } }
 @media(min-width:761px) and (max-width:1050px) { .hero-brand { margin-left:32px; } }
 @media(max-width:760px) {
   .hero { grid-template-areas:"brand" "media" "text"; grid-template-rows:auto; }
