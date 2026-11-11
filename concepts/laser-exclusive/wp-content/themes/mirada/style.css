@@ -1,6 +1,6 @@
 /*
 Theme Name: Лазер Эксклюзив
-Version: 1.2.5
+Version: 1.2.6
 Requires at least: 6.6
 Requires PHP: 8.1
 Text Domain: mirada
@@ -550,31 +550,22 @@ html[data-theme="light"] .brand .studio-logo { filter:brightness(0) opacity(.86)
 /* 10.11.2026, тема 1.2.5: правки студии.
    Форма: у кнопок скруглённые углы (12px, у маленьких квадратных 10px); фото, рамки и карточки остаются с прямыми углами. */
 .btn, .lb button, .slide-pause { border-radius:12px; }
-.theme-toggle, .mobile-nav summary, .yc-x { border-radius:10px; }
+.theme-toggle, .mobile-nav summary, .yc-x, .slide-prev, .slide-next { border-radius:10px; }
 
-/* Крупный светящийся логотип из ролика студии над заголовком. Чёрный фон ролика растворяется в тёмной теме (screen),
-   в светлой ролик инвертируется и ложится через multiply. Сдвиг влево выравнивает буквы по краю заголовка.
-   Смешивание стоит на кнопке, а не на видео: сдвиг делает кнопку отдельным слоем, и внутри него видео смешивалось бы с пустотой. */
-.hero-brand { grid-area:brand; justify-self:start; display:block; width:clamp(360px, 36vw, 600px); padding:0; margin:0 0 0 max(48px, calc((100vw - 1560px) / 2 + 48px)); border:0; background:none; color:inherit; cursor:pointer; translate:-7% 0; mix-blend-mode:var(--logo-blend); }
-/* Логотип стоит над заголовком, а пара «логотип + текст» по-прежнему по центру высоты рядом с фото. На телефоне логотип первым, как обложка в группе. */
-.hero { grid-template-areas:". media" "brand media" "text media" ". media"; grid-template-rows:1fr auto auto 1fr; }
-.hero-text { grid-area:text; padding-top:8px; }
-.hero-media { grid-area:media; }
-@media(min-width:761px) and (max-width:1050px) { .hero-brand { margin-left:32px; } }
-.hero-brand:disabled { cursor:default; }
-.logo-video { display:block; width:100%; height:auto; aspect-ratio:960 / 264; filter:var(--logo-filter); pointer-events:none; }
-header .brand { transition:opacity .35s, visibility .35s; }
-header.brand-off .brand { opacity:0; visibility:hidden; }
-
-/* Работы мастеров: сетка на компьютере, лента на телефоне. */
-.works { display:grid; grid-template-columns:repeat(4, minmax(0, 1fr)); gap:12px; }
-.works .zoom { aspect-ratio:4 / 5; }
-@media(max-width:1100px) { .works { grid-template-columns:repeat(3, minmax(0, 1fr)); } }
-@media(max-width:760px) {
-  .hero { grid-template-areas:"brand" "media" "text"; grid-template-rows:auto; }
-  .hero-brand { width:calc(100% - 36px); margin:8px 18px 12px; }
-  .hero-text { padding-top:24px; }
-  .works { display:flex; overflow-x:auto; scroll-snap-type:x mandatory; scroll-padding:0 18px; gap:10px; margin:0 -18px; padding:0 18px; scrollbar-width:none; }
-  .works .zoom { flex:0 0 72%; scroll-snap-align:start; }
-}
-@media(prefers-reduced-motion:reduce) { header .brand { transition:none; } }
+/* 11.11.2026, тема 1.2.6: фото первого экрана листаются и сами (затуханием, как раньше), и вручную: пальцем, мышью,
+   стрелками на фото и клавишами. При листании фото едет за пальцем: сдвиг (translate) ставит app.js.
+   drag и snap: сдвиг и прозрачность меняются сразу, медленное приближение фото идёт дальше; glide: фото доезжает до места. */
+.slides { touch-action:pan-y; user-select:none; -webkit-user-select:none; cursor:grab; }
+.slides img { -webkit-user-drag:none; }
+.slides.drag { cursor:grabbing; }
+.slides.drag img, .slides.snap img { transition:transform 7s linear; }
+.slides.glide img { transition:translate .42s cubic-bezier(.2,.8,.2,1), transform 7s linear; }
+.slide-prev, .slide-next { position:absolute; top:50%; translate:0 -50%; z-index:2; width:44px; height:44px; display:grid; place-items:center; padding:0; background:rgba(10,10,10,.78); border:1px solid rgba(255,255,255,.5); color:#fff; cursor:pointer; transition:background .2s; }
+.slide-prev:hover, .slide-next:hover { background:rgba(10,10,10,.94); }
+.slide-prev { left:14px; }
+.slide-next { right:14px; }
+.slide-prev .icon, .slide-next .icon { width:20px; height:20px; }
+/* 12 полосок должны помещаться и в узкой рамке: сужаются, но не меньше 4px */
+.dots { max-width:calc(100% - 36px); }
+.dots span { min-width:4px; }
+.slide-status { position:absolute; width:1px; height:1px; overflow:hidden; clip-path:inset(50%); white-space:nowrap; }
