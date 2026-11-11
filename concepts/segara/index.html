@@ -9,7 +9,9 @@
   <meta property="og:title" content="Сегара | Макет сайта">
   <meta property="og:description" content="Дороги для коттеджных посёлков, интерактивная схема проезда и аренда спецтехники.">
   <meta property="og:url" content="https://x1nnon.github.io/portfolio/concepts/segara/">
-  <meta property="og:image" content="https://x1nnon.github.io/portfolio/concepts/segara/assets/road.webp">
+  <meta property="og:image" content="https://x1nnon.github.io/portfolio/concepts/segara/assets/media/og-segara.jpg">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
   <title>Сегара | Дороги и спецтехника в Ленобласти</title>
   <link rel="icon" href="assets/mark.svg" type="image/svg+xml">
   <link rel="stylesheet" href="styles.css">
@@ -35,8 +37,8 @@
         <a class="button" href="#atlas">Разобрать свой проезд <span aria-hidden="true">↘</span></a>
       </div>
       <figure class="hero-figure">
-        <img src="assets/road.webp" alt="Проезд из асфальтовой крошки между участками" width="1600" height="757" fetchpriority="high">
-        <figcaption>Как выглядит покрытие · иллюстрация</figcaption>
+        <img src="assets/media/hero-doroga-1280.webp" srcset="assets/media/hero-doroga-640.webp 640w, assets/media/hero-doroga-1280.webp 1280w" sizes="(max-width: 760px) calc(100vw - 36px), 46vw" alt="Готовая дорога из асфальтовой крошки уходит вдаль между полем и деревьями" width="1280" height="731" fetchpriority="high">
+        <figcaption>Дорога из асфальтовой крошки на одном из объектов</figcaption>
       </figure>
     </section>
 
@@ -117,12 +119,43 @@
     <section class="roads shell" id="roads" aria-labelledby="roads-title">
       <div class="roads-copy">
         <h2 id="roads-title">Что входит в работы</h2>
-        <p>Строим подъезды к посёлкам и дороги внутри них. Состав работ зависит от состояния проезда и от того, какой транспорт по нему ездит.</p>
+        <p>Строим подъезды к посёлкам и дороги внутри них. Состав работ зависит от состояния проезда и от того, какой транспорт по нему ездит. На видео этапы работ на наших объектах.</p>
+        <button class="button button-secondary video-toggle" type="button" hidden>Остановить видео</button>
       </div>
-      <ol class="process">
-        <li><span>01</span><div><strong>Собираем исходные данные</strong><p>Нужны место, примерные размеры и фото. Если проездом пользуются грузовики, сообщите об этом сразу.</p></div></li>
-        <li><span>02</span><div><strong>Определяем, что делать с основанием</strong><p>По состоянию дороги решаем, можно ли использовать существующее основание и где нужна подготовка.</p></div></li>
-        <li><span>03</span><div><strong>Укладываем и уплотняем крошку</strong><p>Распределяем материал по подготовленному основанию и укатываем катком.</p></div></li>
+      <!-- Видео играют только в зоне видимости и останавливаются кнопкой выше, см. app.js -->
+      <ol class="stages" aria-label="Этапы работ">
+        <li class="stage">
+          <video class="stage-video" muted loop playsinline preload="none" width="720" height="900" poster="assets/media/v-raschistka-poster.webp" aria-label="Экскаватор на расчищенной полосе в лесу">
+            <source src="assets/media/v-raschistka.mp4" type="video/mp4">
+          </video>
+          <div class="stage-mark" aria-hidden="true"><span>1</span></div>
+          <h3>Готовим трассу</h3>
+          <p>Снимаем растительный слой и выравниваем полосу под дорогу.</p>
+        </li>
+        <li class="stage">
+          <video class="stage-video" muted loop playsinline preload="none" width="720" height="900" poster="assets/media/v-osnovanie-greider-poster.webp" aria-label="Грейдер разравнивает щебень">
+            <source src="assets/media/v-osnovanie-greider.mp4" type="video/mp4">
+          </video>
+          <div class="stage-mark" aria-hidden="true"><span>2</span></div>
+          <h3>Отсыпаем основание</h3>
+          <p>Завозим щебень и разравниваем его грейдером.</p>
+        </li>
+        <li class="stage">
+          <video class="stage-video" muted loop playsinline preload="none" width="720" height="900" poster="assets/media/v-ukladka-poster.webp" aria-label="Асфальтоукладчик кладёт крошку на основание">
+            <source src="assets/media/v-ukladka.mp4" type="video/mp4">
+          </video>
+          <div class="stage-mark" aria-hidden="true"><span>3</span></div>
+          <h3>Укладываем крошку</h3>
+          <p>Распределяем крошку асфальтоукладчиком и укатываем катком.</p>
+        </li>
+        <li class="stage">
+          <video class="stage-video" muted loop playsinline preload="none" width="720" height="900" poster="assets/media/v-gotovo-poster.webp" aria-label="Готовая дорога из крошки, вид по ходу движения">
+            <source src="assets/media/v-gotovo.mp4" type="video/mp4">
+          </video>
+          <div class="stage-mark" aria-hidden="true"><span>4</span></div>
+          <h3>Готовая дорога</h3>
+          <p>Проезд после укладки и укатки.</p>
+        </li>
       </ol>
     </section>
 
@@ -172,11 +205,11 @@
     <section class="fleet shell" id="fleet" aria-labelledby="fleet-title">
       <h2 id="fleet-title">Техника в аренду</h2>
       <ul class="fleet-list">
-        <li><img src="assets/excavator.webp" alt="" width="768" height="512" loading="lazy"><div><h3>Экскаваторы</h3><p>Разработка грунта, траншеи, погрузка. Для заявки укажите задачу и примерные размеры выемки.</p></div></li>
+        <li><img src="assets/media/tehnika-ekskavator.webp" alt="Экскаватор Volvo грузит щебень в самосвал" width="768" height="427" loading="lazy"><div><h3>Экскаваторы</h3><p>Разработка грунта, траншеи, погрузка. Для заявки укажите задачу и примерные размеры выемки.</p></div></li>
         <li><img src="assets/loader.webp" alt="" width="768" height="512" loading="lazy"><div><h3>Манипулятор</h3><p>Погрузка, перевозка и выгрузка. Понадобятся вес и габариты груза, адреса погрузки и выгрузки.</p></div></li>
         <li><img src="assets/roller.webp" alt="" width="768" height="512" loading="lazy"><div><h3>Каток</h3><p>Уплотнение основания и покрытия. Сообщите материал, площадь участка и ширину проезда.</p></div></li>
       </ul>
-      <p class="fleet-note">Иллюстрации техники для макета.</p>
+      <p class="fleet-note">Экскаватор на фото с объекта, манипулятор и каток пока на иллюстрациях.</p>
     </section>
 
     <section class="faq shell" aria-labelledby="faq-title">

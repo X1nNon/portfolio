@@ -101,3 +101,65 @@ copyButton.addEventListener("click", async () => {
 });
 
 updateEstimate();
+
+// Видео этапов: играют, пока видны на экране. При «уменьшить движение» или экономии трафика
+// не включаются сами, вместо этого у каждого появляются обычные кнопки плеера.
+const stageList = document.querySelector(".stages");
+const stageVideos = [...document.querySelectorAll(".stage-video")];
+const videoToggle = document.querySelector(".video-toggle");
+const reduceMotion = window.matchMedia("(prefers-reduced-motion: reduce)");
+const saveData = Boolean(navigator.connection && navigator.connection.saveData);
+const visibleVideos = new Set();
+let videosStopped = false;
+
+function autoplayAllowed() {
+  return !reduceMotion.matches && !saveData;
+}
+
+function syncVideos() {
+  if (!autoplayAllowed()) return;
+  for (const video of stageVideos) {
+    if (!videosStopped && visibleVideos.has(video)) {
+      if (video.paused) video.play().catch(() => {});
+    } else if (!video.paused) {
+      video.pause();
+    }
+  }
+}
+
+function applyMotionPreference() {
+  const manual = !autoplayAllowed();
+  for (const video of stageVideos) {
+    video.controls = manual;
+    if (manual) video.pause();
+  }
+  videoToggle.hidden = manual;
+  syncVideos();
+}
+
+if (stageVideos.length) {
+  const observer = new IntersectionObserver((entries) => {
+    for (const entry of entries) {
+      if (entry.isIntersecting) visibleVideos.add(entry.target);
+      else visibleVideos.delete(entry.target);
+    }
+    syncVideos();
+  }, { threshold: 0.4 });
+  stageVideos.forEach((video) => observer.observe(video));
+
+  videoToggle.addEventListener("click", () => {
+    videosStopped = !videosStopped;
+    videoToggle.textContent = videosStopped ? "Включить видео" : "Остановить видео";
+    syncVideos();
+  });
+
+  reduceMotion.addEventListener("change", applyMotionPreference);
+  applyMotionPreference();
+
+  // Полосу этапов на телефоне листают вбок: тогда её можно прокрутить и с клавиатуры.
+  const markScrollable = () => {
+    if (stageList.scrollWidth > stageList.clientWidth + 1) stageList.setAttribute("tabindex", "0");
+    else stageList.removeAttribute("tabindex");
+  };
+  new ResizeObserver(markScrollable).observe(stageList);
+}
