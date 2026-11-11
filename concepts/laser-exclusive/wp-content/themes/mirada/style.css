@@ -1,6 +1,6 @@
 /*
 Theme Name: Лазер Эксклюзив
-Version: 1.2.12
+Version: 1.2.13
 Requires at least: 6.6
 Requires PHP: 8.1
 Text Domain: mirada
@@ -603,6 +603,21 @@ html[data-theme="light"] .hero-brand img { filter:brightness(0) opacity(.86); }
 @media(max-width:400px) { .hero-nav { gap:0 13px; } .hero-nav a { font-size:14px; } }
 @media(max-width:340px) { .hero-nav { gap:0 10px; } .hero-nav a { font-size:13px; } }
 @media(prefers-reduced-motion:reduce) { html.js header { transition:none; } }
+/* 1.2.13: управление слайдером тише, чтобы не закрывало фото. Пауза — маленький круглый значок (пауза или запуск),
+   стрелки — тонкие, без подложки; при наведении мышью они светятся. На телефоне и сенсорных экранах стрелок нет:
+   фото листают пальцем. */
+.slide-pause { top:8px; right:8px; width:44px; height:44px; min-height:0; padding:0; display:grid; place-items:center; background:none; border:0; border-radius:50%; }
+.slide-pause::before { content:""; position:absolute; inset:7px; border-radius:50%; background:rgba(10,10,10,.45); transition:background .2s; }
+.slide-pause:hover::before { background:rgba(10,10,10,.72); }
+.slide-pause .icon { position:relative; width:13px; height:13px; color:#fff; }
+.slide-pause[aria-pressed="true"] .i-pause, .slide-pause:not([aria-pressed="true"]) .i-play { display:none; }
+.slide-prev, .slide-next { width:48px; height:72px; background:none; border:0; border-radius:0; opacity:.75; filter:drop-shadow(0 1px 3px rgba(0,0,0,.6)); transition:opacity .2s, filter .2s; }
+.slide-prev { left:4px; }
+.slide-next { right:4px; }
+.slide-prev .icon, .slide-next .icon { width:32px; height:32px; }
+.slide-prev:hover, .slide-next:hover, .slide-prev:focus-visible, .slide-next:focus-visible { opacity:1; background:none; filter:drop-shadow(0 0 6px rgba(255,255,255,.9)) drop-shadow(0 1px 3px rgba(0,0,0,.6)); }
+@media (hover:none), (max-width:760px) { .slide-prev, .slide-next { display:none; } }
+@media(prefers-reduced-motion:reduce) { .slide-prev, .slide-next, .slide-pause::before { transition:none; } }
 /* 1.2.9: пока крупный логотип на экране, маленький в шапке спрятан, как в 1.2.5. Класс brand-off у шапки стоит с самого
    начала (без мигания при загрузке), app.js снимает его после прокрутки. Без скрипта (нет класса js) логотип в шапке виден. */
 header .brand { transition:opacity .35s, visibility .35s; }

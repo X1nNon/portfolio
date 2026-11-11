@@ -19,9 +19,10 @@
     cur = at(i); load(cur); load(cur + 1); load(cur - 1);
     slides[cur].classList.add('on'); dots[cur]?.classList.add('on');
   };
+  // 11.11.2026, тема 1.2.13: пауза — значок (пауза / запуск), название кнопки постоянное, состояние в aria-pressed.
   const updatePause = () => {
-    pause.textContent = paused ? 'Продолжить показ' : 'Остановить фото';
     pause.setAttribute('aria-pressed', String(paused));
+    pause.title = paused ? 'Продолжить показ' : 'Пауза';
   };
   pause.addEventListener('click', () => { paused = !paused; updatePause(); });
   motion.addEventListener('change', e => { paused = e.matches; updatePause(); });
