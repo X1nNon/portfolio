@@ -1,6 +1,6 @@
 /*
 Theme Name: Лазер Эксклюзив
-Version: 1.2.9
+Version: 1.2.10
 Requires at least: 6.6
 Requires PHP: 8.1
 Text Domain: mirada
@@ -581,6 +581,10 @@ html[data-theme="light"] .brand .studio-logo { filter:brightness(0) opacity(.86)
 .hero-brand img { display:block; width:100%; height:auto; }
 html[data-theme="dark"] .hero-brand > .on-dark, html[data-theme="light"] .hero-brand > .on-light { display:block; }
 html[data-theme="light"] .hero-brand img { filter:brightness(0) opacity(.86); }
+/* 1.2.10: в светлой теме обычный логотип SVG без свечения. Его буквы занимают 98% ширины картинки, а у анимации 94%
+   с полем 3% слева, поэтому ширина 95,6% и отступ 2,1%: буквы той же ширины и так же по краю заголовка. */
+.hero-brand > .on-light img { width:95.6%; margin-left:2.1%; }
+@media(max-width:760px) { .hero-brand > .on-light img { margin-left:auto; margin-right:auto; } }
 /* 1.2.9: пока крупный логотип на экране, маленький в шапке спрятан, как в 1.2.5. Класс brand-off у шапки стоит с самого
    начала (без мигания при загрузке), app.js снимает его после прокрутки. Без скрипта (нет класса js) логотип в шапке виден. */
 header .brand { transition:opacity .35s, visibility .35s; }
