@@ -12,6 +12,7 @@ const message = document.querySelector("#message");
 const messageText = document.querySelector("#message-text");
 const copyButton = document.querySelector("#copy-message");
 const copyStatus = document.querySelector("#copy-status");
+const smsLink = document.querySelector("#sms-message");
 const format = new Intl.NumberFormat("ru-RU", { maximumFractionDigits: 4 });
 const map = document.querySelector(".map-plate");
 const pins = map.querySelectorAll(".pin");
@@ -84,6 +85,8 @@ form.addEventListener("submit", (event) => {
   if (cross !== null) text.push("Ширина " + format.format(cross) + " м.");
   if (surface !== null) text.push("Ориентировочная площадь " + format.format(surface) + " м².");
   messageText.value = text.join("\n");
+  // «?&body=» понимают и iPhone, и Android
+  smsLink.href = "sms:+79213719004?&body=" + encodeURIComponent(messageText.value);
   message.hidden = false;
   copyStatus.textContent = "";
   messageText.focus();
@@ -162,4 +165,23 @@ if (stageVideos.length) {
     else stageList.removeAttribute("tabindex");
   };
   new ResizeObserver(markScrollable).observe(stageList);
+}
+
+// Плашка на телефоне (видна только до 760 px, см. styles.css): появляется, когда кнопки
+// первого экрана ушли вверх, и прячется у контактов и подвала, где номер и так на виду.
+const mbar = document.querySelector(".mbar");
+const heroActions = document.querySelector(".hero-actions");
+const barStops = [document.querySelector("#contacts"), document.querySelector(".site-footer")].filter(Boolean);
+if (mbar && heroActions) {
+  const inView = new Map();
+  const updateBar = () => {
+    const show = inView.get(heroActions) === false && !barStops.some((el) => inView.get(el));
+    mbar.classList.toggle("on", show);
+    mbar.inert = !show;
+  };
+  const barObserver = new IntersectionObserver((entries) => {
+    for (const entry of entries) inView.set(entry.target, entry.isIntersecting);
+    updateBar();
+  });
+  [heroActions, ...barStops].forEach((el) => barObserver.observe(el));
 }

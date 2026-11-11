@@ -4,15 +4,36 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="robots" content="noindex, nofollow">
-  <meta name="description" content="Сегара. Дороги из асфальтовой крошки для коттеджных посёлков и аренда спецтехники в Ленинградской области.">
+  <meta name="description" content="Дороги из асфальтовой крошки, дорожное основание, парковки, автостоянки и строительные площадки в СПб и Ленобласти. Аренда экскаваторов, манипулятора и катка.">
   <meta property="og:type" content="website">
   <meta property="og:title" content="Сегара | Макет сайта">
-  <meta property="og:description" content="Дороги для коттеджных посёлков, интерактивная схема проезда и аренда спецтехники.">
+  <meta property="og:description" content="Дороги из асфальтовой крошки для коттеджных посёлков, парковки и площадки в СПб и Ленобласти. Аренда спецтехники.">
   <meta property="og:url" content="https://x1nnon.github.io/portfolio/concepts/segara/">
   <meta property="og:image" content="https://x1nnon.github.io/portfolio/concepts/segara/assets/media/og-segara.jpg">
   <meta property="og:image:width" content="1200">
   <meta property="og:image:height" content="630">
-  <title>Сегара | Дороги и спецтехника в Ленобласти</title>
+  <title>Дороги из асфальтовой крошки в СПб и Ленобласти | Сегара</title>
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "GeneralContractor",
+    "name": "Сегара",
+    "description": "Дороги из асфальтовой крошки в коттеджных посёлках, дорожное основание для парковок, автостоянок и строительных площадок, аренда экскаваторов, манипулятора и катка.",
+    "url": "https://x1nnon.github.io/portfolio/concepts/segara/",
+    "image": "https://x1nnon.github.io/portfolio/concepts/segara/assets/media/og-segara.jpg",
+    "telephone": ["+7 921 371-90-04", "+7 960 237-73-88"],
+    "areaServed": [
+      { "@type": "City", "name": "Санкт-Петербург" },
+      { "@type": "City", "name": "Гатчина" },
+      { "@type": "AdministrativeArea", "name": "Гатчинский район" },
+      { "@type": "AdministrativeArea", "name": "Ломоносовский район" },
+      { "@type": "AdministrativeArea", "name": "Всеволожский район" },
+      { "@type": "AdministrativeArea", "name": "Тосненский район" },
+      { "@type": "AdministrativeArea", "name": "Приозерский район" },
+      { "@type": "AdministrativeArea", "name": "Ленинградская область" }
+    ]
+  }
+  </script>
   <link rel="icon" href="assets/mark.svg" type="image/svg+xml">
   <link rel="stylesheet" href="styles.css">
   <link rel="stylesheet" href="atlas.css">
@@ -27,14 +48,17 @@
       <a href="#estimate">Смета</a>
       <a href="#fleet">Техника</a>
     </nav>
-    <span class="header-link header-region">Ленинградская область</span>
+    <a class="header-link header-phone" href="tel:+79213719004">+7 921 371-90-04</a>
   </header>
   <main id="main">
     <section class="hero shell" id="top" aria-labelledby="hero-title">
       <div class="hero-copy">
         <h1 id="hero-title">Дороги для<br>коттеджных посёлков</h1>
         <p>Устраиваем подъезды и улицы из асфальтовой крошки по всей Ленобласти.</p>
-        <a class="button" href="#atlas">Разобрать свой проезд <span aria-hidden="true">↘</span></a>
+        <div class="hero-actions">
+          <a class="button" href="#atlas">Разобрать свой проезд <span aria-hidden="true">↘</span></a>
+          <p class="hero-phone">или позвоните <a href="tel:+79213719004">+7 921 371-90-04</a></p>
+        </div>
       </div>
       <figure class="hero-figure">
         <img src="assets/media/hero-doroga-1280.webp" srcset="assets/media/hero-doroga-640.webp 640w, assets/media/hero-doroga-1280.webp 1280w" sizes="(max-width: 760px) calc(100vw - 36px), 46vw" alt="Готовая дорога из асфальтовой крошки уходит вдаль между полем и деревьями" width="1280" height="731" fetchpriority="high">
@@ -119,7 +143,7 @@
     <section class="roads shell" id="roads" aria-labelledby="roads-title">
       <div class="roads-copy">
         <h2 id="roads-title">Что входит в работы</h2>
-        <p>Строим подъезды к посёлкам и дороги внутри них. Состав работ зависит от состояния проезда и от того, какой транспорт по нему ездит. На видео этапы работ на наших объектах.</p>
+        <p>Строим подъезды к посёлкам и дороги внутри них, делаем дорожное основание под парковки, автостоянки и строительные площадки. Состав работ зависит от состояния участка и от того, какой транспорт по нему ездит. На видео этапы работ на наших объектах.</p>
         <button class="button button-secondary video-toggle" type="button" hidden>Остановить видео</button>
       </div>
       <!-- Видео играют только в зоне видимости и останавливаются кнопкой выше, см. app.js -->
@@ -183,8 +207,12 @@
           <div class="message" id="message" hidden>
             <label for="message-text">Текст для подрядчика</label>
             <textarea id="message-text" rows="6" readonly></textarea>
-            <button type="button" class="button button-secondary" id="copy-message">Скопировать текст</button>
+            <div class="message-actions">
+              <button type="button" class="button button-secondary" id="copy-message">Скопировать текст</button>
+              <a class="button button-secondary sms-link" id="sms-message" href="sms:+79213719004">Отправить по SMS</a>
+            </div>
             <p id="copy-status" role="status"></p>
+            <p class="message-hint">Отправьте этот текст и фото проезда на <a href="tel:+79213719004">+7 921 371-90-04</a> или позвоните.</p>
           </div>
         </form>
       </div>
@@ -219,9 +247,31 @@
         <details><summary>Можно уложить крошку поверх щебня?</summary><p>Зависит от состояния щебёночного основания. Для оценки пригодятся фотографии поверхности, обочин и мест, где появились просадки.</p></details>
         <details><summary>Что делать, если дорога разной ширины?</summary><p>Разбейте её на участки с примерно одинаковой шириной. Для каждого укажите длину и ширину отдельно. Можно также прислать схему или отметку на карте.</p></details>
         <details><summary>Что указать при аренде техники?</summary><p>Назовите технику или опишите задачу. Укажите адрес, нужную дату, примерное время работы и особенности подъезда.</p></details>
+        <details><summary>Делаете парковки и строительные площадки?</summary><p>Да, делаем дорожное основание для парковок, автостоянок и строительных площадок. Пришлите размеры и фото участка, подскажем, что понадобится.</p></details>
+      </div>
+    </section>
+
+    <section class="contacts shell" id="contacts" aria-labelledby="contacts-title">
+      <div class="contact-plate">
+        <div class="contact-main">
+          <h2 id="contacts-title">Контакты</h2>
+          <ul class="phones">
+            <li><a href="tel:+79213719004">+7 921 371-90-04</a></li>
+            <li><a href="tel:+79602377388">+7 960 237-73-88</a></li>
+          </ul>
+          <p>Звоните, если нужна смета на дорогу или техника в аренду.</p>
+        </div>
+        <div class="contact-areas">
+          <h3>Где работаем</h3>
+          <p>Санкт-Петербург и Ленинградская область: Гатчина и Гатчинский район, Ломоносовский, Всеволожский, Тосненский и Приозерский районы.</p>
+        </div>
       </div>
     </section>
   </main>
+  <div class="mbar" role="group" aria-label="Смета и звонок" inert>
+    <a class="button button-secondary" href="#estimate">Рассчитать</a>
+    <a class="button" href="tel:+79213719004">+7 921 371-90-04</a>
+  </div>
   <footer class="site-footer shell">
     <img src="assets/logo-segara.svg" alt="Сегара" width="290" height="56">
     <p>Дороги и спецтехника<br>в Ленинградской области</p>
