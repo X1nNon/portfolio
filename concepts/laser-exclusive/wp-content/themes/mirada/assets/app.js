@@ -146,26 +146,38 @@
   document.addEventListener('keydown', e => { if (e.key === 'Escape') document.querySelector('.mobile-nav').open = false; });
   // Тема переключается одной кнопкой-значком (30.10.2026): луна - тёмная, солнце - светлая.
   // Смена темы идёт плавным переходом, если браузер умеет View Transitions и не просили меньше движения.
+  // 11.11.2026: переключателей два, в шапке и под логотипом на телефоне; оба показывают одну тему.
   const root = document.documentElement;
-  const themeBtn = document.querySelector('.theme-toggle');
+  const themeBtns = [...document.querySelectorAll('.theme-toggle')];
   const setTheme = (t) => {
     root.dataset.theme = t;
-    themeBtn.setAttribute('aria-pressed', String(t === 'dark'));
+    themeBtns.forEach((b) => b.setAttribute('aria-pressed', String(t === 'dark')));
   };
-  themeBtn.addEventListener('click', () => {
+  themeBtns.forEach((b) => b.addEventListener('click', () => {
     const next = root.dataset.theme === 'dark' ? 'light' : 'dark';
     if (document.startViewTransition && !motion.matches) document.startViewTransition(() => setTheme(next));
     else setTheme(next);
     try { localStorage.setItem('mirada-theme', next); } catch (e) {}
-  });
+  }));
   try { const saved = localStorage.getItem('mirada-theme'); if (saved === 'dark' || saved === 'light') setTheme(saved); } catch (e) {}
 
-  // 11.11.2026, тема 1.2.9: пока светящийся логотип первого экрана виден, маленький логотип в шапке спрятан
-  // (класс brand-off стоит у шапки с самого начала), после прокрутки он появляется.
+  // 11.11.2026, тема 1.2.9–1.2.11: пока светящийся логотип первого экрана виден, маленький логотип в шапке спрятан
+  // (класс brand-off стоит у шапки с самого начала), после прокрутки он появляется. На телефоне спрятана вся шапка,
+  // и она выезжает, когда под неё ушла строка разделов под логотипом.
   const heroLogo = document.querySelector('.hero-brand');
+  const heroNav = document.querySelector('.hero-nav');
   const header = document.querySelector('header');
+  const phone = matchMedia('(max-width: 760px)');
   if (heroLogo && 'IntersectionObserver' in window) {
-    // шапка липкая: всё, что под ней, считается невидимым
-    new IntersectionObserver(([e]) => header.classList.toggle('brand-off', e.intersectionRatio >= 0.4),
-      { rootMargin: `-${header.offsetHeight}px 0px 0px 0px`, threshold: [0, 0.4] }).observe(heroLogo);
+    let io;
+    const watch = () => {
+      if (io) io.disconnect();
+      const onPhone = phone.matches && heroNav;
+      // шапка сверху: всё, что под ней, считается невидимым
+      io = new IntersectionObserver(([e]) => header.classList.toggle('brand-off', onPhone ? e.isIntersecting : e.intersectionRatio >= 0.4),
+        { rootMargin: `-${header.offsetHeight}px 0px 0px 0px`, threshold: [0, 0.4] });
+      io.observe(onPhone ? heroNav : heroLogo);
+    };
+    watch();
+    phone.addEventListener('change', watch);
   } else header.classList.remove('brand-off');
