@@ -159,3 +159,18 @@
     try { localStorage.setItem('mirada-theme', next); } catch (e) {}
   });
   try { const saved = localStorage.getItem('mirada-theme'); if (saved === 'dark' || saved === 'light') setTheme(saved); } catch (e) {}
+
+  // 11.11.2026, тема 1.2.8: светящийся логотип студии на первом экране (анимированная картинка, как гифка).
+  // Нажатие ставит неподвижный кадр и снова запускает анимацию. При «меньше движения» кадр неподвижный, кнопка выключена.
+  const heroLogo = document.querySelector('.hero-brand');
+  if (heroLogo) {
+    const syncLogo = () => {
+      const stopped = heroLogo.classList.contains('stopped');
+      heroLogo.disabled = motion.matches;
+      heroLogo.setAttribute('aria-pressed', String(stopped));
+      heroLogo.setAttribute('aria-label', motion.matches ? 'Лазер Эксклюзив' : `Лазер Эксклюзив. ${stopped ? 'Включить' : 'Остановить'} анимацию логотипа`);
+    };
+    heroLogo.addEventListener('click', () => { heroLogo.classList.toggle('stopped'); syncLogo(); });
+    motion.addEventListener('change', () => { heroLogo.classList.remove('stopped'); syncLogo(); });
+    syncLogo();
+  }
