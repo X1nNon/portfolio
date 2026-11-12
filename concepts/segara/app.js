@@ -167,6 +167,30 @@ if (stageVideos.length) {
   new ResizeObserver(markScrollable).observe(stageList);
 }
 
+// Меню на узких экранах: кнопка «Меню», закрывается по Escape (фокус возвращается на кнопку)
+// и после выбора раздела. Шире 980 px разделы видны всегда.
+const menuBtn = document.querySelector(".menu-btn");
+const siteMenu = menuBtn && document.getElementById(menuBtn.getAttribute("aria-controls"));
+const narrowScreen = window.matchMedia("(max-width: 980px)");
+if (menuBtn && siteMenu) {
+  const setMenu = (open) => {
+    menuBtn.setAttribute("aria-expanded", String(open));
+    siteMenu.hidden = narrowScreen.matches && !open;
+  };
+  menuBtn.addEventListener("click", () => setMenu(menuBtn.getAttribute("aria-expanded") !== "true"));
+  siteMenu.addEventListener("click", (event) => {
+    if (event.target.closest("a") && narrowScreen.matches) setMenu(false);
+  });
+  document.addEventListener("keydown", (event) => {
+    if (event.key === "Escape" && menuBtn.getAttribute("aria-expanded") === "true") {
+      setMenu(false);
+      menuBtn.focus();
+    }
+  });
+  narrowScreen.addEventListener("change", () => setMenu(false));
+  setMenu(false);
+}
+
 // Плашка на телефоне (видна только до 760 px, см. styles.css): появляется, когда кнопки
 // первого экрана ушли вверх, и прячется у контактов и подвала, где номер и так на виду.
 const mbar = document.querySelector(".mbar");

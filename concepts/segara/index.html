@@ -35,26 +35,36 @@
   }
   </script>
   <link rel="icon" href="assets/mark.svg" type="image/svg+xml">
+  <link rel="apple-touch-icon" href="assets/apple-touch-icon.png">
+  <meta name="theme-color" content="#eeeee6" media="(prefers-color-scheme: light)">
+  <meta name="theme-color" content="#20231e" media="(prefers-color-scheme: dark)">
   <link rel="stylesheet" href="styles.css">
   <link rel="stylesheet" href="atlas.css">
+  <script>document.documentElement.classList.add("js")</script>
   <script src="app.js" defer></script>
 </head>
 <body>
   <a class="skip-link" href="#main">Перейти к содержанию</a>
-  <header class="site-header shell">
-    <a class="brand" href="#top" aria-label="Сегара, в начало страницы"><img src="assets/logo-segara.svg" alt="" width="290" height="56"></a>
-    <nav class="nav" aria-label="Разделы сайта">
-      <a href="#atlas">Схема дороги</a>
-      <a href="#estimate">Смета</a>
-      <a href="#fleet">Техника</a>
-    </nav>
-    <a class="header-link header-phone" href="tel:+79213719004">+7 921 371-90-04</a>
+  <header class="site-header">
+    <div class="header-inner shell">
+      <a class="brand" href="#top" aria-label="Сегара, в начало страницы"><img src="assets/logo-segara.svg" alt="" width="290" height="56"></a>
+      <nav class="nav" id="site-menu" aria-label="Разделы сайта">
+        <a href="#atlas">Схема проезда</a>
+        <a href="#roads">Этапы работ</a>
+        <a href="#estimate">Смета</a>
+        <a href="#fleet">Техника</a>
+        <a href="#contacts">Контакты</a>
+        <a class="nav-phone" href="tel:+79213719004">+7 921 371-90-04</a>
+      </nav>
+      <a class="header-phone" href="tel:+79213719004">+7 921 371-90-04</a>
+      <button class="menu-btn" type="button" aria-expanded="false" aria-controls="site-menu">Меню</button>
+    </div>
   </header>
   <main id="main">
     <section class="hero shell" id="top" aria-labelledby="hero-title">
       <div class="hero-copy">
         <h1 id="hero-title">Дороги для<br>коттеджных посёлков</h1>
-        <p>Устраиваем подъезды и улицы из асфальтовой крошки по всей Ленобласти.</p>
+        <p>Строим подъезды и улицы из асфальтовой крошки, делаем основание под парковки, автостоянки и стройплощадки. В Петербурге и по всей Ленобласти.</p>
         <div class="hero-actions">
           <a class="button" href="#atlas">Разобрать свой проезд <span aria-hidden="true">↘</span></a>
           <p class="hero-phone">или позвоните <a href="tel:+79213719004">+7 921 371-90-04</a></p>
@@ -231,17 +241,44 @@
     </section>
 
     <section class="fleet shell" id="fleet" aria-labelledby="fleet-title">
-      <h2 id="fleet-title">Техника в аренду</h2>
-      <ul class="fleet-list">
-        <li><img src="assets/media/tehnika-ekskavator.webp" alt="Экскаватор Volvo грузит щебень в самосвал" width="768" height="427" loading="lazy"><div><h3>Экскаваторы</h3><p>Разработка грунта, траншеи, погрузка. Для заявки укажите задачу и примерные размеры выемки.</p></div></li>
-        <li><img src="assets/loader.webp" alt="" width="768" height="512" loading="lazy"><div><h3>Манипулятор</h3><p>Погрузка, перевозка и выгрузка. Понадобятся вес и габариты груза, адреса погрузки и выгрузки.</p></div></li>
-        <li><img src="assets/roller.webp" alt="" width="768" height="512" loading="lazy"><div><h3>Каток</h3><p>Уплотнение основания и покрытия. Сообщите материал, площадь участка и ширину проезда.</p></div></li>
-      </ul>
+      <div class="fleet-head">
+        <h2 id="fleet-title">Техника в аренду</h2>
+        <p>Чтобы заказать технику, позвоните: <a href="tel:+79213719004">+7 921 371-90-04</a> или <a href="tel:+79602377388">+7 960 237-73-88</a>. Расскажите задачу, адрес и дату.</p>
+      </div>
+      <div class="fleet-grid">
+        <article class="machine machine-main">
+          <img src="assets/media/tehnika-ekskavator-1080.webp" srcset="assets/media/tehnika-ekskavator-720.webp 720w, assets/media/tehnika-ekskavator-1080.webp 1080w" sizes="(max-width: 760px) calc(100vw - 36px), 56vw" alt="Экскаватор Volvo грузит щебень в самосвал" width="1080" height="720" loading="lazy">
+          <div class="machine-text">
+            <h3>Экскаваторы</h3>
+            <p>Разработка грунта, траншеи, погрузка.</p>
+            <p class="machine-need"><span>Для заявки</span> задача и примерные размеры выемки.</p>
+          </div>
+        </article>
+        <article class="machine">
+          <img src="assets/loader.webp" alt="" width="768" height="512" loading="lazy">
+          <div class="machine-text">
+            <h3>Манипулятор</h3>
+            <p>Погрузка, перевозка и выгрузка.</p>
+            <p class="machine-need"><span>Для заявки</span> вес и габариты груза, адреса погрузки и выгрузки.</p>
+          </div>
+        </article>
+        <article class="machine">
+          <img src="assets/roller.webp" alt="" width="768" height="512" loading="lazy">
+          <div class="machine-text">
+            <h3>Каток</h3>
+            <p>Уплотнение основания и покрытия.</p>
+            <p class="machine-need"><span>Для заявки</span> материал, площадь участка и ширина проезда.</p>
+          </div>
+        </article>
+      </div>
       <p class="fleet-note">Экскаватор на фото с объекта, манипулятор и каток пока на иллюстрациях.</p>
     </section>
 
     <section class="faq shell" aria-labelledby="faq-title">
-      <h2 id="faq-title">Частые вопросы</h2>
+      <div class="faq-head">
+        <h2 id="faq-title">Частые вопросы</h2>
+        <p>Не нашли ответ? Позвоните: <a href="tel:+79213719004">+7 921 371-90-04</a>.</p>
+      </div>
       <div class="faq-list">
         <details><summary>Что такое асфальтовая крошка?</summary><p>Это материал, который получают при снятии или измельчении старого асфальтового покрытия. Его распределяют по подготовленному основанию и уплотняют катком.</p></details>
         <details><summary>Можно уложить крошку поверх щебня?</summary><p>Зависит от состояния щебёночного основания. Для оценки пригодятся фотографии поверхности, обочин и мест, где появились просадки.</p></details>
@@ -252,19 +289,35 @@
     </section>
 
     <section class="contacts shell" id="contacts" aria-labelledby="contacts-title">
-      <div class="contact-plate">
-        <div class="contact-main">
-          <h2 id="contacts-title">Контакты</h2>
-          <ul class="phones">
-            <li><a href="tel:+79213719004">+7 921 371-90-04</a></li>
-            <li><a href="tel:+79602377388">+7 960 237-73-88</a></li>
-          </ul>
-          <p>Звоните, если нужна смета на дорогу или техника в аренду.</p>
-        </div>
-        <div class="contact-areas">
-          <h3>Где работаем</h3>
-          <p>Санкт-Петербург и Ленинградская область: Гатчина и Гатчинский район, Ломоносовский, Всеволожский, Тосненский и Приозерский районы.</p>
-        </div>
+      <div class="contacts-call">
+        <h2 id="contacts-title">Контакты</h2>
+        <ul class="phones">
+          <li><a href="tel:+79213719004">+7 921 371-90-04</a></li>
+          <li><a href="tel:+79602377388">+7 960 237-73-88</a></li>
+        </ul>
+        <p class="contacts-lead">Звоните на любой номер: посчитаем дорогу или подберём технику в аренду.</p>
+        <h3>Что подготовить к звонку</h3>
+        <ol class="prep">
+          <li>Посёлок или адрес.</li>
+          <li>Длину и ширину проезда, хотя бы примерно.</li>
+          <li>Что сейчас на месте: грунт, щебень или лужи.</li>
+          <li>Фото проезда, их можно прислать после звонка.</li>
+        </ol>
+      </div>
+      <!-- Указатель, как временный жёлтый знак на дорожных работах. Стороны света от Петербурга. -->
+      <div class="area-sign">
+        <h3 id="areas-title">Где работаем</h3>
+        <ul class="area-map" aria-labelledby="areas-title">
+          <li class="water water-nw" aria-hidden="true">Финский залив</li>
+          <li class="area area-n"><span class="arr" aria-hidden="true">↑</span>Приозерский район</li>
+          <li class="water water-ne" aria-hidden="true">Ладожское озеро</li>
+          <li class="area area-w"><span class="arr" aria-hidden="true">←</span>Ломоносовский район</li>
+          <li class="area-city">Санкт-Петербург</li>
+          <li class="area area-e"><span class="arr" aria-hidden="true">→</span>Всеволожский район</li>
+          <li class="area area-s"><span class="arr" aria-hidden="true">↓</span>Гатчина и Гатчинский район</li>
+          <li class="area area-se"><span class="arr" aria-hidden="true">↘</span>Тосненский район</li>
+        </ul>
+        <p class="area-note">Выезжаем и в другие районы Ленинградской области.</p>
       </div>
     </section>
   </main>
@@ -272,10 +325,50 @@
     <a class="button button-secondary" href="#estimate">Рассчитать</a>
     <a class="button" href="tel:+79213719004">+7 921 371-90-04</a>
   </div>
-  <footer class="site-footer shell">
-    <img src="assets/logo-segara.svg" alt="Сегара" width="290" height="56">
-    <p>Дороги и спецтехника<br>в Ленинградской области</p>
-    <a href="#top">Наверх <span aria-hidden="true">↑</span></a>
+  <!-- Подвал - полоса асфальта: кромка, осевая разметка, на ней всё о компании -->
+  <footer class="site-footer">
+    <div class="footer-inner shell">
+      <div class="footer-brand">
+        <img src="assets/logo-segara-light.svg" alt="Сегара" width="290" height="56" loading="lazy">
+        <p>Дороги из асфальтовой крошки и аренда спецтехники в Санкт-Петербурге и Ленинградской области.</p>
+      </div>
+      <div class="footer-col">
+        <h2>Что строим</h2>
+        <ul>
+          <li>Подъезды и улицы в коттеджных посёлках</li>
+          <li>Дорожное основание</li>
+          <li>Парковки и автостоянки</li>
+          <li>Строительные площадки</li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h2>Техника в аренду</h2>
+        <ul>
+          <li>Экскаваторы</li>
+          <li>Манипулятор</li>
+          <li>Каток</li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h2>Телефоны</h2>
+        <ul class="footer-phones">
+          <li><a href="tel:+79213719004">+7 921 371-90-04</a></li>
+          <li><a href="tel:+79602377388">+7 960 237-73-88</a></li>
+        </ul>
+        <nav aria-label="Разделы сайта, повтор в подвале">
+          <ul class="footer-nav">
+            <li><a href="#atlas">Схема проезда</a></li>
+            <li><a href="#roads">Этапы работ</a></li>
+            <li><a href="#estimate">Смета</a></li>
+            <li><a href="#fleet">Техника</a></li>
+          </ul>
+        </nav>
+      </div>
+    </div>
+    <div class="footer-bottom shell">
+      <p>© 2026 Сегара</p>
+      <a href="#top">Наверх <span aria-hidden="true">↑</span></a>
+    </div>
   </footer>
 </body>
 </html>
