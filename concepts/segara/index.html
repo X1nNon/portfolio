@@ -54,9 +54,9 @@
         <a href="#estimate">Смета</a>
         <a href="#fleet">Техника</a>
         <a href="#contacts">Контакты</a>
-        <a class="nav-phone" href="tel:+79213719004">+7 921 371-90-04</a>
+        <a class="phone-chip nav-phone" href="tel:+79213719004"><svg class="ico" viewBox="0 0 256 256" aria-hidden="true"><use href="assets/icons.svg#i-phone-fill"></use></svg><span>+7 921 371-90-04</span></a>
       </nav>
-      <a class="header-phone" href="tel:+79213719004">+7 921 371-90-04</a>
+      <a class="phone-chip phone-chip-sm header-phone" href="tel:+79213719004"><svg class="ico" viewBox="0 0 256 256" aria-hidden="true"><use href="assets/icons.svg#i-phone-fill"></use></svg><span>+7 921 371-90-04</span></a>
       <button class="menu-btn" type="button" aria-expanded="false" aria-controls="site-menu">Меню</button>
     </div>
   </header>
@@ -66,8 +66,8 @@
         <h1 id="hero-title">Дороги для<br>коттеджных посёлков</h1>
         <p>Строим подъезды и улицы из асфальтовой крошки, делаем основание под парковки, автостоянки и стройплощадки. В Петербурге и по всей Ленобласти.</p>
         <div class="hero-actions">
-          <a class="button" href="#atlas">Разобрать свой проезд <span aria-hidden="true">↘</span></a>
-          <p class="hero-phone">или позвоните <a href="tel:+79213719004">+7 921 371-90-04</a></p>
+          <a class="button" href="#atlas">Разобрать свой проезд <span class="button-arrow" aria-hidden="true"><svg class="ico" viewBox="0 0 256 256"><use href="assets/icons.svg#i-arrow-down-right-bold"></use></svg></span></a>
+          <a class="phone-chip" href="tel:+79213719004"><svg class="ico" viewBox="0 0 256 256" aria-hidden="true"><use href="assets/icons.svg#i-phone-fill"></use></svg><span>+7 921 371-90-04</span></a>
         </div>
       </div>
       <figure class="hero-figure">
@@ -145,7 +145,7 @@
             <p>Отметьте, где собирается вода. До выбора покрытия нужно понять, есть ли у неё выход с дороги и в каком состоянии обочины.</p>
             <dl><dt>Что прислать</dt><dd>Фото после дождя, общий вид обочин и канавы, если она есть.</dd></dl>
           </article>
-          <a class="button atlas-action" id="use-scenario" href="#estimate">Добавить в запрос <span aria-hidden="true">↘</span></a>
+          <a class="button atlas-action" id="use-scenario" href="#estimate">Добавить в запрос <span class="button-arrow" aria-hidden="true"><svg class="ico" viewBox="0 0 256 256"><use href="assets/icons.svg#i-arrow-down-right-bold"></use></svg></span></a>
         </div>
       </div>
     </section>
@@ -213,7 +213,7 @@
           <label for="location">Посёлок или адрес
             <input id="location" name="location" placeholder="Например, посёлок Суйда" maxlength="140">
           </label>
-          <button type="submit" class="button">Подготовить сообщение <span aria-hidden="true">↘</span></button>
+          <button type="submit" class="button">Подготовить сообщение <span class="button-arrow" aria-hidden="true"><svg class="ico" viewBox="0 0 256 256"><use href="assets/icons.svg#i-arrow-down-right-bold"></use></svg></span></button>
           <div class="message" id="message" hidden>
             <label for="message-text">Текст для подрядчика</label>
             <textarea id="message-text" rows="6" readonly></textarea>
@@ -243,7 +243,8 @@
     <section class="fleet shell" id="fleet" aria-labelledby="fleet-title">
       <div class="fleet-head">
         <h2 id="fleet-title">Техника в аренду</h2>
-        <p>Чтобы заказать технику, позвоните: <a href="tel:+79213719004">+7 921 371-90-04</a> или <a href="tel:+79602377388">+7 960 237-73-88</a>. Расскажите задачу, адрес и дату.</p>
+        <p>Чтобы заказать технику, позвоните и расскажите задачу, адрес и дату.</p>
+        <div class="phone-row"><a class="phone-chip" href="tel:+79213719004"><svg class="ico" viewBox="0 0 256 256" aria-hidden="true"><use href="assets/icons.svg#i-phone-fill"></use></svg><span>+7 921 371-90-04</span></a><a class="phone-chip" href="tel:+79602377388"><svg class="ico" viewBox="0 0 256 256" aria-hidden="true"><use href="assets/icons.svg#i-phone-fill"></use></svg><span>+7 960 237-73-88</span></a></div>
       </div>
       <div class="fleet-grid">
         <article class="machine machine-main">
@@ -277,7 +278,8 @@
     <section class="faq shell" aria-labelledby="faq-title">
       <div class="faq-head">
         <h2 id="faq-title">Частые вопросы</h2>
-        <p>Не нашли ответ? Позвоните: <a href="tel:+79213719004">+7 921 371-90-04</a>.</p>
+        <p>Не нашли ответ? Позвоните.</p>
+        <a class="phone-chip" href="tel:+79213719004"><svg class="ico" viewBox="0 0 256 256" aria-hidden="true"><use href="assets/icons.svg#i-phone-fill"></use></svg><span>+7 921 371-90-04</span></a>
       </div>
       <div class="faq-list">
         <details><summary>Что такое асфальтовая крошка?</summary><p>Это материал, который получают при снятии или измельчении старого асфальтового покрытия. Его распределяют по подготовленному основанию и уплотняют катком.</p></details>
@@ -291,13 +293,13 @@
     <section class="contacts shell" id="contacts" aria-labelledby="contacts-title">
       <div class="contacts-call">
         <h2 id="contacts-title">Контакты</h2>
-        <ul class="phones">
-          <li><a href="tel:+79213719004">+7 921 371-90-04</a></li>
-          <li><a href="tel:+79602377388">+7 960 237-73-88</a></li>
+        <ul class="phones" role="list">
+          <li><a class="phone-chip phone-chip-xl" href="tel:+79213719004"><svg class="ico" viewBox="0 0 256 256" aria-hidden="true"><use href="assets/icons.svg#i-phone-fill"></use></svg><span>+7 921 371-90-04</span></a></li>
+          <li><a class="phone-chip phone-chip-xl" href="tel:+79602377388"><svg class="ico" viewBox="0 0 256 256" aria-hidden="true"><use href="assets/icons.svg#i-phone-fill"></use></svg><span>+7 960 237-73-88</span></a></li>
         </ul>
         <p class="contacts-lead">Звоните на любой номер: посчитаем дорогу или подберём технику в аренду.</p>
         <h3>Что подготовить к звонку</h3>
-        <ol class="prep">
+        <ol class="prep" role="list">
           <li>Посёлок или адрес.</li>
           <li>Длину и ширину проезда, хотя бы примерно.</li>
           <li>Что сейчас на месте: грунт, щебень или лужи.</li>
@@ -309,13 +311,13 @@
         <h3 id="areas-title">Где работаем</h3>
         <ul class="area-map" aria-labelledby="areas-title">
           <li class="water water-nw" aria-hidden="true">Финский залив</li>
-          <li class="area area-n"><span class="arr" aria-hidden="true">↑</span>Приозерский район</li>
+          <li class="area area-n"><svg class="ico" viewBox="0 0 256 256" aria-hidden="true"><use href="assets/icons.svg#i-arrow-up-bold"></use></svg><span>Приозерский район</span></li>
           <li class="water water-ne" aria-hidden="true">Ладожское озеро</li>
-          <li class="area area-w"><span class="arr" aria-hidden="true">←</span>Ломоносовский район</li>
+          <li class="area area-w"><svg class="ico" viewBox="0 0 256 256" aria-hidden="true"><use href="assets/icons.svg#i-arrow-left-bold"></use></svg><span>Ломоносовский район</span></li>
           <li class="area-city">Санкт-Петербург</li>
-          <li class="area area-e"><span class="arr" aria-hidden="true">→</span>Всеволожский район</li>
-          <li class="area area-s"><span class="arr" aria-hidden="true">↓</span>Гатчина и Гатчинский район</li>
-          <li class="area area-se"><span class="arr" aria-hidden="true">↘</span>Тосненский район</li>
+          <li class="area area-e"><svg class="ico" viewBox="0 0 256 256" aria-hidden="true"><use href="assets/icons.svg#i-arrow-right-bold"></use></svg><span>Всеволожский район</span></li>
+          <li class="area area-s"><svg class="ico" viewBox="0 0 256 256" aria-hidden="true"><use href="assets/icons.svg#i-arrow-down-bold"></use></svg><span>Гатчина и Гатчинский район</span></li>
+          <li class="area area-se"><svg class="ico" viewBox="0 0 256 256" aria-hidden="true"><use href="assets/icons.svg#i-arrow-down-right-bold"></use></svg><span>Тосненский район</span></li>
         </ul>
         <p class="area-note">Выезжаем и в другие районы Ленинградской области.</p>
       </div>
@@ -323,7 +325,7 @@
   </main>
   <div class="mbar" role="group" aria-label="Смета и звонок" inert>
     <a class="button button-secondary" href="#estimate">Рассчитать</a>
-    <a class="button" href="tel:+79213719004">+7 921 371-90-04</a>
+    <a class="phone-chip mbar-phone" href="tel:+79213719004"><svg class="ico" viewBox="0 0 256 256" aria-hidden="true"><use href="assets/icons.svg#i-phone-fill"></use></svg><span>+7 921 371-90-04</span></a>
   </div>
   <!-- Подвал - полоса асфальта: кромка, осевая разметка, на ней всё о компании -->
   <footer class="site-footer">
@@ -352,8 +354,8 @@
       <div class="footer-col">
         <h2>Телефоны</h2>
         <ul class="footer-phones">
-          <li><a href="tel:+79213719004">+7 921 371-90-04</a></li>
-          <li><a href="tel:+79602377388">+7 960 237-73-88</a></li>
+          <li><a href="tel:+79213719004"><svg class="ico" viewBox="0 0 256 256" aria-hidden="true"><use href="assets/icons.svg#i-phone-fill"></use></svg>+7 921 371-90-04</a></li>
+          <li><a href="tel:+79602377388"><svg class="ico" viewBox="0 0 256 256" aria-hidden="true"><use href="assets/icons.svg#i-phone-fill"></use></svg>+7 960 237-73-88</a></li>
         </ul>
         <nav aria-label="Разделы сайта, повтор в подвале">
           <ul class="footer-nav">

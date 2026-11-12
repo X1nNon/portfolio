@@ -45,6 +45,7 @@
   --display: "Roboto Condensed", "Arial Narrow", Arial, sans-serif;
   --body: Commissioner, system-ui, sans-serif;
   --gap-section: clamp(56px, 7vw, 104px);
+  --sign-radius: 6px;
   --asphalt: #33372c;
   --asphalt-edge: #777b69;
   --on-asphalt: #f2f1e8;
@@ -89,15 +90,15 @@ section[id] { scroll-margin-top: 92px; }
 .brand { display: block; width: 150px; }
 .brand img { width: 100%; height: auto; }
 .nav { display: flex; flex-wrap: wrap; justify-content: center; gap: 6px 26px; }
-.nav a, .header-phone {
+.nav a {
   text-decoration: none;
   text-underline-offset: .3em;
   font-weight: 620;
   font-size: .92rem;
 }
-.nav a:hover, .header-phone:hover { text-decoration: underline; }
-.header-phone { justify-self: end; font-weight: 720; font-variant-numeric: tabular-nums; white-space: nowrap; }
-.menu-btn, .nav-phone { display: none; }
+.nav a:hover { text-decoration: underline; }
+.header-phone { justify-self: end; }
+.menu-btn, .nav .nav-phone { display: none; }
 .hero {
   display: grid;
   grid-template-columns: minmax(0, 1.22fr) minmax(0, 1fr);
@@ -107,31 +108,76 @@ section[id] { scroll-margin-top: 92px; }
 }
 .hero h1 { font-size: clamp(3rem, 5vw, 5rem); }
 .hero-copy p { color: var(--muted); max-width: 44ch; font-size: clamp(1rem, 1.8vw, 1.19rem); margin-block: 18px 22px; }
-.hero-actions { display: flex; flex-wrap: wrap; align-items: center; gap: 12px 22px; }
-.hero-copy .hero-phone { margin: 0; font-size: 1rem; }
-.hero-phone a { color: var(--ink); font-weight: 720; font-variant-numeric: tabular-nums; white-space: nowrap; text-underline-offset: .25em; }
+.hero-actions { display: flex; flex-wrap: wrap; align-items: center; gap: 12px 14px; }
 
-/* Дорожные таблички и поля имеют прямые углы. */
+/* Скругления. Кнопки, таблички с номером и жёлтый указатель похожи на дорожные знаки, поэтому
+   у них мягкие углы, как у настоящих знаков (--sign-radius, указатель крупнее - 10 px).
+   Фото, поля формы, схема и полосы асфальта прямые; круглые только точки схемы и номера этапов. */
+.ico { display: block; width: 1.25em; height: 1.25em; }
+
+/* Кнопка - жёлтая табличка с тёмной кромкой; стрелка в тёмном блоке справа, как на указателе. */
 .button {
   display: inline-flex;
   align-items: center;
-  justify-content: space-between;
-  gap: 20px;
-  min-height: 50px;
-  padding: 11px 16px;
-  border: 1px solid transparent;
+  gap: 16px;
+  min-height: 52px;
+  padding: 0 20px;
+  border: 0;
+  border-radius: var(--sign-radius);
+  overflow: hidden;
   background: var(--signal);
   color: var(--on-signal);
+  box-shadow: inset 0 0 0 2px var(--on-signal);
+  font: 760 1.06rem/1.15 var(--display);
+  letter-spacing: .01em;
   text-align: left;
   text-decoration: none;
-  font-weight: 720;
-  line-height: 1.3;
-  transition: background-color .15s ease;
+  transition: background-color .15s ease, transform .1s ease;
 }
 .button:hover { background: var(--signal-hover); }
-.button span { font-family: system-ui, sans-serif; font-size: 1.1rem; }
-.button-secondary { background: var(--field); color: var(--ink); border-color: var(--field-line); }
+.button:active { transform: translateY(1px); }
+.button:has(.button-arrow) { padding-right: 0; }
+.button-arrow {
+  display: grid;
+  align-self: stretch;
+  place-items: center;
+  width: 52px;
+  margin-left: auto;
+  background: var(--asphalt);
+  color: var(--signal);
+  box-shadow: inset 0 0 0 1px var(--asphalt-edge);
+}
+.button-arrow .ico { width: 22px; height: 22px; transition: transform .15s ease; }
+.button:hover .button-arrow .ico { transform: translate(2px, 2px); }
+.button-secondary { background: var(--field); color: var(--ink); box-shadow: inset 0 0 0 2px var(--ink); }
 .button-secondary:hover { background: var(--surface); }
+
+/* Номер телефона - табличка: жёлтый квадрат с трубкой и номер на асфальте, как в подвале. */
+.phone-chip {
+  display: inline-flex;
+  align-items: stretch;
+  min-height: 52px;
+  border-radius: var(--sign-radius);
+  overflow: hidden;
+  background: var(--asphalt);
+  color: var(--on-asphalt);
+  box-shadow: inset 0 0 0 1px var(--asphalt-edge);
+  font: 760 1.14rem/1 var(--display);
+  font-variant-numeric: tabular-nums;
+  letter-spacing: .01em;
+  text-decoration: none;
+  white-space: nowrap;
+}
+.phone-chip .ico { flex: none; width: 52px; height: auto; padding: 15px; background: var(--signal); color: var(--on-signal); }
+.phone-chip span { display: flex; align-items: center; padding: 0 18px; }
+.phone-chip:hover span { text-decoration: underline; text-decoration-thickness: 2px; text-underline-offset: .2em; }
+.phone-chip-sm { min-height: 40px; font-size: 1rem; }
+.phone-chip-sm .ico { width: 40px; padding: 11px; }
+.phone-chip-sm span { padding: 0 13px; }
+.phone-chip-xl { min-height: clamp(64px, 6.4vw, 86px); font-size: clamp(1.75rem, 3.5vw, 3rem); }
+.phone-chip-xl .ico { width: clamp(64px, 6.4vw, 86px); padding: clamp(17px, 1.7vw, 23px); }
+.phone-chip-xl span { padding: 0 clamp(16px, 2vw, 28px); }
+.phone-row { display: flex; flex-wrap: wrap; gap: 10px 12px; margin-top: 16px; }
 .hero-figure img { width: 100%; height: auto; object-fit: cover; background: var(--surface); aspect-ratio: 1.75; object-position: center 55%; }
 figcaption { margin-top: 8px; color: var(--muted); font-size: .78rem; }
 
@@ -221,6 +267,8 @@ form .button { justify-self: start; }
 .message p:empty { display: none; }
 .message-actions { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 8px; }
 .message .message-actions .button { margin-top: 0; }
+.message-hint a { color: var(--ink); font-weight: 720; font-variant-numeric: tabular-nums; text-decoration: none; white-space: nowrap; }
+.message-hint a:hover { text-decoration: underline; }
 /* SMS с готовым текстом имеет смысл только на телефоне */
 .sms-link { display: none; }
 @media (hover: none) and (pointer: coarse) { .sms-link { display: inline-flex; } }
@@ -267,7 +315,6 @@ form .button { justify-self: start; }
 /* Техника: настоящий экскаватор крупно во всю ширину, иллюстрации манипулятора и катка парой ниже. */
 .fleet { margin-top: var(--gap-section); }
 .fleet-head p { margin-top: 14px; color: var(--muted); max-width: 62ch; }
-.fleet-head a { color: var(--ink); font-weight: 720; font-variant-numeric: tabular-nums; white-space: nowrap; }
 .fleet-grid {
   display: grid;
   grid-template-columns: repeat(2, minmax(0, 1fr));
@@ -293,9 +340,8 @@ form .button { justify-self: start; }
 .machine-need span { display: block; color: var(--ink); font-size: .82rem; font-weight: 700; }
 .fleet-note { color: var(--muted); font-size: .78rem; margin-top: 14px; }
 
-/* Контакты. Номера крупно, как адрес на вывеске. Районы - жёлтый указатель, как временный знак
-   на дорожных работах: Петербург в кольце посередине, районы по сторонам света от него.
-   Это единственные жёлтые таблички на странице; углы прямые, кольцо круглое, как точки схемы. */
+/* Контакты. Номера крупными табличками, как адрес на вывеске. Районы - жёлтый указатель,
+   как временный знак на дорожных работах: Петербург кольцом посередине, районы по сторонам света. */
 .contacts {
   display: grid;
   grid-template-columns: minmax(0, 1fr) minmax(0, 1.08fr);
@@ -304,15 +350,7 @@ form .button { justify-self: start; }
   margin-top: var(--gap-section);
 }
 .contacts-call h2 { font-size: clamp(2.5rem, 5vw, 4.75rem); }
-.phones { display: grid; margin: 14px 0 0; padding: 0; list-style: none; }
-.phones a {
-  font: 770 clamp(2.2rem, 4.6vw, 4.2rem)/1.06 var(--display);
-  letter-spacing: -.02em;
-  font-variant-numeric: tabular-nums;
-  text-decoration: none;
-  white-space: nowrap;
-}
-.phones a:hover { text-decoration: underline; text-decoration-thickness: 3px; text-underline-offset: .1em; }
+.phones { display: grid; justify-items: start; gap: 10px; margin: 18px 0 0; padding: 0; list-style: none; }
 .contacts-lead { margin-top: 14px; color: var(--muted); max-width: 44ch; }
 .contacts-call h3 { margin-top: 26px; padding-top: 14px; border-top: 1px solid var(--line); font-size: clamp(1.35rem, 1.9vw, 1.75rem); }
 .prep { display: grid; gap: 9px; margin: 12px 0 0; padding: 0; list-style: none; counter-reset: prep; }
@@ -330,23 +368,27 @@ form .button { justify-self: start; }
   font-size: .85rem;
   font-weight: 760;
 }
+/* Указатель - справка, а не кнопки: у районов нет рамок, только жирные стрелки и названия,
+   как на настоящем указателе направлений. Стрелка с внешней стороны, куда район лежит от города. */
 .area-sign {
   display: grid;
   grid-template-rows: auto 1fr auto;
-  gap: 16px;
-  padding: clamp(22px, 3vw, 36px);
+  gap: 20px;
+  padding: clamp(26px, 3.4vw, 42px);
+  border-radius: 10px;
   background: var(--signal);
   color: var(--on-signal);
-  box-shadow: inset 0 0 0 6px var(--signal), inset 0 0 0 8px var(--on-signal);
+  box-shadow: inset 0 0 0 7px var(--signal), inset 0 0 0 10px var(--on-signal);
 }
-.area-sign :focus-visible { outline-color: var(--on-signal); }
 .area-sign h3 { font-size: clamp(1.7rem, 2.6vw, 2.4rem); }
 .area-map {
   display: grid;
-  grid-template-columns: repeat(3, minmax(0, 1fr));
-  grid-template-areas: "nw n ne" "w city e" "s s se";
+  grid-template-columns: minmax(0, 1fr) minmax(0, 1.05fr) minmax(0, 1fr);
+  grid-template-areas: "nw n ne" "w city e" ". s se";
+  align-content: center;
   align-items: center;
-  gap: 10px;
+  justify-items: center;
+  gap: 18px 16px;
   margin: 0;
   padding: 0;
   list-style: none;
@@ -359,32 +401,20 @@ form .button { justify-self: start; }
 .area-e { grid-area: e; }
 .area-s { grid-area: s; }
 .area-se { grid-area: se; }
-.area {
-  display: flex;
-  align-items: center;
-  gap: 8px;
-  min-height: 62px;
-  padding: 9px 12px;
-  border: 2px solid var(--on-signal);
-  font-weight: 720;
-  line-height: 1.2;
-}
-.arr { flex: none; font: 700 1.45rem/1 system-ui, sans-serif; }
-/* стрелка с той стороны, куда район лежит от Петербурга */
-.area-n { flex-direction: column; justify-content: center; text-align: center; }
-.area-s { justify-content: center; }
-.area-e, .area-se { flex-direction: row-reverse; justify-content: flex-end; }
+.area { display: flex; align-items: center; gap: 10px; font: 760 clamp(1rem, 1.3vw, 1.2rem)/1.15 var(--display); }
+.area .ico { flex: none; width: clamp(26px, 2.4vw, 34px); height: clamp(26px, 2.4vw, 34px); }
+.area-n { flex-direction: column; text-align: center; }
+.area-s { flex-direction: column-reverse; text-align: center; }
+.area-e, .area-se { flex-direction: row-reverse; }
 .area-city {
   display: grid;
   place-items: center;
-  justify-self: center;
-  width: min(100%, 148px);
+  width: clamp(118px, 11vw, 150px);
   aspect-ratio: 1;
-  padding: 12px;
+  padding: 22px;
   border-radius: 50%;
-  background: var(--on-signal);
-  color: var(--signal);
-  font: 770 1.08rem/1.1 var(--display);
+  box-shadow: inset 0 0 0 4px var(--on-signal), inset 0 0 0 8px var(--signal), inset 0 0 0 10px var(--on-signal);
+  font: 770 1.05rem/1.1 var(--display);
   text-align: center;
 }
 .water { font-size: .86rem; font-style: italic; text-align: center; opacity: .78; }
@@ -420,7 +450,8 @@ form .button { justify-self: start; }
 .footer-brand p { margin-top: 14px; max-width: 34ch; color: var(--on-asphalt-muted); font-size: .92rem; }
 .footer-col h2 { color: var(--signal); font: 720 .95rem/1.3 var(--body); letter-spacing: 0; }
 .footer-col ul { display: grid; gap: 7px; margin: 10px 0 0; padding: 0; list-style: none; color: var(--on-asphalt-muted); font-size: .92rem; }
-.footer-phones a { font: 720 1.2rem/1.25 var(--display); font-variant-numeric: tabular-nums; white-space: nowrap; }
+.footer-phones a { display: inline-flex; align-items: center; gap: 9px; font: 720 1.2rem/1.25 var(--display); font-variant-numeric: tabular-nums; white-space: nowrap; }
+.footer-phones .ico { width: 18px; height: 18px; color: var(--signal); }
 .footer-col .footer-nav { margin-top: 18px; padding-top: 14px; border-top: 1px solid rgb(242 241 232 / .18); }
 .footer-bottom {
   display: flex;
@@ -463,12 +494,14 @@ form .button { justify-self: start; }
     justify-self: end;
     min-height: 44px;
     padding: 8px 16px;
-    border: 1px solid var(--field-line);
+    border: 0;
+    border-radius: var(--sign-radius);
     background: var(--field);
     color: var(--ink);
-    font-weight: 720;
+    box-shadow: inset 0 0 0 2px var(--ink);
+    font: 760 1rem/1 var(--display);
   }
-  .js .menu-btn[aria-expanded="true"] { background: var(--signal); color: var(--on-signal); border-color: var(--on-signal); }
+  .js .menu-btn[aria-expanded="true"] { background: var(--signal); color: var(--on-signal); box-shadow: inset 0 0 0 2px var(--on-signal); }
   .js .nav {
     position: absolute;
     inset: 100% 0 auto;
@@ -480,7 +513,7 @@ form .button { justify-self: start; }
     background: var(--paper);
   }
   .js .nav a { padding: 13px 0; border-top: 1px solid var(--line); font-size: 1.1rem; }
-  .js .nav .nav-phone { display: block; font-weight: 760; font-variant-numeric: tabular-nums; }
+  .js .nav .nav-phone { display: inline-flex; justify-self: start; margin-top: 12px; padding: 0; border-top: 0; font-size: 1.1rem; }
   /* указателю районов нужна вся ширина, иначе длинные названия не помещаются в клетки */
   .contacts { grid-template-columns: minmax(0, 1fr); }
 }
@@ -525,7 +558,9 @@ form .button { justify-self: start; }
     transition: transform .2s ease;
   }
   .mbar.on { transform: none; }
-  .mbar .button { justify-content: center; min-height: 48px; white-space: nowrap; }
+  .mbar .button, .mbar .phone-chip { justify-content: center; min-height: 48px; white-space: nowrap; }
+  .mbar .phone-chip .ico { width: 48px; padding: 13px; }
+  .mbar .phone-chip span { flex: 1; justify-content: center; padding: 0 10px; }
   .result-line { margin-block: 5px 12px; font-size: clamp(3.2rem, 13vw, 6rem); }
   .result-note { margin-top: 8px; }
   .footer-inner { grid-template-columns: repeat(2, minmax(0, 1fr)); }
@@ -536,10 +571,18 @@ form .button { justify-self: start; }
   .machine { grid-template-columns: minmax(0, 1fr); }
   .footer-inner { grid-template-columns: minmax(0, 1fr); }
   /* на узком экране указатель становится списком: Петербург сверху, районы по кругу */
-  .area-map { grid-template-columns: minmax(0, 1fr); grid-template-areas: "city" "n" "e" "se" "s" "w"; gap: 8px; }
+  .area-map { grid-template-columns: minmax(0, 1fr); grid-template-areas: "city" "n" "e" "se" "s" "w"; justify-items: start; gap: 12px; }
   .water { display: none; }
-  .area-city { width: 100%; aspect-ratio: auto; padding: 12px; border-radius: 0; }
-  .area, .area-n, .area-s, .area-e, .area-se { flex-direction: row; justify-content: flex-start; text-align: left; min-height: 0; }
+  .area-city { width: auto; aspect-ratio: auto; padding: 8px 14px; border-radius: var(--sign-radius); box-shadow: inset 0 0 0 3px var(--on-signal); }
+  .area, .area-n, .area-s, .area-e, .area-se { flex-direction: row; text-align: left; }
+}
+/* самые узкие телефоны: крупные таблички с номером поменьше, в плашке только номер */
+@media (max-width: 360px) {
+  .phone-chip-xl { min-height: 58px; font-size: 1.5rem; }
+  .phone-chip-xl .ico { width: 58px; padding: 16px; }
+  .phone-chip-xl span { padding: 0 14px; }
+  .mbar { grid-template-columns: minmax(0, 1fr); }
+  .mbar .button-secondary { display: none; }
 }
 @media (prefers-reduced-motion: reduce) {
   html { scroll-behavior: auto; }

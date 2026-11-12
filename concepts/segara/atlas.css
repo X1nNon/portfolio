@@ -89,7 +89,7 @@
   margin-top: var(--gap-section);
 }
 .faq-head p { margin-top: 14px; max-width: 30ch; color: var(--muted); }
-.faq-head a { color: var(--ink); font-weight: 720; font-variant-numeric: tabular-nums; white-space: nowrap; }
+.faq-head .phone-chip { margin-top: 16px; }
 .faq-list { border-top: 1px solid var(--line); }
 .faq details { border-bottom: 1px solid var(--line); }
 .faq summary { position: relative; padding: 15px 30px 15px 0; cursor: pointer; font-weight: 700; list-style: none; }
