@@ -47,6 +47,7 @@
   --gap-section: clamp(56px, 7vw, 104px);
   --sign-radius: 6px;
   --asphalt: #33372c;
+  --plate-dark: #33372c;
   --asphalt-edge: #777b69;
   --on-asphalt: #f2f1e8;
   --on-asphalt-muted: #c9ccbd;
@@ -124,10 +125,10 @@ section[id] { scroll-margin-top: 92px; }
   padding: 0 20px;
   border: 0;
   border-radius: var(--sign-radius);
+  position: relative;
   overflow: hidden;
   background: var(--signal);
   color: var(--on-signal);
-  box-shadow: inset 0 0 0 2px var(--on-signal);
   font: 760 1.06rem/1.15 var(--display);
   letter-spacing: .01em;
   text-align: left;
@@ -143,13 +144,23 @@ section[id] { scroll-margin-top: 92px; }
   place-items: center;
   width: 52px;
   margin-left: auto;
-  background: var(--asphalt);
+  background: var(--plate-dark);
   color: var(--signal);
-  box-shadow: inset 0 0 0 1px var(--asphalt-edge);
 }
 .button-arrow .ico { width: 22px; height: 22px; transition: transform .15s ease; }
 .button:hover .button-arrow .ico { transform: translate(2px, 2px); }
 .button-secondary { background: var(--field); color: var(--ink); box-shadow: inset 0 0 0 2px var(--ink); }
+/* Одна рамка поверх жёлтой и тёмной частей, поэтому они всегда одной высоты,
+   в том числе в тёмной теме, где рамка сливается с фоном. */
+.button::after, .phone-chip::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  border: 2px solid var(--on-signal);
+  border-radius: inherit;
+  pointer-events: none;
+}
+.button-secondary::after { display: none; }
 .button-secondary:hover { background: var(--surface); }
 
 /* Номер телефона - табличка: жёлтый квадрат с трубкой и номер на асфальте, как в подвале. */
@@ -158,10 +169,10 @@ section[id] { scroll-margin-top: 92px; }
   align-items: stretch;
   min-height: 52px;
   border-radius: var(--sign-radius);
+  position: relative;
   overflow: hidden;
-  background: var(--asphalt);
+  background: var(--plate-dark);
   color: var(--on-asphalt);
-  box-shadow: inset 0 0 0 1px var(--asphalt-edge);
   font: 760 1.14rem/1 var(--display);
   font-variant-numeric: tabular-nums;
   letter-spacing: .01em;
@@ -193,8 +204,10 @@ figcaption { margin-top: 8px; color: var(--muted); font-size: .78rem; }
 .roads-copy > p { max-width: 56ch; }
 .video-toggle { grid-column: 2; grid-row: 1 / span 2; min-height: 44px; }
 
-/* Этапы связаны полосой асфальта с осевой разметкой, как полоса на схеме сметы.
-   Номера этапов круглые, как точки на схеме проезда; остальное с прямыми углами. */
+/* Под этапами идёт дорога, которая строится вместе с ними: после расчистки земля с колеями,
+   после отсыпки щебень, на укладке половина уже в асфальте, в конце асфальт с разметкой
+   (жёлтая разметка - временная, как на дорожных работах). Номера этапов - круглые знаки
+   с тёмным ободком, дорога уходит под них. */
 .stages {
   --stage-gap: clamp(14px, 2vw, 28px);
   display: grid;
@@ -206,29 +219,63 @@ figcaption { margin-top: 8px; color: var(--muted); font-size: .78rem; }
 }
 .stage { min-width: 0; }
 .stage-video { display: block; width: 100%; height: auto; aspect-ratio: 4 / 5; object-fit: cover; background: var(--surface); }
-.stage-mark { display: flex; align-items: center; margin-block: 14px 12px; }
+.stages {
+  --soil: #7b5b3f;
+  --gravel: #b9b2a2;
+  --road-edge: #d8d6cb;
+  /* три слоя зерна с разным шагом, чтобы щебень не складывался в ровную сетку */
+  --gravel-grain:
+    radial-gradient(circle, rgb(32 36 28 / .42) 0 1.2px, transparent 1.7px) 0 0 / 7px 5px,
+    radial-gradient(circle, rgb(32 36 28 / .28) 0 1.7px, transparent 2.2px) 2px 1px / 11px 9px,
+    radial-gradient(circle, rgb(255 255 255 / .55) 0 1.1px, transparent 1.6px) 4px 3px / 13px 7px;
+}
+.stage-mark { display: flex; align-items: center; margin-block: 16px 14px; }
 .stage-mark span {
+  position: relative;
+  z-index: 1;
   display: grid;
   flex: none;
   place-items: center;
-  width: 40px;
-  height: 40px;
-  border: 1px solid var(--on-signal);
+  width: 42px;
+  height: 42px;
   border-radius: 50%;
   background: var(--signal);
   color: var(--on-signal);
-  font-weight: 760;
+  box-shadow: 0 0 0 3px var(--on-signal), 0 0 0 7px var(--paper);
+  font: 770 1.1rem/1 var(--display);
   font-variant-numeric: tabular-nums;
 }
 .stage-mark::after {
   content: "";
   flex: 1;
-  height: 14px;
+  height: 20px;
   margin-right: calc(-1 * var(--stage-gap));
-  border-block: 3px solid #777b69;
-  background: repeating-linear-gradient(90deg, var(--signal) 0 14px, transparent 14px 26px) center / 100% 2px no-repeat, #33372c;
+  background: var(--asphalt);
 }
 .stage:last-child .stage-mark::after { margin-right: 0; }
+/* земля после расчистки: две колеи от гусениц */
+.stage-soil .stage-mark::after {
+  background:
+    linear-gradient(transparent 22%, rgb(0 0 0 / .24) 22% 36%, transparent 36% 64%, rgb(0 0 0 / .24) 64% 78%, transparent 78%),
+    var(--soil);
+}
+/* щебёночное основание */
+.stage-gravel .stage-mark::after { background: var(--gravel-grain), var(--gravel); }
+/* укладка: слева уже свежая крошка, справа ещё щебень */
+.stage-laying .stage-mark::after {
+  background:
+    linear-gradient(90deg, var(--asphalt) 0 58%, rgb(0 0 0 / .35) 58% calc(58% + 3px), transparent calc(58% + 3px)),
+    var(--gravel-grain),
+    var(--gravel);
+}
+/* готовая дорога: кромки и осевая */
+.stage-asphalt .stage-mark::after {
+  background:
+    linear-gradient(var(--road-edge), var(--road-edge)) 0 3px / 100% 2px no-repeat,
+    linear-gradient(var(--road-edge), var(--road-edge)) 0 calc(100% - 3px) / 100% 2px no-repeat,
+    repeating-linear-gradient(90deg, var(--signal) 0 16px, transparent 16px 28px) center / 100% 2px no-repeat,
+    var(--asphalt);
+}
 .stage h3 { font-size: clamp(1.35rem, 1.9vw, 1.75rem); }
 .stage p { margin-top: 6px; color: var(--muted); font-size: .94rem; max-width: 34ch; }
 
@@ -368,57 +415,46 @@ form .button { justify-self: start; }
   font-size: .85rem;
   font-weight: 760;
 }
-/* Указатель - справка, а не кнопки: у районов нет рамок, только жирные стрелки и названия,
-   как на настоящем указателе направлений. Стрелка с внешней стороны, куда район лежит от города. */
-.area-sign {
+/* Карта «Где работаем»: запад Ленинградской области по районам (tools/area_map.py).
+   Жёлтым - где работают, Петербург жёлтый со штриховкой и табличкой, остальные районы серым. */
+.area-card {
+  --map-water: #c3d1d3;
+  --map-land: #e2e2d8;
+  --map-other: #cfd0c1;
+  --map-border: #f4f4ee;
+  --map-other-ink: #66685b;
+  --map-water-ink: #475c60;
   display: grid;
-  grid-template-rows: auto 1fr auto;
-  gap: 20px;
-  padding: clamp(26px, 3.4vw, 42px);
-  border-radius: 10px;
-  background: var(--signal);
-  color: var(--on-signal);
-  box-shadow: inset 0 0 0 7px var(--signal), inset 0 0 0 10px var(--on-signal);
+  align-content: start;
+  gap: 14px;
 }
-.area-sign h3 { font-size: clamp(1.7rem, 2.6vw, 2.4rem); }
-.area-map {
-  display: grid;
-  grid-template-columns: minmax(0, 1fr) minmax(0, 1.05fr) minmax(0, 1fr);
-  grid-template-areas: "nw n ne" "w city e" ". s se";
-  align-content: center;
-  align-items: center;
-  justify-items: center;
-  gap: 18px 16px;
-  margin: 0;
-  padding: 0;
-  list-style: none;
-}
-.water-nw { grid-area: nw; }
-.area-n { grid-area: n; }
-.water-ne { grid-area: ne; }
-.area-w { grid-area: w; }
-.area-city { grid-area: city; }
-.area-e { grid-area: e; }
-.area-s { grid-area: s; }
-.area-se { grid-area: se; }
-.area { display: flex; align-items: center; gap: 10px; font: 760 clamp(1rem, 1.3vw, 1.2rem)/1.15 var(--display); }
-.area .ico { flex: none; width: clamp(26px, 2.4vw, 34px); height: clamp(26px, 2.4vw, 34px); }
-.area-n { flex-direction: column; text-align: center; }
-.area-s { flex-direction: column-reverse; text-align: center; }
-.area-e, .area-se { flex-direction: row-reverse; }
-.area-city {
-  display: grid;
-  place-items: center;
-  width: clamp(118px, 11vw, 150px);
-  aspect-ratio: 1;
-  padding: 22px;
-  border-radius: 50%;
-  box-shadow: inset 0 0 0 4px var(--on-signal), inset 0 0 0 8px var(--signal), inset 0 0 0 10px var(--on-signal);
-  font: 770 1.05rem/1.1 var(--display);
-  text-align: center;
-}
-.water { font-size: .86rem; font-style: italic; text-align: center; opacity: .78; }
-.area-note { font-size: .92rem; }
+.area-card h3 { font-size: clamp(1.7rem, 2.6vw, 2.4rem); }
+.area-map-frame { overflow: hidden; border: 1px solid var(--line); border-radius: 10px; background: var(--map-water); }
+.area-map-svg { display: block; width: 100%; height: auto; }
+.area-map-svg .m-water { fill: var(--map-water); }
+.area-map-svg .m-land { fill: var(--map-land); }
+.area-map-svg .m-other path { fill: var(--map-other); stroke: var(--map-border); stroke-width: 1.4; stroke-linejoin: round; }
+.area-map-svg .m-served path, .area-map-svg .m-spb { stroke: var(--on-signal); stroke-width: 1.8; stroke-linejoin: round; }
+.area-map-svg .m-served path { fill: var(--signal); }
+.area-map-svg .m-spb { fill: url(#m-hatch); }
+.area-map-svg .m-hatch-bg { fill: var(--signal); }
+.area-map-svg .m-hatch-line { fill: var(--on-signal); }
+.area-map-svg text { font-family: var(--display); }
+.area-map-svg .m-label { fill: var(--on-signal); font-size: 27px; font-weight: 770; paint-order: stroke; stroke: var(--signal); stroke-width: 5px; stroke-linejoin: round; }
+.area-map-svg .m-other-label { fill: var(--map-other-ink); font-size: 16px; font-weight: 600; }
+.area-map-svg .m-water-label { fill: var(--map-water-ink); font-family: var(--body); font-size: 17px; font-style: italic; }
+.area-map-svg .m-leader { stroke: var(--on-signal); stroke-width: 2; }
+.area-map-svg .m-dot { fill: var(--on-signal); stroke: var(--signal); stroke-width: 3; }
+.area-map-svg .m-plate { fill: var(--on-signal); stroke: var(--signal); stroke-width: 1.5; }
+.area-map-svg .m-plate-label { fill: var(--signal); font-size: 21px; font-weight: 760; }
+.area-legend { display: grid; gap: 8px; margin: 0; padding: 0; list-style: none; font-size: .95rem; }
+.area-legend li { display: grid; grid-template-columns: 22px minmax(0, 1fr); align-items: start; gap: 10px; color: var(--muted); }
+.area-legend strong { color: var(--ink); }
+.sw { width: 22px; height: 16px; margin-top: 3px; border-radius: 3px; }
+.sw-served { background: var(--signal); box-shadow: inset 0 0 0 1.5px var(--on-signal); }
+.sw-other { background: var(--map-other); box-shadow: inset 0 0 0 1px var(--line); }
+.map-credit { color: var(--muted); font-size: .78rem; }
+.map-credit a { color: inherit; }
 
 /* Плашка на телефоне: смета и звонок, пока кнопки первого экрана не видны (app.js) */
 .mbar { display: none; }
@@ -477,6 +513,15 @@ form .button { justify-self: start; }
     --field: #22261e;
     --field-line: #939a86;
     --focus: #e5ef67;
+    --plate-dark: #3d4236;
+  }
+  .area-card {
+    --map-water: #2a3a3e;
+    --map-land: #2b2f27;
+    --map-other: #3b4035;
+    --map-border: #20231e;
+    --map-other-ink: #b3b6a6;
+    --map-water-ink: #9db2b6;
   }
 }
 
@@ -570,11 +615,12 @@ form .button { justify-self: start; }
   .hero h1 { font-size: clamp(2.2rem, 10.1vw, 3.8rem); }
   .machine { grid-template-columns: minmax(0, 1fr); }
   .footer-inner { grid-template-columns: minmax(0, 1fr); }
-  /* на узком экране указатель становится списком: Петербург сверху, районы по кругу */
-  .area-map { grid-template-columns: minmax(0, 1fr); grid-template-areas: "city" "n" "e" "se" "s" "w"; justify-items: start; gap: 12px; }
-  .water { display: none; }
-  .area-city { width: auto; aspect-ratio: auto; padding: 8px 14px; border-radius: var(--sign-radius); box-shadow: inset 0 0 0 3px var(--on-signal); }
-  .area, .area-n, .area-s, .area-e, .area-se { flex-direction: row; text-align: left; }
+  /* на телефоне карта узкая: подписи районов крупнее, мелкие названия соседей и воды убираем */
+  .area-map-svg .m-label { font-size: 34px; stroke-width: 6px; }
+  .area-map-svg .m-l-gat { transform: translateX(-22px); }
+  .area-map-svg .m-l-tos { transform: translateX(14px); }
+  .area-map-svg .m-plate-label { font-size: 26px; }
+  .area-map-svg .m-other-label, .area-map-svg .m-water-label { display: none; }
 }
 /* самые узкие телефоны: крупные таблички с номером поменьше, в плашке только номер */
 @media (max-width: 360px) {
